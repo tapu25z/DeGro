@@ -1,0 +1,39 @@
+{
+  "expected": 514,
+  "unique_problems": 514,
+  "methods": {
+    "structured_solver": {
+      "records": 514,
+      "errors": 0,
+      "not_supported": 1,
+      "joint_verifier_coverage": 0.9785992217898832,
+      "accuracy": 0.7704280155642024,
+      "accuracy_on_covered": 0.7872763419483101,
+      "initial_verdicts": {
+        "DETERMINATE": 488,
+        "INCONSISTENT": 4,
+        "AMBIGUOUS": 15,
+        "NOT_SUPPORTED": 6
+      },
+      "triggered": 0,
+      "accepted_repairs": 0
+    },
+    "degro": {
+      "records": 514,
+      "errors": 0,
+      "not_supported": 1,
+      "joint_verifier_coverage": 0.9785992217898832,
+      "accuracy": 0.7704280155642024,
+      "accuracy_on_covered": 0.7872763419483101,
+      "initial_verdicts": {
+        "DETERMINATE": 488,
+        "INCONSISTENT": 4,
+        "AMBIGUOUS": 15,
+        "NOT_SUPPORTED": 6
+      },
+      "triggered": 15,
+      "accepted_repairs": 2
+    }
+  },
+  "complete": true
+}

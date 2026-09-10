@@ -1,0 +1,16 @@
+[1/16] test/algebra/1078.json ok
+[2/16] test/algebra/1842.json ok
+[3/16] test/algebra/2470.json ok
+[4/16] test/algebra/425.json ok
+[5/16] test/algebra/841.json ok
+[6/16] test/counting_and_probability/216.json ok
+[7/16] test/geometry/1140.json ok
+[8/16] test/geometry/947.json ok
+[9/16] test/intermediate_algebra/1566.json ok
+[10/16] test/intermediate_algebra/623.json ok
+[11/16] test/number_theory/239.json ok
+[12/16] test/number_theory/679.json ok
+[13/16] test/prealgebra/1247.json ok
+[14/16] test/prealgebra/1733.json ok
+[15/16] test/prealgebra/2019.json ok
+[16/16] test/prealgebra/996.json ok

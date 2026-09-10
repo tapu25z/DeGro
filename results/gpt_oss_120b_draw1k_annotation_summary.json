@@ -1,0 +1,19 @@
+{
+  "records": 194,
+  "labels": {
+    "CORRECT": 177,
+    "EXTRA_CONSTRAINT": 3,
+    "WRONG_CONSTRAINT": 6,
+    "WRONG_TARGET": 8
+  },
+  "confidence": {
+    "HIGH": 193,
+    "LOW": 1
+  },
+  "prompt_hashes": [
+    "0f1093c9156904da78890ca09e9dc2048b4adf2541e14a103136e0bf03b7e094"
+  ],
+  "models": [
+    "gpt-oss:120b"
+  ]
+}

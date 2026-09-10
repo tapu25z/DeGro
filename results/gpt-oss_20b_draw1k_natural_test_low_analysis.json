@@ -1,0 +1,38 @@
+{
+  "expected": 200,
+  "unique_problems": 200,
+  "methods": {
+    "structured_solver": {
+      "records": 200,
+      "errors": 0,
+      "not_supported": 0,
+      "joint_verifier_coverage": 0.97,
+      "accuracy": 0.695,
+      "accuracy_on_covered": 0.7164948453608248,
+      "initial_verdicts": {
+        "DETERMINATE": 182,
+        "INCONSISTENT": 5,
+        "AMBIGUOUS": 12,
+        "NOT_SUPPORTED": 1
+      },
+      "triggered": 0,
+      "accepted_repairs": 0
+    },
+    "degro": {
+      "records": 200,
+      "errors": 0,
+      "not_supported": 1,
+      "joint_verifier_coverage": 0.97,
+      "accuracy": 0.72,
+      "accuracy_on_covered": 0.7422680412371134,
+      "initial_verdicts": {
+        "DETERMINATE": 182,
+        "INCONSISTENT": 5,
+        "AMBIGUOUS": 12
+      },
+      "triggered": 12,
+      "accepted_repairs": 6
+    }
+  },
+  "complete": true
+}

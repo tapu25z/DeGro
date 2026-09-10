@@ -1,0 +1,350 @@
+\documentclass[sigconf,anonymous]{aamas}
+\usepackage{balance}
+\graphicspath{{vendor/}}
+
+\makeatletter
+\gdef\@copyrightpermission{%
+  \begin{minipage}{0.2\columnwidth}
+  \href{https://creativecommons.org/licenses/by/4.0/}{\includegraphics[width=.9\textwidth]{by}}
+  \end{minipage}\hfill
+  \begin{minipage}{0.8\columnwidth}
+  \href{https://creativecommons.org/licenses/by/4.0/}{This work is licensed under a Creative Commons Attribution International 4.0 License.}
+  \end{minipage}\vspace{5pt}}
+\makeatother
+\setcopyright{ifaamas}
+\acmConference[AAMAS 2027]{Proc. of the 26th International Conference on Autonomous Agents and Multiagent Systems (AAMAS 2027)}{3--7 May 2027}{Hanoi, Vietnam}{M. Baldoni, F. Fang, W. Yeoh, N. Yorke-Smith (eds.)}
+\copyrightyear{2027}\acmYear{2027}\acmDOI{}\acmISBN{}
+\acmSubmissionID{ANONYMOUS}
+\submissionType{Research Paper Track}
+
+\newcommand{\method}{\textsc{DeGro}}
+\newcommand{\tc}{\textsc{TargetCheck}}
+\newcommand{\sat}{\textsc{sat}}
+\newcommand{\unsat}{\textsc{unsat}}
+
+\title{Repair or Abstain? Target-Determinacy-Guided Grounding for Executable Mathematical Agents}
+\author{Anonymous Author(s)}
+
+\begin{abstract}
+Executable reasoning lets language-model agents delegate arithmetic and search to programs or symbolic solvers, but successful execution is not evidence that the generated formalization contains every condition required by the source.  We study the silent case in which a satisfiable formalization admits multiple values for the quantity that the agent reports.  We introduce \method, a verification-and-repair policy that first checks \emph{target determinacy}: whether every model of a structured specification agrees on the target.  If not, the policy may add a constraint only when it cites an exact supporting span in the source; otherwise it abstains.  A solver rejects inconsistent, redundant, unsupported, or still-insufficient repairs.  We construct 300 paired problems from five MIRA-Math families.  Each pair shares the same underconstrained formalization, while only one source contains the omitted fact, preventing the verifier state alone from revealing whether repair or abstention is correct.  Across 600 cases, \method reaches 96.2\% final decision accuracy with GPT-OSS 20B, five points above grounded self-review ($p_{\mathrm{Holm}}<0.001$), and 97.8\% with Gemma 4 31B.  A decision-stage ablation shows that target-divergent witnesses add no measurable benefit over a bare non-uniqueness verdict with grounding on this benchmark.  A provisional 500-problem MATH evaluation further exposes the principal deployment limit: only 56\% of problems reach a solver-checkable verdict.  The results support target determinacy as a useful, narrow safety condition for executable agents, while showing that representation coverage and semantic faithfulness remain distinct open problems.
+\end{abstract}
+
+\ccsdesc[500]{Computing methodologies~Intelligent agents}
+\ccsdesc[500]{Computing methodologies~Knowledge representation and reasoning}
+\ccsdesc[300]{Computing methodologies~Natural language processing}
+\keywords{mathematical agents, verification, grounding, abstention}
+
+\begin{document}
+\maketitle
+
+\section{Introduction}
+Language-model agents increasingly act by generating an executable artifact and delegating computation to an interpreter or solver.  Chain-of-thought prompting externalizes intermediate reasoning~\cite{wei2022cot}; PAL and Program-of-Thoughts separate language understanding from deterministic computation~\cite{gao2023pal,chen2023pot}; and SymCode represents a mathematical solution as a SymPy program that can be rerun and debugged~\cite{nezhad2026symcode}.  These approaches reduce arithmetic and runtime errors, yet they retain a critical translation boundary: a correct engine can faithfully solve the wrong formalization.
+
+Consider: ``Ten tasks are divided between A and B. A receives two more than B. How many tasks does A receive?''  A generated program containing only $a+b=10$ executes and has feasible solutions, but the target $a$ is not justified.  For example, $(a,b)=(4,6)$ and $(6,4)$ both satisfy the encoded constraint and disagree on $a$.  Conversely, the same formalization is faithful for the shorter source ``Ten tasks are divided between A and B. How many does A receive?''  Adding $a=b+2$ in the second case would invent information.  Thus an autonomous agent must make two decisions: whether its current representation determines the requested quantity, and whether the source licenses a repair.
+
+We operationalize the first decision as \emph{target determinacy}.  Given a formalization $F$ and target expression $q$, a solver searches for two models of $F$ whose target values differ.  If no such pair exists, $q$ is determinate under $F$ even when non-target variables remain free.  If such a pair exists, it is a machine-checkable ambiguity certificate.  We then impose a grounded policy: a repair must cite an exact source span and pass compilation, consistency, non-redundancy, and re-verification checks; otherwise the agent abstains.
+
+Our central experimental challenge is that an ambiguity signal does not reveal whether the representation omitted a stated fact or the source itself is incomplete.  We address this with a paired construction.  Starting from a gold constraint set, we delete one solver-validated target-critical constraint.  The resulting formalization is shared by two cases.  In the \emph{omission} case, the natural-language source retains the fact, so repair is correct.  In the \emph{underspecified} case, the source omits it, so abstention is correct.  Because the solver input is identical within each pair, success requires source-sensitive behavior rather than exploiting the verifier state.
+
+We make four contributions.  First, we formulate a lightweight solver query that separates target uniqueness from full model uniqueness.  Second, we introduce \method, a grounded repair-or-abstain protocol with deterministic acceptance gates.  Third, we construct and freeze a 300-pair controlled evaluation from five MIRA-Math families~\cite{albateh2026mira}, with exact paired statistical tests.  Fourth, we report both positive and negative evidence: \method improves decision accuracy for GPT-OSS 20B, but its advantage is model-dependent, and concrete target-divergent witnesses do not outperform a bare non-uniqueness verdict plus grounding on the present benchmark.
+
+The claim is intentionally narrow.  An \unsat{} target-divergence query certifies determinacy only relative to the generated representation.  It does not prove that the representation is semantically equivalent to the source, nor that every mathematical problem lies in the supported SMT fragment.
+
+\paragraph{Research questions.}
+The evaluation is organized around four questions.  \textbf{RQ1:} Can a target non-determinacy signal improve the joint decision to repair an omitted fact or abstain on an underspecified source?  \textbf{RQ2:} Does requiring an exact source citation reduce unsupported additions?  \textbf{RQ3:} Do concrete target-divergent models add information beyond a bare non-uniqueness verdict?  \textbf{RQ4:} How much of a broad mathematical benchmark can the current structured representation verify end to end?  RQ1--RQ3 are answered on the controlled paired benchmark; RQ4 is a coverage-oriented stress test rather than the primary efficacy claim.
+
+\section{Related Work}
+\paragraph{Executable mathematical reasoning.}
+Natural-language rationales can improve multi-step reasoning~\cite{wei2022cot}, while verifier-based selection can improve answer accuracy by ranking sampled solutions~\cite{cobbe2021verifiers}.  Program-aided approaches instead ask the model to generate code and delegate execution to a deterministic runtime.  PAL evaluates this pattern across mathematical, symbolic, and algorithmic tasks~\cite{gao2023pal}; Program-of-Thoughts emphasizes the separation of reasoning from computation~\cite{chen2023pot}.  SymCode uses symbolic code as a verifiable reasoning medium and execution feedback for repair~\cite{nezhad2026symcode}.  Our focus is complementary: code may execute without runtime failure while omitting a source condition.  Execution validates mechanics, whereas target determinacy tests whether the encoded feasible set supports the reported scalar.
+
+\paragraph{Self-correction and diagnostic feedback.}
+Self-Refine iteratively uses model-generated feedback without additional training~\cite{madaan2023selfrefine}.  Such feedback is flexible but need not be externally valid.  Recent neuro-symbolic methods replace generic criticism with structured evidence.  ReLoop perturbs optimization-model parameters to expose behaviorally incorrect but executable models~\cite{lian2026reloop}.  SymDiag translates reasoning traces into constraints and returns satisfiability or entailment diagnostics~\cite{cui2026symdiag}.  Minimal-core-guided repair localizes contradictions in overconstrained specifications through unsatisfiable cores~\cite{sarkar2026cores}.  We study the dual underconstrained regime: the formula is satisfiable, but two feasible models disagree on the requested output.
+
+\paragraph{Solver certificates and selective action.}
+SMT solvers such as Z3 combine decision procedures for multiple theories and provide models for satisfiable formulas~\cite{demoura2008z3}.  Counterexamples are routinely used to refute universal properties; here, a pair of models refutes target determinacy.  Our policy also connects to selective prediction: rather than force an answer, the agent may abstain when its evidence is insufficient.  Unlike confidence-threshold abstention, the decision is tied to source support and a formal target property.
+
+\paragraph{Benchmarks.}
+MATH contains competition problems with step-by-step solutions and subject/difficulty labels~\cite{hendrycks2021math}; MATH-500 is commonly used as a compact evaluation subset.  OlympiadBench contains bilingual mathematics and physics problems at olympiad difficulty~\cite{he2024olympiadbench}.  These broad benchmarks are useful for end-to-end regression but include many problems outside our initial arithmetic SMT fragment.  MIRA-Math instead supplies typed latent states and exactly one hidden atomic fact across 22 families~\cite{albateh2026mira}.  We reuse its validated structure to create paired repair-versus-abstention cases; the paired benchmark, not MIRA-Math itself, is our evaluation contribution.
+
+\section{Target Determinacy}
+Let $P$ be a natural-language problem and let an agent produce a structured specification
+\[
+F=(V,D,C,q),
+\]
+where $V$ is a set of typed variables, $D$ gives domains and bounds, $C$ is a conjunction of constraints, and $q(V)$ is the scalar target expression.  Define $\mathrm{Sol}(F)=\{m\mid m\models D\land C\}$.  We require $F$ to be satisfiable before considering an answer.
+
+\paragraph{Definition 1 (target determinacy).}
+The target is determinate under $F$ iff
+\[
+\forall m_1,m_2\in\mathrm{Sol}(F),\quad q(m_1)=q(m_2).
+\]
+This is weaker than unique solvability.  If $F$ contains $x=5$ and $y\ge0$ while $q=x$, infinitely many models remain, yet all agree that $q=5$.
+
+To check the definition, construct renamed copies $F^{(1)}$ and $F^{(2)}$ and ask the solver about
+\begin{equation}
+\Phi(F,q)=F^{(1)}\land F^{(2)}\land q(V^{(1)})\ne q(V^{(2)}).
+\label{eq:query}
+\end{equation}
+If $\Phi$ is \sat, its projections $(m_1,m_2)$ form a target-divergent witness pair.  If $F$ is \sat{} and $\Phi$ is \unsat, then every pair of models agrees on $q$.  This is immediate by contradiction: any disagreeing pair would satisfy Eq.~\eqref{eq:query}.  Solver \textsc{unknown}, timeout, or unsupported syntax never counts as a proof.
+
+\paragraph{What the certificate does not say.}
+The certificate is representation-relative.  If the model invents $x=5$, the target may be determinate even though the representation is unfaithful.  Conversely, a faithful encoding of an underspecified source should remain ambiguous.  These observations motivate a separate grounding gate rather than treating determinacy as semantic correctness.
+
+\subsection{Formal properties}
+Target determinacy has several useful operational properties.  First, it is \emph{query-relative}: changing $q$ can change the verdict without changing the feasible set.  A scheduling model may determine total cost while leaving individual assignments free.  This makes full solution uniqueness an unnecessarily strict condition for answer authorization.  Second, any witness pair is directly checkable: substituting both assignments into $D\land C$ and evaluating $q$ confirms the violation without trusting a natural-language critic.  Third, adding a consistent constraint can remove models but cannot introduce a new model.  Therefore, if $q$ is already determinate under $F$, it remains determinate under every satisfiable strengthening $F\land c$.  The target value also remains unchanged.  This monotonicity explains why repairs are triggered only for ambiguous specifications; changing a determinate answer requires revising or deleting an existing constraint and falls outside the current method.
+
+The converse does not hold: an arbitrary strengthening can force determinacy by inventing information.  For instance, $a+b=10$ becomes target-determinate for $q=a$ after adding $a=6$, regardless of whether the source supports that equality.  Solver validation can establish consistency and sufficiency of the addition, but only grounding can address its provenance.  This separation yields two independent rejection reasons: \emph{formal invalidity}, when $c$ fails to compile, contradicts $F$, is redundant, or leaves $q$ ambiguous; and \emph{evidential invalidity}, when no allowed source span supports $c$.
+
+\subsection{Worked example}
+Let $V=\{a,b\}$, $D=(a,b\in\mathbb{Z}_{\ge0})$, $C=(a+b=10)$, and $q=a$.  Two renamed copies produce
+\[
+a_1+b_1=10\;\land\;a_2+b_2=10\;\land\;a_1\ne a_2.
+\]
+The solver may return $(a_1,b_1)=(4,6)$ and $(a_2,b_2)=(6,4)$.  If the source contains the exact span ``A receives two more than B,'' the proposal $a=b+2$ compiles, is consistent and non-redundant, and makes the two-copy disagreement query unsatisfiable; the accepted target is $a=6$.  If the source lacks that span, the same equation is rejected even though it would yield a convenient answer.  The correct external status is then \textsc{underspecified}.  Notice that neither case uses a gold numeric answer during verification.
+
+\begin{figure*}[t]
+\centering
+\fbox{\parbox[c][1.42in][c]{0.94\textwidth}{\centering
+\Large \textbf{FIGURE PLACEHOLDER}\\[5pt]
+\normalsize Replace this box with the final system diagram: source problem $P$ $\rightarrow$ structured specification $F$ $\rightarrow$ target-divergence query $\rightarrow$ grounded repair or abstention $\rightarrow$ solver re-check.}}
+\caption{Intended overview of the \method{} loop.  This is the single figure slot reserved for the final artwork.}
+\label{fig:overview}
+\end{figure*}
+
+\section{The \method{} Policy}
+Figure~\ref{fig:overview} reserves the final system illustration.  The implementation consumes a single typed \textsc{ModelSpec}, avoiding drift between independently generated execution and verification programs.  Variables are integers, reals, or Booleans with optional finite bounds.  Constraints support arithmetic equalities and inequalities, Boolean connectives, bounded integer powers, and selected modular relations.  Unsupported operations return \textsc{not-supported} rather than being approximated.
+
+\subsection{Verification states}
+The verifier first checks $F$.  If $F$ is \unsat, the state is \textsc{inconsistent}; if the solver returns unknown, it is \textsc{unknown}.  Otherwise it evaluates Eq.~\eqref{eq:query}.  An \unsat{} result yields \textsc{determinate} and the common target value.  A \sat{} result yields \textsc{ambiguous} and optionally two witness models.  The external agent action is one of \textsc{answer}, \textsc{repair}, \textsc{abstain}, \textsc{unsupported}, or \textsc{unknown}.
+
+\subsection{Grounded repair}
+For an ambiguous specification, the repair model receives the source $P$, variables, current constraints, target, and a diagnostic signal.  The deployed \method{} variant uses the statement ``the target is not uniquely determined'' together with a strict grounding instruction.  The model must return either (i) \textsc{add-constraint} with a formal expression and an exact contiguous source span, or (ii) \textsc{abstain}.  A proposed constraint $c$ is accepted only if all of the following hold:
+\begin{enumerate}
+\item $c$ parses in the supported fragment and references declared variables;
+\item the cited span occurs exactly in $P$, or a predeclared domain-semantics rule applies;
+\item $F\land c$ is satisfiable;
+\item $F\not\models c$, so the addition is non-redundant; and
+\item rechecking $F\land c$ establishes target determinacy.
+\end{enumerate}
+The prototype permits at most two repair rounds.  A rejected proposal does not silently modify the specification.  This gate is conservative: exact substring provenance is auditable, but does not itself prove that the expression is the correct interpretation of the cited language.
+
+\subsection{Why abstention is essential}
+An ambiguity-only system can improve apparent solvability by adding plausible assumptions.  That behavior is incorrect whenever the source genuinely omits the missing fact.  \method{} instead treats repair and abstention as a joint decision.  A source-supported omission should be repaired; the same formal gap paired with an unsupported source should trigger abstention.  This symmetry is the basis of our controlled benchmark and metrics.
+
+\subsection{Implementation details}
+The reference implementation compiles a restricted expression AST to Z3~\cite{demoura2008z3}.  It rejects attribute access, arbitrary function calls, undeclared names, malformed comparisons, and unsupported operators before solver invocation.  Integer, real, and Boolean declarations are typed explicitly; bounds are compiled as constraints.  Target comparison uses independently renamed variable maps to avoid accidental aliasing between the two copies.  Model values are normalized before being returned to the repair policy.
+
+Grounding is implemented as a deployment gate rather than merely a prompt instruction.  A repair record includes an action, expression, source span, and explanation.  Exact-span membership is checked mechanically.  The gate then recompiles the expression, verifies satisfiability and non-entailment, and reruns the target query.  For ablations without an explicit grounding prompt, we retain both the raw proposed repair and the result after the same deployment gate.  Thus improvements cannot be obtained simply by scoring an ungrounded baseline under a more permissive acceptance rule.  Every final record stores the initial verdict, proposed action, rejection reason, final verdict, model configuration, and prompt hash.
+
+\section{Controlled Paired Evaluation}
+\subsection{Construction}
+For a gold specification $F^*=\{c_1,\ldots,c_k,c^*\}$, we delete one canonical fact $c^*$ and obtain $F^-=F^*\setminus\{c^*\}$.  We retain the instance only when three deterministic checks pass: $F^*$ is target-determinate, $F^-$ is satisfiable, and $F^-$ admits a target-divergent pair.  We then construct two cases sharing exactly $F^-$:
+\begin{itemize}
+\item \textbf{Omission:} $P^+$ contains the sentence corresponding to $c^*$; the correct action is to add it.
+\item \textbf{Underspecified:} $P^-$ omits that sentence; the correct action is to abstain.
+\end{itemize}
+The representation and solver evidence are identical within a pair.  Only source support differs, ruling out a policy that predicts the label from the verifier state alone.
+
+\paragraph{Integrity checks.}
+The builder does not use an LLM to choose or corrupt the target-critical constraint.  It imports the typed missing fact from the MIRA-Math latent state, deterministically converts compatible families to \textsc{ModelSpec}, and performs the three solver checks before inclusion.  Cases that fail conversion or determinacy validation are excluded with a recorded reason.  The held-out builder excludes every pilot identifier before sampling and hashes both its source and output.  This matters because an unvalidated deletion may leave the answer unchanged, in which case a non-uniqueness method would be evaluated on the wrong failure mode.
+
+The five retained families exercise different structures.  Linear-system separation deletes a relation that distinguishes two otherwise compatible linear solutions.  Rank-deficient shared systems preserve several degrees of freedom and are the hardest omission-repair family for GPT-OSS.  Graph path sums and CRT reconstruction combine discrete equalities with domain restrictions.  Moment problems introduce coupled polynomial summaries within the supported degree bound.  Family-balanced reporting prevents the easiest template from dominating the aggregate.
+
+We derive 300 disjoint pairs from MIRA-Math revision \texttt{72ff918}: 60 each from CRT reconstruction, graph path sums, linear-system separation, rank-deficient shared systems, and moment problems.  The first 80 pairs formed a preregistered pilot; 100 held-out pairs added the moment family and randomized sentence order; the final 120 exhaust the remaining compatible instances.  Dataset manifests store source and output SHA-256 hashes, selection seeds, family counts, and exclusions.  The complete evaluation contains 600 cases per method and model.
+
+\subsection{Methods}
+The four-method cross-model study compares Self-Review, which sees the problem and current specification; Grounded Self-Review, which must cite source evidence; NonUnique, which receives a bare non-uniqueness verdict; and \method{}, which combines that verdict with grounding.  A decision-stage experiment on the 100-pair held-out set additionally evaluates minimal witnesses, full target witnesses, and \tc, which combines witnesses, grounding, solver validation, and explicit abstention.  These extra comparisons were designed after inspecting the initial six-method result and are reported as exploratory rather than preregistered evidence.
+
+\subsection{Models and protocol}
+We evaluate GPT-OSS 20B~\cite{openai2025gptoss} and Gemma 4 31B~\cite{gemma2026report}, two open-weight model families.  The cross-model runs use medium reasoning effort and temperature 1.0 through the same hosted inference interface.  Prompts and structured JSON schemas are fixed within each run; raw responses and call metadata are retained.  Every method receives the same one-call decision budget for each case.  All 4,800 cross-model records completed successfully; no records were excluded for API error.
+
+\subsection{Metrics and inference}
+Repair success rate (RSR) is the fraction of omission cases receiving a grounded, functionally correct addition.  Correct abstention rate (CAR) is the fraction of underspecified cases without an unsupported addition.  Final decision accuracy (FDA) averages correct repair and correct abstention across both conditions.  Over-repair rate (ORR) is $1-\mathrm{CAR}$.  We also count unsupported proposed additions.  Confidence intervals use paired cluster bootstrap over problem pairs.  Planned comparisons use exact McNemar tests; Holm correction controls family-wise error across related hypotheses.
+
+Semantic, functional, and grounded repair checks are stored separately.  A semantically matching expression must encode the deleted fact; a functionally successful expression must restore the gold target without contradiction; a grounded expression must additionally pass the provenance rule.  The separation makes it possible to distinguish a useful paraphrase from a coincidentally target-pinning constraint.  FDA uses the grounded decision because it corresponds to deployment behavior.  We report micro averages over cases and family-specific estimates; no failed calls are silently removed from the full controlled runs.
+
+\section{Results}
+\subsection{Cross-model controlled study}
+Table~\ref{tab:main} reports the complete 300-pair results.  With GPT-OSS 20B, \method{} attains 93.3\% RSR and 99.0\% CAR, producing 96.2\% FDA.  It improves FDA by five percentage points over Grounded Self-Review (49 versus 19 discordant decisions; raw $p=0.000358$, Holm-adjusted $p=0.000716$).  The gain cannot be attributed to the grounding instruction alone: Grounded Self-Review improves only 1.5 points over Self-Review and the difference is not significant ($p=0.422$).  The unsupported-addition rate also falls from 12.5\% for Grounded Self-Review to 3.4\% for \method{}.
+
+\begin{table}[t]
+\centering
+\caption{Controlled MIRA-derived evaluation, 300 pairs and 600 cases per method/model. Unsupported is computed over proposed additions. Best FDA per model is bold.}
+\label{tab:main}
+\small
+\begin{tabular}{llrrrr}
+\toprule
+Model & Method & RSR & CAR & FDA & ORR\\
+\midrule
+GPT & Self-review & 92.3 & 87.0 & 89.7 & 13.0\\
+GPT & Grounded review & 95.7 & 86.7 & 91.2 & 13.3\\
+GPT & NonUnique & 87.7 & 98.0 & 92.8 & 2.0\\
+GPT & \method & 93.3 & 99.0 & \textbf{96.2} & 1.0\\
+\midrule
+Gemma & Self-review & 100.0 & 92.0 & 96.0 & 8.0\\
+Gemma & Grounded review & 100.0 & 92.3 & 96.2 & 7.7\\
+Gemma & NonUnique & 100.0 & 98.0 & \textbf{99.0} & 2.0\\
+Gemma & \method & 100.0 & 95.7 & 97.8 & 4.3\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Transfer is not uniform.  Gemma repairs every omission under all four prompts, making abstention the discriminating behavior.  Bare NonUnique reaches 99.0\% FDA, whereas adding the grounding instruction reduces FDA to 97.8\%.  Against Grounded Self-Review, \method{} gains 1.67 points, but the difference is not significant after correction ($p_{\mathrm{Holm}}=0.197$).  Most Gemma errors concentrate in linear-system separation, where \method{} CAR is 81.7\% versus 93.3\% for NonUnique.  The interaction cautions against treating a stricter prompt as model-independent protection.
+
+Family results clarify the GPT gain.  \method{} reaches at least 97.5\% FDA on four families, but only 87.5\% on rank-deficient shared systems; the latter has 75\% omission repair despite perfect abstention.  Grounded Self-Review is weakest on linear-system separation (76.7\% FDA), primarily because its CAR drops to 63.3\%.  Target non-uniqueness therefore appears most helpful when generic review is tempted to fill a formal gap without distinguishing which source licenses it.
+
+\subsection{Do target-divergent witnesses help?}
+Table~\ref{tab:ablation} reports the exploratory eight-method analysis on 100 held-out pairs.  The grounded minimal-witness method, \method{}, and full \tc{} all lie within one FDA point.  The grounded minimal-witness method trails \method{} by 0.5 points, with three versus four discordant cases ($p=1.0$).  Full \tc{} versus \method{} yields $-1.0$ point ($p_{\mathrm{Holm}}=0.727$).  Minimal Witness improves RSR by six points over NonUnique, but the planned comparison is not significant after Holm correction ($p=0.714$).
+
+\begin{table}[t]
+\centering
+\caption{Decision-stage ablation on GPT-OSS 20B, 100 pairs.  The witness variants do not significantly improve on \method.}
+\label{tab:ablation}
+\small
+\begin{tabular}{lrrrr}
+\toprule
+Method & RSR & CAR & FDA & ORR\\
+\midrule
+Self-review & 92 & 84 & 88.0 & 16\\
+Grounded review & 93 & 90 & 91.5 & 10\\
+NonUnique & 87 & 97 & 92.0 & 3\\
+Minimal witness & 93 & 93 & 93.0 & 7\\
+Target witness & 86 & 94 & 90.0 & 6\\
+Min. witness+ground & 97 & 99 & 98.0 & 1\\
+\method & 97 & 100 & \textbf{98.5} & 0\\
+Full \tc & 97 & 98 & 97.5 & 2\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+This negative result changes the empirical interpretation.  The present benchmark has a single target-critical degree of freedom, so the statement that the target is non-unique may already localize the defect sufficiently.  Concrete witness assignments add tokens but little information.  We therefore identify the deployed contribution as determinacy-guided grounding (\method), not as evidence that witnesses are universally superior.  Testing witness value requires harder instances with nuisance dimensions, multiple source-supported candidate facts, or several omissions where only one is target-critical.
+
+\subsection{Error patterns and robustness}
+The controlled errors are asymmetric.  GPT-OSS failures for Self-Review and Grounded Review are dominated by over-repair on underspecified sources: their RSR values exceed 92\%, but CAR remains at or below 87\%.  A bare NonUnique verdict reverses the bias, increasing CAR to 98\% while reducing RSR to 87.7\%.  \method{} recovers most of the lost repairs and preserves the high abstention rate.  This pattern supports a two-signal interpretation: non-uniqueness discourages unconditional answer production, while grounding directs the remaining repair attempts to explicit source evidence.
+
+Gemma behaves differently.  Every method repairs every omission, so the only remaining question is whether it refrains from modifying underspecified inputs.  Adding the explicit grounding instruction to NonUnique unexpectedly increases over-repair from 2.0\% to 4.3\%.  Inspection by family localizes most of the difference to linear-system separation rather than a uniform degradation.  Because all calls use a single fixed prompt configuration, this result could reflect model-specific instruction interaction rather than a general property of grounding.  A stronger final study should repeat the cross-model comparison under independently frozen prompt variants or seeds; the current paper reports the interaction rather than selecting the favorable model.
+
+The unsupported-addition measure provides a second view.  On GPT-OSS, unsupported rates among additions are 15.5\% for Self-Review, 12.5\% for Grounded Review, 6.7\% for NonUnique, and 3.4\% for \method.  On Gemma, the corresponding rates are 7.4\%, 7.1\%, 2.0\%, and 4.2\%.  The reversal mirrors FDA and confirms that a prompt-level grounding requirement is not automatically monotone in safety.  The deterministic deployment gate remains necessary even when the instruction asks for evidence.
+
+\section{End-to-End Stress Test}
+The controlled study isolates the repair-versus-abstain decision by supplying a validated formalization.  Deployment additionally requires the model to generate that formalization.  We therefore run a provisional six-method stress test on all 500 MATH-500 problems~\cite{hendrycks2021math}.  SymCode generates executable code once; SymCode+ receives execution-error feedback; Structured Solver generates \textsc{ModelSpec}; Grounded Review, Determinacy-Only, and \method{} reuse the same initial specification and differ only in repair feedback.
+
+Table~\ref{tab:math500} is a snapshot while failed hosted calls are still being retried and is not a frozen result.  SymCode+ reaches 82.8\% answer accuracy and 92.8\% execution, improving over SymCode by 17.6 points.  Structured approaches reach only 56--58\% solver-verdict coverage, and their end-to-end accuracy is correspondingly low.  Among them, Determinacy-Only (32.0\%) and \method{} (31.6\%) are effectively tied; grounding does not yet improve the aggregate result.
+
+\begin{table}[t]
+\centering
+\caption{Provisional MATH-500 snapshot (500 problems, GPT-OSS 20B, low reasoning).  ``Cover'' denotes execution for SymCode and a determinate/ambiguous solver verdict otherwise.  Remaining call errors make this diagnostic only.}
+\label{tab:math500}
+\small
+\begin{tabular}{lrrr}
+\toprule
+Method & Accuracy & Cover & Errors\\
+\midrule
+SymCode & 65.2 & 71.4 & 25\\
+SymCode+ & \textbf{82.8} & \textbf{92.8} & 6\\
+Structured solver & 28.8 & 58.4 & 14\\
+Grounded review & 30.2 & 57.8 & 16\\
+Determinacy-only & 32.0 & 56.8 & 16\\
+\method & 31.6 & 56.0 & 20\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The stress test should not be read as a controlled head-to-head claim that SymCode+ is a weaker version of \method.  SymCode+ answers broad mathematical questions through arbitrary Python and SymPy, whereas \method{} operates only after translation into a restricted logical fragment.  The finding is instead a coverage diagnosis: target-determinacy verification cannot improve cases it cannot represent.  Earlier 20-problem natural-formalization pilots show the conditional signal expected from the method: at medium reasoning, verified-case accuracy rises from 61.1\% for Structured Solver to 66.7\% for Grounded Review and 72.2\% for \method, with two initially wrong cases repaired and no correct case broken.  These samples are too small for a definitive ecological-validity claim.
+
+We also stress-tested program generation on hard subsets.  On 50 MATH problems at levels 4--5, direct reasoning, SymCode, and SymCode+ score 78\%, 52\%, and 66\%, respectively.  On 49 completed OlympiadBench mathematics problems~\cite{he2024olympiadbench}, the corresponding values are 49.0\%, 20.4\%, and 28.6\%.  Execution-driven debugging helps in both settings, but no program method uniquely solves a case missed by direct reasoning.  These results reinforce the paper's scope: formal execution and verification provide auditable failure states, not a universal accuracy advantage.
+
+\subsection{Natural-error evaluation protocol}
+The broad stress test mixes representation failures, unsupported mathematics, execution failures, and ordinary solution errors.  To evaluate ecological validity cleanly, the final study will freeze a cohort of complete problems before inspecting method outcomes and manually adjudicate executable wrong formalizations using seven labels: missing constraint, wrong constraint, extra constraint, wrong domain, wrong target, computational error, and other.  The primary estimand is detection and grounded repair among executable missing-constraint cases.  Correct executable formalizations serve as paired controls for measuring over-repair and preservation.
+
+Two annotators should independently label the source, generated specification, and executed answer without seeing the repair method.  Disagreements should be resolved by a third adjudication pass, with agreement reported before resolution.  The unit of analysis remains the original problem, not individual model calls.  This design avoids inflating sample size when several methods share one initial formalization.  It also separates a failure that \method{} claims to address from wrong constraints or wrong targets that may already be determinate and hence invisible to the current query.
+
+\subsection{Cost and deployment behavior}
+The two-copy query roughly doubles the symbolic variables and constraints but does not require another language-model call when the target is already determinate.  An ambiguous case incurs at most two bounded repair calls.  In a production agent, this yields a natural cascade: attempt ordinary execution, invoke determinacy verification only for supported specifications, and request repair only after a concrete ambiguity verdict.  Unsupported and unknown states fall back to the host agent's existing policy rather than being relabeled as safe answers.  Final reporting should include token use, wall-clock latency, solver timeouts, and hosted inference retries alongside accuracy; the present demo retains the metadata but does not yet claim a cost advantage.
+
+\section{Validity and Analysis Choices}
+\subsection{Why the paired design matters}
+A conventional benchmark with separate well-specified and underspecified problems permits several shortcuts.  Surface cues may reveal that a question is incomplete, families may have different difficulty, and an agent may learn that every solver ambiguity should be repaired.  Our two cases share the same latent values, target, domains, retained constraints, and solver verdict.  The source sentence corresponding to $c^*$ is the only designed difference.  Pairing therefore removes representation difficulty from the repair-versus-abstain contrast and increases the power of a test based on discordant decisions.
+
+The construction also prevents answer leakage.  The repair policy never receives the hidden fact, gold target, or gold action.  It receives only information available to a deployed agent: the source, current structured specification, and method-specific diagnostic.  Functional scoring uses the latent state only after generation.  A proposal that pins the target directly to a guessed number is marked unsupported unless that exact relationship is licensed by the source and passes the same gate.  Storing both raw and gated outcomes allows an audit of how often a policy appears accurate only because it fabricates constraints.
+
+\subsection{Internal validity}
+The main causal contrast for RQ1 is \method{} versus Grounded Self-Review.  Both methods receive the same source, specification, response schema, grounding requirement, model, and budget; only the non-uniqueness verdict differs.  The contrast therefore isolates the value of determinacy information more cleanly than comparing the full system with unconstrained self-review.  The complementary contrast between \method{} and NonUnique changes the grounding instruction, but its interpretation is less clean because the deterministic deployment gate is still applied to both.  We accordingly use it to describe behavior, not to claim that a prompt instruction alone causes every difference.
+
+The three-stage data collection creates a temporal threat: the pilot was observed before later subsets were run.  We mitigate it by reporting the union and the disjoint subset manifests, by freezing the held-out set before calls, and by identifying decision-stage additions as exploratory.  The final 120-pair study preregisters its primary contrast, model-specific tests, and Holm correction.  No family or case is removed based on a method outcome.  Nevertheless, readers should regard the full-300 aggregate as cumulative evidence rather than a pristine single preregistered trial.
+
+\subsection{Construct validity}
+RSR deliberately requires more than recovering the correct number.  A repair may be numerically successful by coincidence, semantically related but incorrectly translated, or grounded in a source span while encoding a different relation.  Separate semantic, functional, and grounded fields preserve these distinctions.  CAR likewise rewards abstention only for the paired underspecified condition; it does not assert that abstention is always optimal for an interactive agent that could ask a user for clarification.  In such a system, \textsc{underspecified} should trigger information seeking rather than terminate the task.
+
+FDA weights omission and underspecification equally because every latent item contributes one of each.  This balanced objective makes the cost of over-repair visible, but a deployment may value false assumptions more severely than missed repairs.  The released per-condition outcomes permit alternative utilities without rerunning the models.  Unsupported-addition rate is conditioned on an addition attempt and must therefore be read together with RSR and CAR; a method that always abstains would have zero unsupported additions but zero repair utility.
+
+\subsection{External validity}
+MIRA-derived cases are templated and remove exactly one known fact.  They provide causal control but underrepresent paraphrase, irrelevant prose, diagrams, implicit conventions, wrong constraints, and multiple interacting translation errors.  The five selected families broaden algebraic structure but are not a representative sample of all mathematical reasoning.  MATH-500 and OlympiadBench demonstrate the opposite extreme: broad coverage and natural language, but a mixture of failure modes with limited formalizer support.  The two evaluations answer different questions and should not be merged into one leaderboard number.
+
+Model transfer is similarly bounded.  GPT-OSS 20B and Gemma 4 31B differ in architecture, post-training, and instruction behavior~\cite{openai2025gptoss,gemma2026report}; their divergent grounding results are evidence against a universal prompt claim.  Hosted versions may also differ from local checkpoints or later provider revisions.  Releasing full identifiers and timestamps supports replication, but additional models and repeated runs are required before estimating a population-level effect.
+
+\subsection{Practical failure cases}
+Four cases remain outside the current guarantee.  First, an omitted constraint may not change the target because another retained constraint entails it; the determinacy query correctly remains silent, while a semantic completeness checker might still flag the omission.  Second, a wrong or extra constraint can force a unique but incorrect target, again yielding no divergent pair.  Third, nonlinear or transcendental syntax may return \textsc{unsupported} even when a mathematician could establish determinacy.  Fourth, a repair can cite the right sentence but encode the wrong equation.  The first two require semantic or mutation-based verification, the third a broader backend, and the fourth a stronger entailment relation between language and logic.  \method{} should be composed with such mechanisms rather than presented as their replacement.
+
+These cases explain why beating SymCode+ is neither necessary nor presently plausible as the central criterion.  SymCode+ can solve unsupported problems by generating arbitrary executable mathematics; \method{} can instead provide a defensible abstention on a narrower subset.  A fair deployment comparison must jointly report answer utility, coverage, false repairs, and auditable failure states.  Accuracy alone collapses these qualitatively different outcomes.
+
+\section{Agent Integration}
+\method{} is designed as a verifier policy inside a larger agent rather than as a standalone mathematical solver.  The host agent first parses the task and produces an executable or structured artifact.  When a \textsc{ModelSpec} is available, the verifier returns a typed observation rather than free-form criticism.  A controller can then map that observation to an action as shown in Table~\ref{tab:policy}.  Keeping the statuses distinct is important: \textsc{unknown} indicates a solver limitation, \textsc{unsupported} indicates a representation limitation, and \textsc{underspecified} is a substantive conclusion about the source relative to the attempted target.  Collapsing all three into ``cannot answer'' would discard useful information for routing and user interaction.
+
+\begin{table}[t]
+\centering
+\caption{Suggested controller semantics for integrating \method{} into an autonomous mathematical agent.}
+\label{tab:policy}
+\small
+\begin{tabular}{lll}
+\toprule
+Verifier state & Evidence & Controller action\\
+\midrule
+Determinate & $F$ sat, $\Phi$ unsat & answer with scope\\
+Ambiguous & $m_1,m_2$ disagree & grounded repair\\
+Inconsistent & $F$ unsat & revise encoding\\
+Unknown & solver inconclusive & fallback/escalate\\
+Unsupported & outside fragment & alternate tool\\
+Underspecified & no grounded repair & ask or abstain\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+In an interactive system, \textsc{underspecified} can initiate a clarification request containing the target and, when useful, a compact witness-derived contrast.  For example, the agent may say that allocations $(4,6)$ and $(6,4)$ both satisfy the stated total and ask which additional relationship holds.  This turns abstention into an information-seeking action, aligning the method with agent settings in which observations arrive incrementally.  The current benchmark scores abstention because no information channel is provided; it should not be interpreted as preferring termination over clarification.
+
+The verifier can also be separated from the repair model.  One agent generates $F$, a deterministic tool checks target determinacy, and a second agent receives only the source, specification, and diagnostic.  This separation reduces self-confirmation: the component that authored the representation does not decide by itself that the representation is sufficient.  It also enables audit logs in which each accepted repair is linked to a source span and two solver checks.  The trusted computing base then consists of the parser, compiler, solver, and gate rather than the language model's explanation.
+
+Deployment policies must preserve the soundness boundary in their wording.  A successful verdict should be presented as ``the encoded constraints determine the target'' rather than ``the answer is formally proven from the problem.''  If downstream users do not see the distinction, the verifier may increase misplaced trust.  A practical interface can show the target value, the constraints used, the cited repair span, and the representation coverage status.  For high-stakes domains, a determinate result should still be subject to domain-specific validation of the natural-language-to-formal translation.
+
+\section{Discussion}
+\paragraph{What the evidence supports.}
+The paired construction demonstrates that a solver state can be held constant while the correct agent action changes with the source.  On GPT-OSS 20B, coupling a non-uniqueness signal with source grounding substantially improves the joint repair/abstention decision and sharply reduces unsupported additions.  The method is especially useful as a guard against a self-review policy that ``repairs'' an underspecified problem by inventing a plausible relation.
+
+\paragraph{What it does not support.}
+First, the study does not establish semantic equivalence between $P$ and $F$.  Exact-span citations constrain where a repair comes from but do not prove that the equation correctly interprets the span.  Second, the ablation does not show an incremental benefit from concrete target witnesses.  Third, the broad end-to-end snapshot does not show that \method{} outperforms SymCode+; it shows that representation coverage dominates that comparison.  Finally, the cross-model reversal between Gemma NonUnique and \method{} means the grounding prompt itself requires calibration.
+
+\paragraph{Agent-level implications.}
+An autonomous agent needs more than a high answer rate: it needs a reason to act and a principled way to stop.  \method{} separates three layers that are often conflated.  Execution asks whether an artifact runs.  Determinacy asks whether the artifact supports one target value.  Grounding asks whether a proposed change is licensed by the observation available to the agent.  The separation makes failures inspectable and enables policies that return \textsc{unsupported} or \textsc{underspecified} rather than silently guessing.  In multi-agent settings, the witness or verdict can also serve as a compact message from a verifier agent to a repair agent without revealing a gold answer.
+
+\paragraph{Next evidence required.}
+A submission-ready ecological claim requires a larger, manually adjudicated natural-error study.  Generated specifications should be labeled as missing, wrong, or extra constraint; wrong domain; wrong target; computational error; or other.  The primary subset should consist of executable under-formalizations, with paired reporting of detection, successful grounded repair, false repair, and preservation of initially correct controls.  The current MATH run must also finish retries and freeze hashes before its numbers replace Table~\ref{tab:math500}.  These requirements are limitations of the present demo rather than hidden future work.
+
+\paragraph{Alternative positioning.}
+The results suggest two possible final papers.  A witness-centered \tc{} paper would require a new benchmark where concrete target-divergent assignments outperform the verdict-only condition.  The current evidence does not justify that claim.  A determinacy-guided grounding paper can instead center \method{}, treat the witness comparison as a principled negative result, and emphasize the paired repair-or-abstain construction.  We adopt the second positioning here because it matches all observed results and yields a simpler deployed policy.
+
+\paragraph{Reproducibility.}
+The artifact should release the compiler, solver query, grounding gate, unit tests, dataset builders, frozen manifests, prompts, response schemas, raw records, and analysis scripts.  Each run should identify the exact hosted model string, reasoning setting, temperature, prompt hash, dataset hash, and excluded errors.  Statistical scripts should reconstruct every table directly from JSONL records and should fail when expected pair counts are missing.  Because decision-stage baselines were added after the initial result, their exploratory status must remain explicit in both the paper and artifact.
+
+\section{Limitations and Ethics}
+The supported SMT fragment excludes much transcendental, geometric, and high-degree nonlinear reasoning.  Coverage is therefore a first-class metric, and selecting only supported items after observing outcomes would introduce bias.  Solver soundness does not eliminate model translation errors.  Witnesses may differ in many irrelevant variables, making them difficult for a repair model to interpret.  Multiple omissions may require more than the two-round budget, while exact substring grounding underhandles implicit mathematical conventions.  Hosted inference may be nondeterministic even at fixed settings, and our two-model evaluation is insufficient to claim universal transfer.
+
+The method can reduce unsupported answers but may also create false confidence if a user mistakes representation-relative determinacy for truth.  Interfaces should expose the status and cited evidence rather than display every determinate result as certified correct.  Dataset generation, prompt freezing, model identifiers, hashes, exclusions, and unsuccessful calls should be released for audit.  The study uses generated mathematical problems and does not involve personal data.  AI assistance used in hypothesis development, implementation, experimentation, or writing must be disclosed according to venue policy; authors remain responsible for every claim, citation, and artifact.
+
+\section{Conclusion}
+Executable mathematical agents can fail silently when a program runs but its feasible set does not justify the value being reported.  Target determinacy exposes this failure by searching for two models that disagree on the target.  \method{} combines the resulting non-uniqueness signal with source-grounded repair and explicit abstention.  On a 300-pair controlled benchmark, it achieves 96.2\% decision accuracy with GPT-OSS 20B and reduces unsupported additions, while a second model reveals that the benefit is not universal.  Concrete witnesses provide no measurable gain over the verdict-plus-grounding policy on the present data.  The honest conclusion is therefore narrower and more useful than a universal solver claim: target determinacy is a checkable intermediate safety condition, and grounded abstention can turn that condition into better agent decisions when the representation is supported.
+
+\clearpage
+\balance
+\bibliographystyle{ACM-Reference-Format}
+\bibliography{demo_refs}
+\end{document}

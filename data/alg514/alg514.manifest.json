@@ -1,0 +1,21 @@
+{
+  "dataset": "ALG514",
+  "release": "0.7",
+  "source_url": "https://download.microsoft.com/download/7/5/3/753757BD-CEEB-459C-A4D1-15BF843A5B2C/0.7.zip",
+  "original_paper_url": "https://aclanthology.org/P14-1026/",
+  "derivation_release_paper_url": "https://aclanthology.org/E17-1047/",
+  "archive_sha256": "de415ed5d7182c6b4000ec648fbb57b19345f2adc67a69cd95e09912534ec92f",
+  "normalized_sha256": "3504db501960e43388029707647dc46469ae9322ec6e5730fb025ef17340e18e",
+  "records": 514,
+  "distinct_source_indices": 514,
+  "fold_counts": {
+    "3": 102,
+    "0": 102,
+    "4": 106,
+    "2": 102,
+    "1": 102
+  },
+  "single_target_records": 91,
+  "two_target_records": 423,
+  "license_note": "The public release README requests citation but does not state an explicit dataset license; verify redistribution terms before publishing data files."
+}

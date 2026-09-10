@@ -1,0 +1,27 @@
+{
+  "dataset": "DRAW-1K",
+  "release": "0.7",
+  "source_url": "https://download.microsoft.com/download/7/5/3/753757BD-CEEB-459C-A4D1-15BF843A5B2C/0.7.zip",
+  "paper_url": "https://aclanthology.org/E17-1047/",
+  "archive_sha256": "de415ed5d7182c6b4000ec648fbb57b19345f2adc67a69cd95e09912534ec92f",
+  "normalized_sha256": "972346cad58dcefe65284158b365792e3ab9091f3de179b64de07f691565b716",
+  "records": 1000,
+  "distinct_source_indices": 999,
+  "duplicate_source_indices": [
+    153934
+  ],
+  "split_counts": {
+    "train": 600,
+    "dev": 200,
+    "test": 200
+  },
+  "single_target_records": 255,
+  "two_target_records": 745,
+  "source_split_file_counts": {
+    "train": 600,
+    "dev": 199,
+    "test": 200
+  },
+  "release_note": "The split files contain 600 train, 199 dev, and 200 test IDs. Source index 153934 is duplicated identically in draw.json, yielding 200 dev rows and 1000 rows total.",
+  "license_note": "The public release README requests citation but does not state an explicit dataset license; verify redistribution terms before publishing data files."
+}

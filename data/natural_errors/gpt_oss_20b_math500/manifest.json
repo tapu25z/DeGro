@@ -1,0 +1,27 @@
+{
+  "study": "blinded natural-error adjudication",
+  "unit": "original problem and its single shared initial formalization",
+  "records": 292,
+  "packet_sha256": "a7f16240f80c9838a6823516760c6754f8787dc2ebb57626c710c804e352e063",
+  "annotation_template_sha256": {
+    "a": "738a013a03f7cc950ed9b3adadf3c94371b91b8d2cbf0966f6ba9ae1cd3d9f6e",
+    "b": "738a013a03f7cc950ed9b3adadf3c94371b91b8d2cbf0966f6ba9ae1cd3d9f6e"
+  },
+  "excluded": {
+    "not_supported": 65,
+    "solver_not_supported": 112,
+    "solver_inconsistent": 9,
+    "error": 13,
+    "solver_unknown": 9
+  },
+  "source_patterns": [
+    "results/raw/gpt-oss_20b_math500_six_methods_low_full_v2_shard*.jsonl"
+  ],
+  "blinded_fields": [
+    "initial_verdict",
+    "method",
+    "repair",
+    "changed",
+    "correct"
+  ]
+}

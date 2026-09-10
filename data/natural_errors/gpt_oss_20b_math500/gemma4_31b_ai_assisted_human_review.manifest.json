@@ -1,0 +1,15 @@
+{
+  "process": "AI-assisted annotation pending human verification",
+  "records": 292,
+  "review_queue_sha256": "99708fba3d2c50e9a0e6d42c45111b0c0d899c5d8e2f06a74bdeb5ecc4fad9de",
+  "models": [
+    "gemma4:31b"
+  ],
+  "prompt_sha256": [
+    "0f1093c9156904da78890ca09e9dc2048b4adf2541e14a103136e0bf03b7e094"
+  ],
+  "source_patterns": [
+    "results/raw/gemma4_31b_natural_error_preannotation_low_shard*.jsonl"
+  ],
+  "packet": "data/natural_errors/gpt_oss_20b_math500/adjudication_packet.jsonl"
+}

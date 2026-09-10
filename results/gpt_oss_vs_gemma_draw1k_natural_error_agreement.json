@@ -1,0 +1,17 @@
+{
+  "records": 194,
+  "exact_label_agreement": 0.9639175257731959,
+  "cohen_kappa": 0.35302525011910524,
+  "target_subset_agreement": 1.0,
+  "disagreements": 7,
+  "labels_a": {
+    "CORRECT": 191,
+    "WRONG_TARGET": 2,
+    "WRONG_CONSTRAINT": 1
+  },
+  "labels_b": {
+    "CORRECT": 186,
+    "WRONG_TARGET": 3,
+    "WRONG_CONSTRAINT": 5
+  }
+}
