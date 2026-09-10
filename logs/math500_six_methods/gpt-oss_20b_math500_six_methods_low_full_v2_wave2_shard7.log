@@ -1,0 +1,6 @@
+[3/29] test/geometry/627.json pending=1 elapsed=29.3s
+[8/29] test/intermediate_algebra/1063.json pending=1 elapsed=46.7s
+[14/29] test/precalculus/1056.json pending=1 elapsed=20.8s
+[15/29] test/intermediate_algebra/1210.json pending=1 elapsed=13.0s
+[26/29] test/intermediate_algebra/1462.json pending=5 elapsed=43.3s
+[28/29] test/precalculus/703.json pending=3 elapsed=2.8s

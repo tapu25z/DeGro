@@ -1,0 +1,61 @@
+{
+  "expected_problems": 1,
+  "unique_problems": 1,
+  "methods": {
+    "symcode": {
+      "records": 1,
+      "correct": 0,
+      "accuracy": 0.0,
+      "execution_or_verification_rate": 1.0,
+      "errors": 0,
+      "not_supported": 0,
+      "verdicts": {}
+    },
+    "symcode_plus": {
+      "records": 1,
+      "correct": 0,
+      "accuracy": 0.0,
+      "execution_or_verification_rate": 1.0,
+      "errors": 0,
+      "not_supported": 0,
+      "verdicts": {}
+    },
+    "structured_solver": {
+      "records": 1,
+      "correct": 0,
+      "accuracy": 0.0,
+      "execution_or_verification_rate": 0.0,
+      "errors": 0,
+      "not_supported": 1,
+      "verdicts": {}
+    },
+    "grounded_self_review": {
+      "records": 1,
+      "correct": 0,
+      "accuracy": 0.0,
+      "execution_or_verification_rate": 0.0,
+      "errors": 0,
+      "not_supported": 1,
+      "verdicts": {}
+    },
+    "determinacy_only": {
+      "records": 1,
+      "correct": 0,
+      "accuracy": 0.0,
+      "execution_or_verification_rate": 0.0,
+      "errors": 0,
+      "not_supported": 1,
+      "verdicts": {}
+    },
+    "degro": {
+      "records": 1,
+      "correct": 0,
+      "accuracy": 0.0,
+      "execution_or_verification_rate": 0.0,
+      "errors": 0,
+      "not_supported": 1,
+      "verdicts": {}
+    }
+  },
+  "complete": true
+}

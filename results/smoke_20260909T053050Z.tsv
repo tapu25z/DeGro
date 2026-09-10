@@ -1,0 +1,8 @@
+method	n	RSR	Semantic	Functional	Grounded	CAR	FDA	ORR	Unsupported	errors_excluded
+minimal_witness	2	1.000	1.000	1.000	1.000	1.000	1.000	0.000	0.000	0
+nonunique	2	1.000	1.000	1.000	1.000	1.000	1.000	0.000	0.000	0
+nonunique_grounding	2	1.000	1.000	1.000	1.000	1.000	1.000	0.000	0.000	0
+random_pair	2	1.000	1.000	1.000	1.000	1.000	1.000	0.000	0.000	0
+self_review	2	1.000	1.000	1.000	1.000	1.000	1.000	0.000	0.000	0
+target_witness	2	1.000	1.000	1.000	1.000	1.000	1.000	0.000	0.000	0
+targetcheck	2	1.000	1.000	1.000	1.000	1.000	1.000	0.000	0.000	0

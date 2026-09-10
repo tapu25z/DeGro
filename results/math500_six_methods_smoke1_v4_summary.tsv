@@ -1,0 +1,7 @@
+method	records	accuracy	execution_or_verification_rate	errors	not_supported
+symcode	1	0.000000	1.000000	0	0
+symcode_plus	1	0.000000	1.000000	0	0
+structured_solver	1	0.000000	0.000000	0	1
+grounded_self_review	1	0.000000	0.000000	0	1
+determinacy_only	1	0.000000	0.000000	0	1
+degro	1	0.000000	0.000000	0	1

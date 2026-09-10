@@ -1,0 +1,13 @@
+/bin/zsh: can't open input file: ./scripts/run_pilot_background.sh
+/bin/zsh: can't open input file: ./scripts/run_pilot_background.sh
+/bin/zsh: can't open input file: ./scripts/run_pilot_background.sh
+2026-09-09T04:16:46+07:00 background pilot started
+run_wave:20: read-only variable: status
+2026-09-09T04:17:00+07:00 background pilot started
+run_wave:20: read-only variable: status
+2026-09-09T04:17:55+07:00 background pilot started
+2026-09-09T10:21:17+07:00 background pilot started
+2026-09-09T10:45:44+07:00 retry wave started
+2026-09-09T10:45:52+07:00 finalizing
+{"records": 640, "ok": 640, "errors": 0, "complete": true}
+2026-09-09T10:45:52+07:00 background pilot complete

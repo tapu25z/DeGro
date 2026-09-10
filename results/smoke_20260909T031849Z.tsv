@@ -1,0 +1,5 @@
+method	n	RSR	CAR	FDA	ORR	errors_excluded
+nonunique	2	1.000	1.000	1.000	0.000	0
+self_review	2	1.000	1.000	1.000	0.000	0
+target_witness	2	1.000	1.000	1.000	0.000	0
+targetcheck	2	1.000	1.000	1.000	0.000	0

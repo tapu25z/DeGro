@@ -1,0 +1,402 @@
+{
+  "records": 2400,
+  "methods": [
+    "grounded_self_review",
+    "nonunique",
+    "nonunique_grounding",
+    "self_review"
+  ],
+  "summary": {
+    "grounded_self_review": {
+      "RSR": {
+        "estimate": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "Semantic": {
+        "estimate": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "Functional": {
+        "estimate": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "Grounded": {
+        "estimate": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "CAR": {
+        "estimate": 0.9233333333333333,
+        "ci95": [
+          0.8933333333333333,
+          0.9533333333333334
+        ]
+      },
+      "FDA": {
+        "estimate": 0.9616666666666667,
+        "ci95": [
+          0.945,
+          0.9766666666666667
+        ]
+      },
+      "ORR": {
+        "estimate": 0.07666666666666666,
+        "ci95": [
+          0.04666666666666667,
+          0.10666666666666667
+        ]
+      },
+      "Unsupported": {
+        "count": 23,
+        "additions": 323,
+        "rate": 0.07120743034055728
+      }
+    },
+    "nonunique": {
+      "RSR": {
+        "estimate": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "Semantic": {
+        "estimate": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "Functional": {
+        "estimate": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "Grounded": {
+        "estimate": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "CAR": {
+        "estimate": 0.98,
+        "ci95": [
+          0.9633333333333334,
+          0.9933333333333333
+        ]
+      },
+      "FDA": {
+        "estimate": 0.99,
+        "ci95": [
+          0.9816666666666667,
+          0.9966666666666667
+        ]
+      },
+      "ORR": {
+        "estimate": 0.02,
+        "ci95": [
+          0.006666666666666667,
+          0.03666666666666667
+        ]
+      },
+      "Unsupported": {
+        "count": 6,
+        "additions": 306,
+        "rate": 0.0196078431372549
+      }
+    },
+    "nonunique_grounding": {
+      "RSR": {
+        "estimate": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "Semantic": {
+        "estimate": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "Functional": {
+        "estimate": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "Grounded": {
+        "estimate": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "CAR": {
+        "estimate": 0.9566666666666667,
+        "ci95": [
+          0.9333333333333333,
+          0.9766666666666667
+        ]
+      },
+      "FDA": {
+        "estimate": 0.9783333333333334,
+        "ci95": [
+          0.9666666666666667,
+          0.9883333333333333
+        ]
+      },
+      "ORR": {
+        "estimate": 0.043333333333333335,
+        "ci95": [
+          0.023333333333333334,
+          0.06666666666666667
+        ]
+      },
+      "Unsupported": {
+        "count": 13,
+        "additions": 313,
+        "rate": 0.04153354632587859
+      }
+    },
+    "self_review": {
+      "RSR": {
+        "estimate": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "Semantic": {
+        "estimate": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "Functional": {
+        "estimate": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "Grounded": {
+        "estimate": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "CAR": {
+        "estimate": 0.92,
+        "ci95": [
+          0.8866666666666667,
+          0.95
+        ]
+      },
+      "FDA": {
+        "estimate": 0.96,
+        "ci95": [
+          0.9433333333333334,
+          0.975
+        ]
+      },
+      "ORR": {
+        "estimate": 0.08,
+        "ci95": [
+          0.05,
+          0.11
+        ]
+      },
+      "Unsupported": {
+        "count": 24,
+        "additions": 324,
+        "rate": 0.07407407407407407
+      }
+    }
+  },
+  "planned_mcnemar": [],
+  "decision_mcnemar": [
+    {
+      "hypothesis": "D1",
+      "metric": "FDA",
+      "first": "grounded_self_review",
+      "second": "self_review",
+      "first_only": 16,
+      "second_only": 15,
+      "delta": 0.0016666666666666668,
+      "p_raw": 1.0,
+      "p_holm": 1.0
+    },
+    {
+      "hypothesis": "D4",
+      "metric": "FDA",
+      "first": "nonunique_grounding",
+      "second": "grounded_self_review",
+      "first_only": 20,
+      "second_only": 10,
+      "delta": 0.016666666666666666,
+      "p_raw": 0.09873714670538902,
+      "p_holm": 0.19747429341077805
+    }
+  ],
+  "skipped_comparisons": [
+    {
+      "hypothesis": "H1",
+      "metric": "RSR",
+      "first": "minimal_witness",
+      "second": "nonunique",
+      "reason": "method absent from this run"
+    },
+    {
+      "hypothesis": "H2",
+      "metric": "RSR",
+      "first": "minimal_witness",
+      "second": "random_pair",
+      "reason": "method absent from this run"
+    },
+    {
+      "hypothesis": "H3",
+      "metric": "CAR",
+      "first": "targetcheck",
+      "second": "target_witness",
+      "reason": "method absent from this run"
+    },
+    {
+      "hypothesis": "H4",
+      "metric": "FDA",
+      "first": "targetcheck",
+      "second": "nonunique_grounding",
+      "reason": "method absent from this run"
+    }
+  ],
+  "by_family": {
+    "crt_reconstruction": {
+      "grounded_self_review": {
+        "RSR": 1.0,
+        "CAR": 1.0,
+        "FDA": 1.0
+      },
+      "nonunique": {
+        "RSR": 1.0,
+        "CAR": 1.0,
+        "FDA": 1.0
+      },
+      "nonunique_grounding": {
+        "RSR": 1.0,
+        "CAR": 1.0,
+        "FDA": 1.0
+      },
+      "self_review": {
+        "RSR": 1.0,
+        "CAR": 1.0,
+        "FDA": 1.0
+      }
+    },
+    "graph_path_sums": {
+      "grounded_self_review": {
+        "RSR": 1.0,
+        "CAR": 0.9833333333333333,
+        "FDA": 0.9916666666666667
+      },
+      "nonunique": {
+        "RSR": 1.0,
+        "CAR": 1.0,
+        "FDA": 1.0
+      },
+      "nonunique_grounding": {
+        "RSR": 1.0,
+        "CAR": 1.0,
+        "FDA": 1.0
+      },
+      "self_review": {
+        "RSR": 1.0,
+        "CAR": 1.0,
+        "FDA": 1.0
+      }
+    },
+    "linear_system_separator": {
+      "grounded_self_review": {
+        "RSR": 1.0,
+        "CAR": 0.7166666666666667,
+        "FDA": 0.8583333333333333
+      },
+      "nonunique": {
+        "RSR": 1.0,
+        "CAR": 0.9333333333333333,
+        "FDA": 0.9666666666666667
+      },
+      "nonunique_grounding": {
+        "RSR": 1.0,
+        "CAR": 0.8166666666666667,
+        "FDA": 0.9083333333333333
+      },
+      "self_review": {
+        "RSR": 1.0,
+        "CAR": 0.7,
+        "FDA": 0.85
+      }
+    },
+    "moment_problem": {
+      "grounded_self_review": {
+        "RSR": 1.0,
+        "CAR": 0.9666666666666667,
+        "FDA": 0.9833333333333333
+      },
+      "nonunique": {
+        "RSR": 1.0,
+        "CAR": 1.0,
+        "FDA": 1.0
+      },
+      "nonunique_grounding": {
+        "RSR": 1.0,
+        "CAR": 1.0,
+        "FDA": 1.0
+      },
+      "self_review": {
+        "RSR": 1.0,
+        "CAR": 0.9333333333333333,
+        "FDA": 0.9666666666666667
+      }
+    },
+    "rankdef_linear_shared": {
+      "grounded_self_review": {
+        "RSR": 1.0,
+        "CAR": 0.95,
+        "FDA": 0.975
+      },
+      "nonunique": {
+        "RSR": 1.0,
+        "CAR": 0.9666666666666667,
+        "FDA": 0.9833333333333333
+      },
+      "nonunique_grounding": {
+        "RSR": 1.0,
+        "CAR": 0.9666666666666667,
+        "FDA": 0.9833333333333333
+      },
+      "self_review": {
+        "RSR": 1.0,
+        "CAR": 0.9666666666666667,
+        "FDA": 0.9833333333333333
+      }
+    }
+  }
+}

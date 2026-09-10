@@ -1,0 +1,6 @@
+<unknown>:58: SyntaxWarning: "\ " is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\ "? A raw string is also an option.
+[1/5] id=1930 cot=False sym=False sym+=False
+[2/5] id=1828 cot=False sym=False sym+=False
+[3/5] id=2832 cot=True sym=False sym+=False
+[4/5] id=2748 cot=True sym=True sym+=True
+[5/5] id=1724 cot=False sym=False sym+=False

@@ -1,0 +1,153 @@
+{
+  "combined_records": 1600,
+  "dataset_pairs": 100,
+  "excluded": [
+    "api.txt and all credentials",
+    "partial RandomPair diagnostic records",
+    "provider worker logs"
+  ],
+  "files": {
+    "data/paired/mira_heldout_100.jsonl": {
+      "bytes": 160945,
+      "sha256": "8838abb1c078a3b2bd7bbc057b1e4b2bf7bdb4764f7f2e80a5d9e1bad4c143c9"
+    },
+    "data/paired/mira_heldout_100.manifest.json": {
+      "bytes": 1034,
+      "sha256": "5e54cd12e90ea66f9cffc1faabedebebf1da30a0dfb990a44e783401b02c2fad"
+    },
+    "pyproject.toml": {
+      "bytes": 456,
+      "sha256": "e781a0872967202048fafc9dcfd26a2a18245727359cb8fc53465a7c6d7c37ac"
+    },
+    "results/decision_baselines_report.md": {
+      "bytes": 2339,
+      "sha256": "ca62d3c0fc6839774e32fc41ef79d1966c343d2cb866e0098b4f0ee84a0ebcf6"
+    },
+    "results/gpt_oss_20b_confirmatory_100_analysis.json": {
+      "bytes": 9735,
+      "sha256": "4a65dddd98ed664efb4001ffc90a9d65069337ded75b93c9076574ac7be4314d"
+    },
+    "results/gpt_oss_20b_confirmatory_100_complete.jsonl": {
+      "bytes": 902689,
+      "sha256": "677739157e138a401aa33daf1d72aca7f5129d2cac85c2d20f0439d78dd9fed5"
+    },
+    "results/gpt_oss_20b_confirmatory_100_summary.tsv": {
+      "bytes": 491,
+      "sha256": "b352f394f31a09f71c62b97ac8ef00f0daf8e03e1813a1a92eca65a7c2736195"
+    },
+    "results/gpt_oss_20b_decision_analysis.json": {
+      "bytes": 13537,
+      "sha256": "ad0b6ec8fc1d41e7bdf09ad6b326f7b43b2df97e652c6b79ffe69f0f9561b8d0"
+    },
+    "results/gpt_oss_20b_decision_baselines_100_complete.jsonl": {
+      "bytes": 301258,
+      "sha256": "3012203505100ee0d931988d9bd5de53b26b28920c63995d7844da203ea05e42"
+    },
+    "results/gpt_oss_20b_decision_baselines_100_summary.tsv": {
+      "bytes": 237,
+      "sha256": "240dab8470389a192c692ad4d7342a3b53bd4e1b50e7b4a8f211bb038c2f3c62"
+    },
+    "scripts/analyze_confirmatory.py": {
+      "bytes": 7104,
+      "sha256": "083d0a02266fd685656d925d94323eb11e807be792250f4fdfbb64d950e9f63c"
+    },
+    "scripts/analyze_pilot.py": {
+      "bytes": 1913,
+      "sha256": "ba7943216ee5bb82978fb291a66c5abf7a3b22ecb868fbc94eda32d6b4a45691"
+    },
+    "scripts/build_heldout_mira.py": {
+      "bytes": 4507,
+      "sha256": "c2238701e2a6edc1c9183103678e22454a884f876b81e596d6017b157f95918c"
+    },
+    "scripts/finalize_pilot.py": {
+      "bytes": 2156,
+      "sha256": "129e10be2005bcfaf1ababf2d40393d560440acfa2c641b0150ca70c7cf74ff4"
+    },
+    "scripts/run_decision_baselines.sh": {
+      "bytes": 1407,
+      "sha256": "e209d307aa37f68f899579f7434e89cbf412948e24888c62cdcfc1f01c0d8d75"
+    },
+    "scripts/run_heldout_background.sh": {
+      "bytes": 1779,
+      "sha256": "64c68321d16abf4f0c38e5db1faf429f3a7c1ef1c7ff9122413b0f514e98df98"
+    },
+    "scripts/run_pilot.py": {
+      "bytes": 4750,
+      "sha256": "1a14b4bbb2ddb9c95ff2642134a4246dd9d3919c74d641994bb0e22e6b236537"
+    },
+    "targetcheck/compiler_z3.py": {
+      "bytes": 6051,
+      "sha256": "6917744fa60f7c6370c465e0bb0b5d37ad49ae6a2b03df676c3aed665730e9c2"
+    },
+    "targetcheck/determinacy.py": {
+      "bytes": 5628,
+      "sha256": "ecb198f1727c3e1f1f8e1db48bda271a49a06570be7e177de682714fdc3db5a6"
+    },
+    "targetcheck/expressions.py": {
+      "bytes": 2845,
+      "sha256": "f5ab876c46c2d822d05d3f5c5ee6c680651e5c0a5fda32e4384d54a53fe00874"
+    },
+    "targetcheck/grounding.py": {
+      "bytes": 1996,
+      "sha256": "81edf216bcdcb9e0067ff3ebd20f3a632a59df20542137d29453805a54e45080"
+    },
+    "targetcheck/modelspec.py": {
+      "bytes": 1746,
+      "sha256": "a66d2231a4a0f676ce7beebb0c3e6ca9dae0a1fda0debad347a0a1a3d8f442d6"
+    },
+    "targetcheck/pilot.py": {
+      "bytes": 8131,
+      "sha256": "ae83fa614cb6173f3af2aa3b0455f0bba6445bac0ac1163b55b47a7052ba0659"
+    },
+    "targetcheck/providers/ollama_cloud.py": {
+      "bytes": 5681,
+      "sha256": "2f9a978e860d6a96f3de1a962378ca2af5c61eb59b5e5e95e867817ed1466212"
+    },
+    "tests/test_determinacy.py": {
+      "bytes": 3133,
+      "sha256": "28176c32d90fffbcfdb16c00a20026079ebcf7d02267531effb87cb0232f33c9"
+    },
+    "tests/test_expressions.py": {
+      "bytes": 1675,
+      "sha256": "74658eeb1642c6da5ce025f18c1ac186174d5ce5b3b3030b38d9a90b0b10aef3"
+    },
+    "tests/test_ollama_cloud.py": {
+      "bytes": 1311,
+      "sha256": "33a9f080dd4ce1d9f5e0cd3afd5228af5452c53e903c2f96d52b4e81dc3f816e"
+    },
+    "tests/test_prompts.py": {
+      "bytes": 2405,
+      "sha256": "b463eddb37765461fad90a5aa97adebbcf21fcac09244ded5de0875df0094b6d"
+    },
+    "tests/test_scoring.py": {
+      "bytes": 2715,
+      "sha256": "507e8610ee1976cc124b011715dfe740f246eb8a9a0fcff84b8e895913b2635d"
+    }
+  },
+  "follow_up_records": 400,
+  "freeze_id": "decision_stage_100pairs_20260909",
+  "frozen_at": "2026-09-09",
+  "initial_records": 1200,
+  "method_counts": {
+    "grounded_self_review": 200,
+    "minimal_witness": 200,
+    "minimal_witness_grounding": 200,
+    "nonunique": 200,
+    "nonunique_grounding": 200,
+    "self_review": 200,
+    "target_witness": 200,
+    "targetcheck": 200
+  },
+  "model_counts": {
+    "gpt-oss:20b": 1600
+  },
+  "prompt_hash_counts": {
+    "d477011f626063be26b20eb6932dfd8e4af5251b916796555534964aed8bc306": 1200,
+    "eafed6be4973c21e1efbb5cc804112c9d50c95764e8f5066b58bdee58b92bdda": 400
+  },
+  "status": "FROZEN_DO_NOT_TUNE",
+  "status_counts": {
+    "ok": 1600
+  },
+  "study_label": "decision-stage follow-up after inspecting initial six-method results"
+}

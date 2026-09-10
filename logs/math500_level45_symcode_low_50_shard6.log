@@ -1,0 +1,5 @@
+[1/5] id=test/algebra/873.json cot=True sym=True sym+=True
+[2/5] id=test/number_theory/769.json cot=True sym=True sym+=True
+[3/5] id=test/algebra/975.json cot=True sym=True sym+=True
+[4/5] id=test/counting_and_probability/282.json cot=False sym=False sym+=False
+[5/5] id=test/intermediate_algebra/582.json cot=True sym=False sym+=False

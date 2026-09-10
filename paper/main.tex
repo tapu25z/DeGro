@@ -1,0 +1,124 @@
+\documentclass[sigconf,anonymous]{aamas}
+\usepackage{balance}
+\graphicspath{{vendor/}}
+
+\makeatletter
+\gdef\@copyrightpermission{%
+  \begin{minipage}{0.2\columnwidth}
+  \href{https://creativecommons.org/licenses/by/4.0/}{\includegraphics[width=.9\textwidth]{by}}
+  \end{minipage}\hfill
+  \begin{minipage}{0.8\columnwidth}
+  \href{https://creativecommons.org/licenses/by/4.0/}{This work is licensed under a Creative Commons Attribution International 4.0 License.}
+  \end{minipage}\vspace{5pt}}
+\makeatother
+\setcopyright{ifaamas}
+\acmConference[AAMAS 2027]{Proc. of the 26th International Conference on Autonomous Agents and Multiagent Systems (AAMAS 2027)}{3--7 May 2027}{Hanoi, Vietnam}{M. Baldoni, F. Fang, W. Yeoh, N. Yorke-Smith (eds.)}
+\copyrightyear{2027}\acmYear{2027}\acmDOI{}\acmISBN{}
+\acmSubmissionID{ANONYMOUS}
+\submissionType{Research Paper Track}
+
+\title{TargetCheck: Target-Determinacy Verification for Executable Mathematical Reasoning}
+\author{Anonymous Author(s)}
+
+\begin{abstract}
+Executable mathematical reasoning can eliminate arithmetic and runtime errors while still silently solving the wrong formalization.  In particular, a program may execute and return a feasible model even though an omitted constraint leaves the requested quantity undetermined.  We introduce \emph{TargetCheck}, a verification-and-repair mechanism for autonomous mathematical agents.  Given a structured formalization $F$ and target expression $q$, TargetCheck asks a symbolic solver for two models of $F$ that disagree on $q$.  A satisfying query yields a machine-checkable target-divergent witness pair; unsatisfiability certifies that $q$ is determinate under the current formalization.  When ambiguity is found, the agent must either propose a source-supported missing constraint or abstain if the source itself is underspecified.  Candidate repairs pass parseability, provenance, consistency, non-redundancy, and determinacy checks before acceptance.  We define a controlled paired evaluation in which omission and genuine-underspecification cases share the same formalization but differ in whether the missing fact appears in the source.  Our preregistered evaluation isolates the value of target-directed witnesses from a bare non-uniqueness verdict and arbitrary feasible examples.  [RESULTS TO BE INSERTED AFTER THE PREREGISTERED PILOT.]  TargetCheck certifies determinacy under a representation, not semantic equivalence between that representation and natural language; we state this boundary explicitly.
+\end{abstract}
+\ccsdesc[500]{Computing methodologies~Knowledge representation and reasoning}
+\ccsdesc[300]{Computing methodologies~Natural language processing}
+\keywords{neuro-symbolic reasoning, mathematical agents, verification, counterexamples, abstention}
+
+\begin{document}
+\maketitle
+
+\section{Introduction}
+Language models increasingly delegate mathematical computation to executable programs and symbolic solvers.  Program-aided reasoning can reduce arithmetic mistakes, and SymCode converts a problem into a self-contained SymPy program with execution-based repair~\cite{gao2023pal,nezhad2026symcode}.  Yet execution establishes only that code runs.  A feasible solver output does not establish that the program contains every condition needed to justify the answer.
+
+Consider ``Ten tasks are divided between A and B. A receives two more than B. How many does A receive?''  If a generated formalization contains only $a+b=10$, it executes and has feasible solutions.  However, $(a,b)=(4,6)$ and $(6,4)$ yield different values of the target $a$.  The same underconstrained formalization is faithful for the shorter source ``Ten tasks are divided between A and B. How many does A receive?''; here adding $a=b+2$ would be fabrication.  A trustworthy agent must distinguish a missing translation from missing information.
+
+We study whether target-directed solver evidence enables this distinction.  TargetCheck searches for two feasible assignments that disagree specifically on the requested target, then returns them to a repair-or-abstain policy grounded in the original source.  The method is specialized: it detects underconstraint visible as target ambiguity and does not claim full semantic verification.
+
+Our contributions are: (1) an operational formulation of target determinacy for executable LLM-generated mathematical specifications; (2) target-divergent witness feedback and a solver-validated grounded repair protocol; (3) a paired evaluation that controls the formalization while varying source support; and (4) an evaluation plan covering controlled corruptions, naturally occurring formalization errors, ablations, and multiple open model families.  All quantitative claims remain withheld until experiments are complete.
+
+\section{Related Work}
+\textbf{Executable mathematical reasoning.} Chain-of-thought elicits intermediate natural-language reasoning~\cite{wei2022cot}, while PAL delegates computation to generated programs~\cite{gao2023pal}.  SymCode treats an executable symbolic program as the reasoning artifact and repairs runtime failures~\cite{nezhad2026symcode}.  TargetCheck addresses a complementary silent failure: executable code whose feasible region does not determine the query.
+
+\textbf{Solver-guided diagnosis.} ReLoop uses behavioral parameter perturbations to expose semantically incorrect optimization models that nevertheless execute~\cite{lian2026reloop}.  SymDiag performs step-level satisfiability and entailment checks over translated reasoning traces and returns structured diagnostic evidence~\cite{cui2026symdiag}.  Minimal-core-guided repair supplies proof-like feedback for overconstrained, unsatisfiable formalizations~\cite{sarkar2026cores}.  TargetCheck instead considers the underconstrained regime: satisfiable specifications with target-divergent models.  Its central decision is whether the source supports repair or requires abstention.
+
+\textbf{Missing-information benchmarks.} MIRA-Math contains 2,310 generated instances in 22 families, each hiding one necessary atomic fact from the solver-facing view while retaining it for an information holder~\cite{albateh2026mira}.  We derive paired cases from these validated latent states, but evaluate representation repair and grounded abstention rather than claiming the benchmark as a contribution.
+
+\section{Problem Formulation}
+Let a natural-language problem be $P$.  A model produces $F=(V,D,C,q)$, where $V$ are variables, $D$ their domains, $C$ constraints, and $q(V)$ the requested expression.  Define
+\[
+\mathrm{Sol}(F)=\{m\mid m\models D\land C\}.
+\]
+The target is \emph{determinate under $F$} iff
+\[
+\forall m_1,m_2\in\mathrm{Sol}(F),\quad q(m_1)=q(m_2).
+\]
+This is weaker than solution uniqueness: $x=5,y\geq0$ has many models, but target $q=x$ is determinate.
+
+Construct renamed copies $F^{(1)}$ and $F^{(2)}$ and query
+\begin{equation}
+\Phi(F,q)=F^{(1)}\land F^{(2)}\land q(V^{(1)})\neq q(V^{(2)}).\label{eq:query}
+\end{equation}
+If \eqref{eq:query} is satisfiable, its two projected models form a \emph{target-divergent witness pair}.  If it is unsatisfiable and $F$ itself is satisfiable, the target is determinate.
+
+\textbf{Guarantee.} For a sound solver and supported theory, an \textsc{unsat} result for Eq.~\eqref{eq:query}, together with $\mathrm{SAT}(F)$, implies that all models of $F$ agree on $q$.  This follows immediately because a disagreeing pair would satisfy Eq.~\eqref{eq:query}.  A timeout or \textsc{unknown} result proves nothing and is never mapped to determinacy.
+
+\paragraph{Soundness boundary.} The guarantee is relative to $F$.  It does not establish $F\equiv P$.  An unsupported extra constraint may make $q$ determinate while mistranslating the source.  Provenance gates reduce, but do not formally eliminate, this semantic gap.
+
+\section{TargetCheck}
+\subsection{Structured representation}
+The agent emits one typed \textsc{ModelSpec} containing variable sorts and bounds, constraint expressions with source spans, and a target expression.  Deterministic compilers translate the same object to the computational and verification backends.  This avoids divergence between independently generated SymPy and SMT programs.  The initial supported fragment includes integer, real, and Boolean variables; arithmetic equalities and inequalities; finite domains; and selected modular constraints.  Unsupported syntax yields \textsc{not-supported}.
+
+\subsection{Closed-loop policy}
+After execution, TargetCheck first tests $\mathrm{SAT}(F)$.  Unsatisfiability yields \textsc{inconsistent}; unknown yields \textsc{unknown}.  Otherwise it evaluates Eq.~\eqref{eq:query}.  Unsatisfiability permits an answer under the current formalization.  Satisfiability yields two assignments with different target values and triggers grounded diagnosis.
+
+The repair model receives $P$, $C$, $q$, and the witness pair, and must return either \textsc{add-constraint} with an exact supporting span and formal expression, or \textsc{abstain}.  A candidate $c$ is accepted only if: (i) it compiles; (ii) its cited span occurs in $P$, or it uses a declared domain-semantics rule; (iii) $F\land c$ is satisfiable; (iv) $F\not\models c$; and (v) rechecking restores determinacy or yields a new witness for the next bounded round.  We use at most two repair rounds.  The external statuses are \textsc{answer}, \textsc{underspecified}, \textsc{inconsistent}, \textsc{unknown}, and \textsc{unsupported}.
+
+Exact substring provenance is deliberately conservative and easy to audit.  It does not prove that a cited sentence was translated correctly; semantic validation of the proposed equation remains a failure mode.
+
+\section{Evaluation}
+\subsection{Controlled paired benchmark}
+For each gold specification $F^*=\{c_1,\ldots,c_k,c^*\}$ with target-critical fact $c^*$, we create $F^-=F^*\setminus\{c^*\}$.  We retain an item only when $F^*$ is target-determinate, $F^-$ is satisfiable, and $F^-$ admits target-divergent witnesses.  Two cases share exactly $F^-$: in \textsc{omission}, the source $P^+$ contains the fact corresponding to $c^*$; in \textsc{underspecified}, $P^-$ omits it.  The expected decisions are repair and abstain, respectively.  This construction prevents the verifier state alone from revealing the label.
+
+We will construct the primary set from compatible MIRA-Math families using their latent states and typed missing facts~\cite{albateh2026mira}.  Corruptions are deterministic rather than LLM-generated.  A pilot of 80 pairs precedes the main 300--500-pair study; family counts and exclusions will be frozen before inspecting method-level results.
+
+\subsection{Methods and hypotheses}
+We compare \textsc{self-review}; \textsc{nonunique}, which adds only a verdict; \textsc{random-models}, which shows two feasible assignments not selected for target disagreement; \textsc{target-witness}; and full \textsc{TargetCheck}, which adds grounding, solver validation, and explicit abstention.  End-to-end comparisons are deliberately restricted to program-aided methods: SymCode, SymCode with execution-driven debugging, Structured SymCode, Structured SymCode with generic self-refinement, and Structured SymCode with TargetCheck.  This scope isolates verification and repair within executable reasoning rather than claiming superiority over unconstrained natural-language problem solving.  Direct chain-of-thought is discussed only as contextual evidence and, where measured, reported separately from the primary program-aided comparison.  All repair methods receive the same two-attempt budget and model-specific decoding configuration.
+
+The preregistered hypotheses are that target witnesses outperform a bare verdict and random feasible models on omission repair, while grounding reduces over-repair on underspecified cases.  We test transfer across GPT-OSS 20B and 120B and Gemma 4 31B.  Official model documentation confirms configurable reasoning effort and structured output support for GPT-OSS~\cite{openai2025gptoss}; provider availability is recorded at run time rather than assumed.
+
+\subsection{Metrics and analysis}
+Primary metrics are repair success rate (RSR), correct abstention rate (CAR), over-repair rate (ORR), under-repair rate, and final decision accuracy (FDA).  We also report verifier coverage, unsupported-constraint rate, solver-unknown rate, calls, tokens, latency, and estimated cost.  Results include micro averages and macro averages over families, paired bootstrap 95\% confidence intervals, and McNemar tests with multiplicity correction for planned comparisons.
+
+\subsection{Natural-error study}
+To test ecological validity, each model also generates Structured SymCode from complete problems without injected errors.  Executable failures are manually adjudicated under a frozen taxonomy: missing, wrong, or extra constraint; wrong domain; wrong target; computational error; and other.  The primary question is the detection and repair rate within executable under-formalizations, not universal error correction.
+
+\begin{table}[t]
+\centering
+\caption{Main paired evaluation. Dashes are intentional: no experimental values have yet been collected.}
+\label{tab:main}
+\begin{tabular}{lrrrr}
+\toprule
+Method & RSR$\uparrow$ & CAR$\uparrow$ & FDA$\uparrow$ & ORR$\downarrow$\\
+\midrule
+Self-review & -- & -- & -- & --\\
+Nonunique & -- & -- & -- & --\\
+Random models & -- & -- & -- & --\\
+Target witness & -- & -- & -- & --\\
+TargetCheck & -- & -- & -- & --\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Limitations and Risks}
+Target determinacy is neither semantic faithfulness nor answer correctness relative to the source.  The current SMT fragment excludes much nonlinear and transcendental mathematics, and coverage must therefore accompany accuracy.  Witnesses may differ on many variables and fail to localize a missing fact.  Multiple omissions can require more than the bounded repair budget.  Exact-span grounding underhandles implicit mathematical knowledge, whereas permissive domain rules risk unsupported assumptions.  Finally, the controlled study removes one known target-critical constraint; the natural-error study is necessary to establish that this failure occurs in model-generated formalizations.
+
+\section{Conclusion}
+Execution answers ``can this representation run?''; TargetCheck additionally asks whether its models agree on the quantity the agent is about to report.  Target-divergent witnesses make underconstraint concrete, while grounded repair-or-abstain separates recoverable translation omissions from genuinely missing information.  The method offers a narrow, solver-checkable verification layer whose empirical value will be determined by the preregistered comparisons rather than by fabricated placeholder results.
+
+\balance
+\bibliographystyle{ACM-Reference-Format}
+\bibliography{refs}
+\end{document}

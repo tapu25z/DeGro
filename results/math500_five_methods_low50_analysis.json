@@ -1,0 +1,29 @@
+{
+  "selected": 50,
+  "direct_cot_accuracy": 0.98,
+  "direct_cot_errors": 0,
+  "symcode_execution_rate": 0.76,
+  "symcode_accuracy": 0.7,
+  "symcode_errors": 11,
+  "formalized": 41,
+  "formalized_and_verified": 29,
+  "verification_coverage": 0.58,
+  "model_not_supported": 9,
+  "errors": 0,
+  "initial_verdicts": {
+    "DETERMINATE": 25,
+    "AMBIGUOUS": 4,
+    "NOT_SUPPORTED": 12
+  },
+  "natural_underdetermined": 4,
+  "structured_accuracy_on_verified": 0.8275862068965517,
+  "grounded_self_review_accuracy_on_verified": 0.8275862068965517,
+  "degro_accuracy_on_verified": 0.8620689655172413,
+  "structured_accuracy_end_to_end": 0.48,
+  "grounded_self_review_accuracy_end_to_end": 0.48,
+  "degro_accuracy_end_to_end": 0.5,
+  "degro_repairs_attempted": 4,
+  "degro_repairs_accepted": 2,
+  "degro_natural_cases_fixed": 1,
+  "degro_cases_broken": 0
+}

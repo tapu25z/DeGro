@@ -1,0 +1,46 @@
+{
+  "study": "fresh confirmatory evaluation on every remaining solver-compatible MIRA-Math instance",
+  "source_url": "https://huggingface.co/datasets/samersaabjr/MIRA-MATH/resolve/main/family_types_20_50.jsonl",
+  "source_sha256": "78a021526f9457af6e3776ac470c4ef1202d18fd9a19539e7e289294997b2ad0",
+  "source_code_commit": "72ff918901584d1d1e835a9f86d41e3d51a915a2",
+  "source_license": "CC BY 4.0",
+  "selection_seed": 20270911,
+  "excluded_files": [
+    "data/paired/mira_pilot_80.jsonl",
+    "data/paired/mira_heldout_100.jsonl"
+  ],
+  "excluded_pair_count": 180,
+  "families": [
+    "linear_system_separator",
+    "graph_path_sums",
+    "crt_reconstruction",
+    "rankdef_linear_shared",
+    "moment_problem"
+  ],
+  "family_counts": {
+    "rankdef_linear_shared": 20,
+    "linear_system_separator": 20,
+    "moment_problem": 40,
+    "crt_reconstruction": 20,
+    "graph_path_sums": 20
+  },
+  "pairs": 120,
+  "cases": 240,
+  "methods": [
+    "self_review",
+    "grounded_self_review",
+    "nonunique",
+    "nonunique_grounding"
+  ],
+  "models": [
+    "gpt-oss:20b",
+    "gemma4:31b"
+  ],
+  "temperature": 1.0,
+  "think": "medium",
+  "primary_comparison": "FDA(nonunique_grounding) > FDA(grounded_self_review)",
+  "analysis": "paired exact McNemar; Holm correction over the two model-specific primary tests",
+  "prompt_hash": "eafed6be4973c21e1efbb5cc804112c9d50c95764e8f5066b58bdee58b92bdda",
+  "conversion_failures": {},
+  "output_sha256": "5616d0c6203f762560439ee193f1148133d06baf034d6c34c7250a0a44ce3f0b"
+}

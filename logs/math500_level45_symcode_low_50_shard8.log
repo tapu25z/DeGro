@@ -1,0 +1,5 @@
+[1/5] id=test/precalculus/1199.json cot=False sym=False sym+=False
+[2/5] id=test/algebra/824.json cot=True sym=True sym+=True
+[3/5] id=test/prealgebra/1128.json cot=True sym=True sym+=True
+[4/5] id=test/precalculus/44.json cot=True sym=False sym+=True
+[5/5] id=test/number_theory/109.json cot=True sym=True sym+=True

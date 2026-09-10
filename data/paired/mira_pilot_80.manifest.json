@@ -1,0 +1,17 @@
+{
+  "source_url": "https://huggingface.co/datasets/samersaabjr/MIRA-MATH/resolve/main/family_types_20_50.jsonl",
+  "source_sha256": "78a021526f9457af6e3776ac470c4ef1202d18fd9a19539e7e289294997b2ad0",
+  "source_code_commit": "72ff918901584d1d1e835a9f86d41e3d51a915a2",
+  "source_license": "CC BY 4.0",
+  "selection_seed": 20270909,
+  "families": [
+    "linear_system_separator",
+    "graph_path_sums",
+    "crt_reconstruction",
+    "rankdef_linear_shared"
+  ],
+  "pairs_per_family": 20,
+  "pairs": 80,
+  "cases": 160,
+  "output_sha256": "05509c28b346af6da831c866e03a04abafb8c7a870ee561913a1741fe85a9df1"
+}

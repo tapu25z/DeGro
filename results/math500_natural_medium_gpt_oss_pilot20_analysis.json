@@ -1,0 +1,20 @@
+{
+  "selected": 20,
+  "formalized": 18,
+  "formalized_and_verified": 18,
+  "verification_coverage": 0.9,
+  "model_not_supported": 2,
+  "errors": 0,
+  "initial_verdicts": {
+    "AMBIGUOUS": 5,
+    "DETERMINATE": 13
+  },
+  "natural_underdetermined": 5,
+  "structured_accuracy_on_verified": 0.6111111111111112,
+  "grounded_self_review_accuracy_on_verified": 0.6666666666666666,
+  "degro_accuracy_on_verified": 0.7222222222222222,
+  "degro_repairs_attempted": 5,
+  "degro_repairs_accepted": 3,
+  "degro_natural_cases_fixed": 2,
+  "degro_cases_broken": 0
+}

@@ -1,0 +1,26 @@
+{
+  "records": 50,
+  "subfields": {
+    "Algebra": 13,
+    "Number Theory": 5,
+    "Counting & Probability": 4,
+    "Intermediate Algebra": 14,
+    "Prealgebra": 8,
+    "Geometry": 2,
+    "Precalculus": 4
+  },
+  "cot_accuracy": 0.78,
+  "symcode_accuracy": 0.52,
+  "symcode_plus_accuracy": 0.66,
+  "symcode_execution_rate": 0.68,
+  "symcode_plus_execution_rate": 0.9,
+  "debug_activated": 16,
+  "symcode_vs_cot": {
+    "symcode_only": 0,
+    "cot_only": 13
+  },
+  "symcode_plus_vs_cot": {
+    "symcode_plus_only": 0,
+    "cot_only": 6
+  }
+}
