@@ -1,6 +1,6 @@
-# TargetCheck
+# DeGro
 
-TargetCheck asks whether every satisfying assignment of a structured mathematical formalization agrees on the requested target. If not, it returns two feasible assignments with different target values. These witnesses can drive a source-grounded repair-or-abstain loop.
+DeGro asks whether every satisfying assignment of a structured mathematical formalization agrees on the requested target. If not, it returns two feasible assignments with different target values. These witnesses can drive a source-grounded repair-or-abstain loop.
 
 This repository contains the solver core, grounding gate, paired-data schema,
 tests, a paper draft, and a completed 100-pair GPT-OSS 20B experiment.
