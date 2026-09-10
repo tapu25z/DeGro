@@ -7,7 +7,14 @@ import time
 from pathlib import Path
 from typing import Any
 
-from scripts.run_math500_six_methods import answer_correct, apply_grounded, parse_object, repair_prompt, resolve_source_span
+try:
+    from scripts.run_math500_six_methods import (
+        REPAIR_SCHEMA, answer_correct, apply_grounded, parse_object, repair_prompt, resolve_source_span,
+    )
+except ModuleNotFoundError:  # Allow `python scripts/...py` from the repository root.
+    from run_math500_six_methods import (
+        REPAIR_SCHEMA, answer_correct, apply_grounded, parse_object, repair_prompt, resolve_source_span,
+    )
 from targetcheck.determinacy import CheckStatus, check_target_determinacy
 from targetcheck.modelspec import Constraint, ModelSpec, Variable
 from targetcheck.providers import OllamaCloudClient, load_api_keys
@@ -17,15 +24,35 @@ ADAPTER_SCHEMA = {
     "type": "object",
     "properties": {
         "status": {"type": "string", "enum": ["SUPPORTED", "NOT_SUPPORTED"]},
-        "variables": {"type": "array", "items": {"type": "object", "properties": {
-            "name": {"type": "string"}, "sort": {"type": "string", "enum": ["Int", "Real", "Bool"]},
-            "lower": {"type": ["number", "null"]}, "upper": {"type": ["number", "null"]},
-            "values": {"type": ["array", "null"], "items": {"type": "integer"},
-        }, "required": ["name", "sort", "lower", "upper", "values"], "additionalProperties": False}},
-        "constraints": {"type": "array", "items": {"type": "object", "properties": {
-            "id": {"type": "string"}, "expression": {"type": "string"},
-            "source_span": {"type": "string"}, "code_span": {"type": "string"},
-        }, "required": ["id", "expression", "source_span", "code_span"], "additionalProperties": False}},
+        "variables": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "name": {"type": "string"},
+                    "sort": {"type": "string", "enum": ["Int", "Real", "Bool"]},
+                    "lower": {"type": ["number", "null"]},
+                    "upper": {"type": ["number", "null"]},
+                    "values": {"type": ["array", "null"], "items": {"type": "integer"}},
+                },
+                "required": ["name", "sort", "lower", "upper", "values"],
+                "additionalProperties": False,
+            },
+        },
+        "constraints": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "id": {"type": "string"},
+                    "expression": {"type": "string"},
+                    "source_span": {"type": "string"},
+                    "code_span": {"type": "string"},
+                },
+                "required": ["id", "expression", "source_span", "code_span"],
+                "additionalProperties": False,
+            },
+        },
         "target": {"type": "string"},
     },
     "required": ["status", "variables", "constraints", "target"],
@@ -94,10 +121,13 @@ def main() -> None:
     parser.add_argument("--account-offset", type=int)
     parser.add_argument("--accounts-per-worker", type=int, default=1)
     parser.add_argument("--timeout", type=float, default=180.0)
+    parser.add_argument("--limit", type=int, default=0)
     args = parser.parse_args()
 
     rows = [json.loads(line) for line in args.data.read_text().splitlines()]
     rows = [row for index, row in enumerate(rows) if index % args.num_shards == args.shard_index]
+    if args.limit:
+        rows = rows[: args.limit]
     completed = load_completed(args.out)
     keys = load_api_keys(args.keys)
     offset = (args.account_offset if args.account_offset is not None else args.shard_index) % len(keys)
@@ -123,7 +153,7 @@ def main() -> None:
                     initial = check_target_determinacy(spec)
                     record.update(initial_verdict=initial.status.value, initial_value=initial.target_value)
                     if initial.status == CheckStatus.AMBIGUOUS:
-                        repair_response = client.chat(args.model, [{"role": "user", "content": repair_prompt(row["problem"], spec, determinacy=True, grounding=True)}], options={"temperature": 0.0}, think=args.think)
+                        repair_response = client.chat(args.model, [{"role": "user", "content": repair_prompt(row["problem"], spec, determinacy=True, grounding=True)}], format_schema=REPAIR_SCHEMA, options={"temperature": 0.0}, think=args.think)
                         repair = parse_object(str(repair_response.get("message", {}).get("content", "")))
                         _, changed, reason, result = apply_grounded(row["problem"], spec, repair)
                         if changed and result.status == CheckStatus.DETERMINATE:

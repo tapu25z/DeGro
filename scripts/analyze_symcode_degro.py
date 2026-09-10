@@ -20,12 +20,25 @@ def main() -> None:
                 row = json.loads(line)
                 if row["id"] not in best or best[row["id"]].get("status") == "error":
                     best[row["id"]] = row
-    rows = list(best.values())
+    all_rows = list(best.values())
+    errors = [row for row in all_rows if row.get("status") == "error"]
+    rows = [row for row in all_rows if row.get("status") != "error"]
     wrong = [row for row in rows if row["cohort"] == "EXECUTED_WRONG"]
     controls = [row for row in rows if row["cohort"] == "EXECUTED_CORRECT_CONTROL"]
+    covered = [row for row in rows if row.get("verifier_coverage")]
+    baseline_correct = sum(bool(row.get("symcode_plus_correct")) for row in rows)
+    degro_correct = sum(bool(row.get("degro_correct")) for row in rows)
     report = {
-        "records": len(rows), "errors": sum(row.get("status") == "error" for row in rows),
+        "records": len(rows), "errors": len(errors),
+        "symcode_plus_correct": baseline_correct,
+        "symcode_plus_accuracy": baseline_correct / len(rows) if rows else 0.0,
+        "symcode_plus_degro_correct": degro_correct,
+        "symcode_plus_degro_accuracy": degro_correct / len(rows) if rows else 0.0,
+        "accuracy_delta_pp": 100.0 * (degro_correct - baseline_correct) / len(rows) if rows else 0.0,
         "verifier_coverage": sum(bool(row.get("verifier_coverage")) for row in rows) / len(rows) if rows else 0.0,
+        "covered_records": len(covered),
+        "covered_symcode_plus_accuracy": sum(bool(row.get("symcode_plus_correct")) for row in covered) / len(covered) if covered else 0.0,
+        "covered_symcode_plus_degro_accuracy": sum(bool(row.get("degro_correct")) for row in covered) / len(covered) if covered else 0.0,
         "verdicts": dict(Counter(row.get("initial_verdict") for row in rows if row.get("initial_verdict"))),
         "actions": dict(Counter(row.get("degro_action") for row in rows if row.get("degro_action"))),
         "executed_wrong": len(wrong),

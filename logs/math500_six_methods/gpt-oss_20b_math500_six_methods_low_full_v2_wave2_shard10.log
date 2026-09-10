@@ -10,3 +10,5 @@
 [25/29] test/algebra/1796.json pending=6 elapsed=14.3s
 [26/29] test/algebra/2043.json pending=6 elapsed=28.0s
 [27/29] test/algebra/1814.json pending=6 elapsed=13.6s
+[28/29] test/algebra/435.json pending=6 elapsed=24.6s
+[29/29] test/geometry/477.json pending=6 elapsed=13.7s

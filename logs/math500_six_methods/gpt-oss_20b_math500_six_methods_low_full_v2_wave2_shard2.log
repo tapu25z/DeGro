@@ -9,3 +9,7 @@
 [17/30] test/geometry/686.json pending=6 elapsed=15.0s
 [18/30] test/counting_and_probability/25149.json pending=6 elapsed=11.4s
 [19/30] test/geometry/711.json pending=6 elapsed=38.8s
+[20/30] test/geometry/73.json pending=6 elapsed=12.7s
+[21/30] test/prealgebra/1238.json pending=6 elapsed=42.5s
+[22/30] test/intermediate_algebra/1407.json pending=6 elapsed=35.5s
+[23/30] test/geometry/538.json pending=6 elapsed=9.8s

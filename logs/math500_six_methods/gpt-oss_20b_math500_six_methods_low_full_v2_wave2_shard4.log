@@ -1,1 +1,5 @@
 [9/30] test/number_theory/156.json pending=4 elapsed=190.2s
+[13/30] test/number_theory/1201.json pending=4 elapsed=361.3s
+[18/30] test/algebra/2486.json pending=2 elapsed=58.1s
+[20/30] test/intermediate_algebra/117.json pending=1 elapsed=115.4s
+[25/30] test/intermediate_algebra/2146.json pending=1 elapsed=93.4s

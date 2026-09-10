@@ -9,3 +9,4 @@
 [27/30] test/algebra/668.json pending=6 elapsed=23.1s
 [28/30] test/prealgebra/914.json pending=6 elapsed=28.0s
 [29/30] test/number_theory/22.json pending=6 elapsed=22.8s
+[30/30] test/intermediate_algebra/1930.json pending=6 elapsed=64.7s

@@ -11,3 +11,6 @@
 [20/29] test/number_theory/368.json pending=6 elapsed=15.4s
 [21/29] test/intermediate_algebra/1166.json pending=6 elapsed=28.4s
 [22/29] test/geometry/846.json pending=6 elapsed=24.7s
+[23/29] test/geometry/795.json pending=6 elapsed=31.0s
+[24/29] test/number_theory/132.json pending=6 elapsed=10.1s
+[25/29] test/number_theory/1002.json pending=1 elapsed=17.9s

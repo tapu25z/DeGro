@@ -7,7 +7,10 @@ import hashlib
 import json
 from pathlib import Path
 
-from scripts.run_olympiadbench_symcode import boxed, is_correct
+try:
+    from scripts.run_olympiadbench_symcode import boxed, is_correct
+except ModuleNotFoundError:  # Allow `python scripts/...py` from the repository root.
+    from run_olympiadbench_symcode import boxed, is_correct
 
 
 def main() -> None:
@@ -16,6 +19,8 @@ def main() -> None:
     parser.add_argument("--data", type=Path, default=Path("data/math500/test.jsonl"))
     parser.add_argument("--out", type=Path, required=True)
     parser.add_argument("--max-wrong", type=int, default=0, help="0 keeps every available execute-but-wrong case")
+    parser.add_argument("--mode", choices=("balanced", "all"), default="balanced")
+    parser.add_argument("--expected-results", type=int, default=0)
     args = parser.parse_args()
 
     problems = {row["unique_id"]: row for row in map(json.loads, args.data.read_text().splitlines())}
@@ -29,6 +34,12 @@ def main() -> None:
                 if row.get("method") != "symcode_plus" or row.get("status") == "error":
                     continue
                 best[row["id"]] = row
+
+    if args.expected_results and len(best) != args.expected_results:
+        raise SystemExit(
+            f"Expected {args.expected_results} completed SymCode+ results, found {len(best)}. "
+            "Wait for the source run to finish, then rerun this command."
+        )
 
     executable = []
     for uid, result in best.items():
@@ -63,14 +74,22 @@ def main() -> None:
         if match:
             used.add(match["id"])
             controls.append(match)
-    rows = [{**row, "cohort": "EXECUTED_WRONG"} for row in wrong]
-    rows += [{**row, "cohort": "EXECUTED_CORRECT_CONTROL"} for row in controls]
+    if args.mode == "all":
+        rows = [
+            {**row, "cohort": "EXECUTED_CORRECT_CONTROL" if row["symcode_plus_correct"] else "EXECUTED_WRONG"}
+            for row in executable
+        ]
+    else:
+        rows = [{**row, "cohort": "EXECUTED_WRONG"} for row in wrong]
+        rows += [{**row, "cohort": "EXECUTED_CORRECT_CONTROL"} for row in controls]
     rows.sort(key=lambda row: (row["cohort"], row["id"]))
     payload = "".join(json.dumps(row, ensure_ascii=False, separators=(",", ":")) + "\n" for row in rows)
     args.out.parent.mkdir(parents=True, exist_ok=True)
     args.out.write_text(payload)
     manifest = {
-        "records": len(rows), "executed_wrong": len(wrong), "matched_correct_controls": len(controls),
+        "mode": args.mode, "source_results": len(best), "records": len(rows),
+        "executed_wrong": sum(row["cohort"] == "EXECUTED_WRONG" for row in rows),
+        "correct_controls": sum(row["cohort"] == "EXECUTED_CORRECT_CONTROL" for row in rows),
         "sha256": hashlib.sha256(payload.encode()).hexdigest(), "source_files": source_files,
     }
     args.out.with_suffix(".manifest.json").write_text(json.dumps(manifest, indent=2) + "\n")

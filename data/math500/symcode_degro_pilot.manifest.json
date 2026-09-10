@@ -1,0 +1,26 @@
+{
+  "mode": "balanced",
+  "records": 98,
+  "executed_wrong": 49,
+  "correct_controls": 49,
+  "sha256": "ce3a8c98852d79172e2090f900ba7e196c1ee719a9bc4d5d72391a47297fae5c",
+  "source_files": [
+    "results/raw/gpt-oss_20b_math500_six_methods_low_full_v2_shard0.jsonl",
+    "results/raw/gpt-oss_20b_math500_six_methods_low_full_v2_shard1.jsonl",
+    "results/raw/gpt-oss_20b_math500_six_methods_low_full_v2_shard10.jsonl",
+    "results/raw/gpt-oss_20b_math500_six_methods_low_full_v2_shard11.jsonl",
+    "results/raw/gpt-oss_20b_math500_six_methods_low_full_v2_shard12.jsonl",
+    "results/raw/gpt-oss_20b_math500_six_methods_low_full_v2_shard13.jsonl",
+    "results/raw/gpt-oss_20b_math500_six_methods_low_full_v2_shard14.jsonl",
+    "results/raw/gpt-oss_20b_math500_six_methods_low_full_v2_shard15.jsonl",
+    "results/raw/gpt-oss_20b_math500_six_methods_low_full_v2_shard16.jsonl",
+    "results/raw/gpt-oss_20b_math500_six_methods_low_full_v2_shard2.jsonl",
+    "results/raw/gpt-oss_20b_math500_six_methods_low_full_v2_shard3.jsonl",
+    "results/raw/gpt-oss_20b_math500_six_methods_low_full_v2_shard4.jsonl",
+    "results/raw/gpt-oss_20b_math500_six_methods_low_full_v2_shard5.jsonl",
+    "results/raw/gpt-oss_20b_math500_six_methods_low_full_v2_shard6.jsonl",
+    "results/raw/gpt-oss_20b_math500_six_methods_low_full_v2_shard7.jsonl",
+    "results/raw/gpt-oss_20b_math500_six_methods_low_full_v2_shard8.jsonl",
+    "results/raw/gpt-oss_20b_math500_six_methods_low_full_v2_shard9.jsonl"
+  ]
+}

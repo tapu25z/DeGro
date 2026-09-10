@@ -1,3 +1,6 @@
 [4/29] test/precalculus/1146.json pending=1 elapsed=69.3s
 [9/29] test/number_theory/931.json pending=4 elapsed=88.3s
 [10/29] test/prealgebra/1003.json pending=1 elapsed=72.3s
+[17/29] test/intermediate_algebra/1411.json pending=1 elapsed=58.4s
+[18/29] test/prealgebra/465.json pending=1 elapsed=29.3s
+[25/29] test/precalculus/1202.json pending=1 elapsed=83.0s
