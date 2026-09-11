@@ -1,0 +1,11 @@
+[1/200] mom-000409 OMISSION self_review ok
+[2/200] mom-000409 OMISSION nonunique ok
+[3/200] mom-000409 OMISSION nonunique_grounding ok
+[4/200] mom-000409 OMISSION random_pair ok
+[5/200] mom-000409 UNDERSPECIFIED self_review ok
+[6/200] mom-000409 UNDERSPECIFIED nonunique ok
+[7/200] mom-000409 UNDERSPECIFIED nonunique_grounding ok
+[8/200] mom-000409 UNDERSPECIFIED random_pair ok
+[9/200] lin-000258 OMISSION self_review ok
+[10/200] lin-000258 OMISSION nonunique ok
+[11/200] lin-000258 OMISSION nonunique_grounding ok

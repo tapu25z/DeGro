@@ -1,0 +1,10 @@
+[1/150] crt-000083 OMISSION target_witness ok
+[2/150] crt-000083 OMISSION minimal_witness ok
+[3/150] crt-000083 OMISSION targetcheck ok
+[4/150] crt-000083 UNDERSPECIFIED target_witness ok
+[5/150] crt-000083 UNDERSPECIFIED minimal_witness ok
+[6/150] crt-000083 UNDERSPECIFIED targetcheck ok
+[7/150] lin-000277 OMISSION target_witness ok
+[8/150] lin-000277 OMISSION minimal_witness ok
+[9/150] lin-000277 OMISSION targetcheck ok
+[10/150] lin-000277 UNDERSPECIFIED target_witness ok

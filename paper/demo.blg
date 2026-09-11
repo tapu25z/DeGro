@@ -1,0 +1,84 @@
+This is BibTeX, Version 0.99d (TeX Live 2025)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: demo.aux
+The style file: ACM-Reference-Format.bst
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
+Database file #1: demo_refs.bib
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated wiz_functions (elt_size=4) to 9000 items from 6000.
+Reallocated glb_str_ptr (elt_size=4) to 20 items from 10.
+Reallocated global_strs (elt_size=200001) to 20 items from 10.
+Reallocated glb_str_end (elt_size=4) to 20 items from 10.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Warning--no number and no volume in albateh2026mira
+Warning--page numbers missing in both pages and numpages fields in albateh2026mira
+Warning--no number and no volume in chen2023pot
+Warning--page numbers missing in both pages and numpages fields in chen2023pot
+Warning--empty publisher in cobbe2021verifiers
+Warning--empty address in cobbe2021verifiers
+Warning--page numbers missing in both pages and numpages fields in cobbe2021verifiers
+Warning--no number and no volume in cui2026symdiag
+Warning--page numbers missing in both pages and numpages fields in cui2026symdiag
+Warning--empty address in demoura2008z3
+Warning--empty address in gao2023pal
+Warning--no number and no volume in gemma2026report
+Warning--page numbers missing in both pages and numpages fields in gemma2026report
+Warning--empty address in he2024olympiadbench
+Warning--empty publisher in hendrycks2021math
+Warning--empty address in hendrycks2021math
+Warning--page numbers missing in both pages and numpages fields in hendrycks2021math
+Warning--no number and no volume in lian2026reloop
+Warning--page numbers missing in both pages and numpages fields in lian2026reloop
+Warning--empty publisher in madaan2023selfrefine
+Warning--empty address in madaan2023selfrefine
+Warning--page numbers missing in both pages and numpages fields in madaan2023selfrefine
+Warning--no number and no volume in nezhad2026symcode
+Warning--page numbers missing in both pages and numpages fields in nezhad2026symcode
+Warning--no number and no volume in sarkar2026cores
+Warning--page numbers missing in both pages and numpages fields in sarkar2026cores
+Warning--empty publisher in wei2022cot
+Warning--empty address in wei2022cot
+You've used 15 entries,
+            6273 wiz_defined-function locations,
+            1611 strings with 22672 characters,
+and the built_in function-call counts, 18979 in all, are:
+= -- 2270
+> -- 887
+< -- 0
++ -- 308
+- -- 313
+* -- 1556
+:= -- 1950
+add.period$ -- 72
+call.type$ -- 15
+change.case$ -- 155
+chr.to.int$ -- 15
+cite$ -- 43
+duplicate$ -- 1512
+empty$ -- 1082
+format.name$ -- 361
+if$ -- 4525
+int.to.chr$ -- 2
+int.to.str$ -- 1
+missing$ -- 63
+newline$ -- 207
+num.names$ -- 105
+pop$ -- 724
+preamble$ -- 1
+purify$ -- 275
+quote$ -- 0
+skip$ -- 523
+stack$ -- 0
+substring$ -- 1078
+swap$ -- 112
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 352
+warning$ -- 28
+while$ -- 77
+width$ -- 0
+write$ -- 367
+(There were 28 warnings)

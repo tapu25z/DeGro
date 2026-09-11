@@ -1,0 +1,5 @@
+[1/150] gra-000227 OMISSION target_witness ok
+[2/150] gra-000227 OMISSION minimal_witness ok
+[3/150] gra-000227 OMISSION targetcheck ok
+[4/150] gra-000227 UNDERSPECIFIED target_witness ok
+[5/150] gra-000227 UNDERSPECIFIED minimal_witness ok

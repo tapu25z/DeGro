@@ -1,0 +1,11 @@
+[1/150] mom-000409 OMISSION target_witness ok
+[2/150] mom-000409 OMISSION minimal_witness ok
+[3/150] mom-000409 OMISSION targetcheck ok
+[4/150] mom-000409 UNDERSPECIFIED target_witness ok
+[5/150] mom-000409 UNDERSPECIFIED minimal_witness ok
+[6/150] mom-000409 UNDERSPECIFIED targetcheck ok
+[7/150] lin-000258 OMISSION target_witness ok
+[8/150] lin-000258 OMISSION minimal_witness ok
+[9/150] lin-000258 OMISSION targetcheck ok
+[10/150] lin-000258 UNDERSPECIFIED target_witness ok
+[11/150] lin-000258 UNDERSPECIFIED minimal_witness ok

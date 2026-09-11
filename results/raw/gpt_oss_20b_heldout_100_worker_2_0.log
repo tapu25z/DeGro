@@ -1,0 +1,10 @@
+[1/200] crt-000083 OMISSION self_review ok
+[2/200] crt-000083 OMISSION nonunique ok
+[3/200] crt-000083 OMISSION nonunique_grounding ok
+[4/200] crt-000083 OMISSION random_pair ok
+[5/200] crt-000083 UNDERSPECIFIED self_review ok
+[6/200] crt-000083 UNDERSPECIFIED nonunique ok
+[7/200] crt-000083 UNDERSPECIFIED nonunique_grounding ok
+[8/200] crt-000083 UNDERSPECIFIED random_pair ok
+[9/200] lin-000277 OMISSION self_review ok
+[10/200] lin-000277 OMISSION nonunique ok

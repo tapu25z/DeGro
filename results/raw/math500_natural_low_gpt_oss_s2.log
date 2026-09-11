@@ -1,0 +1,5 @@
+[1/5] test/algebra/2427.json ok
+[2/5] test/algebra/2214.json ok
+[3/5] test/algebra/722.json ok
+[4/5] test/prealgebra/192.json not_supported_by_model
+[5/5] test/algebra/2593.json ok

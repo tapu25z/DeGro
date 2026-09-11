@@ -1,0 +1,5 @@
+[1/5] test/intermediate_algebra/134.json ok
+[2/5] test/counting_and_probability/119.json ok
+[3/5] test/prealgebra/1388.json ok
+[4/5] test/intermediate_algebra/279.json not_supported_by_model
+[5/5] test/algebra/2700.json ok

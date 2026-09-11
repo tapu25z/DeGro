@@ -1,0 +1,288 @@
+%%% -*-BibTeX-*-
+%%% Do NOT edit. File created by BibTeX with style
+%%% ACM-Reference-Format-Journals [18-Jan-2012].
+
+\begin{thebibliography}{15}
+
+%%% ====================================================================
+%%% NOTE TO THE USER: you can override these defaults by providing
+%%% customized versions of any of these macros before the \bibliography
+%%% command.  Each of them MUST provide its own final punctuation,
+%%% except for \shownote{} and \showURL{}.  The latter two
+%%% do not use final punctuation, in order to avoid confusing it with
+%%% the Web address.
+%%%
+%%% To suppress output of a particular field, define its macro to expand
+%%% to an empty string, or better, \unskip, like this:
+%%%
+%%% \newcommand{\showURL}[1]{\unskip}   % LaTeX syntax
+%%%
+%%% \def \showURL #1{\unskip}           % plain TeX syntax
+%%%
+%%% ====================================================================
+
+\ifx \showCODEN    \undefined \def \showCODEN     #1{\unskip}     \fi
+\ifx \showISBNx    \undefined \def \showISBNx     #1{\unskip}     \fi
+\ifx \showISBNxiii \undefined \def \showISBNxiii  #1{\unskip}     \fi
+\ifx \showISSN     \undefined \def \showISSN      #1{\unskip}     \fi
+\ifx \showLCCN     \undefined \def \showLCCN      #1{\unskip}     \fi
+\ifx \shownote     \undefined \def \shownote      #1{#1}          \fi
+\ifx \showarticletitle \undefined \def \showarticletitle #1{#1}   \fi
+\ifx \showURL      \undefined \def \showURL       {\relax}        \fi
+% The following commands are used for tagged output and should be
+% invisible to TeX
+\providecommand\bibfield[2]{#2}
+\providecommand\bibinfo[2]{#2}
+\providecommand\natexlab[1]{#1}
+\providecommand\showeprint[2][]{arXiv:#2}
+
+\bibitem[Al~Bateh and Saab(2026)]%
+        {albateh2026mira}
+\bibfield{author}{\bibinfo{person}{Charbel Al~Bateh} {and}
+  \bibinfo{person}{Samer Saab}.} \bibinfo{year}{2026}\natexlab{}.
+\newblock \showarticletitle{{MIRA-Math}: A Benchmark for Minimal Information
+  Requesting and Mathematical Reasoning}.
+\newblock \bibinfo{journal}{\emph{arXiv preprint arXiv:2607.07391}}
+  (\bibinfo{year}{2026}).
+\newblock
+\urldef\tempurl%
+\url{https://arxiv.org/abs/2607.07391}
+\showURL{%
+\tempurl}
+
+
+\bibitem[Chen et~al\mbox{.}(2023)]%
+        {chen2023pot}
+\bibfield{author}{\bibinfo{person}{Wenhu Chen}, \bibinfo{person}{Xueguang Ma},
+  \bibinfo{person}{Xinyi Wang}, {and} \bibinfo{person}{William~W. Cohen}.}
+  \bibinfo{year}{2023}\natexlab{}.
+\newblock \showarticletitle{Program of Thoughts Prompting: Disentangling
+  Computation from Reasoning for Numerical Reasoning Tasks}.
+\newblock \bibinfo{journal}{\emph{Transactions on Machine Learning Research}}
+  (\bibinfo{year}{2023}).
+\newblock
+\urldef\tempurl%
+\url{https://openreview.net/forum?id=YfZ4ZPt8zd}
+\showURL{%
+\tempurl}
+
+
+\bibitem[Cobbe et~al\mbox{.}(2021)]%
+        {cobbe2021verifiers}
+\bibfield{author}{\bibinfo{person}{Karl Cobbe}, \bibinfo{person}{Vineet
+  Kosaraju}, \bibinfo{person}{Mohammad Bavarian}, \bibinfo{person}{Mark Chen},
+  \bibinfo{person}{Heewoo Jun}, \bibinfo{person}{Lukasz Kaiser},
+  \bibinfo{person}{Matthias Plappert}, \bibinfo{person}{Jerry Tworek},
+  \bibinfo{person}{Jacob Hilton}, \bibinfo{person}{Reiichiro Nakano},
+  \bibinfo{person}{Christopher Hesse}, {and} \bibinfo{person}{John Schulman}.}
+  \bibinfo{year}{2021}\natexlab{}.
+\newblock \showarticletitle{Training Verifiers to Solve Math Word Problems}. In
+  \bibinfo{booktitle}{\emph{arXiv preprint arXiv:2110.14168}}.
+\newblock
+\urldef\tempurl%
+\url{https://arxiv.org/abs/2110.14168}
+\showURL{%
+\tempurl}
+
+
+\bibitem[Cui et~al\mbox{.}(2026)]%
+        {cui2026symdiag}
+\bibfield{author}{\bibinfo{person}{Wenyao Cui}, \bibinfo{person}{Huaping
+  Zhang}, \bibinfo{person}{Yongyi Huang}, \bibinfo{person}{Qiuchi Li},
+  \bibinfo{person}{Jian Xu}, \bibinfo{person}{Cheng-Lin Liu},
+  \bibinfo{person}{Chunxiao Gao}, \bibinfo{person}{Juan Wang}, {and}
+  \bibinfo{person}{Baohua Zhang}.} \bibinfo{year}{2026}\natexlab{}.
+\newblock \showarticletitle{SymDiag: Explainable Diagnosis for {LLM} Reasoning
+  via Neuro-Symbolic Verification}.
+\newblock \bibinfo{journal}{\emph{arXiv preprint arXiv:2608.08786}}
+  (\bibinfo{year}{2026}).
+\newblock
+\urldef\tempurl%
+\url{https://arxiv.org/abs/2608.08786}
+\showURL{%
+\tempurl}
+
+
+\bibitem[de~Moura and Bj{\o}rner(2008)]%
+        {demoura2008z3}
+\bibfield{author}{\bibinfo{person}{Leonardo de Moura} {and}
+  \bibinfo{person}{Nikolaj Bj{\o}rner}.} \bibinfo{year}{2008}\natexlab{}.
+\newblock \showarticletitle{{Z3}: An Efficient {SMT} Solver}. In
+  \bibinfo{booktitle}{\emph{Tools and Algorithms for the Construction and
+  Analysis of Systems}} \emph{(\bibinfo{series}{Lecture Notes in Computer
+  Science}, Vol.~\bibinfo{volume}{4963})}. \bibinfo{publisher}{Springer},
+  \bibinfo{pages}{337--340}.
+\newblock
+\href{https://doi.org/10.1007/978-3-540-78800-3_24}{doi:\nolinkurl{10.1007/978-3-540-78800-3_24}}
+
+
+\bibitem[Gao et~al\mbox{.}(2023)]%
+        {gao2023pal}
+\bibfield{author}{\bibinfo{person}{Luyu Gao}, \bibinfo{person}{Aman Madaan},
+  \bibinfo{person}{Shuyan Zhou}, \bibinfo{person}{Uri Alon},
+  \bibinfo{person}{Pengfei Liu}, \bibinfo{person}{Yiming Yang},
+  \bibinfo{person}{Jamie Callan}, {and} \bibinfo{person}{Graham Neubig}.}
+  \bibinfo{year}{2023}\natexlab{}.
+\newblock \showarticletitle{{PAL}: Program-aided Language Models}. In
+  \bibinfo{booktitle}{\emph{Proceedings of the 40th International Conference on
+  Machine Learning}} \emph{(\bibinfo{series}{Proceedings of Machine Learning
+  Research}, Vol.~\bibinfo{volume}{202})}. \bibinfo{publisher}{PMLR},
+  \bibinfo{pages}{10764--10799}.
+\newblock
+\urldef\tempurl%
+\url{https://proceedings.mlr.press/v202/gao23f.html}
+\showURL{%
+\tempurl}
+
+
+\bibitem[{Gemma Team}(2026)]%
+        {gemma2026report}
+\bibfield{author}{\bibinfo{person}{{Gemma Team}}.}
+  \bibinfo{year}{2026}\natexlab{}.
+\newblock \showarticletitle{Gemma 4 Technical Report}.
+\newblock \bibinfo{journal}{\emph{arXiv preprint arXiv:2607.02770}}
+  (\bibinfo{year}{2026}).
+\newblock
+\urldef\tempurl%
+\url{https://arxiv.org/abs/2607.02770}
+\showURL{%
+\tempurl}
+
+
+\bibitem[He et~al\mbox{.}(2024)]%
+        {he2024olympiadbench}
+\bibfield{author}{\bibinfo{person}{Chaoqun He}, \bibinfo{person}{Renjie Luo},
+  \bibinfo{person}{Yuzhuo Bai}, \bibinfo{person}{Shengding Hu},
+  \bibinfo{person}{Zhen Thai}, \bibinfo{person}{Junhao Shen},
+  \bibinfo{person}{Jinyi Hu}, \bibinfo{person}{Xu Han}, \bibinfo{person}{Yujie
+  Huang}, \bibinfo{person}{Yuxiang Zhang}, \bibinfo{person}{Jie Liu},
+  \bibinfo{person}{Lei Qi}, \bibinfo{person}{Zhiyuan Liu}, {and}
+  \bibinfo{person}{Maosong Sun}.} \bibinfo{year}{2024}\natexlab{}.
+\newblock \showarticletitle{OlympiadBench: A Challenging Benchmark for
+  Promoting {AGI} with Olympiad-Level Bilingual Multimodal Scientific
+  Problems}. In \bibinfo{booktitle}{\emph{Proceedings of the 62nd Annual
+  Meeting of the Association for Computational Linguistics (Volume 1: Long
+  Papers)}}. \bibinfo{publisher}{Association for Computational Linguistics},
+  \bibinfo{pages}{3828--3850}.
+\newblock
+\href{https://doi.org/10.18653/v1/2024.acl-long.211}{doi:\nolinkurl{10.18653/v1/2024.acl-long.211}}
+
+
+\bibitem[Hendrycks et~al\mbox{.}(2021)]%
+        {hendrycks2021math}
+\bibfield{author}{\bibinfo{person}{Dan Hendrycks}, \bibinfo{person}{Collin
+  Burns}, \bibinfo{person}{Saurav Kadavath}, \bibinfo{person}{Akul Arora},
+  \bibinfo{person}{Steven Basart}, \bibinfo{person}{Eric Tang},
+  \bibinfo{person}{Dawn Song}, {and} \bibinfo{person}{Jacob Steinhardt}.}
+  \bibinfo{year}{2021}\natexlab{}.
+\newblock \showarticletitle{Measuring Mathematical Problem Solving With the
+  {MATH} Dataset}. In \bibinfo{booktitle}{\emph{Proceedings of the Neural
+  Information Processing Systems Track on Datasets and Benchmarks}},
+  Vol.~\bibinfo{volume}{1}.
+\newblock
+\urldef\tempurl%
+\url{https://datasets-benchmarks-proceedings.neurips.cc/paper/2021/hash/be83ab3ecd0db773eb2dc1b0a17836a1-Abstract-round2.html}
+\showURL{%
+\tempurl}
+
+
+\bibitem[Lian et~al\mbox{.}(2026)]%
+        {lian2026reloop}
+\bibfield{author}{\bibinfo{person}{Junbo~Jacob Lian}, \bibinfo{person}{Yujun
+  Sun}, \bibinfo{person}{Huiling Chen}, \bibinfo{person}{Chaoyu Zhang}, {and}
+  \bibinfo{person}{Chung-Piaw Teo}.} \bibinfo{year}{2026}\natexlab{}.
+\newblock \showarticletitle{ReLoop: Structured Modeling and Behavioral
+  Verification for Reliable {LLM}-Based Optimization}.
+\newblock \bibinfo{journal}{\emph{arXiv preprint arXiv:2602.15983}}
+  (\bibinfo{year}{2026}).
+\newblock
+\urldef\tempurl%
+\url{https://arxiv.org/abs/2602.15983}
+\showURL{%
+\tempurl}
+
+
+\bibitem[Madaan et~al\mbox{.}(2023)]%
+        {madaan2023selfrefine}
+\bibfield{author}{\bibinfo{person}{Aman Madaan}, \bibinfo{person}{Niket
+  Tandon}, \bibinfo{person}{Prakhar Gupta}, \bibinfo{person}{Skyler Hallinan},
+  \bibinfo{person}{Luyu Gao}, \bibinfo{person}{Sarah Wiegreffe},
+  \bibinfo{person}{Uri Alon}, \bibinfo{person}{Nouha Dziri},
+  \bibinfo{person}{Shrimai Prabhumoye}, \bibinfo{person}{Yiming Yang},
+  \bibinfo{person}{Shashank Gupta}, \bibinfo{person}{Bodhisattwa~Prasad
+  Majumder}, \bibinfo{person}{Katherine Hermann}, \bibinfo{person}{Sean
+  Welleck}, \bibinfo{person}{Amir Yazdanbakhsh}, {and} \bibinfo{person}{Peter
+  Clark}.} \bibinfo{year}{2023}\natexlab{}.
+\newblock \showarticletitle{Self-Refine: Iterative Refinement with
+  Self-Feedback}. In \bibinfo{booktitle}{\emph{Advances in Neural Information
+  Processing Systems}}, Vol.~\bibinfo{volume}{36}.
+\newblock
+\urldef\tempurl%
+\url{https://proceedings.neurips.cc/paper_files/paper/2023/hash/91edff07232fb1b55a505a9e9f6c0ff3-Abstract-Conference.html}
+\showURL{%
+\tempurl}
+
+
+\bibitem[Nezhad et~al\mbox{.}(2025)]%
+        {nezhad2026symcode}
+\bibfield{author}{\bibinfo{person}{Sina~Bagheri Nezhad}, \bibinfo{person}{Yao
+  Li}, {and} \bibinfo{person}{Ameeta Agrawal}.}
+  \bibinfo{year}{2025}\natexlab{}.
+\newblock \showarticletitle{SymCode: A Neurosymbolic Approach to Mathematical
+  Reasoning via Verifiable Code Generation}.
+\newblock \bibinfo{journal}{\emph{arXiv preprint arXiv:2510.25975}}
+  (\bibinfo{year}{2025}).
+\newblock
+\urldef\tempurl%
+\url{https://arxiv.org/abs/2510.25975}
+\showURL{%
+\tempurl}
+
+
+\bibitem[{OpenAI}(2025)]%
+        {openai2025gptoss}
+\bibfield{author}{\bibinfo{person}{{OpenAI}}.} \bibinfo{year}{2025}\natexlab{}.
+\newblock \bibinfo{title}{{gpt-oss-120b \& gpt-oss-20b Model Card}}.
+\newblock
+\shownote{Accessed 2026-09-10}.
+\newblock
+\urldef\tempurl%
+\url{https://openai.com/index/gpt-oss-model-card/}
+\showURL{%
+\tempurl}
+
+
+\bibitem[Sarkar(2026)]%
+        {sarkar2026cores}
+\bibfield{author}{\bibinfo{person}{Dipankar Sarkar}.}
+  \bibinfo{year}{2026}\natexlab{}.
+\newblock \showarticletitle{From Errors to Proofs: Minimal-Core-Guided Repair
+  for Neuro-Symbolic Constraint Solving}.
+\newblock \bibinfo{journal}{\emph{arXiv preprint arXiv:2608.14771}}
+  (\bibinfo{year}{2026}).
+\newblock
+\urldef\tempurl%
+\url{https://arxiv.org/abs/2608.14771}
+\showURL{%
+\tempurl}
+
+
+\bibitem[Wei et~al\mbox{.}(2022)]%
+        {wei2022cot}
+\bibfield{author}{\bibinfo{person}{Jason Wei}, \bibinfo{person}{Xuezhi Wang},
+  \bibinfo{person}{Dale Schuurmans}, \bibinfo{person}{Maarten Bosma},
+  \bibinfo{person}{Brian Ichter}, \bibinfo{person}{Fei Xia},
+  \bibinfo{person}{Ed~H. Chi}, \bibinfo{person}{Quoc~V. Le}, {and}
+  \bibinfo{person}{Denny Zhou}.} \bibinfo{year}{2022}\natexlab{}.
+\newblock \showarticletitle{Chain-of-Thought Prompting Elicits Reasoning in
+  Large Language Models}. In \bibinfo{booktitle}{\emph{Advances in Neural
+  Information Processing Systems}}, Vol.~\bibinfo{volume}{35}.
+  \bibinfo{pages}{24824--24837}.
+\newblock
+\urldef\tempurl%
+\url{https://proceedings.neurips.cc/paper_files/paper/2022/hash/9d5609613524ecf4f15af0f7b31abca4-Abstract-Conference.html}
+\showURL{%
+\tempurl}
+
+
+\end{thebibliography}

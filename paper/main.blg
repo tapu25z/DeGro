@@ -1,0 +1,179 @@
+This is BibTeX, Version 0.99d (TeX Live 2025)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: main.aux
+The style file: ACM-Reference-Format.bst
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
+Database file #1: refs.bib
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated wiz_functions (elt_size=4) to 9000 items from 6000.
+Reallocated glb_str_ptr (elt_size=4) to 20 items from 10.
+Reallocated global_strs (elt_size=200001) to 20 items from 10.
+Reallocated glb_str_end (elt_size=4) to 20 items from 10.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Warning--no number and no volume in albateh2026mira
+Warning--page numbers missing in both pages and numpages fields in albateh2026mira
+Warning--no number and no volume in alhanahnah2024alloyrepair
+Warning--page numbers missing in both pages and numpages fields in alhanahnah2024alloyrepair
+Warning--empty publisher in angelopoulos2024conformal
+Warning--empty address in angelopoulos2024conformal
+Warning--page numbers missing in both pages and numpages fields in angelopoulos2024conformal
+Warning--articleno or eid field, but no numpages field, in attie2008modelrepair
+Warning--page numbers missing in both pages and numpages fields in attie2008modelrepair
+Warning--articleno or eid, but no pages or numpages field in attie2008modelrepair
+Warning--no number and no volume in azerbayev2023proofnet
+Warning--page numbers missing in both pages and numpages fields in azerbayev2023proofnet
+Warning--empty publisher in azerbayev2024llemma
+Warning--empty address in azerbayev2024llemma
+Warning--page numbers missing in both pages and numpages fields in azerbayev2024llemma
+Warning--empty publisher in barthe2011product
+Warning--empty address in barthe2011product
+Warning--empty publisher in barthe2004selfcomposition
+Warning--empty address in barthe2004selfcomposition
+Warning--no number and no volume in chen2023pot
+Warning--page numbers missing in both pages and numpages fields in chen2023pot
+Warning--empty publisher in clarke2000cegar
+Warning--empty address in clarke2000cegar
+Warning--empty publisher in clarkson2014hyperltl
+Warning--empty address in clarkson2014hyperltl
+Warning--empty publisher in cobbe2021verifiers
+Warning--empty address in cobbe2021verifiers
+Warning--page numbers missing in both pages and numpages fields in cobbe2021verifiers
+Warning--empty publisher in cortes2016rejection
+Warning--empty address in cortes2016rejection
+Warning--no number and no volume in cui2026symdiag
+Warning--page numbers missing in both pages and numpages fields in cui2026symdiag
+Warning--empty address in demoura2008z3
+Warning--empty publisher in dillig2013abduction
+Warning--empty address in dillig2013abduction
+Warning--empty publisher in finkbeiner2015modelchecking
+Warning--empty address in finkbeiner2015modelchecking
+Warning--empty publisher in gao2023pal
+Warning--empty address in gao2023pal
+Warning--page numbers missing in both pages and numpages fields in gao2023pal
+Warning--empty publisher in geifman2017selective
+Warning--empty address in geifman2017selective
+Warning--page numbers missing in both pages and numpages fields in geifman2017selective
+Warning--empty publisher in geifman2019selectivenet
+Warning--empty address in geifman2019selectivenet
+Warning--empty publisher in gou2024critic
+Warning--empty address in gou2024critic
+Warning--page numbers missing in both pages and numpages fields in gou2024critic
+Warning--empty publisher in gou2024tora
+Warning--empty address in gou2024tora
+Warning--page numbers missing in both pages and numpages fields in gou2024tora
+Warning--empty publisher in hendrycks2021math
+Warning--empty address in hendrycks2021math
+Warning--page numbers missing in both pages and numpages fields in hendrycks2021math
+Warning--empty publisher in huang2024selfcorrect
+Warning--empty address in huang2024selfcorrect
+Warning--page numbers missing in both pages and numpages fields in huang2024selfcorrect
+Warning--empty publisher in jiang2024mma
+Warning--empty address in jiang2024mma
+Warning--page numbers missing in both pages and numpages fields in jiang2024mma
+Warning--empty publisher in jiang2023draft
+Warning--empty address in jiang2023draft
+Warning--page numbers missing in both pages and numpages fields in jiang2023draft
+Warning--no number and no volume in kadavath2022know
+Warning--page numbers missing in both pages and numpages fields in kadavath2022know
+Warning--empty publisher in kuhn2023semantic
+Warning--empty address in kuhn2023semantic
+Warning--page numbers missing in both pages and numpages fields in kuhn2023semantic
+Warning--no number and no volume in lian2026reloop
+Warning--page numbers missing in both pages and numpages fields in lian2026reloop
+Warning--no number and no volume in lightman2023verify
+Warning--page numbers missing in both pages and numpages fields in lightman2023verify
+Warning--empty publisher in lyu2023faithful
+Warning--empty address in lyu2023faithful
+Warning--empty publisher in madaan2023selfrefine
+Warning--empty address in madaan2023selfrefine
+Warning--page numbers missing in both pages and numpages fields in madaan2023selfrefine
+Warning--empty publisher in mozannar2020defer
+Warning--empty address in mozannar2020defer
+Warning--empty publisher in nezhad2026symcode
+Warning--empty address in nezhad2026symcode
+Warning--page numbers missing in both pages and numpages fields in nezhad2026symcode
+Warning--no number and no volume in sarkar2026cores
+Warning--page numbers missing in both pages and numpages fields in sarkar2026cores
+Warning--empty publisher in schick2023toolformer
+Warning--empty address in schick2023toolformer
+Warning--page numbers missing in both pages and numpages fields in schick2023toolformer
+Warning--empty publisher in solarlezama2006cegis
+Warning--empty address in solarlezama2006cegis
+Warning--empty publisher in sousa2016cartesian
+Warning--empty address in sousa2016cartesian
+Warning--empty publisher in terauchi2005safety
+Warning--empty address in terauchi2005safety
+Warning--no number and no volume in uesato2022feedback
+Warning--page numbers missing in both pages and numpages fields in uesato2022feedback
+Warning--empty address in upadhyay2017derivations
+Warning--empty publisher in wang2024mathcoder
+Warning--empty address in wang2024mathcoder
+Warning--page numbers missing in both pages and numpages fields in wang2024mathcoder
+Warning--empty publisher in wei2022cot
+Warning--empty address in wei2022cot
+Warning--page numbers missing in both pages and numpages fields in wei2022cot
+Warning--no number and no volume in weng2023selfverification
+Warning--page numbers missing in both pages and numpages fields in weng2023selfverification
+Warning--empty publisher in wu2022autoformalization
+Warning--empty address in wu2022autoformalization
+Warning--page numbers missing in both pages and numpages fields in wu2022autoformalization
+Warning--no number and no volume in xin2024deepseekprover
+Warning--page numbers missing in both pages and numpages fields in xin2024deepseekprover
+Warning--empty publisher in yang2023leandojo
+Warning--empty address in yang2023leandojo
+Warning--page numbers missing in both pages and numpages fields in yang2023leandojo
+Warning--empty publisher in yao2023react
+Warning--empty address in yao2023react
+Warning--page numbers missing in both pages and numpages fields in yao2023react
+Warning--empty publisher in ying2024leanworkbook
+Warning--empty address in ying2024leanworkbook
+Warning--page numbers missing in both pages and numpages fields in ying2024leanworkbook
+Warning--no number and no volume in yu2025formalmath
+Warning--page numbers missing in both pages and numpages fields in yu2025formalmath
+Warning--empty publisher in zheng2022minif2f
+Warning--empty address in zheng2022minif2f
+Warning--page numbers missing in both pages and numpages fields in zheng2022minif2f
+You've used 57 entries,
+            6273 wiz_defined-function locations,
+            1806 strings with 31140 characters,
+and the built_in function-call counts, 69683 in all, are:
+= -- 7984
+> -- 3132
+< -- 0
++ -- 1097
+- -- 1095
+* -- 5578
+:= -- 7105
+add.period$ -- 263
+call.type$ -- 57
+change.case$ -- 556
+chr.to.int$ -- 56
+cite$ -- 180
+duplicate$ -- 5911
+empty$ -- 4183
+format.name$ -- 1310
+if$ -- 16629
+int.to.chr$ -- 3
+int.to.str$ -- 1
+missing$ -- 260
+newline$ -- 487
+num.names$ -- 398
+pop$ -- 2887
+preamble$ -- 1
+purify$ -- 1010
+quote$ -- 0
+skip$ -- 2057
+stack$ -- 0
+substring$ -- 4076
+swap$ -- 423
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 1438
+warning$ -- 123
+while$ -- 291
+width$ -- 0
+write$ -- 1092
+(There were 123 warnings)

@@ -1,0 +1,12 @@
+[1/150] ran-000592 OMISSION target_witness ok
+[2/150] ran-000592 OMISSION minimal_witness ok
+[3/150] ran-000592 OMISSION targetcheck ok
+[4/150] ran-000592 UNDERSPECIFIED target_witness ok
+[5/150] ran-000592 UNDERSPECIFIED minimal_witness ok
+[6/150] ran-000592 UNDERSPECIFIED targetcheck ok
+[7/150] crt-000072 OMISSION target_witness ok
+[8/150] crt-000072 OMISSION minimal_witness ok
+[9/150] crt-000072 OMISSION targetcheck ok
+[10/150] crt-000072 UNDERSPECIFIED target_witness ok
+[11/150] crt-000072 UNDERSPECIFIED minimal_witness ok
+[12/150] crt-000072 UNDERSPECIFIED targetcheck ok
