@@ -73,6 +73,7 @@ def main() -> None:
     annotations = list(map(json.loads, args.annotations.read_text().splitlines()))
     annotation_by_id = {row["id"]: row for row in annotations}
     results = selected_results(args.raw_pattern)
+    human_verified = bool(annotations) and all(row.get("review_status") == "VERIFIED_ACCEPT" for row in annotations)
 
     methods = {}
     for method in ("structured_solver", "degro"):
@@ -109,12 +110,14 @@ def main() -> None:
     excluded = sorted(set(data) - set(annotation_by_id))
     output = {
         "study": "ALG514 natural-error study",
-        "status": "AI proposals pending human verification",
+        "status": "human verified" if human_verified else "AI proposals pending human verification",
         "dataset_records": len(data),
         "frozen_cohort_records": len(annotations),
         "excluded_records": len(excluded),
         "excluded_ids": excluded,
         "annotation_model": "gpt-oss:120b",
+        "human_verified": human_verified,
+        "human_reviewers": max((int(row.get("human_reviewers", 0)) for row in annotations), default=0),
         "labels": dict(sorted(labels.items())),
         "semantic_correct_rate_on_cohort": labels.get("CORRECT", 0) / len(annotations),
         "semantic_error_rate_on_cohort": (len(annotations) - labels.get("CORRECT", 0)) / len(annotations),

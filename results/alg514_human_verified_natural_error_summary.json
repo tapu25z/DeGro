@@ -1,0 +1,299 @@
+{
+  "study": "ALG514 natural-error study",
+  "status": "human verified",
+  "dataset_records": 514,
+  "frozen_cohort_records": 503,
+  "excluded_records": 11,
+  "excluded_ids": [
+    "alg514/116",
+    "alg514/1315",
+    "alg514/2074",
+    "alg514/2196",
+    "alg514/2559",
+    "alg514/3085",
+    "alg514/3648",
+    "alg514/6072",
+    "alg514/6355",
+    "alg514/667",
+    "alg514/6853"
+  ],
+  "annotation_model": "gpt-oss:120b",
+  "human_verified": true,
+  "human_reviewers": 2,
+  "labels": {
+    "CORRECT": 477,
+    "MISSING_CONSTRAINT": 8,
+    "WRONG_CONSTRAINT": 7,
+    "WRONG_TARGET": 11
+  },
+  "semantic_correct_rate_on_cohort": 0.94831013916501,
+  "semantic_error_rate_on_cohort": 0.05168986083499006,
+  "target_critical_underformalization_rate": 0.015904572564612324,
+  "confidence": {
+    "HIGH": 503
+  },
+  "methods": {
+    "structured_solver": {
+      "records": 514,
+      "legacy_exact_cardinality_correct": 396,
+      "alg514_compatible_correct": 484,
+      "alg514_compatible_accuracy": 0.9416342412451362,
+      "ambiguous_triggers": 15,
+      "accepted_repairs": 0,
+      "resolved_repairs": 0
+    },
+    "degro": {
+      "records": 514,
+      "legacy_exact_cardinality_correct": 396,
+      "alg514_compatible_correct": 485,
+      "alg514_compatible_accuracy": 0.943579766536965,
+      "ambiguous_triggers": 15,
+      "accepted_repairs": 2,
+      "resolved_repairs": 1
+    }
+  },
+  "folds": {
+    "0": {
+      "cohort_records": 99,
+      "semantic_errors": 4,
+      "semantic_error_rate": 0.04040404040404041,
+      "labels": {
+        "CORRECT": 95,
+        "MISSING_CONSTRAINT": 2,
+        "WRONG_CONSTRAINT": 2
+      }
+    },
+    "1": {
+      "cohort_records": 100,
+      "semantic_errors": 9,
+      "semantic_error_rate": 0.09,
+      "labels": {
+        "CORRECT": 91,
+        "MISSING_CONSTRAINT": 1,
+        "WRONG_CONSTRAINT": 1,
+        "WRONG_TARGET": 7
+      }
+    },
+    "2": {
+      "cohort_records": 99,
+      "semantic_errors": 4,
+      "semantic_error_rate": 0.04040404040404041,
+      "labels": {
+        "CORRECT": 95,
+        "MISSING_CONSTRAINT": 1,
+        "WRONG_CONSTRAINT": 1,
+        "WRONG_TARGET": 2
+      }
+    },
+    "3": {
+      "cohort_records": 100,
+      "semantic_errors": 6,
+      "semantic_error_rate": 0.06,
+      "labels": {
+        "CORRECT": 94,
+        "MISSING_CONSTRAINT": 2,
+        "WRONG_CONSTRAINT": 2,
+        "WRONG_TARGET": 2
+      }
+    },
+    "4": {
+      "cohort_records": 105,
+      "semantic_errors": 3,
+      "semantic_error_rate": 0.02857142857142857,
+      "labels": {
+        "CORRECT": 102,
+        "MISSING_CONSTRAINT": 2,
+        "WRONG_CONSTRAINT": 1
+      }
+    }
+  },
+  "metric_note": "ALG514-compatible scoring treats predicted target values as a multiset subset of the released all-unknown solution vector and uses tolerance 1e-3 for rounded gold values.",
+  "disagreement": {
+    "semantic_correct_but_alg514_compatible_wrong": 2,
+    "semantic_error_but_alg514_compatible_correct": 9
+  },
+  "error_cases": [
+    {
+      "id": "alg514/1035",
+      "fold": 0,
+      "label": "MISSING_CONSTRAINT",
+      "confidence": "HIGH",
+      "evidence": "The source asks for the specific amount of sales required to achieve at least $1500, i.e., the minimal sales satisfying 1250 + 0.05*sales >= 1500. The formalization only includes the inequality constraint and a non‑negativity domain, but it does not encode the optimization requirement (minimize sales). Hence the crucial condition that the sales amount must be the smallest value meeting the threshold is omitted."
+    },
+    {
+      "id": "alg514/1089",
+      "fold": 0,
+      "label": "WRONG_CONSTRAINT",
+      "confidence": "HIGH",
+      "evidence": "Source: \"A bottle of wine with a cork cost 2.10 dollars\" implies wine + cork = 2.10, but formalization encodes cork == 2.10, misrepresenting the relation."
+    },
+    {
+      "id": "alg514/1119",
+      "fold": 1,
+      "label": "WRONG_TARGET",
+      "confidence": "HIGH",
+      "evidence": "Source asks for the mileage you can go while staying within a $76 budget (implying the maximum affordable miles). Reference solution solves 30 + 0.23*m = 76 giving m = 200. Generated formalization encodes only the constraint 30 + 0.23*m <= 76 and sets target to m, without any maximization or equality condition, so it does not represent the requested quantity (maximum mileage)."
+    },
+    {
+      "id": "alg514/1532",
+      "fold": 3,
+      "label": "WRONG_CONSTRAINT",
+      "confidence": "HIGH",
+      "evidence": "Source phrase \"36 less twice that same number\" translates to 10*x = 2*x - 36, but formalization encodes 10*x == 36 - 2*x, swapping the order and sign of the terms on the right-hand side."
+    },
+    {
+      "id": "alg514/2031",
+      "fold": 3,
+      "label": "MISSING_CONSTRAINT",
+      "confidence": "HIGH",
+      "evidence": "Source problem asks for the mileage that stays within a $75 budget; reference solution treats this as 30 + 0.18*m = 75 (spending the full budget). Generated formalization uses 30 + 0.18*m <= 75, omitting the equality condition, which changes the set of feasible m and thus the specific mileage answer (250)."
+    },
+    {
+      "id": "alg514/2121",
+      "fold": 4,
+      "label": "MISSING_CONSTRAINT",
+      "confidence": "HIGH",
+      "evidence": "The source asks for the time when the two computer types have the same number of households, i.e., the condition x == y must hold. The formalization defines x and y as functions of t but does not include the equality constraint, so the target t is under‑specified."
+    },
+    {
+      "id": "alg514/2500",
+      "fold": 2,
+      "label": "WRONG_TARGET",
+      "confidence": "HIGH",
+      "evidence": "The problem asks for the speed of the plane in still air (v) only, but the formalization lists both v (plane speed) and w (wind speed) in the targets array, introducing an unnecessary target."
+    },
+    {
+      "id": "alg514/2523",
+      "fold": 3,
+      "label": "WRONG_TARGET",
+      "confidence": "HIGH",
+      "evidence": "The problem asks only for the amount of 100% antifreeze (x), but the formalization lists both x and y as targets, adding an unnecessary target for the 10% mixture."
+    },
+    {
+      "id": "alg514/2596",
+      "fold": 4,
+      "label": "WRONG_CONSTRAINT",
+      "confidence": "HIGH",
+      "evidence": "Source states \"0.25 cents more then a hamburger\" which the reference solution interprets as a $0.25 increase (f = h + 0.25). The formalization encodes f == h + 0.0025, treating it as 0.25 cents ($0.0025), misrepresenting the intended relation."
+    },
+    {
+      "id": "alg514/2666",
+      "fold": 2,
+      "label": "WRONG_TARGET",
+      "confidence": "HIGH",
+      "evidence": "The problem asks for the number of correctly answered questions only, but the formalization lists both x (correct) and y (incorrect) as targets, adding an unnecessary target."
+    },
+    {
+      "id": "alg514/2681",
+      "fold": 2,
+      "label": "WRONG_CONSTRAINT",
+      "confidence": "HIGH",
+      "evidence": "The problem states cheap tea costs $2/kg and expensive tea $4/kg, leading to the correct cost equation 2*cheap + 4*expensive = 20*2.5 (i.e., 2*x + 4*y = 50). The formalization instead uses 4*x + 2*y = 50, swapping the coefficients for the two tea types, which misrepresents the source relation."
+    },
+    {
+      "id": "alg514/2866",
+      "fold": 1,
+      "label": "WRONG_TARGET",
+      "confidence": "HIGH",
+      "evidence": "The problem asks for a single number of sheets where both companies charge the same amount. The formalization introduces two separate integer variables x and y and sets 2.75*x + 125 == 1.5*y + 140, then targets both x and y, which does not represent the requested single sheet count."
+    },
+    {
+      "id": "alg514/3200",
+      "fold": 1,
+      "label": "WRONG_TARGET",
+      "confidence": "HIGH",
+      "evidence": "The problem asks solely for the number of students, but the formalization lists both \"s\" (students) and \"p\" (professors) as targets, adding an extra target not requested by the question."
+    },
+    {
+      "id": "alg514/3542",
+      "fold": 1,
+      "label": "WRONG_TARGET",
+      "confidence": "HIGH",
+      "evidence": "The problem asks for the number of library hours (L) only, but the formalization lists both L and C as targets, deviating from the requested single quantity."
+    },
+    {
+      "id": "alg514/5298",
+      "fold": 2,
+      "label": "MISSING_CONSTRAINT",
+      "confidence": "HIGH",
+      "evidence": "The source asks for the mileage at which the first agency becomes less expensive, which requires identifying the break‑even point (cost1 == cost2). The formalization only includes cost1 < cost2, omitting the equality condition that determines the threshold."
+    },
+    {
+      "id": "alg514/5761",
+      "fold": 1,
+      "label": "WRONG_TARGET",
+      "confidence": "HIGH",
+      "evidence": "The problem explicitly asks for the specific number of cartons of pencils, but the formalization lists both 'p' (pencils) and 'e' (erasers) as targets, introducing an extra target not requested."
+    },
+    {
+      "id": "alg514/5783",
+      "fold": 0,
+      "label": "MISSING_CONSTRAINT",
+      "confidence": "HIGH",
+      "evidence": "The source asks for the smaller and larger numbers, but the formalization only includes sum and a disjunctive relation without enforcing smaller <= larger. Consequently, swapping the values (smaller=8, larger=7) also satisfies the constraints, showing the ordering condition is missing."
+    },
+    {
+      "id": "alg514/5894",
+      "fold": 4,
+      "label": "MISSING_CONSTRAINT",
+      "confidence": "HIGH",
+      "evidence": "The problem statement asks for the greatest possible consecutive even integers, which requires the sum to be maximized (i.e., a+b = 30). The formalization only includes the constraint a + b <= 30 and does not encode the maximality condition, so the solution could return any pair satisfying the inequality."
+    },
+    {
+      "id": "alg514/6336",
+      "fold": 3,
+      "label": "WRONG_CONSTRAINT",
+      "confidence": "HIGH",
+      "evidence": "Source: \"The Collective's available capital is 165,200 dollars\" implies the cost equation should be 42*corn + 35*wheat = 165200 (as in reference). Generated formalization encodes it as 42*x + 35*y <= 165200, changing equality to inequality."
+    },
+    {
+      "id": "alg514/6348",
+      "fold": 3,
+      "label": "MISSING_CONSTRAINT",
+      "confidence": "HIGH",
+      "evidence": "The problem explicitly asks for the maximum mileage that fits the budget, but the formalization only includes the cost equation and budget inequality; it does not encode a maximization objective for the mileage variable, which is essential to capture the requested quantity."
+    },
+    {
+      "id": "alg514/657",
+      "fold": 0,
+      "label": "WRONG_CONSTRAINT",
+      "confidence": "HIGH",
+      "evidence": "Source: \"their radios have a range of 125 miles\" implies the loss of contact occurs when the distance reaches 125 miles (equality). Reference solution uses (20+30)*hours = 125. Generated formalization uses constraint d > 125, which changes the condition from equality to strict inequality, misrepresenting the problem."
+    },
+    {
+      "id": "alg514/6675",
+      "fold": 3,
+      "label": "WRONG_TARGET",
+      "confidence": "HIGH",
+      "evidence": "The problem asks for the number of correct answers only, but the formalization lists both 'c' (correct) and 'i' (incorrect) as targets, adding an unnecessary target."
+    },
+    {
+      "id": "alg514/6759",
+      "fold": 1,
+      "label": "WRONG_TARGET",
+      "confidence": "HIGH",
+      "evidence": "Reference solution defines times_at_rink as 65.0/2.5 = 26.0, i.e., only skate rental cost is considered. Generated formalization uses constraint 7.5*n >= 65, incorporating both admission (5) and rental (2.5) costs, leading to n ≈ 8.67, which does not match the reference target expression."
+    },
+    {
+      "id": "alg514/6779",
+      "fold": 1,
+      "label": "MISSING_CONSTRAINT",
+      "confidence": "HIGH",
+      "evidence": "The formalization encodes the earnings condition as 190 + 0.04*s >= 500, which matches the source text. However, the problem asks for the specific amount of sales required (i.e., the minimal s that satisfies the inequality). The formalization lacks an optimization or minimality constraint that selects the smallest feasible sales value, leaving infinitely many s that satisfy the inequality. This omission changes the requested target (the required sales amount)."
+    },
+    {
+      "id": "alg514/6831",
+      "fold": 1,
+      "label": "WRONG_CONSTRAINT",
+      "confidence": "HIGH",
+      "evidence": "The problem states that when the wind is 0.5 times as strong and the bird flies against it, the speed is 30 km/h, which translates to the equation b - 0.5*w = 30. The generated formalization instead encodes b - w == 30, omitting the 0.5 factor."
+    },
+    {
+      "id": "alg514/7248",
+      "fold": 1,
+      "label": "WRONG_TARGET",
+      "confidence": "HIGH",
+      "evidence": "The problem requests the number of popcorn shrimp orders followed by catfish dinners. The formalization defines variables x and y with constraints 6.0*x + 3.5*y == 133.5 and x + y == 26, implicitly treating x as catfish (price $6) and y as shrimp (price $3.5). The target list is [\"x\", \"y\"], which would output [catfish, shrimp] order, opposite to the required ordering, so the target expression does not match the question's requested ordering."
+    }
+  ]
+}

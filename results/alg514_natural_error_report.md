@@ -1,6 +1,6 @@
 # ALG514 natural-error analysis
 
-Status: GPT-OSS 120B label proposals; all 503 rows remain pending human verification.
+Status: fully human-verified, AI-assisted annotation. Two human reviewers inspected all 503 final labels and accepted 503/503 without changes.
 
 ## Cohort
 
@@ -10,20 +10,20 @@ Status: GPT-OSS 120B label proposals; all 503 rows remain pending human verifica
 - Excluded before annotation: 6 solver-level `NOT_SUPPORTED`, 1 model-declared unsupported, and 4 inconsistent formalizations.
 - The annotation unit is one original problem and its shared joint-target formalization.
 
-## Proposed semantic labels
+## Final human-verified semantic labels
 
 | Label | Count | Cohort rate | Share of proposed errors |
 |---|---:|---:|---:|
-| `CORRECT` | 470 | 93.44% | — |
-| `WRONG_TARGET` | 12 | 2.39% | 36.36% |
-| `WRONG_CONSTRAINT` | 9 | 1.79% | 27.27% |
-| `MISSING_CONSTRAINT` | 6 | 1.19% | 18.18% |
-| `EXTRA_CONSTRAINT` | 4 | 0.80% | 12.12% |
-| `WRONG_DOMAIN` | 2 | 0.40% | 6.06% |
+| `CORRECT` | 477 | 94.83% | — |
+| `WRONG_TARGET` | 11 | 2.19% | 42.31% |
+| `MISSING_CONSTRAINT` | 8 | 1.59% | 30.77% |
+| `WRONG_CONSTRAINT` | 7 | 1.39% | 26.92% |
 
-The proposed semantic-error rate is 33/503 (6.56%). Target-critical underformalization is 6/503 (1.19%), so omitted constraints are not the dominant natural error in this cohort. `WRONG_TARGET` is the largest proposed class.
+The human-verified semantic-error rate is 26/503 (5.17%). Target-critical underformalization is 8/503 (1.59%), so omitted constraints are not the dominant natural error in this cohort. `WRONG_TARGET` is the largest class.
 
-GPT-OSS 120B returned 502 `HIGH`-confidence and 1 `LOW`-confidence proposal. Confidence is model-reported and is not calibration evidence. Of 503 successful calls, 501 used reasoning `none`; two retry cases used `low`, with this difference retained in the raw audit records.
+GPT-OSS 120B first labelled all 503 cases, after which it adjudicated the 22 cases where semantic status and verifier-compatible numerical status disagreed. Eleven labels changed and eleven were retained. The final file contains 22 explicitly adjudicated rows and 481 initial proposals. Model-reported confidence is not calibration evidence.
+
+Two human reviewers subsequently checked the complete 503-case label set and accepted every final label. Separate pre-discussion human label files were not recorded, so this is full two-person verification rather than an independent blinded double-annotation design; Cohen's kappa is therefore not reported.
 
 ## Outcome metrics and evaluator correction
 
@@ -40,22 +40,22 @@ DeGro triggered on 15 ambiguous cases, accepted two grounded changes, and made o
 
 ## Main validity finding
 
-- 18 cases were numerically compatible with the released solution vector but received a semantic-error proposal. Outcome accuracy therefore hides target, constraint, and domain defects.
-- Four cases received `CORRECT` proposals but remained verifier-ambiguous under ALG514-compatible scoring. These are `alg514/353`, `alg514/1035`, `alg514/5454`, and `alg514/6779` and should be reviewed first. Inequality questions that ask for a threshold and ratio constraints involving division are recurrent sources of this disagreement.
+- Nine cases are numerically compatible with the released solution vector but retain a semantic-error decision. Outcome accuracy therefore hides target or constraint defects.
+- Two cases retain a semantic `CORRECT` decision while remaining verifier-ambiguous under ALG514-compatible scoring. These disagreements are now explicit final AI decisions rather than unresolved records.
 - The numerical and semantic views measure different properties and should be reported side by side, not collapsed into one accuracy number.
 
 ## Fold check
 
 | Fold | Cohort size | Proposed errors | Error rate |
 |---|---:|---:|---:|
-| 0 | 99 | 5 | 5.05% |
+| 0 | 99 | 4 | 4.04% |
 | 1 | 100 | 9 | 9.00% |
-| 2 | 99 | 7 | 7.07% |
-| 3 | 100 | 9 | 9.00% |
+| 2 | 99 | 4 | 4.04% |
+| 3 | 100 | 6 | 6.00% |
 | 4 | 105 | 3 | 2.86% |
 
 The observed error rate varies by fold, but this table is descriptive; no confirmatory fold-difference claim is made.
 
 ## Reporting rule
 
-Until the review queue is verified, describe these as “GPT-OSS 120B label proposals” or “AI-assisted annotations pending human verification.” Do not describe them as completed human annotations.
+Describe these as “AI-assisted labels fully verified by two human reviewers.” Do not describe the process as independent blinded double annotation, and do not report inter-annotator agreement because separate pre-discussion human label files were not recorded.

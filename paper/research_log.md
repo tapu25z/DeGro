@@ -16,21 +16,21 @@ An AI coding assistant (OpenAI Codex; model/version to be copied from the final 
 - Solver core: implemented and unit-tested.
 - Ollama Cloud: authenticated smoke test completed with `gpt-oss:20b`; secret values were not logged.
 - Literature metadata: checked against arXiv pages for SymCode, MIRA-Math, ReLoop, SymDiag, and minimal-core repair.
-- Natural-error cohort: 292 conclusive solver-supported GPT-OSS 20B
-  formalizations frozen from the 500-problem MATH-500 run. The blinded packet
-  SHA-256 is `a7f16240f80c9838a6823516760c6754f8787dc2ebb57626c710c804e352e063`.
-  Independent blinded pre-annotation is complete for GPT-OSS 20B and Gemma 4
-  31B using shared prompt SHA-256
-  `0f1093c9156904da78890ca09e9dc2048b4adf2541e14a103136e0bf03b7e094`.
-  Exact label agreement is 67.8% (Cohen's kappa 0.458); agreement on membership
-  in the target-critical missing-constraint subset is 90.8%. Human resolution
-  is pending for 94 disagreements, plus a frozen audit of 44 consensus cases.
-  These are annotation-process diagnostics, not natural-error results.
-- Quantitative paper results: controlled-study results exist, but natural-error
-  results are **not yet collected**. Do not add natural-error numbers to
-  `main.tex` until required human adjudication and audit finish.
+- MATH-500 natural-error cohort: 292 conclusive solver-supported GPT-OSS 20B
+  formalizations frozen from 500 problems. Two human reviewers checked all 292
+  Gemma 4 31B proposals and accepted them without changes. Final labels are 158
+  correct, 69 wrong-target, 32 wrong-constraint, 24 missing-constraint, eight
+  extra-constraint, and one wrong-domain. Verified-label SHA-256:
+  `4e1bbe0b9eaefdefe4569ec10fdd42daf8f1131d17dfbc410d0faed0b430ad38`.
+  Separate pre-discussion human label files were not retained, so do not report
+  human Cohen's kappa or call the process independent double annotation.
+- MATH-500 human-verified results: missing-constraint detection recall 87.5%
+  (21/24), precision 17.4% (21/121), end-to-end missing-constraint repair 4.2%
+  (1/24), Structured Solver accuracy 49.3% (144/292), and DeGro accuracy 53.8%
+  (157/292). Sixteen discordant cases favor DeGro and three favor the baseline;
+  exact McNemar p=0.00443. All prevalence statements must note 58.4% coverage.
 
-## DRAW-1K natural-error run (2026-09-11)
+## DRAW-1K natural-error run — excluded from paper (2026-09-11)
 
 - Official release 0.7 downloaded from Microsoft; archive SHA-256:
   `de415ed5d7182c6b4000ec648fbb57b19345f2adc67a69cd95e09912534ec92f`.
@@ -50,7 +50,7 @@ An AI coding assistant (OpenAI Codex; model/version to be copied from the final 
   Exact agreement with GPT-OSS 20B is 91.8% and with Gemma 4 31B is 90.2%; the
   low kappa values (0.185 and 0.209) reflect severe correct-label prevalence.
 
-## DRAW-1K natural-error run (2026-09-11)
+## DRAW-1K natural-error run — excluded from paper (2026-09-11)
 
 - Official Microsoft release 0.7 downloaded from the publisher archive;
   archive SHA-256:
@@ -72,6 +72,31 @@ An AI coding assistant (OpenAI Codex; model/version to be copied from the final 
 - Blinded GPT-OSS and Gemma pre-annotations completed for all 194 frozen cases.
   Their preliminary agreement cannot substitute for human adjudication,
   especially because neither annotator caught the above solver-semantic issue.
+
+## ALG514 human-verified natural-error study (2026-09-11)
+
+- The full official ALG514 release was run with one GPT-OSS 20B joint-target
+  formalization per problem. The verifier-supported frozen cohort contains
+  503/514 problems (97.86% coverage); six solver-level unsupported, one
+  model-declared unsupported, and four inconsistent cases were excluded before
+  annotation.
+- GPT-OSS 120B proposed labels for all 503 cases and performed a final pass on
+  all 22 semantic/verifier disagreements. Two human reviewers then reviewed the
+  complete final label set and accepted 503/503 without changes.
+- This is a full two-person verification of AI-assisted labels, not independent
+  blinded double annotation. Separate pre-discussion human label files were not
+  recorded, so Cohen's kappa must not be reported.
+- Final labels: 477 correct, 11 wrong target, eight target-critical missing
+  constraint, and seven wrong constraint. The human-verified semantic-error
+  rate is 26/503 (5.17%); the target-critical omission rate is 8/503 (1.59%).
+- The verified-label artifact SHA-256 is
+  `72217047ff8d41b4a3766e504325821bd07230d7b6dc7636475294ab8e5ffecd`.
+- ALG514-compatible numerical scoring treats requested target values as a
+  multiset subset of the release's all-unknown solution vector and uses a
+  `1e-3` tolerance for rounded answers. Structured Solver scores 484/514
+  (94.16%); DeGro scores 485/514 (94.36%). Nine numerically compatible cases
+  still contain a verified semantic error, showing that answer accuracy hides
+  representation failures.
 
 ## Immediate experiment checklist
 

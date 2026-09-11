@@ -1,0 +1,68 @@
+{
+  "as_of": "2026-09-11",
+  "excluded_datasets": ["DRAW-1K"],
+  "totals": {
+    "input_problems": 1014,
+    "frozen_cohort_records": 795,
+    "coverage": 0.7840236686390533,
+    "human_verified_records": 795,
+    "human_reviewers_per_dataset": 2,
+    "descriptive_semantic_errors": 160,
+    "pooled_prevalence_estimate_allowed": false
+  },
+  "descriptive_label_totals": {
+    "CORRECT": 635,
+    "EXTRA_CONSTRAINT": 8,
+    "MISSING_CONSTRAINT": 32,
+    "WRONG_CONSTRAINT": 39,
+    "WRONG_DOMAIN": 1,
+    "WRONG_TARGET": 80
+  },
+  "studies": {
+    "math500": {
+      "input_problems": 500,
+      "frozen_cohort_records": 292,
+      "coverage": 0.584,
+      "status": "human verified",
+      "human_reviewers": 2,
+      "labels": {
+        "CORRECT": 158,
+        "EXTRA_CONSTRAINT": 8,
+        "MISSING_CONSTRAINT": 24,
+        "WRONG_CONSTRAINT": 32,
+        "WRONG_DOMAIN": 1,
+        "WRONG_TARGET": 69
+      },
+      "semantic_error_rate": 0.458904109589041,
+      "target_critical_underformalization_rate": 0.0821917808219178,
+      "detector_recall": 0.875,
+      "detector_precision": 0.17355371900826447,
+      "repair_success_on_target_critical_missing_constraints": 0.041666666666666664,
+      "structured_solver_accuracy": 0.4931506849315068,
+      "degro_accuracy": 0.5376712328767124,
+      "accuracy_gain_percentage_points": 4.45205479452055,
+      "mcnemar_exact_p": 0.004425048828125,
+      "verified_label_sha256": "4e1bbe0b9eaefdefe4569ec10fdd42daf8f1131d17dfbc410d0faed0b430ad38"
+    },
+    "alg514": {
+      "input_problems": 514,
+      "frozen_cohort_records": 503,
+      "coverage": 0.9785992217898832,
+      "status": "human verified",
+      "human_reviewers": 2,
+      "labels": {
+        "CORRECT": 477,
+        "MISSING_CONSTRAINT": 8,
+        "WRONG_CONSTRAINT": 7,
+        "WRONG_TARGET": 11
+      },
+      "semantic_error_rate": 0.05168986083499006,
+      "target_critical_underformalization_rate": 0.015904572564612324,
+      "structured_solver_accuracy": 0.9416342412451362,
+      "degro_accuracy": 0.943579766536965,
+      "accuracy_gain_percentage_points": 0.19455252918287884,
+      "answer_compatible_semantic_errors": 9,
+      "verified_label_sha256": "72217047ff8d41b4a3766e504325821bd07230d7b6dc7636475294ab8e5ffecd"
+    }
+  }
+}

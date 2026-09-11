@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import argparse
 import glob
+import hashlib
 import json
 from collections import Counter
 from pathlib import Path
@@ -50,9 +51,23 @@ def main() -> None:
                 "annotation_process": "GPT_OSS_120B_INITIAL_AI_PROPOSAL_UNADJUDICATED",
             })
     args.out.parent.mkdir(parents=True, exist_ok=True)
-    args.out.write_text("".join(json.dumps(row, ensure_ascii=False, separators=(",", ":")) + "\n" for row in output))
+    payload = "".join(json.dumps(row, ensure_ascii=False, separators=(",", ":")) + "\n" for row in output)
+    args.out.write_text(payload)
     counts = Counter(row["primary_label"] for row in output)
-    print(json.dumps({"records": len(output), "ai_adjudicated": len(decisions), "labels": dict(sorted(counts.items()))}, indent=2))
+    transitions = Counter((row["prior_label"], row["primary_label"]) for row in output if "prior_label" in row)
+    manifest = {
+        "status": "GPT-OSS 120B AI-adjudicated labels; not human verified",
+        "records": len(output),
+        "ai_adjudicated": len(decisions),
+        "changed_by_adjudication": sum(before != after for before, after in transitions.elements()),
+        "labels": dict(sorted(counts.items())),
+        "transitions": {f"{before}->{after}": count for (before, after), count in sorted(transitions.items())},
+        "sha256": hashlib.sha256(payload.encode()).hexdigest(),
+        "source_annotations": str(args.annotations),
+        "source_adjudications": args.adjudication_pattern,
+    }
+    args.out.with_suffix(".manifest.json").write_text(json.dumps(manifest, indent=2) + "\n")
+    print(json.dumps(manifest, indent=2))
 
 
 if __name__ == "__main__":

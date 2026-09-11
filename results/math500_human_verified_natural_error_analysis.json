@@ -1,0 +1,334 @@
+{
+  "records": 292,
+  "taxonomy": {
+    "CORRECT": 158,
+    "WRONG_TARGET": 69,
+    "WRONG_CONSTRAINT": 32,
+    "MISSING_CONSTRAINT": 24,
+    "EXTRA_CONSTRAINT": 8,
+    "WRONG_DOMAIN": 1
+  },
+  "by_label": {
+    "CORRECT": {
+      "records": 158,
+      "ambiguity_detected": {
+        "successes": 33,
+        "total": 158,
+        "rate": 0.2088607594936709,
+        "wilson_95_ci": [
+          0.15276461922673812,
+          0.2787778256425474
+        ]
+      },
+      "accepted_repair": {
+        "successes": 10,
+        "total": 158,
+        "rate": 0.06329113924050633,
+        "wilson_95_ci": [
+          0.03473843819243328,
+          0.11257522911149492
+        ]
+      },
+      "structured_solver_correct": {
+        "successes": 119,
+        "total": 158,
+        "rate": 0.7531645569620253,
+        "wilson_95_ci": [
+          0.6804561105003938,
+          0.8138548070045756
+        ]
+      },
+      "degro_correct": {
+        "successes": 126,
+        "total": 158,
+        "rate": 0.7974683544303798,
+        "wilson_95_ci": [
+          0.728089882643225,
+          0.8527254454251137
+        ]
+      }
+    },
+    "MISSING_CONSTRAINT": {
+      "records": 24,
+      "ambiguity_detected": {
+        "successes": 21,
+        "total": 24,
+        "rate": 0.875,
+        "wilson_95_ci": [
+          0.6899611872949993,
+          0.9565566591987655
+        ]
+      },
+      "accepted_repair": {
+        "successes": 4,
+        "total": 24,
+        "rate": 0.16666666666666666,
+        "wilson_95_ci": [
+          0.06678676328632951,
+          0.3585307064969906
+        ]
+      },
+      "structured_solver_correct": {
+        "successes": 2,
+        "total": 24,
+        "rate": 0.08333333333333333,
+        "wilson_95_ci": [
+          0.023158815297043306,
+          0.25848802193210685
+        ]
+      },
+      "degro_correct": {
+        "successes": 3,
+        "total": 24,
+        "rate": 0.125,
+        "wilson_95_ci": [
+          0.04344334080123444,
+          0.31003881270500067
+        ]
+      }
+    },
+    "WRONG_CONSTRAINT": {
+      "records": 32,
+      "ambiguity_detected": {
+        "successes": 10,
+        "total": 32,
+        "rate": 0.3125,
+        "wilson_95_ci": [
+          0.17952541633609734,
+          0.4856667830095541
+        ]
+      },
+      "accepted_repair": {
+        "successes": 0,
+        "total": 32,
+        "rate": 0.0,
+        "wilson_95_ci": [
+          0.0,
+          0.1071791982550706
+        ]
+      },
+      "structured_solver_correct": {
+        "successes": 16,
+        "total": 32,
+        "rate": 0.5,
+        "wilson_95_ci": [
+          0.33630882869327483,
+          0.6636911713067252
+        ]
+      },
+      "degro_correct": {
+        "successes": 16,
+        "total": 32,
+        "rate": 0.5,
+        "wilson_95_ci": [
+          0.33630882869327483,
+          0.6636911713067252
+        ]
+      }
+    },
+    "EXTRA_CONSTRAINT": {
+      "records": 8,
+      "ambiguity_detected": {
+        "successes": 4,
+        "total": 8,
+        "rate": 0.5,
+        "wilson_95_ci": [
+          0.21521606221387757,
+          0.7847839377861224
+        ]
+      },
+      "accepted_repair": {
+        "successes": 1,
+        "total": 8,
+        "rate": 0.125,
+        "wilson_95_ci": [
+          0.02241749145005667,
+          0.4708881822128535
+        ]
+      },
+      "structured_solver_correct": {
+        "successes": 4,
+        "total": 8,
+        "rate": 0.5,
+        "wilson_95_ci": [
+          0.21521606221387757,
+          0.7847839377861224
+        ]
+      },
+      "degro_correct": {
+        "successes": 4,
+        "total": 8,
+        "rate": 0.5,
+        "wilson_95_ci": [
+          0.21521606221387757,
+          0.7847839377861224
+        ]
+      }
+    },
+    "WRONG_DOMAIN": {
+      "records": 1,
+      "ambiguity_detected": {
+        "successes": 1,
+        "total": 1,
+        "rate": 1.0,
+        "wilson_95_ci": [
+          0.20654931437723745,
+          1.0
+        ]
+      },
+      "accepted_repair": {
+        "successes": 0,
+        "total": 1,
+        "rate": 0.0,
+        "wilson_95_ci": [
+          0.0,
+          0.7934506856227626
+        ]
+      },
+      "structured_solver_correct": {
+        "successes": 0,
+        "total": 1,
+        "rate": 0.0,
+        "wilson_95_ci": [
+          0.0,
+          0.7934506856227626
+        ]
+      },
+      "degro_correct": {
+        "successes": 0,
+        "total": 1,
+        "rate": 0.0,
+        "wilson_95_ci": [
+          0.0,
+          0.7934506856227626
+        ]
+      }
+    },
+    "WRONG_TARGET": {
+      "records": 69,
+      "ambiguity_detected": {
+        "successes": 52,
+        "total": 69,
+        "rate": 0.7536231884057971,
+        "wilson_95_ci": [
+          0.6403933718423956,
+          0.8401022218298245
+        ]
+      },
+      "accepted_repair": {
+        "successes": 10,
+        "total": 69,
+        "rate": 0.14492753623188406,
+        "wilson_95_ci": [
+          0.08067095280675704,
+          0.24663521605213476
+        ]
+      },
+      "structured_solver_correct": {
+        "successes": 3,
+        "total": 69,
+        "rate": 0.043478260869565216,
+        "wilson_95_ci": [
+          0.014895903896212308,
+          0.12021202749379145
+        ]
+      },
+      "degro_correct": {
+        "successes": 8,
+        "total": 69,
+        "rate": 0.11594202898550725,
+        "wilson_95_ci": [
+          0.059934981421761596,
+          0.21245740530316223
+        ]
+      }
+    }
+  },
+  "primary_subset": 24,
+  "detector_recall_on_target_critical_missing_constraints": {
+    "successes": 21,
+    "total": 24,
+    "rate": 0.875,
+    "wilson_95_ci": [
+      0.6899611872949993,
+      0.9565566591987655
+    ]
+  },
+  "detector_precision": {
+    "successes": 21,
+    "total": 121,
+    "rate": 0.17355371900826447,
+    "wilson_95_ci": [
+      0.116409192485503,
+      0.25078820534797464
+    ]
+  },
+  "repair_success_on_target_critical_missing_constraints": {
+    "successes": 1,
+    "total": 24,
+    "rate": 0.041666666666666664,
+    "wilson_95_ci": [
+      0.0073934561655057685,
+      0.20241806478655938
+    ]
+  },
+  "conditional_repair_success_after_detection": {
+    "successes": 1,
+    "total": 21,
+    "rate": 0.047619047619047616,
+    "wilson_95_ci": [
+      0.008455987809826399,
+      0.22669360074122563
+    ]
+  },
+  "false_ambiguity_outside_primary_subset": {
+    "successes": 100,
+    "total": 268,
+    "rate": 0.373134328358209,
+    "wilson_95_ci": [
+      0.31740679944106137,
+      0.43244739757878087
+    ]
+  },
+  "false_repair_on_out_of_scope_errors": {
+    "successes": 21,
+    "total": 268,
+    "rate": 0.07835820895522388,
+    "wilson_95_ci": [
+      0.05181984334126907,
+      0.11681322322467744
+    ]
+  },
+  "correct_control_preservation": {
+    "successes": 126,
+    "total": 158,
+    "rate": 0.7974683544303798,
+    "wilson_95_ci": [
+      0.728089882643225,
+      0.8527254454251137
+    ]
+  },
+  "end_to_end": {
+    "structured_solver_accuracy": {
+      "successes": 144,
+      "total": 292,
+      "rate": 0.4931506849315068,
+      "wilson_95_ci": [
+        0.43626934218628177,
+        0.5502099024201194
+      ]
+    },
+    "degro_accuracy": {
+      "successes": 157,
+      "total": 292,
+      "rate": 0.5376712328767124,
+      "wilson_95_ci": [
+        0.48036635549813755,
+        0.5939977991666553
+      ]
+    },
+    "discordant_structured_wins": 3,
+    "discordant_degro_wins": 16,
+    "mcnemar_exact_p": 0.004425048828125
+  }
+}
