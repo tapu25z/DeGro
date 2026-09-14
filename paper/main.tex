@@ -1,9 +1,21 @@
 \documentclass[sigconf,anonymous]{aamas}
 \usepackage{balance}
 \usepackage{tikz}
-\usetikzlibrary{arrows.meta,positioning,shapes.geometric}
+\usetikzlibrary{arrows.meta,positioning,shapes.geometric,fit,calc,decorations.pathreplacing}
 \graphicspath{{vendor/}}
 \setlength{\emergencystretch}{2em}
+
+\definecolor{degroblue}{HTML}{3C78A8}
+\definecolor{degrogreen}{HTML}{4E9A67}
+\definecolor{degroorange}{HTML}{D98C3F}
+\definecolor{degrolight}{HTML}{F2F5F8}
+\definecolor{degrogray}{HTML}{5A5A5A}
+
+\newcommand{\takeaway}[1]{%
+  \par\smallskip
+  \noindent\colorbox{degrogray}{\parbox{\dimexpr\columnwidth-2\fboxsep\relax}{\color{white}\bfseries\footnotesize\strut Takeaway}}\par\nointerlineskip
+  \noindent\fcolorbox{degrogray}{degrolight}{\parbox{\dimexpr\columnwidth-2\fboxsep-2\fboxrule\relax}{\footnotesize\bfseries\strut #1\strut}}%
+  \par\smallskip}
 
 \makeatletter
 \gdef\@copyrightpermission{%
@@ -26,7 +38,7 @@
 \author{Anonymous Author(s)}
 
 \begin{abstract}
-Executable mathematical reasoning can run successfully while silently solving the wrong formalization.  Standard execution checks expose syntax, runtime, and arithmetic failures, but they do not establish that the encoded constraints determine the quantity requested in the source problem.  We introduce \emph{DeGro}, a verification-and-repair method for this target-level failure.  DeGro constructs a two-copy solver query and searches for feasible assignments that disagree on the requested target.  When such assignments exist, it uses them as diagnostic evidence for a repair-or-abstain decision: a candidate constraint is admitted only when it is supported by the source and restores determinacy under solver validation; otherwise the system declines to fabricate missing information.  A preregistered paired evaluation, which holds the initial formalization fixed while varying source support, shows that DeGro improves repair-or-abstain decisions for GPT-OSS 20B, although the effect does not transfer to Gemma 4 31B.  Two fully human-verified natural-error cohorts provide complementary evidence.  DeGro significantly improves accuracy on the supported MATH-500 cohort, while the higher-coverage ALG514 study reveals formalizations that reach compatible numerical answers despite wrong targets or constraints.  The natural analysis also shows that detecting ambiguity is substantially easier than repairing heterogeneous translation errors.  Together, these results position target determinacy as an auditable intermediate guardrail for executable reasoning, while preserving a clear boundary between representation-relative verification and semantic faithfulness to the original problem.
+Executable mathematical reasoning can run successfully while silently solving an underconstrained or mistranslated problem.  Existing execution checks expose syntax, runtime, and arithmetic failures, but do not establish that the encoded constraints determine the quantity requested by the source.  We introduce \emph{DeGro}, a neuro-symbolic framework that reframes execution verification as \emph{target determinacy diagnosis}.  DeGro asks a solver for two feasible assignments that disagree on the requested target.  If such a pair exists, a grounded repair policy must either add a source-supported constraint that restores determinacy or abstain; unsupported assumptions are never admitted as repairs.  In a preregistered paired evaluation that fixes the formalization while varying only source support, DeGro improves repair-or-abstain accuracy for GPT-OSS 20B but not for Gemma 4 31B.  Two fully human-verified natural-error cohorts show a complementary pattern: DeGro significantly improves accuracy on the supported MATH-500 cohort, whereas the higher-coverage ALG514 study exposes answer-compatible formalization errors.  Detection is substantially easier than repair on heterogeneous natural errors, and concrete witness assignments add no measurable benefit beyond the determinacy verdict.  These results establish target determinacy as an auditable intermediate guardrail---not a proof of source-to-formal semantic faithfulness.
 \end{abstract}
 \ccsdesc[500]{Computing methodologies~Knowledge representation and reasoning}
 \ccsdesc[500]{Computing methodologies~Intelligent agents}
@@ -37,37 +49,77 @@ Executable mathematical reasoning can run successfully while silently solving th
 \maketitle
 
 \section{Introduction}
-Language models increasingly delegate mathematical computation to executable programs and symbolic solvers.  Program-aided reasoning can reduce arithmetic mistakes, and SymCode converts a problem into a self-contained SymPy program with execution-based repair~\cite{gao2023pal,nezhad2026symcode}.  Yet execution establishes only that code runs.  A feasible solver output does not establish that the program contains every condition needed to justify the answer.
+Large language models increasingly delegate mathematical computation to programs and symbolic solvers.  Program-aided reasoning reduces arithmetic errors, while systems such as SymCode generate self-contained symbolic programs and repair execution failures~\cite{gao2023pal,nezhad2026symcode}.  Yet successful execution is a weak certificate: it shows that an artifact runs, not that the artifact encodes enough of the source problem to justify the requested answer.
 
-Consider ``Ten tasks are divided between A and B. A receives two more than B. How many does A receive?''  If a generated formalization contains only $a+b=10$, it executes and has feasible solutions.  However, $(a,b)=(4,6)$ and $(6,4)$ yield different values of the target $a$.  The same underconstrained formalization is faithful for the shorter source ``Ten tasks are divided between A and B. How many does A receive?''; here adding $a=b+2$ would be fabrication.  A trustworthy agent must distinguish a missing translation from missing information.
+Consider: ``Ten tasks are divided between A and B. A receives two more than B. How many does A receive?''  A generated model containing only $a+b=10$ is executable and satisfiable, but $(a,b)=(4,6)$ and $(6,4)$ imply different values of the target $a$.  The same model is faithful for the shorter source ``Ten tasks are divided between A and B. How many does A receive?''  In the first case, $a=b+2$ is a missing translation; in the second, adding it fabricates information.  The solver state is identical, but the correct action changes with source support.
 
-We study whether target-directed solver evidence enables this distinction.  DeGro searches for two feasible assignments that disagree specifically on the requested target and invokes a repair-or-abstain policy grounded in the original source.  The method is specialized: it detects underconstraint visible as target ambiguity and does not claim full semantic verification.
+Most verification pipelines observe only execution success, answer agreement, or a scalar confidence signal.  These signals can reject an obvious failure, but they do not expose whether the feasible region uniquely determines the requested target, nor whether a proposed repair is licensed by the source.  This gap matters because a fluent agent can confidently return a number from a model that permits several incompatible answers.
 
-Our contributions are: (1) an operational formulation of target determinacy for executable LLM-generated mathematical specifications; (2) target-divergent evidence and a solver-validated grounded repair protocol; (3) a preregistered paired evaluation that controls the formalization while varying only source support; and (4) two human-verified natural-error cohorts that distinguish target-critical omissions from other formalization errors and expose answer-compatible semantic failures.  The confirmatory results establish a benefit for one model but not the other, sharpening the claim from universal witness benefit to model-dependent value of grounded determinacy feedback.
+We propose \method{}, a neuro-symbolic framework that treats this failure as structured diagnosis.  It constructs two renamed copies of the generated specification and asks whether both copies can satisfy the constraints while disagreeing on the target.  A satisfying query yields auditable evidence of ambiguity.  DeGro then separates two causes of that ambiguity through a source-grounded repair-or-abstain gate: repair a supported omission, or decline to invent the missing fact.
 
-\paragraph{Research questions.}
-We ask: \textbf{RQ1}, whether determinacy information improves the joint repair-or-abstain decision; \textbf{RQ2}, whether grounding reduces unsupported additions; \textbf{RQ3}, whether concrete target-divergent models help beyond a bare non-uniqueness verdict; and \textbf{RQ4}, how coverage, detection, and repair behave on naturally generated formalization errors.  RQ1--RQ3 use the controlled benchmark; RQ4 uses separately reported human-verified MATH-500 and ALG514 cohorts.
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}[
+  panel/.style={draw=black!45,rounded corners=1.5pt,text width=.255\columnwidth,minimum height=21mm,align=center,inner sep=2.5pt,font=\scriptsize},
+  tag/.style={font=\scriptsize\bfseries,align=center},
+  arrow/.style={-{Latex[length=1.4mm]},semithick}
+]
+\node[panel,fill=black!3] (exec) {Program\\ \fcolorbox{black!35}{white}{\strut run}\\ \textcolor{degrogreen}{\bfseries succeeds}};
+\node[tag,above=1mm of exec] {Execution-level};
+\node[panel,fill=black!3,right=2mm of exec] (answer) {Prediction\\ \fcolorbox{black!35}{white}{\strut match}\\ \textcolor{degroorange}{\bfseries correct / wrong}};
+\node[tag,above=1mm of answer] {Outcome-level};
+\node[panel,fill=degrolight,right=2mm of answer] (diag) {$F^{(1)}\land F^{(2)}$\\ $q^{(1)}\neq q^{(2)}$\\ \textcolor{degroblue}{\bfseries diagnose} $\rightarrow$\\grounded repair / abstain};
+\node[tag,above=1mm of diag,text=degroblue] {Determinacy-level};
+\end{tikzpicture}
+\caption{Three levels of executable-reasoning evaluation.  Execution and outcome checks return coarse judgments; DeGro diagnoses whether feasible models disagree on the requested target and grounds the resulting action in the source.}
+\Description{A three-panel comparison of execution-level, outcome-level, and determinacy-level evaluation. The determinacy panel uses two copies of a specification with unequal targets and leads to grounded repair or abstention.}
+\label{fig:paradigms}
+\end{figure}
+
+\takeaway{DeGro is not a general proof of semantic correctness.  It is a target-directed diagnostic layer that turns one silent failure---satisfiable code with an ambiguous answer---into a checkable repair-or-abstain decision.}
+
+Our main contributions are:
+
+\noindent\textbf{(1) A target-centric view of executable verification.}
+We formalize target determinacy as agreement on the requested expression across all feasible assignments.  This is strictly weaker than full model uniqueness and directly matches what an answering agent needs to justify.
+
+\noindent\textbf{(2) An evidence-grounded diagnosis-and-repair pipeline.}
+We introduce a two-copy solver query that returns target-divergent models and a deterministic gate that accepts only source-supported, consistent, non-redundant repairs that restore determinacy.
+
+\noindent\textbf{(3) A paired causal evaluation of repair versus abstention.}
+Our preregistered design holds the initial formalization and solver verdict fixed while varying only whether the source contains the missing fact.  It tests decision quality without allowing ambiguity alone to reveal the label.
+
+\noindent\textbf{(4) Human-verified evidence on natural formalization errors.}
+MATH-500 and ALG514 cohorts separate target-critical omissions from wrong targets, wrong constraints, and answer-compatible semantic failures.  The results reveal model-dependent gains and a large detection--repair gap.
+
+We ask whether determinacy information improves repair-or-abstain accuracy (\textbf{RQ1}), whether grounding reduces unsupported additions (\textbf{RQ2}), whether concrete witnesses help beyond a bare verdict (\textbf{RQ3}), and how coverage, detection, and repair behave on natural errors (\textbf{RQ4}).
 
 \section{Related Work}
-\textbf{Executable mathematical reasoning.} Chain-of-thought elicits intermediate natural-language reasoning~\cite{wei2022cot}, while PAL and Program-of-Thoughts delegate computation to generated programs~\cite{gao2023pal,chen2023pot}.  Toolformer and ReAct more broadly integrate model reasoning with external tools~\cite{schick2023toolformer,yao2023react}; MathCoder and ToRA specialize this pattern to mathematical code and tool interaction~\cite{wang2024mathcoder,gou2024tora}.  SymCode treats an executable symbolic program as the reasoning artifact and repairs runtime failures~\cite{nezhad2026symcode}.  DeGro addresses a complementary silent failure: executable code whose feasible region does not determine the query.
+We organize prior work by the feedback it provides: execution signals, learned judgments, formal evidence, or missing-information actions.  DeGro differs in returning a target-specific symbolic diagnosis whose admissible action depends on source support.
 
-Verifier-based selection ranks candidate solutions using learned outcome or process signals~\cite{cobbe2021verifiers,uesato2022feedback,lightman2023verify}.  Self-verification, Self-Refine, and CRITIC instead ask a model to inspect or revise its output, sometimes with tool feedback~\cite{weng2023selfverification,madaan2023selfrefine,gou2024critic}; controlled studies also show that intrinsic self-correction can fail without reliable external feedback~\cite{huang2024selfcorrect}.  These approaches can improve answer accuracy without resolving the translation boundary studied here: a runtime or learned verifier may accept a program that omits a necessary source condition.
+\subsection{Executable Mathematical Reasoning}
+Chain-of-thought elicits intermediate natural-language reasoning~\cite{wei2022cot}, while PAL and Program-of-Thoughts delegate computation to generated programs~\cite{gao2023pal,chen2023pot}.  Toolformer and ReAct integrate external tools~\cite{schick2023toolformer,yao2023react}; MathCoder and ToRA specialize this pattern to mathematical code and tool interaction~\cite{wang2024mathcoder,gou2024tora}.  SymCode treats an executable symbolic program as the reasoning artifact and repairs runtime failures~\cite{nezhad2026symcode}.  DeGro addresses the complementary case in which code executes but its feasible region does not determine the query.
 
-\textbf{Relational verification.} Self-composition reduces a two-execution information-flow property to ordinary safety checking by composing a program with a renamed copy~\cite{barthe2004selfcomposition,terauchi2005safety}.  Product programs and Cartesian Hoare logic make such relational proofs more modular and scalable~\cite{barthe2011product,sousa2016cartesian}.  Hyperproperties and $k$-safety generalize the view from single traces to sets or tuples of traces~\cite{clarkson2010hyperproperties}; HyperLTL and its model-checking algorithms provide a temporal specification route~\cite{clarkson2014hyperltl,finkbeiner2015modelchecking}.  Equation~\eqref{eq:query} uses the same two-copy pattern, but the relation of interest is agreement on a mathematical target across feasible assignments rather than noninterference across executions.  This connection supplies established formal-methods terminology without implying a general relational verifier.
+\subsection{Outcome, Process, and Self-Verification}
+Verifier-based selection ranks candidates using learned outcome or process signals~\cite{cobbe2021verifiers,uesato2022feedback,lightman2023verify}.  Self-verification, Self-Refine, and CRITIC ask a model to inspect or revise its output, sometimes with tool feedback~\cite{weng2023selfverification,madaan2023selfrefine,gou2024critic}; intrinsic self-correction can fail without reliable external feedback~\cite{huang2024selfcorrect}.  These methods can improve answer accuracy while still accepting a runnable program that omits a necessary source condition.  DeGro returns a solver-checkable failure state rather than a score or free-form critique.
 
-\textbf{Selective prediction and abstention.} Selective classification formalizes the risk--coverage tradeoff induced by a reject option~\cite{elyaniv2010foundations,geifman2017selective,cortes2016rejection}; SelectiveNet learns prediction and selection jointly~\cite{geifman2019selectivenet}, while learning-to-defer routes difficult cases to an expert~\cite{mozannar2020defer}.  Conformal risk control offers distribution-free calibration of selected actions under stated assumptions~\cite{angelopoulos2024conformal}.  For language models, self-knowledge and semantic uncertainty provide confidence signals over answers or meaning-equivalent generations~\cite{kadavath2022know,kuhn2023semantic}.  DeGro instead derives abstention from a symbolic condition: the source does not license a constraint needed to determine the target.  We therefore report coverage and conditional accuracy separately from end-to-end accuracy, and treat \textsc{unknown} and \textsc{unsupported} as coverage failures rather than incorrect proofs.
+\subsection{Relational Verification and Solver Diagnosis}
+Self-composition reduces a two-execution property to ordinary safety checking by composing a program with a renamed copy~\cite{barthe2004selfcomposition,terauchi2005safety}.  Product programs and Cartesian Hoare logic make relational proofs modular~\cite{barthe2011product,sousa2016cartesian}, while hyperproperties generalize reasoning from single traces to sets of traces~\cite{clarkson2010hyperproperties,clarkson2014hyperltl,finkbeiner2015modelchecking}.  DeGro uses the same two-copy idea, but checks agreement on a mathematical target across feasible assignments rather than noninterference across executions.
 
-\textbf{Solver-guided diagnosis.} ReLoop uses behavioral parameter perturbations to expose semantically incorrect optimization models that nevertheless execute~\cite{lian2026reloop}.  SymDiag performs step-level satisfiability and entailment checks over translated reasoning traces and returns structured diagnostic evidence~\cite{cui2026symdiag}.  Minimal-core-guided repair supplies proof-like feedback for overconstrained, unsatisfiable formalizations~\cite{sarkar2026cores}.  DeGro instead considers the underconstrained regime: satisfiable specifications with target-divergent models.  Its central decision is whether the source supports repair or requires abstention.
+ReLoop perturbs parameters to expose semantically incorrect optimization models that still execute~\cite{lian2026reloop}.  SymDiag performs step-level satisfiability and entailment checks and returns structured evidence~\cite{cui2026symdiag}; minimal-core-guided repair targets overconstrained, unsatisfiable formalizations~\cite{sarkar2026cores}.  DeGro instead diagnoses the underconstrained regime: satisfiable specifications with target-divergent models.  Like counterexample-guided verification and synthesis~\cite{clarke2000cegar,solarlezama2006cegis}, it uses a mechanical refutation to guide a bounded next action, but the witness establishes ambiguity rather than the correct repair.
 
-The mechanism is also related to counterexample-guided abstraction and synthesis loops, which alternate candidates with mechanically produced refutations~\cite{clarke2000cegar,solarlezama2006cegis}.  Its witness is not a synthesis counterexample, however: it establishes target ambiguity and leaves source-grounded diagnosis to the repair policy.  DeGro supplies a typed solver state and subjects every proposed change to deterministic gates, changing the language model's role from verifier to repair proposer.
+\subsection{Selective Action and Missing Information}
+Selective classification formalizes the risk--coverage tradeoff of a reject option~\cite{elyaniv2010foundations,geifman2017selective,cortes2016rejection}; learning-to-defer routes difficult cases to an expert~\cite{mozannar2020defer}, and conformal risk control calibrates selected actions under stated assumptions~\cite{angelopoulos2024conformal}.  Language-model self-knowledge and semantic uncertainty provide confidence signals~\cite{kadavath2022know,kuhn2023semantic}.  DeGro derives abstention from a different condition: the source does not license a constraint needed to determine the target.  Accordingly, \textsc{unknown} and \textsc{unsupported} remain coverage failures rather than proofs.
 
-\textbf{Specification repair and semantic faithfulness.} Classical diagnosis identifies minimal faulty assumptions, while abductive inference searches for hypotheses that explain or restore a desired property~\cite{reiter1987diagnosis,dillig2013abduction}.  Minimal unsatisfiable subsets and failure-inducing input reduction likewise seek small explanatory causes~\cite{liffiton2008mus,zeller2002simplifying}.  SAT-based model repair modifies a transition system until it satisfies a formal property~\cite{attie2008modelrepair}, and recent work studies LLM repair of declarative Alloy specifications~\cite{alhanahnah2024alloyrepair}.  Our acceptance gate is narrower: it adds only a cited, non-redundant, consistency-preserving constraint that restores target determinacy.
+\subsection{Semantic Faithfulness and Autoformalization}
+Classical diagnosis identifies faulty assumptions, while abductive inference searches for hypotheses that restore a desired property~\cite{reiter1987diagnosis,dillig2013abduction}.  SAT-based model repair changes a transition system until it satisfies a property~\cite{attie2008modelrepair}, and LLM-based work repairs declarative Alloy specifications~\cite{alhanahnah2024alloyrepair}.  Our gate is narrower: it adds only a cited, non-redundant, consistency-preserving constraint that restores target determinacy.
 
-Autoformalization translates informal mathematics into formal statements~\cite{wu2022autoformalization,jiang2024mma}.  Benchmarks and corpora such as miniF2F, ProofNet, Lean Workbook, and FormalMATH expand the evaluation and training substrate~\cite{zheng2022minif2f,azerbayev2023proofnet,ying2024leanworkbook,yu2025formalmath}, while LeanDojo, Llemma, Draft--Sketch--Prove, and DeepSeek-Prover advance theorem-proving infrastructure and models~\cite{yang2023leandojo,azerbayev2024llemma,jiang2023draft,xin2024deepseekprover}.  Faithful Chain-of-Thought makes intermediate computation executable~\cite{lyu2023faithful}, but syntactic validity and prover acceptance still do not establish that the formal object preserves the source meaning.  DeGro checks one necessary relational consequence of a representation and leaves source-to-formal equivalence outside its guarantee.
+Autoformalization translates informal mathematics into formal statements~\cite{wu2022autoformalization,jiang2024mma}.  Benchmarks such as miniF2F, ProofNet, Lean Workbook, and FormalMATH expand the evaluation substrate~\cite{zheng2022minif2f,azerbayev2023proofnet,ying2024leanworkbook,yu2025formalmath}; theorem-proving systems further improve formal reasoning~\cite{yang2023leandojo,azerbayev2024llemma,jiang2023draft,xin2024deepseekprover}.  Yet prover acceptance does not establish that the formal object preserves source meaning.  MIRA-Math explicitly studies requests for a hidden necessary fact~\cite{albateh2026mira}; we derive paired cases from its validated latent states, but evaluate grounded representation repair rather than information exchange.
 
-\textbf{Missing-information benchmarks.} MIRA-Math contains 2,310 generated instances in 22 families, each hiding one necessary atomic fact from the solver-facing view while retaining it for an information holder~\cite{albateh2026mira}.  Earlier algebra-word-problem work also argues for evaluating derivations rather than answers alone~\cite{upadhyay2017derivations}.  We derive paired cases from validated latent states, but evaluate representation repair and grounded abstention rather than claiming the benchmark as a contribution.
+\section{Methodology}
+DeGro is a two-stage framework: it first diagnoses whether a generated specification determines the requested target, then converts an ambiguous verdict into either a source-grounded repair or a principled abstention.  Figure~\ref{fig:workflow} summarizes the complete loop.
 
-\section{Problem Formulation}
+\subsection{Problem Setup and Outputs}
 Let a natural-language problem be $P$.  A model produces $F=(V,D,C,q)$, where $V$ are variables, $D$ their domains, $C$ constraints, and $q(V)$ the requested expression.  Define
 \[
 \mathrm{Sol}(F)=\{m\mid m\models D\land C\}.
@@ -88,35 +140,38 @@ If \eqref{eq:query} is satisfiable, its two projected models form a \emph{target
 
 \paragraph{Soundness boundary.} The guarantee is relative to $F$.  It does not establish $F\equiv P$.  An unsupported extra constraint may make $q$ determinate while mistranslating the source.  Provenance gates reduce, but do not formally eliminate, this semantic gap.
 
-\subsection{Operational properties}
+\subsection{Target Determinacy and Soundness}
 Target determinacy is query-relative.  A scheduling model can leave individual assignments free while determining total cost; requiring full model uniqueness would reject such a valid answer.  A returned witness pair is independently checkable by substituting both assignments into $D\land C$ and comparing their target values.  Moreover, determinacy is monotone under consistent strengthening: if every model of $F$ agrees on $q$, then every model of $F\land c$ agrees on the same value.  The current policy therefore triggers additions only for ambiguous specifications.  Repairing a determinate but incorrect representation may require deleting or revising an existing constraint and is outside the method.
 
 The converse is unsafe: an arbitrary strengthening can force determinacy.  Adding $a=6$ to $a+b=10$ determines $a$ whether or not the source licenses that fact.  We therefore separate \emph{formal validity}---parseability, consistency, novelty, and sufficiency---from \emph{evidential validity}, which requires source support.
 
-\subsection{Worked example}
+\subsection{Running Example}
 For $V=\{a,b\}$, nonnegative integer domains, $C=(a+b=10)$, and $q=a$, the duplicated query is
 \[
 a_1+b_1=10\land a_2+b_2=10\land a_1\ne a_2.
 \]
 A solver can return $(4,6)$ and $(6,4)$.  If the source includes ``A receives two more than B,'' then $a=b+2$ is source-supported, consistent, non-redundant, and sufficient; the repaired target is six.  Without that sentence, the same equation would be a fabricated assumption, so the appropriate external action is abstention.  Neither decision exposes the hidden gold answer to the repair model.
 
-\section{DeGro}
-\subsection{Structured representation}
+\subsection{Framework Overview}
+\paragraph{Structured representation.}
 The agent emits one typed \textsc{ModelSpec} containing variable sorts and bounds, constraint expressions with source spans, and a target expression.  Deterministic compilers translate the same object to the computational and verification backends.  This avoids divergence between independently generated SymPy and SMT programs.  The initial supported fragment includes integer, real, and Boolean variables; arithmetic equalities and inequalities; finite domains; and selected modular constraints.  Unsupported syntax yields \textsc{not-supported}.
 
-\subsection{Closed-loop policy}
+\subsection{Stage I: Target-Determinacy Diagnosis}
 After execution, DeGro first tests $\mathrm{SAT}(F)$.  Unsatisfiability yields \textsc{inconsistent}; unknown yields \textsc{unknown}.  Otherwise it evaluates Eq.~\eqref{eq:query}.  Unsatisfiability permits an answer under the current formalization.  Satisfiability yields two assignments with different target values and triggers grounded diagnosis.
 
+This stage is deterministic.  The language model proposes the representation, but it does not judge whether the resulting target is determinate.  The diagnostic record contains the base satisfiability verdict, the two-copy verdict, normalized witness values when available, and any unsupported-theory or timeout state.
+
+\subsection{Stage II: Grounded Repair or Abstention}
 The repair model receives $P$, $C$, $q$, and the witness pair, and must return either \textsc{add-constraint} with an exact supporting span and formal expression, or \textsc{abstain}.  A candidate $c$ is accepted only if: (i) it compiles; (ii) its cited span occurs in $P$, or it uses a declared domain-semantics rule; (iii) $F\land c$ is satisfiable; (iv) $F\not\models c$; and (v) rechecking restores determinacy or yields a new witness for the next bounded round.  We use at most two repair rounds.  The external statuses are \textsc{answer}, \textsc{underspecified}, \textsc{inconsistent}, \textsc{unknown}, and \textsc{unsupported}.
 
 Exact substring provenance is deliberately conservative and easy to audit.  It does not prove that a cited sentence was translated correctly; semantic validation of the proposed equation remains a failure mode.
 
-\subsection{Implementation and trusted boundary}
+\subsection{Trusted Implementation}
 The reference implementation compiles a restricted expression abstract syntax tree to Z3~\cite{demoura2008z3}.  It rejects attribute access, arbitrary function calls, undeclared names, malformed comparisons, and unsupported operators before solver invocation.  Integer, real, and Boolean declarations are typed explicitly; variable bounds compile to constraints.  The two copies use independent variable maps to prevent accidental aliasing, and model values are normalized before entering a diagnostic record.
 
 Grounding is a deployment gate, not only a prompt instruction.  Each repair record contains an action, a formal expression, an exact source span, and an explanation.  The gate checks span membership, recompiles the expression, checks $\mathrm{SAT}(F\land c)$ and $F\not\models c$, and reruns the target-divergence query.  Ablations retain both raw proposals and gated outcomes, so a baseline is not credited under a more permissive acceptance rule.  Every result record stores the initial verdict, proposed action, rejection reason, final verdict, model configuration, and prompt hash.  The trusted computing base comprises the parser, compiler, solver, and deterministic gate; the language model remains untrusted.
 
-\subsection{Repair acceptance semantics}
+\subsection{Repair Acceptance Semantics}
 Let $\mathrm{span}(c)$ be the source substring cited for candidate $c$, and let $\mathcal{R}$ be a frozen set of allowed domain-semantics rules.  The gate accepts $c$ exactly when
 \begin{align}
 \mathrm{Accept}(c) \iff{}& \mathrm{Compiles}(c) \land
@@ -129,42 +184,45 @@ where grounding requires either exact occurrence of $\mathrm{span}(c)$ in $P$ or
 
 This definition prevents three misleading successes.  A redundant restatement cannot receive repair credit because $F\models c$.  A target pin such as $q=6$ cannot pass without source support.  A grounded but insufficient addition cannot pass if target-divergent models remain.  Conversely, the gate deliberately permits a constraint that differs syntactically from $c^*$ when it is source-supported and functionally restores the intended target.
 
-\subsection{Solver cost and failure states}
+\subsection{Complexity and Failure States}
 The determinacy query duplicates variables and constraints once, so its encoding size is linear in the size of $F$ up to the target disequality.  Solver time can still grow nonlinearly with the underlying theory; the implementation therefore preserves timeout and \textsc{unknown} as first-class states.  A determinate input requires no repair-model call.  An ambiguous input incurs at most two calls plus solver rechecks, yielding a bounded agent loop rather than unconstrained self-refinement.
 
 The method distinguishes representation failure from mathematical incompleteness.  \textsc{unsupported} means that the parser or compiler cannot express the attempted formalization.  \textsc{unknown} means that the solver did not decide a supported query.  \textsc{inconsistent} means $F$ has no model.  Only \textsc{underspecified} says that the available source did not support an accepted repair for an ambiguous target.  Collapsing these states would make both coverage and user-facing behavior uninterpretable.
 
-\begin{figure}[t]
+\begin{figure*}[t]
 \centering
-\resizebox{\columnwidth}{!}{%
+\resizebox{.96\textwidth}{!}{%
 \begin{tikzpicture}[
-  node distance=3.5mm and 4mm,
-  box/.style={draw,rounded corners,align=center,font=\scriptsize,inner sep=3pt,text width=.36\columnwidth},
-  decision/.style={diamond,draw,aspect=2.1,align=center,font=\scriptsize,inner sep=1.5pt},
-  arrow/.style={-{Latex[length=1.5mm]},thin}
+  node distance=5mm and 7mm,
+  box/.style={draw=black!55,rounded corners=2pt,align=center,font=\scriptsize,inner sep=4pt,minimum height=13mm,text width=.12\textwidth},
+  evidence/.style={box,fill=degrolight},
+  action/.style={box,fill=orange!8},
+  output/.style={box,fill=green!8},
+  arrow/.style={-{Latex[length=1.8mm]},semithick},
+  stage/.style={draw=black!35,rounded corners=4pt,inner sep=7pt}
 ]
-\node[box] (spec) {Source $P$ and structured specification $F=(V,D,C,q)$};
-\node[box,below=of spec] (sat) {Check $\mathrm{SAT}(F)$};
-\node[decision,below=of sat] (det) {two-copy query?};
-\node[box,below left=6mm and -1mm of det] (answer) {\textsc{unsat}: answer under $F$};
-\node[box,below right=6mm and -1mm of det] (witness) {\textsc{sat}: target-divergent witnesses};
-\node[decision,below=of witness] (ground) {source supports repair?};
-\node[box,below left=6mm and -2mm of ground] (abstain) {no: abstain as underspecified};
-\node[box,below right=6mm and -2mm of ground] (gate) {yes: validate provenance, consistency, novelty, determinacy};
+\node[box,fill=black!3] (spec) {\textbf{Input}\\Source $P$\\ModelSpec $F=(V,D,C,q)$};
+\node[evidence,right=of spec] (sat) {\textbf{Base check}\\$\mathrm{SAT}(F)$\\\textsc{sat / unsat / unknown}};
+\node[evidence,right=of sat] (det) {\textbf{Two-copy query}\\$F^{(1)}\land F^{(2)}$\\$q^{(1)}\neq q^{(2)}$};
+\node[evidence,right=of det] (witness) {\textbf{Diagnosis}\\determinate or\\target-divergent pair};
+\node[action,right=14mm of witness] (proposal) {\textbf{Grounded action}\\add constraint with span\\or abstain};
+\node[action,right=of proposal] (gate) {\textbf{Deterministic gates}\\provenance, consistency,\\novelty, determinacy};
+\node[output,right=of gate] (result) {\textbf{Typed output}\\answer / underspecified\\inconsistent / unknown};
 \draw[arrow] (spec)--(sat);
 \draw[arrow] (sat)--(det);
-\draw[arrow] (det)--node[left,font=\tiny]{no pair}(answer);
-\draw[arrow] (det)--node[right,font=\tiny]{pair}(witness);
-\draw[arrow] (witness)--(ground);
-\draw[arrow] (ground)--(abstain);
-\draw[arrow] (ground)--(gate);
-\draw[arrow] (gate.east) -- ++(3mm,0) |- node[pos=.25,right,font=\tiny]{accepted} (sat.east);
+\draw[arrow] (det)--(witness);
+\draw[arrow] (witness)--(proposal);
+\draw[arrow] (proposal)--(gate);
+\draw[arrow] (gate)--(result);
+\draw[arrow,degroorange] (gate.south) -- ++(0,-5mm) -| node[pos=.25,below,font=\tiny,text=black]{accepted repair; at most two rounds} (det.south);
+\node[stage,fit=(sat)(det)(witness),label={[font=\small\bfseries,text=degroblue]above:Stage I: symbolic diagnosis}] {};
+\node[stage,fit=(proposal)(gate),label={[font=\small\bfseries,text=degroorange]above:Stage II: grounded repair or abstention}] {};
 \end{tikzpicture}
 }
-\caption{DeGro control flow.  Only a solver-validated, source-supported addition re-enters verification; timeouts and unsupported syntax never certify determinacy.}
-\Description{A flowchart from a source and structured specification through satisfiability and two-copy target-determinacy checks. A determinate target is answered; target-divergent witnesses lead to either abstention or a validated repair that is checked again.}
+\caption{DeGro overview.  Stage I turns a structured executable model into target-specific symbolic evidence.  Stage II converts ambiguity into a grounded action and re-enters verification only after every deterministic gate passes.}
+\Description{A two-stage pipeline. The first stage checks base satisfiability and a two-copy target-divergence query. The second stage proposes either a grounded constraint or abstention, validates the proposal, and returns a typed outcome.}
 \label{fig:workflow}
-\end{figure}
+\end{figure*}
 
 \section{Evaluation}
 \subsection{Controlled paired benchmark}
@@ -230,6 +288,57 @@ Gemma 4 & Self-review & 100.0 & 93.3 & 96.7 & 6.7 & 6.3\\
 On the supported MATH-500 cohort, 158 of 292 formalizations are correct; the remaining labels are 69 wrong-target, 32 wrong-constraint, 24 target-critical missing-constraint, eight extra-constraint, and one wrong-domain.  The detector identifies 21 of 24 target-critical omissions (87.5\% recall, 95\% Wilson CI $[69.0,95.7]$) but precision is 17.4\% ($21/121$), and only one omission is successfully repaired end to end ($1/24=4.2\%$).  DeGro nevertheless raises cohort answer accuracy from 49.3\% ($144/292$) to 53.8\% ($157/292$); 16 discordant cases favor DeGro and three favor the structured baseline (exact McNemar $p=.0044$).  This prevalence is conditional on 58.4\% solver-fragment coverage.
 
 ALG514 provides a higher-coverage contrast: 503 of 514 cases enter the verified cohort, of which 477 are correct, 11 wrong-target, eight missing-constraint, and seven wrong-constraint.  The semantic-error rate is 5.2\% (95\% Wilson CI $[3.6,7.5]$).  Structured Solver and DeGro score 94.2\% ($484/514$) and 94.4\% ($485/514$), respectively, using order-invariant subset matching with $10^{-3}$ tolerance for ALG514's all-unknown, rounded solution vectors.  Nine numerically compatible answers retain a human-verified semantic error, directly showing that answer-only evaluation can conceal representation failures.  The one-case DeGro gain on ALG514 is exploratory.
+
+\begin{figure*}[t]
+\centering
+\begin{minipage}[t]{.47\textwidth}
+\centering
+\textbf{(a) Confirmatory final decision accuracy}\par\smallskip
+\begin{tikzpicture}[x=1cm,y=1cm,font=\scriptsize]
+  \draw[->,black!60] (.45,0) -- (.45,2.48) node[above,rotate=90,anchor=south,font=\tiny]{FDA (\%)};
+  \foreach \lab/\yy in {80/0,85/.55,90/1.10,95/1.65,100/2.20}{
+    \draw[black!18] (.45,\yy) -- (4.25,\yy);
+    \node[anchor=east] at (.38,\yy) {\lab};
+  }
+  \fill[black!38] (.85,0) rectangle (1.28,1.10);
+  \fill[degroblue] (1.35,0) rectangle (1.78,1.65);
+  \fill[black!38] (2.75,0) rectangle (3.18,1.969);
+  \fill[degroblue] (3.25,0) rectangle (3.68,1.925);
+  \node[above,font=\tiny] at (1.065,1.10) {90.0};
+  \node[above,font=\tiny,text=degroblue] at (1.565,1.65) {\bfseries 95.0};
+  \node[above,font=\tiny] at (2.965,1.969) {97.9};
+  \node[above,font=\tiny,text=degroblue] at (3.465,1.925) {\bfseries 97.5};
+  \node[align=center] at (1.315,-.28) {GPT-OSS\\20B};
+  \node[align=center] at (3.215,-.28) {Gemma 4\\31B};
+  \node[draw=black!38,fill=black!38,minimum width=3mm,minimum height=2mm,label={[font=\tiny]right:Grounded self-review}] at (.9,-.82) {};
+  \node[draw=degroblue,fill=degroblue,minimum width=3mm,minimum height=2mm,label={[font=\tiny]right:DeGro}] at (2.9,-.82) {};
+  \draw[decorate,decoration={brace,amplitude=3pt},degrogreen] (1.83,1.10) -- (1.83,1.65) node[midway,right=3pt,font=\tiny,text=degrogreen]{\bfseries +5.0};
+  \draw[decorate,decoration={brace,amplitude=3pt},degroorange] (3.73,1.969) -- (3.73,1.925) node[midway,right=3pt,font=\tiny,text=degroorange]{\bfseries -0.4};
+\end{tikzpicture}
+\end{minipage}\hfill
+\begin{minipage}[t]{.49\textwidth}
+\centering
+\textbf{(b) MATH-500 diagnostic funnel}\par\smallskip
+\begin{tikzpicture}[font=\scriptsize]
+  \node[anchor=east,align=right,text width=28mm] at (0,2.15) {Solver-fragment\\coverage};
+  \node[anchor=east,align=right,text width=28mm] at (0,1.25) {Target-critical\\ambiguity recall};
+  \node[anchor=east,align=right,text width=28mm] at (0,.35) {End-to-end\\grounded repair};
+  \foreach \yy in {2.15,1.25,.35}{\fill[black!8] (0.12,\yy-.18) rectangle (4.12,\yy+.18);}
+  \fill[degroblue] (0.12,1.97) rectangle (2.456,2.33);
+  \fill[degrogreen] (0.12,1.07) rectangle (3.62,1.43);
+  \fill[degroorange] (0.12,.17) rectangle (.288,.53);
+  \node[anchor=west,font=\tiny] at (2.52,2.15) {58.4\%  (292/500)};
+  \node[anchor=west,font=\tiny] at (3.69,1.25) {87.5\%  (21/24)};
+  \node[anchor=west,font=\tiny] at (.35,.35) {\bfseries 4.2\%  (1/24)};
+  \draw[->,black!45] (2.1,1.79) -- (2.1,1.60);
+  \draw[->,black!45] (2.1,.89) -- (2.1,.70);
+  \node[align=center,font=\tiny,text=black!65] at (2.1,-.25) {Coverage is measured over all 500 problems; recall and repair\\are measured over the 24 verified target-critical omissions.};
+\end{tikzpicture}
+\end{minipage}
+\caption{Two complementary views of the evidence.  (a) DeGro improves confirmatory FDA by five points for GPT-OSS 20B but not for Gemma 4 31B; the axis begins at 80\% to make the paired differences visible.  (b) Natural-error evaluation has a pronounced detection--repair gap: most target-critical omissions are detected, but only one is repaired end to end.}
+\Description{Panel a is a grouped bar chart comparing grounded self-review and DeGro final decision accuracy for GPT-OSS 20B and Gemma 4 31B. Panel b shows three horizontal bars for MATH-500 solver-fragment coverage, ambiguity recall, and end-to-end repair success, with counts and denominators.}
+\label{fig:result_summary}
+\end{figure*}
 
 \subsection{Witness ablation}
 Table~\ref{tab:ablation} reports the exploratory 100-pair decision-stage experiment.  DeGro and DeGro+witnesses differ by only one FDA point (five versus three discordant decisions favoring DeGro; Holm-adjusted $p=.727$).  A minimal witness improves RSR by six points over the bare verdict, but the planned comparison is also non-significant after correction ($p=.714$).  Concrete target assignments therefore provide no measurable incremental benefit on this benchmark.
@@ -396,7 +505,6 @@ The method can increase false confidence if representation-relative determinacy 
 \section{Conclusion}
 Execution answers whether an artifact runs; DeGro asks whether its feasible models agree on the quantity the agent is about to report.  Grounded repair-or-abstain then separates a recoverable translation omission from genuinely missing information.  On the preregistered 120-pair set, DeGro improves GPT-OSS 20B by five FDA points but does not improve Gemma 4 31B, ruling out a model-independent gain.  On natural errors it detects most target-critical MATH-500 omissions but rarely repairs them, while ALG514 exposes nine answer-compatible semantic failures.  Concrete witnesses provide no measurable advantage over the verdict-plus-grounding policy.  The resulting claim is narrow but actionable: target determinacy is a checkable intermediate safety condition, and its utility must be reported together with grounding behavior, representation coverage, and the semantic boundary between source and formalization.
 
-\clearpage
 \balance
 \bibliographystyle{ACM-Reference-Format}
 \bibliography{refs}

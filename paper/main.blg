@@ -55,8 +55,6 @@ Warning--page numbers missing in both pages and numpages fields in gao2023pal
 Warning--empty publisher in geifman2017selective
 Warning--empty address in geifman2017selective
 Warning--page numbers missing in both pages and numpages fields in geifman2017selective
-Warning--empty publisher in geifman2019selectivenet
-Warning--empty address in geifman2019selectivenet
 Warning--empty publisher in gou2024critic
 Warning--empty address in gou2024critic
 Warning--page numbers missing in both pages and numpages fields in gou2024critic
@@ -84,8 +82,6 @@ Warning--no number and no volume in lian2026reloop
 Warning--page numbers missing in both pages and numpages fields in lian2026reloop
 Warning--no number and no volume in lightman2023verify
 Warning--page numbers missing in both pages and numpages fields in lightman2023verify
-Warning--empty publisher in lyu2023faithful
-Warning--empty address in lyu2023faithful
 Warning--empty publisher in madaan2023selfrefine
 Warning--empty address in madaan2023selfrefine
 Warning--page numbers missing in both pages and numpages fields in madaan2023selfrefine
@@ -107,7 +103,6 @@ Warning--empty publisher in terauchi2005safety
 Warning--empty address in terauchi2005safety
 Warning--no number and no volume in uesato2022feedback
 Warning--page numbers missing in both pages and numpages fields in uesato2022feedback
-Warning--empty address in upadhyay2017derivations
 Warning--empty publisher in wang2024mathcoder
 Warning--empty address in wang2024mathcoder
 Warning--page numbers missing in both pages and numpages fields in wang2024mathcoder
@@ -135,45 +130,45 @@ Warning--page numbers missing in both pages and numpages fields in yu2025formalm
 Warning--empty publisher in zheng2022minif2f
 Warning--empty address in zheng2022minif2f
 Warning--page numbers missing in both pages and numpages fields in zheng2022minif2f
-You've used 57 entries,
+You've used 52 entries,
             6273 wiz_defined-function locations,
-            1806 strings with 31140 characters,
-and the built_in function-call counts, 69683 in all, are:
-= -- 7984
-> -- 3132
+            1774 strings with 29935 characters,
+and the built_in function-call counts, 63230 in all, are:
+= -- 7141
+> -- 2937
 < -- 0
-+ -- 1097
-- -- 1095
-* -- 5578
-:= -- 7105
-add.period$ -- 263
-call.type$ -- 57
-change.case$ -- 556
-chr.to.int$ -- 56
-cite$ -- 180
-duplicate$ -- 5911
-empty$ -- 4183
-format.name$ -- 1310
-if$ -- 16629
++ -- 1028
+- -- 1015
+* -- 5137
+:= -- 6501
+add.period$ -- 238
+call.type$ -- 52
+change.case$ -- 520
+chr.to.int$ -- 51
+cite$ -- 170
+duplicate$ -- 5333
+empty$ -- 3779
+format.name$ -- 1210
+if$ -- 15041
 int.to.chr$ -- 3
 int.to.str$ -- 1
-missing$ -- 260
-newline$ -- 487
-num.names$ -- 398
-pop$ -- 2887
+missing$ -- 237
+newline$ -- 443
+num.names$ -- 363
+pop$ -- 2662
 preamble$ -- 1
-purify$ -- 1010
+purify$ -- 934
 quote$ -- 0
-skip$ -- 2057
+skip$ -- 1837
 stack$ -- 0
-substring$ -- 4076
-swap$ -- 423
+substring$ -- 3565
+swap$ -- 361
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 1438
-warning$ -- 123
-while$ -- 291
+type$ -- 1316
+warning$ -- 118
+while$ -- 245
 width$ -- 0
-write$ -- 1092
-(There were 123 warnings)
+write$ -- 991
+(There were 118 warnings)
