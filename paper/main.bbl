@@ -2,7 +2,7 @@
 %%% Do NOT edit. File created by BibTeX with style
 %%% ACM-Reference-Format-Journals [18-Jan-2012].
 
-\begin{thebibliography}{52}
+\begin{thebibliography}{57}
 
 %%% ====================================================================
 %%% NOTE TO THE USER: you can override these defaults by providing
@@ -109,6 +109,20 @@
   \bibinfo{booktitle}{\emph{International Conference on Learning
   Representations}}.
 \newblock
+
+
+\bibitem[{Bagheri Nezhad} et~al\mbox{.}(2026)]%
+        {nezhad2026symcode}
+\bibfield{author}{\bibinfo{person}{Sina {Bagheri Nezhad}}, \bibinfo{person}{Yao
+  Li}, {and} \bibinfo{person}{Ameeta Agrawal}.}
+  \bibinfo{year}{2026}\natexlab{}.
+\newblock \showarticletitle{SymCode: A Neurosymbolic Approach to Mathematical
+  Reasoning via Verifiable Code Generation}. In
+  \bibinfo{booktitle}{\emph{Findings of the Association for Computational
+  Linguistics: EACL 2026}}. \bibinfo{publisher}{Association for Computational
+  Linguistics}, \bibinfo{pages}{1489--1503}.
+\newblock
+\href{https://doi.org/10.18653/v1/2026.findings-eacl.76}{doi:\nolinkurl{10.18653/v1/2026.findings-eacl.76}}
 
 
 \bibitem[Barthe et~al\mbox{.}(2011)]%
@@ -300,6 +314,18 @@
 \newblock
 
 
+\bibitem[Geifman and El-Yaniv(2019)]%
+        {geifman2019selectivenet}
+\bibfield{author}{\bibinfo{person}{Yonatan Geifman} {and} \bibinfo{person}{Ran
+  El-Yaniv}.} \bibinfo{year}{2019}\natexlab{}.
+\newblock \showarticletitle{{SelectiveNet}: A Deep Neural Network with an
+  Integrated Reject Option}. In \bibinfo{booktitle}{\emph{International
+  Conference on Machine Learning}} \emph{(\bibinfo{series}{Proceedings of
+  Machine Learning Research}, Vol.~\bibinfo{volume}{97})}.
+  \bibinfo{pages}{2151--2159}.
+\newblock
+
+
 \bibitem[Gou et~al\mbox{.}(2024a)]%
         {gou2024critic}
 \bibfield{author}{\bibinfo{person}{Zhibin Gou}, \bibinfo{person}{Zhihong Shao},
@@ -425,6 +451,18 @@
 \newblock
 
 
+\bibitem[Liffiton and Sakallah(2008)]%
+        {liffiton2008mus}
+\bibfield{author}{\bibinfo{person}{Mark~H. Liffiton} {and}
+  \bibinfo{person}{Karem~A. Sakallah}.} \bibinfo{year}{2008}\natexlab{}.
+\newblock \showarticletitle{Algorithms for Computing Minimal Unsatisfiable
+  Subsets of Constraints}.
+\newblock \bibinfo{journal}{\emph{Journal of Automated Reasoning}}
+  \bibinfo{volume}{40} (\bibinfo{year}{2008}), \bibinfo{pages}{1--33}.
+\newblock
+\href{https://doi.org/10.1007/s10817-007-9084-z}{doi:\nolinkurl{10.1007/s10817-007-9084-z}}
+
+
 \bibitem[Lightman et~al\mbox{.}(2023)]%
         {lightman2023verify}
 \bibfield{author}{\bibinfo{person}{Hunter Lightman}, \bibinfo{person}{Vineet
@@ -437,6 +475,22 @@
 \newblock \bibinfo{journal}{\emph{arXiv preprint arXiv:2305.20050}}
   (\bibinfo{year}{2023}).
 \newblock
+
+
+\bibitem[Lyu et~al\mbox{.}(2023)]%
+        {lyu2023faithful}
+\bibfield{author}{\bibinfo{person}{Qing Lyu}, \bibinfo{person}{Shreya
+  Havaldar}, \bibinfo{person}{Adam Stein}, \bibinfo{person}{Li Zhang},
+  \bibinfo{person}{Delip Rao}, \bibinfo{person}{Eric Wong},
+  \bibinfo{person}{Marianna Apidianaki}, {and} \bibinfo{person}{Chris
+  Callison-Burch}.} \bibinfo{year}{2023}\natexlab{}.
+\newblock \showarticletitle{Faithful Chain-of-Thought Reasoning}. In
+  \bibinfo{booktitle}{\emph{Proceedings of the 13th International Joint
+  Conference on Natural Language Processing and the 3rd Conference of the
+  Asia-Pacific Chapter of the Association for Computational Linguistics}}.
+  \bibinfo{pages}{305--329}.
+\newblock
+\href{https://doi.org/10.18653/v1/2023.ijcnlp-main.20}{doi:\nolinkurl{10.18653/v1/2023.ijcnlp-main.20}}
 
 
 \bibitem[Madaan et~al\mbox{.}(2023)]%
@@ -465,22 +519,6 @@
   Learning}} \emph{(\bibinfo{series}{Proceedings of Machine Learning Research},
   Vol.~\bibinfo{volume}{119})}. \bibinfo{pages}{7076--7087}.
 \newblock
-
-
-\bibitem[Nezhad et~al\mbox{.}(2026)]%
-        {nezhad2026symcode}
-\bibfield{author}{\bibinfo{person}{Sina~Bagheri Nezhad}, \bibinfo{person}{Yao
-  Li}, {and} \bibinfo{person}{Ameeta Agrawal}.}
-  \bibinfo{year}{2026}\natexlab{}.
-\newblock \showarticletitle{SymCode: A Neurosymbolic Approach to Mathematical
-  Reasoning via Verifiable Code Generation}. In
-  \bibinfo{booktitle}{\emph{Findings of the European Chapter of the Association
-  for Computational Linguistics}}.
-\newblock
-\urldef\tempurl%
-\url{https://arxiv.org/abs/2510.25975}
-\showURL{%
-\tempurl}
 
 
 \bibitem[{OpenAI}(2025)]%
@@ -581,6 +619,23 @@
 \newblock \bibinfo{journal}{\emph{arXiv preprint arXiv:2211.14275}}
   (\bibinfo{year}{2022}).
 \newblock
+
+
+\bibitem[Upadhyay and Chang(2017)]%
+        {upadhyay2017derivations}
+\bibfield{author}{\bibinfo{person}{Shyam Upadhyay} {and}
+  \bibinfo{person}{Ming-Wei Chang}.} \bibinfo{year}{2017}\natexlab{}.
+\newblock \showarticletitle{Annotating Derivations: A New Evaluation Strategy
+  and Dataset for Algebra Word Problems}. In
+  \bibinfo{booktitle}{\emph{Proceedings of the 15th Conference of the European
+  Chapter of the Association for Computational Linguistics: Volume 1, Long
+  Papers}}. \bibinfo{publisher}{Association for Computational Linguistics},
+  \bibinfo{pages}{494--504}.
+\newblock
+\urldef\tempurl%
+\url{https://aclanthology.org/E17-1047/}
+\showURL{%
+\tempurl}
 
 
 \bibitem[Wang et~al\mbox{.}(2024)]%
@@ -688,15 +743,30 @@
 
 \bibitem[Yu et~al\mbox{.}(2025)]%
         {yu2025formalmath}
-\bibfield{author}{\bibinfo{person}{Zhouliang Yu}, \bibinfo{person}{Weijie
-  Chen}, \bibinfo{person}{Jiayu Chen}, \bibinfo{person}{Hongming Zhou},
-  \bibinfo{person}{Kaifeng He}, {et~al\mbox{.}}}
-  \bibinfo{year}{2025}\natexlab{}.
+\bibfield{author}{\bibinfo{person}{Zhouliang Yu}, \bibinfo{person}{Ruotian
+  Peng}, \bibinfo{person}{Keyi Ding}, \bibinfo{person}{Yizhe Li},
+  \bibinfo{person}{Zhongyuan Peng}, \bibinfo{person}{Minghao Liu},
+  \bibinfo{person}{Yifan Zhang}, \bibinfo{person}{Zheng Yuan},
+  \bibinfo{person}{Huajian Xin}, \bibinfo{person}{Wenhao Huang},
+  \bibinfo{person}{Yandong Wen}, \bibinfo{person}{Ge Zhang}, {and}
+  \bibinfo{person}{Weiyang Liu}.} \bibinfo{year}{2025}\natexlab{}.
 \newblock \showarticletitle{FormalMATH: Benchmarking Formal Mathematical
   Reasoning of Large Language Models}.
 \newblock \bibinfo{journal}{\emph{arXiv preprint arXiv:2505.02735}}
   (\bibinfo{year}{2025}).
 \newblock
+
+
+\bibitem[Zeller and Hildebrandt(2002)]%
+        {zeller2002simplifying}
+\bibfield{author}{\bibinfo{person}{Andreas Zeller} {and} \bibinfo{person}{Ralf
+  Hildebrandt}.} \bibinfo{year}{2002}\natexlab{}.
+\newblock \showarticletitle{Simplifying and Isolating Failure-Inducing Input}.
+\newblock \bibinfo{journal}{\emph{IEEE Transactions on Software Engineering}}
+  \bibinfo{volume}{28}, \bibinfo{number}{2} (\bibinfo{year}{2002}),
+  \bibinfo{pages}{183--200}.
+\newblock
+\href{https://doi.org/10.1109/32.988498}{doi:\nolinkurl{10.1109/32.988498}}
 
 
 \bibitem[Zheng et~al\mbox{.}(2022)]%

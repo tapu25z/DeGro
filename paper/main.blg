@@ -27,6 +27,7 @@ Warning--page numbers missing in both pages and numpages fields in azerbayev2023
 Warning--empty publisher in azerbayev2024llemma
 Warning--empty address in azerbayev2024llemma
 Warning--page numbers missing in both pages and numpages fields in azerbayev2024llemma
+Warning--empty address in nezhad2026symcode
 Warning--empty publisher in barthe2011product
 Warning--empty address in barthe2011product
 Warning--empty publisher in barthe2004selfcomposition
@@ -55,6 +56,8 @@ Warning--page numbers missing in both pages and numpages fields in gao2023pal
 Warning--empty publisher in geifman2017selective
 Warning--empty address in geifman2017selective
 Warning--page numbers missing in both pages and numpages fields in geifman2017selective
+Warning--empty publisher in geifman2019selectivenet
+Warning--empty address in geifman2019selectivenet
 Warning--empty publisher in gou2024critic
 Warning--empty address in gou2024critic
 Warning--page numbers missing in both pages and numpages fields in gou2024critic
@@ -82,14 +85,13 @@ Warning--no number and no volume in lian2026reloop
 Warning--page numbers missing in both pages and numpages fields in lian2026reloop
 Warning--no number and no volume in lightman2023verify
 Warning--page numbers missing in both pages and numpages fields in lightman2023verify
+Warning--empty publisher in lyu2023faithful
+Warning--empty address in lyu2023faithful
 Warning--empty publisher in madaan2023selfrefine
 Warning--empty address in madaan2023selfrefine
 Warning--page numbers missing in both pages and numpages fields in madaan2023selfrefine
 Warning--empty publisher in mozannar2020defer
 Warning--empty address in mozannar2020defer
-Warning--empty publisher in nezhad2026symcode
-Warning--empty address in nezhad2026symcode
-Warning--page numbers missing in both pages and numpages fields in nezhad2026symcode
 Warning--no number and no volume in sarkar2026cores
 Warning--page numbers missing in both pages and numpages fields in sarkar2026cores
 Warning--empty publisher in schick2023toolformer
@@ -103,6 +105,7 @@ Warning--empty publisher in terauchi2005safety
 Warning--empty address in terauchi2005safety
 Warning--no number and no volume in uesato2022feedback
 Warning--page numbers missing in both pages and numpages fields in uesato2022feedback
+Warning--empty address in upadhyay2017derivations
 Warning--empty publisher in wang2024mathcoder
 Warning--empty address in wang2024mathcoder
 Warning--page numbers missing in both pages and numpages fields in wang2024mathcoder
@@ -130,45 +133,45 @@ Warning--page numbers missing in both pages and numpages fields in yu2025formalm
 Warning--empty publisher in zheng2022minif2f
 Warning--empty address in zheng2022minif2f
 Warning--page numbers missing in both pages and numpages fields in zheng2022minif2f
-You've used 52 entries,
+You've used 57 entries,
             6273 wiz_defined-function locations,
-            1774 strings with 29935 characters,
-and the built_in function-call counts, 63230 in all, are:
-= -- 7141
-> -- 2937
+            1808 strings with 31308 characters,
+and the built_in function-call counts, 70291 in all, are:
+= -- 8057
+> -- 3188
 < -- 0
-+ -- 1028
-- -- 1015
-* -- 5137
-:= -- 6501
-add.period$ -- 238
-call.type$ -- 52
-change.case$ -- 520
-chr.to.int$ -- 51
-cite$ -- 170
-duplicate$ -- 5333
-empty$ -- 3779
-format.name$ -- 1210
-if$ -- 15041
++ -- 1118
+- -- 1116
+* -- 5650
+:= -- 7189
+add.period$ -- 264
+call.type$ -- 57
+change.case$ -- 564
+chr.to.int$ -- 56
+cite$ -- 178
+duplicate$ -- 5934
+empty$ -- 4196
+format.name$ -- 1331
+if$ -- 16755
 int.to.chr$ -- 3
 int.to.str$ -- 1
-missing$ -- 237
-newline$ -- 443
-num.names$ -- 363
-pop$ -- 2662
+missing$ -- 260
+newline$ -- 484
+num.names$ -- 398
+pop$ -- 2888
 preamble$ -- 1
-purify$ -- 934
+purify$ -- 1018
 quote$ -- 0
-skip$ -- 1837
+skip$ -- 2070
 stack$ -- 0
-substring$ -- 3565
-swap$ -- 361
+substring$ -- 4137
+swap$ -- 434
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 1316
-warning$ -- 118
-while$ -- 245
+type$ -- 1438
+warning$ -- 121
+while$ -- 294
 width$ -- 0
-write$ -- 991
-(There were 118 warnings)
+write$ -- 1091
+(There were 121 warnings)

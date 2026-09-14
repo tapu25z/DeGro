@@ -1,13 +1,13 @@
 # Fdb version 4
-["bibtex main"] 1789369271.07226 "main.aux" "main.bbl" "main" 1789369274.47733 0
-  "./refs.bib" 1789063613.8113 18877 377963455a6c000ca056bc3807a1fda5 ""
-  "main.aux" 1789369273.84125 15362 64436b7dbe9356860fabc1c0cb5cb8b9 "pdflatex"
+["bibtex main"] 1789417065.46502 "main.aux" "main.bbl" "main" 1789417068.65611 0
+  "./refs.bib" 1789417054.12035 19122 7cbe951a05088dd2f7243c34b1424c05 ""
+  "main.aux" 1789417067.74489 14629 85a4b028d1fb1539e7a3024b19d9ef9c "pdflatex"
   "vendor/ACM-Reference-Format.bst" 1784725464 93560 7091f2b0543d2c8bfe2e82ce5d54a029 ""
   (generated)
   "main.bbl"
   "main.blg"
   (rewritten before read)
-["pdflatex"] 1789369271.26355 "main.tex" "main.pdf" "main" 1789369274.47757 0
+["pdflatex"] 1789417065.64946 "main.tex" "main.pdf" "main" 1789417068.65652 0
   "/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/inconsolata/i4-t1-4.enc" 1558214095 7693 0f2dce6d313c82989ec3a67fc24df2a0 ""
   "/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/libertine/lbtn_25tcsq.enc" 1490131464 2921 8ca0eb0831f9bc5da080d3697cfe67bf ""
   "/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/libertine/lbtn_76gpa5.enc" 1490131464 2933 9ad527ce78d7c5fa0a642dead095f172 ""
@@ -16,6 +16,7 @@
   "/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/libertine/lbtn_ncsllp.enc" 1490131464 3288 25b5d43be7be8cba51d85b642598b3b0 ""
   "/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/libertine/lbtn_nh77jq.enc" 1490131464 2933 8d808fcabf70c6c809bb14c283ece4da ""
   "/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/libertine/lbtn_oexx6f.enc" 1490131464 2807 3bc923a7d38598e901b235df221224cb ""
+  "/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/libertine/lbtn_tlukpt.enc" 1490131464 3290 0718d0dcef5bedd9dfea757c4970837e ""
   "/usr/local/texlive/2025/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/local/texlive/2025/texmf-dist/fonts/tfm/adobe/symbol/psyr.tfm" 1136768653 1408 5937f58aa508ea2cea4901c07d10f5fe ""
   "/usr/local/texlive/2025/texmf-dist/fonts/tfm/adobe/zapfding/pzdr.tfm" 1136768653 1528 f853c4d1b4e0550255e02831fdc8496f ""
@@ -40,6 +41,8 @@
   "/usr/local/texlive/2025/texmf-dist/fonts/tfm/public/libertine/LinLibertineT-tlf-t1.tfm" 1490131464 19504 bdf9fb416f5a91bf56b1ccda887f5b91 ""
   "/usr/local/texlive/2025/texmf-dist/fonts/tfm/public/libertine/LinLibertineT-tlf-ts1--base.tfm" 1490131464 1488 9b803beb26c181b228c4fde93d4398a3 ""
   "/usr/local/texlive/2025/texmf-dist/fonts/tfm/public/libertine/LinLibertineT-tlf-ts1.tfm" 1490131464 1516 5e35377e77f0326136c4078d4c186a36 ""
+  "/usr/local/texlive/2025/texmf-dist/fonts/tfm/public/libertine/LinLibertineTB-tlf-sc-t1--base.tfm" 1490131464 1704 a9e562d5b5defb02250fc1e66f73bb76 ""
+  "/usr/local/texlive/2025/texmf-dist/fonts/tfm/public/libertine/LinLibertineTB-tlf-sc-t1.tfm" 1490131464 14844 d3897f3631ca179c9e67fb2d62219f0d ""
   "/usr/local/texlive/2025/texmf-dist/fonts/tfm/public/libertine/LinLibertineTB-tlf-t1--base.tfm" 1490131464 1724 248b3a23a2f748bd3089e9d3118d991e ""
   "/usr/local/texlive/2025/texmf-dist/fonts/tfm/public/libertine/LinLibertineTB-tlf-t1.tfm" 1490131464 19488 f569478ca339d9b5ad93b46bf7a470e2 ""
   "/usr/local/texlive/2025/texmf-dist/fonts/tfm/public/libertine/LinLibertineTI-tlf-t1--base.tfm" 1490131464 1932 54655639067fe21ae3b23b77173351a5 ""
@@ -83,6 +86,7 @@
   "/usr/local/texlive/2025/texmf-dist/fonts/vf/public/libertine/LinLibertineT-tlf-sc-t1.vf" 1354061736 1732 19a98a3416ac208cfc1e8cd877852bec ""
   "/usr/local/texlive/2025/texmf-dist/fonts/vf/public/libertine/LinLibertineT-tlf-t1.vf" 1354061736 1728 b078a050f24d7649619baa987d7216d8 ""
   "/usr/local/texlive/2025/texmf-dist/fonts/vf/public/libertine/LinLibertineT-tlf-ts1.vf" 1490131464 640 f2633b196ddbd644937d19e300a5024e ""
+  "/usr/local/texlive/2025/texmf-dist/fonts/vf/public/libertine/LinLibertineTB-tlf-sc-t1.vf" 1490131464 1772 7f76ee81dccb744f7ac5dc9e1083f6ce ""
   "/usr/local/texlive/2025/texmf-dist/fonts/vf/public/libertine/LinLibertineTB-tlf-t1.vf" 1490131464 1768 5d66dfd9709f1f38b8fb3cb38db46402 ""
   "/usr/local/texlive/2025/texmf-dist/fonts/vf/public/libertine/LinLibertineTI-tlf-t1.vf" 1490131464 1768 b3bfd8ed1fe2dce5fd19610abe4c3dbe ""
   "/usr/local/texlive/2025/texmf-dist/fonts/vf/public/newtx/ntxsy.vf" 1724614892 1792 7cf99effbd74f7851ca7683a6d12b685 ""
@@ -284,10 +288,11 @@
   "/usr/local/texlive/2025/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1759948538 5467155 19efa205003f9ecad95fbbaa6ff24da1 ""
   "/usr/local/texlive/2025/texmf-var/web2c/pdftex/pdflatex.fmt" 1759948473 3345731 542163a676e9c7fa4f99ea6da5b59371 ""
   "/usr/local/texlive/2025/texmf.cnf" 1741450484 577 418a7058ec8e006d8704f60ecd22c938 ""
-  "main.aux" 1789369273.84125 15362 64436b7dbe9356860fabc1c0cb5cb8b9 "pdflatex"
-  "main.bbl" 1789369271.25765 31605 5d70786afdb14568be2698468de62447 "bibtex main"
-  "main.out" 1789369273.84304 7922 7105e93ad4d77589a3c86c1f1ed1a541 "pdflatex"
-  "main.tex" 1789364951.65873 59056 d2e5f103899c8e74e22994cf0fdf0ae6 ""
+  "figure/pipeline.jpg" 1789415582.15444 202329 49e7ae4eacb44e9d9c54db1993bf8c92 ""
+  "main.aux" 1789417067.74489 14629 85a4b028d1fb1539e7a3024b19d9ef9c "pdflatex"
+  "main.bbl" 1789417065.64382 35064 d688086a1c3cd9a9a74656fae2cc9a31 "bibtex main"
+  "main.out" 1789417067.74745 2763 9b320fe1e015d75ae7b83f3c88cad7eb "pdflatex"
+  "main.tex" 1789417054.11898 54271 fe3f15d616260752d8a2d4b7d23c01a3 ""
   "vendor/aamas.cls" 1784725464 122209 65113db2770441df189925e574f1dbe2 ""
   "vendor/by.pdf" 1784725464 5004 981f6317db1b416da3b30e5922ad167c ""
   (generated)

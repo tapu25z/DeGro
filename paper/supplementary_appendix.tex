@@ -1,0 +1,167 @@
+\documentclass[10pt]{article}
+\usepackage[letterpaper,margin=0.78in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{microtype}
+\usepackage{newtxtext,newtxmath}
+\usepackage{amsmath,mathtools}
+\usepackage{booktabs,tabularx,array}
+\usepackage{enumitem}
+\usepackage{float}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+
+\newcommand{\method}{\textsc{DeGro}}
+\newcommand{\status}[1]{\textsc{#1}}
+\newcommand{\code}[1]{{\footnotesize\nolinkurl{#1}}}
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+\renewcommand{\thesection}{\Alph{section}}
+\setlist{nosep,leftmargin=*}
+\setlength{\parskip}{3pt}
+\setlength{\parindent}{1em}
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Anonymous AAMAS 2027 Submission}
+\rhead{Supplementary Material}
+\cfoot{\thepage}
+
+\title{Supplementary Material for\\
+\textbf{DeGro: Target Determinacy Verification and Grounded Repair for Executable Mathematical Reasoning}}
+\author{Anonymous Author(s)}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{center}
+\fbox{\parbox{0.94\textwidth}{\small
+This document provides proof details, evaluation protocol, selected extended results, and reproducibility identifiers. The main paper is self-contained.}}
+\end{center}
+
+\section{Formal Details}
+Let a structured formalization be $F=(V,D,C,q)$, where $V$ is a finite set of typed variables, $D$ contains domain restrictions, $C$ contains translated source constraints, and $q(V)$ is the target. Write
+\[
+  \mathrm{Sol}(F)=\{m\mid m\models D\land C\}.
+\]
+The target is determinate when all feasible assignments agree:
+\begin{equation}
+  \mathrm{Det}(F,q) \iff
+  \forall m_1,m_2\in\mathrm{Sol}(F),\ q(m_1)=q(m_2).
+  \label{eq:det}
+\end{equation}
+For two disjoint renamings $V^{(1)}$ and $V^{(2)}$, define
+\begin{equation}
+  \Phi(F,q)=F^{(1)}\land F^{(2)}\land
+  q(V^{(1)})\neq q(V^{(2)}).
+  \label{eq:phi}
+\end{equation}
+
+\paragraph{Witness equivalence.}
+Assuming semantics-preserving compilation, $\Phi(F,q)$ is satisfiable exactly when two feasible assignments disagree on $q$. A satisfying assignment projects to the two witnesses; conversely, any such pair satisfies Eq.~\eqref{eq:phi}. Hence, if $F$ is satisfiable and $\Phi(F,q)$ is unsatisfiable, Eq.~\eqref{eq:det} holds. The initial satisfiability check is necessary because an inconsistent $F$ would otherwise yield a vacuous certificate.
+
+\paragraph{Repair gate.}
+For candidate constraint $c$ and a frozen set $\mathcal{R}$ of permitted domain-semantics rules,
+\begin{align}
+\mathrm{Accept}(c)\iff{}&\mathrm{Compiles}(c)\land
+\mathrm{Grounded}(c,P,\mathcal{R})\nonumber\\
+&\land\mathrm{SAT}(F\land c)\land\neg(F\models c)
+\land\mathrm{Det}(F\land c,q).
+\label{eq:accept}
+\end{align}
+Thus every accepted edit is supported, consistent, novel, and target-sufficient. If neither of two proposals passes, the original $F$ is preserved. Exact-span provenance is an auditable proxy, not a proof of semantic equivalence.
+
+\section{Reference Algorithm and Trusted Boundary}
+The bounded controller performs:
+\begin{enumerate}
+  \item parse one typed \status{ModelSpec} and reject unsupported expressions;
+  \item check $\mathrm{SAT}(F)$, then $\Phi(F,q)$;
+  \item if ambiguous, record two target-divergent witnesses;
+  \item request one grounded constraint or \status{abstain};
+  \item apply Eq.~\eqref{eq:accept}, stopping after at most two proposals.
+\end{enumerate}
+The restricted parser, typed compiler, Z3, and deterministic gate form the trusted boundary; the language model does not. The parser rejects undeclared identifiers, arbitrary calls, attribute access, and unsupported operators. Both solving and verification consume the same normalized specification. Logs retain initial and final states, witnesses, proposals, cited spans, rejection reasons, model configuration, and prompt hashes.
+
+\section{Controlled Paired Evaluation}
+For a validated gold specification $F^*=\{c_1,\ldots,c_k,c^*\}$, define $F^-=F^*\setminus\{c^*\}$. An item is retained only when $F^*$ is satisfiable and target-determinate while $F^-$ is satisfiable and target-ambiguous. Two source conditions share exactly $F^-$:
+\begin{itemize}
+  \item \textbf{Omission:} the source retains the sentence supporting $c^*$; grounded repair is correct.
+  \item \textbf{Underspecified:} that sentence is removed; abstention is correct.
+\end{itemize}
+The solver state is identical within each pair, so ambiguity alone cannot reveal the label. The 120-pair confirmatory set is disjoint from the 80-pair pilot and 100-pair development sets and was frozen before outcome inspection. It contains rank-deficient systems (20), linear separation (20), moment problems (40), Chinese-remainder reconstruction (20), and graph path sums (20).
+
+All four policies receive the same source, $F^-$, target, schema, and two-attempt budget. Self-review receives neither verdict nor grounding rule; grounded self-review adds grounding; determinacy-guided adds the solver verdict; \method{} receives both. Both models use medium reasoning effort and temperature 1.0, giving 960 complete records per model. RSR measures correct repair on omission cases, CAR correct abstention, and $\mathrm{FDA}=(\mathrm{RSR}+\mathrm{CAR})/2$. Confidence intervals resample pairs; paired tests use exact two-sided McNemar tests with Holm correction across the two model-specific primary tests.
+
+\section{Extended Controlled Results}
+\begin{table}[h]
+\centering
+\caption{Confirmatory results on 120 preregistered pairs per model (percent).}
+\begin{tabular}{@{}llrrrrr@{}}
+\toprule
+Model & Method & RSR & CAR & FDA & ORR & UR\\
+\midrule
+GPT-OSS 20B & Self-review & 93.3 & 87.5 & 90.4 & 12.5 & 15.2\\
+ & Grounded self-review & 100.0 & 80.0 & 90.0 & 20.0 & 16.7\\
+ & Determinacy-guided & 86.7 & 99.2 & 92.9 & 0.8 & 6.3\\
+ & DeGro & 92.5 & 97.5 & \textbf{95.0} & 2.5 & 4.3\\
+\midrule
+Gemma 4 31B & Self-review & 100.0 & 93.3 & 96.7 & 6.7 & 6.3\\
+ & Grounded self-review & 100.0 & 95.8 & 97.9 & 4.2 & 4.0\\
+ & Determinacy-guided & 100.0 & 99.2 & \textbf{99.6} & 0.8 & 0.8\\
+ & DeGro & 100.0 & 95.0 & 97.5 & 5.0 & 4.8\\
+\bottomrule
+\end{tabular}
+\end{table}
+For GPT-OSS, DeGro minus grounded self-review is $+5.0$ FDA points with pair-cluster 95\% CI $[0.4,9.6]$; exact $p=.050$ and Holm-adjusted $p=.100$. For Gemma, the difference is $-0.4$ points with CI $[-3.3,2.5]$ and $p=1.0$. The evidence therefore does not support a model-independent gain.
+
+Across all 300 pairs, GPT-OSS changes from 91.2\% to 96.2\% FDA ($+5.0$, CI $[2.3,7.7]$, $p<.001$), while Gemma changes from 96.2\% to 97.8\% ($+1.7$, CI $[-0.2,3.5]$, $p=.099$). This cumulative analysis is secondary because it includes development observations. In a 100-pair exploratory ablation, exposing target-divergent witnesses to the repair model did not improve DeGro (98.5\% versus 97.5\% FDA; adjusted $p=.727$); witnesses remain valuable as audit evidence.
+
+\section{Natural-Error Study}
+Exactly one Structured SymCode formalization was generated per problem and reused across methods. Cohort membership was frozen from parse, compiler, and solver states before annotation or repair-outcome inspection. Blinded annotation packets omitted the determinacy verdict, witness, repair, method, and answer outcome.
+
+Two reviewers inspected all 292 MATH-500 and 503 ALG514 final AI-assisted labels. Because separate pre-discussion human labels were not retained, we claim two-person verification, not independent double annotation. Labels are \status{correct}, \status{missing-constraint}, \status{wrong-constraint}, \status{extra-constraint}, \status{wrong-domain}, \status{wrong-target}, \status{computational-error}, and \status{other}; ambiguity itself never determines the label.
+
+\begin{table}[H]
+\centering
+\caption{Human-verified MATH-500 outcomes on 292 conclusive, solver-supported cases (58.4\% coverage).}
+\begin{tabular}{@{}lrrrrr@{}}
+\toprule
+Label & $n$ & Ambiguous & Repair & Solver correct & DeGro correct\\
+\midrule
+Correct & 158 & 33 & 10 & 119 & 126\\
+Missing constraint & 24 & 21 & 4 & 2 & 3\\
+Wrong constraint & 32 & 10 & 0 & 16 & 16\\
+Extra constraint & 8 & 4 & 1 & 4 & 4\\
+Wrong domain & 1 & 1 & 0 & 0 & 0\\
+Wrong target & 69 & 52 & 10 & 3 & 8\\
+\midrule
+Total & 292 & 121 & 25 & 144 & 157\\
+\bottomrule
+\end{tabular}
+\end{table}
+Within the 24 target-critical omissions, ambiguity recall is 87.5\% (Wilson 95\% CI $[69.0,95.7]$), detector precision is 17.4\% (CI $[11.6,25.1]$), and end-to-end grounded repair is 4.2\% (CI $[0.7,20.2]$). Overall accuracy changes from 49.3\% to 53.8\%; 16 discordances favor DeGro and three favor Structured Solver (exact McNemar $p=.00443$).
+
+For ALG514, 503/514 problems are covered (97.86\%). Labels comprise 477 correct, 11 wrong-target, eight target-critical missing-constraint, and seven wrong-constraint cases. Structured Solver scores 94.16\% and DeGro 94.36\% under the released scoring protocol; nine numerically compatible cases still carry a verified semantic error.
+
+\section{Reproducibility Checklist}
+\begin{table}[h]
+\centering
+\caption{Frozen artifacts and identifiers.}
+\begin{tabularx}{0.96\textwidth}{@{}lY@{}}
+\toprule
+Artifact & Frozen value\\
+\midrule
+MIRA source revision & \code{72ff918901584d1d1e835a9f86d41e3d51a915a2}\\
+MIRA source SHA-256 & \code{78a021526f9457af6e3776ac470c4ef1202d18fd9a19539e7e289294997b2ad0}\\
+Selection seed & \code{20270911}\\
+Confirmatory prompt SHA-256 & \code{eafed6be4973c21e1efbb5cc804112c9d50c95764e8f5066b58bdee58b92bdda}\\
+Confirmatory output SHA-256 & \code{5616d0c6203f762560439ee193f1148133d06baf034d6c34c7250a0a44ce3f0b}\\
+MATH-500 verified labels & \code{4e1bbe0b9eaefdefe4569ec10fdd42daf8f1131d17dfbc410d0faed0b430ad38}\\
+ALG514 verified labels & \code{72217047ff8d41b4a3766e504325821bd07230d7b6dc7636475294ab8e5ffecd}\\
+\bottomrule
+\end{tabularx}
+\end{table}
+The released scripts reconstruct tables from JSONL records, preserve cohort provenance, and fail on missing expected counts. Statistical code implements pair-cluster bootstrap intervals, exact McNemar tests, Holm adjustment, and Wilson intervals. All 49 repository tests pass in an isolated environment. Exact prompts, schemas, and per-record logs accompany the code release rather than being reproduced here.
+
+\section{AI-Assisted Technology Disclosure}
+OpenAI Codex (GPT-5 model family) assisted with prototype code, experimental scaffolding, language polishing, restructuring, and formatting. It is not an author; the human authors remain responsible for the methodology, implementation, experiments, analyses, citations, and claims. The pipeline image was supplied by the author, who should retain its provenance for venue disclosure if required.
+
+\end{document}
