@@ -1,5 +1,8 @@
 \documentclass[sigconf,anonymous]{aamas}
 \usepackage{balance}
+\usepackage{algorithm}
+\usepackage[noend]{algpseudocode}
+\usepackage[most]{tcolorbox}
 \usepackage{tikz}
 \usetikzlibrary{arrows.meta,positioning,shapes.geometric,fit,calc,decorations.pathreplacing}
 \graphicspath{{vendor/}}
@@ -11,11 +14,28 @@
 \definecolor{degrolight}{HTML}{F2F5F8}
 \definecolor{degrogray}{HTML}{5A5A5A}
 
-\newcommand{\takeaway}[1]{%
-  \par\smallskip
-  \noindent\colorbox{degrogray}{\parbox{\dimexpr\columnwidth-2\fboxsep\relax}{\color{white}\bfseries\footnotesize\strut Takeaway}}\par\nointerlineskip
-  \noindent\fcolorbox{degrogray}{degrolight}{\parbox{\dimexpr\columnwidth-2\fboxsep-2\fboxrule\relax}{\footnotesize\bfseries\strut #1\strut}}%
-  \par\smallskip}
+\newtcolorbox{takeawaybox}{
+  enhanced,
+  colback=degrolight,
+  colframe=degrogray,
+  colbacktitle=degrogray,
+  coltitle=white,
+  title=Takeaway,
+  fonttitle=\bfseries\small,
+  fontupper=\bfseries\normalsize,
+  boxrule=0.8pt,
+  arc=3pt,
+  outer arc=3pt,
+  left=7pt,
+  right=7pt,
+  top=6pt,
+  bottom=6pt,
+  toptitle=4pt,
+  bottomtitle=4pt,
+  before skip=6pt,
+  after skip=7pt
+}
+\newcommand{\takeaway}[1]{\begin{takeawaybox}#1\end{takeawaybox}}
 
 \makeatletter
 \gdef\@copyrightpermission{%
@@ -38,7 +58,7 @@
 \author{Anonymous Author(s)}
 
 \begin{abstract}
-Executable mathematical reasoning may run successfully while solving an underconstrained or mistranslated problem.  Execution checks expose syntax, runtime, and arithmetic failures but do not establish that the encoded constraints determine the requested quantity.  We introduce \emph{DeGro}, a neuro-symbolic framework for \emph{target determinacy diagnosis}.  DeGro asks a solver for two feasible assignments that disagree on the target; when they exist, a grounded policy adds only a source-supported constraint that restores determinacy or abstains.  In a preregistered paired evaluation that fixes the formalization while varying source support, DeGro improves repair-or-abstain accuracy for GPT-OSS 20B but not Gemma 4 31B.  Human-verified natural-error studies show that DeGro improves accuracy on the supported MATH-500 cohort, while higher-coverage ALG514 reveals answer-compatible formalization errors.  Detection is much easier than repair, and concrete witnesses add no measurable benefit beyond the verdict.  Target determinacy is therefore an auditable intermediate guardrail, not a proof of source-to-formal faithfulness.
+Executable mathematical reasoning may run successfully while solving an underconstrained or mistranslated problem.  Execution checks expose syntax, runtime, and arithmetic failures but do not establish that the encoded constraints determine the requested quantity.  We introduce \emph{DeGro}, a neuro-symbolic framework for \emph{target determinacy diagnosis}.  DeGro asks a solver for two feasible assignments that disagree on the target; when they exist, a grounded policy adds only a source-supported constraint that restores determinacy or abstains.  On a fixed paired evaluation that varies source support while holding the formalization constant, DeGro improves repair-or-abstain accuracy for GPT-OSS 20B and 120B.  Human-verified natural-error studies show that DeGro improves accuracy on the supported MATH-500 cohort, while higher-coverage ALG514 reveals answer-compatible formalization errors.  Detection is much easier than repair, and concrete witnesses add no measurable benefit beyond the verdict.  Target determinacy is therefore an auditable intermediate guardrail, not a proof of source-to-formal faithfulness.
 \end{abstract}
 \ccsdesc[500]{Computing methodologies~Knowledge representation and reasoning}
 \ccsdesc[500]{Computing methodologies~Intelligent agents}
@@ -47,17 +67,13 @@ Executable mathematical reasoning may run successfully while solving an undercon
 
 \begin{document}
 \maketitle
+% Keep float-to-text spacing natural instead of stretching it to fill a column.
+\raggedbottom
 
 \section{Introduction}
-Large language models increasingly delegate mathematical computation to programs and symbolic solvers.  Program-aided reasoning reduces arithmetic errors, while systems such as SymCode generate self-contained symbolic programs and repair execution failures~\cite{gao2023pal,nezhad2026symcode}.  Yet successful execution is a weak certificate: it shows that an artifact runs, not that the artifact encodes enough of the source problem to justify the requested answer.
+Large language models increasingly delegate mathematical computation to programs and symbolic solvers.  Program-aided reasoning reduces arithmetic errors, while systems such as SymCode generate self-contained symbolic programs and repair execution failures~\cite{gao2023pal,nezhad2026symcode}.  Successful execution, however, does not establish that the encoded constraints determine the requested answer.  A program may run and return a value even when its formalization admits several values of the target.
 
-Consider: ``Ten tasks are divided between A and B. A receives two more than B. How many does A receive?''  A generated model containing only $a+b=10$ is executable and satisfiable, but $(a,b)=(4,6)$ and $(6,4)$ imply different values of the target $a$.  The same model is faithful for the shorter source ``Ten tasks are divided between A and B. How many does A receive?''  In the first case, $a=b+2$ is a missing translation; in the second, adding it fabricates information.  The solver state is identical, but the correct action changes with source support.
-
-Execution success, answer agreement, and scalar confidence do not expose whether the feasible region determines the target or whether the source licenses a proposed repair.  A fluent agent may therefore report one value even when its model permits several.
-
-We propose \method{}, a neuro-symbolic framework that treats this failure as structured diagnosis.  It constructs two renamed copies of the generated specification and asks whether both copies can satisfy the constraints while disagreeing on the target.  A satisfying query yields auditable evidence of ambiguity.  DeGro then separates two causes of that ambiguity through a source-grounded repair-or-abstain gate: repair a supported omission, or decline to invent the missing fact.
-
-\begin{figure}[t]
+\begin{figure}[H]
 \centering
 \begin{tikzpicture}[
   panel/.style={draw=black!45,rounded corners=1.5pt,text width=.255\columnwidth,minimum height=21mm,align=center,inner sep=2.5pt,font=\scriptsize},
@@ -76,27 +92,62 @@ We propose \method{}, a neuro-symbolic framework that treats this failure as str
 \label{fig:paradigms}
 \end{figure}
 
-Our contributions are: \textbf{(1)} a target-centric property, weaker than full model uniqueness, that matches what an answering agent must justify; \textbf{(2)} a two-copy diagnostic and deterministic gate accepting only source-supported, consistent, non-redundant repairs that restore determinacy; and \textbf{(3)} a preregistered paired evaluation, complemented by human-verified natural errors, that separates repair from abstention and exposes model-dependent gains and a detection--repair gap.  We study decision accuracy (\textbf{RQ1}), unsupported additions (\textbf{RQ2}), witness utility (\textbf{RQ3}), and natural-error coverage, detection, and repair (\textbf{RQ4}).
+Consider: ``Ten tasks are divided between A and B. A receives two more than B. How many does A receive?''  A generated model containing only $a+b=10$ is executable and satisfiable, but $(a,b)=(4,6)$ and $(6,4)$ imply different values of the target $a$.  We call this condition \emph{target ambiguity}: feasible assignments disagree on the requested quantity.  It concerns the target rather than uniqueness of the entire assignment, since freedom in other variables need not affect the answer.
+
+Detecting ambiguity does not establish how to resolve it.  The same model faithfully represents the shorter source ``Ten tasks are divided between A and B. How many does A receive?''  For the complete source, adding $a=b+2$ recovers an omitted relation; for the shorter source, the same addition fabricates information.  The formalization and solver verdict are identical, but the correct action changes with source support.  A repair policy must therefore distinguish evidence that the target is ambiguous from evidence that a particular constraint is justified.
+
+We propose \method{}, a neuro-symbolic framework that separates these two decisions.  It first constructs two renamed copies of a generated specification and asks whether both can satisfy the constraints while disagreeing on the target.  A satisfying query provides auditable evidence of ambiguity.  The agent then proposes a constraint with supporting source text, and acceptance checks require consistency, non-redundancy, and restored target determinacy.  If no admissible repair is found, the agent abstains.  The solver guarantee concerns the encoded specification: even a determinate target can be wrong when the target or constraints were mistranslated.
+
+We evaluate this framework at two complementary levels.  A controlled paired benchmark holds the formalization and diagnostic fixed while varying source support, testing whether the policy repairs a supported omission and abstains on its underspecified counterpart.  Human-verified natural-error studies then examine representation coverage, ambiguity detection, and successful grounded repair separately.  The controlled results show improved repair-or-abstain decisions, while the natural errors expose a substantial gap between detecting ambiguity and repairing its cause.  We also test whether concrete witness assignments improve decisions beyond the solver verdict.
+
+\par\addvspace{9pt}
+\noindent\begin{minipage}{\columnwidth}
+\setlength{\parskip}{5pt}
+\noindent\textbf{Our research questions are:}
+
+\noindent\textbf{(RQ1) Decision quality and tradeoffs.} How do target-determinacy diagnosis and source grounding affect repair-or-abstain accuracy and the tradeoff between supported repair and unsupported additions?
+
+\noindent\textbf{(RQ2) Paired source sensitivity.} When the formalization and diagnostic are held fixed, can an agent both repair the source-supported omission and abstain on the underspecified member of the same pair?
+
+\noindent\textbf{(RQ3) Practical bottlenecks.} How do representation coverage, ambiguity detection, and grounded repair limit effectiveness on natural errors, and do concrete witnesses improve controlled repair decisions beyond the verdict?
+\end{minipage}
+\par\addvspace{10pt}
+
+\noindent\begin{minipage}{\columnwidth}
+\takeaway{DeGro checks whether the encoded constraints determine the requested target, accepts only source-supported repairs, and otherwise abstains.}
+
+\par\addvspace{5pt}
+\setlength{\parskip}{5pt}
+\noindent\textbf{Our main contributions are:}
+
+\noindent\textbf{(1) A target-determinacy-guided repair-or-abstain framework.} We introduce DeGro, which combines two-copy target-determinacy diagnosis with source-grounded repair, deterministic acceptance gates, and explicit abstention (RQ1).
+
+\noindent\textbf{(2) A controlled paired benchmark for grounded repair decisions.} We construct matched cases that hold the formalization fixed while varying whether the source supports the missing constraint, isolating supported repair from unsupported completion (RQ2).
+
+\noindent\textbf{(3) A multi-stage empirical audit of executable reasoning.} We combine controlled and human-verified natural-error evaluations to separate representation coverage, ambiguity detection, and grounded repair; we additionally test whether concrete witnesses improve decisions (RQ3).
+
+\noindent The formal guarantee concerns $F$; the empirical answers concern model and policy behavior.
+\end{minipage}
 
 \section{Related Work}
-\paragraph{Executable reasoning and learned verification.}
-Chain-of-thought externalizes intermediate reasoning~\cite{wei2022cot}, while PAL and Program-of-Thoughts delegate computation to generated programs~\cite{gao2023pal,chen2023pot}.  Toolformer and ReAct study general tool use~\cite{schick2023toolformer,yao2023react}; MathCoder and ToRA specialize executable actions to mathematics~\cite{wang2024mathcoder,gou2024tora}.  Faithful chain-of-thought further makes symbolic execution part of the rationale~\cite{lyu2023faithful}.  SymCode makes a symbolic program the central reasoning artifact and repairs runtime failures~\cite{nezhad2026symcode}.  These systems improve calculational reliability, but execution success does not imply that the artifact contains enough constraints to justify its requested target.  DeGro addresses this complementary post-generation failure: a program can parse, run, and return a value while its feasible region permits several answers.
+\subsection{Executable Mathematical Reasoning}
+PAL and Program-of-Thoughts separate language-based reasoning from program execution to reduce computational errors~\cite{gao2023pal,chen2023pot}.  MathCoder and ToRA integrate code and tool calls into mathematical problem solving~\cite{wang2024mathcoder,gou2024tora}, while faithful chain-of-thought connects generated rationales to executable symbolic procedures~\cite{lyu2023faithful}.  SymCode is particularly close to our setting: it represents mathematical reasoning as a SymPy program and uses execution feedback to repair programmatic failures~\cite{nezhad2026symcode}.  These approaches motivate an additional check after successful execution.  A generated artifact may return a value even though its constraints admit other values of the requested quantity.  DeGro checks this property of the encoded feasible region and routes ambiguous specifications to grounded repair or abstention.
 
-Outcome verifiers rank candidate answers, and process supervision evaluates intermediate steps~\cite{cobbe2021verifiers,uesato2022feedback,lightman2023verify}.  Self-verification, Self-Refine, and CRITIC instead ask the model to inspect or revise its own output~\cite{weng2023selfverification,madaan2023selfrefine,gou2024critic}.  Such revision can improve answer accuracy, but intrinsic self-correction is unreliable without an external signal~\cite{huang2024selfcorrect}.  DeGro supplies a mechanical, target-specific signal rather than a scalar score or free-form critique.  Its witness refutes determinacy of the representation; it does not certify a replacement constraint.
+Outcome verification and process supervision assess candidate solutions or intermediate reasoning steps~\cite{cobbe2021verifiers,uesato2022feedback,lightman2023verify}.  Self-Refine uses model-generated feedback, and CRITIC incorporates external tools into revision~\cite{madaan2023selfrefine,gou2024critic}; evidence on intrinsic self-correction shows the limits of revision without reliable external feedback~\cite{huang2024selfcorrect}.  DeGro contributes a specific solver observation: two feasible assignments disagree on the target.  This observation establishes ambiguity under the representation, independently of the predicted answer, but does not identify which source constraint should be added.
 
-\paragraph{Relational diagnosis and repair.}
-Self-composition reduces a two-execution property to an ordinary safety query by composing a program with a renamed copy~\cite{barthe2004selfcomposition,terauchi2005safety}.  Product programs and Cartesian Hoare logic make relational arguments modular~\cite{barthe2011product,sousa2016cartesian}, while hyperproperties and HyperLTL generalize reasoning from individual traces to sets of traces~\cite{clarkson2010hyperproperties,clarkson2014hyperltl,finkbeiner2015modelchecking}.  DeGro uses the same two-copy idea for a different relation: agreement on a mathematical target across all feasible assignments.  This query is weaker than full state uniqueness and therefore better aligned with what an answering agent must establish.
+\subsection{Symbolic Diagnosis and Relational Verification}
+Recent work addresses semantic failures that survive execution.  ReLoop tests optimization formulations through solver-based parameter perturbations~\cite{lian2026reloop}.  SymDiag translates reasoning steps into constraints and uses satisfiability and entailment checks to localize defects, with a Self-Auditor to distinguish translation errors from reasoning errors~\cite{cui2026symdiag}.  Minimal-core-guided repair instead returns an unsatisfiable subset of generated constraints as evidence for revising inconsistent translations~\cite{sarkar2026cores,liffiton2008mus}.  DeGro focuses on a complementary condition: the specification is satisfiable, but its feasible assignments disagree on the requested target.  Its diagnosis concerns the specification as a whole rather than the validity of individual derivation steps, and its additive repair policy requires support from the original source.
 
-Recent symbolic systems diagnose semantic defects that ordinary execution misses.  ReLoop perturbs parameters to expose faulty optimization models that still execute~\cite{lian2026reloop}.  SymDiag performs step-level satisfiability and entailment checks and returns structured evidence~\cite{cui2026symdiag}.  Core-guided methods repair overconstrained formalizations, building on minimal-unsatisfiable-subset analysis~\cite{sarkar2026cores,liffiton2008mus}.  DeGro occupies the underconstrained regime: $F$ is satisfiable, yet two feasible models disagree on $q$.  Its mechanical refutation is related to counterexample-guided abstraction and synthesis~\cite{clarke2000cegar,solarlezama2006cegis} and to failure-inducing-input reduction~\cite{zeller2002simplifying}, but establishes ambiguity rather than revealing the correct edit.
+The two-copy construction builds on self-composition and product programs, which reduce relational verification to queries over renamed copies~\cite{barthe2004selfcomposition,terauchi2005safety,barthe2011product}.  DeGro instantiates this established technique as target agreement across feasible assignments.  Agreement on the target is weaker than uniqueness of the full assignment: nuisance variables may remain free without making the answer ambiguous.  Counterexample-guided refinement and synthesis likewise use solver evidence to guide changes~\cite{clarke2000cegar,solarlezama2006cegis}.  Here, however, a counterexample refutes target determinacy without supplying a semantically justified edit.  Our contribution is the integration of this diagnosis with a source-sensitive repair policy and its evaluation, rather than a new relational verification primitive.
 
-\paragraph{Grounding, abstention, and faithfulness.}
-Selective prediction formalizes risk--coverage tradeoffs under a reject option~\cite{elyaniv2010foundations,geifman2017selective,geifman2019selectivenet,cortes2016rejection}, while learning-to-defer routes difficult cases to another decision-maker~\cite{mozannar2020defer} and conformal risk control calibrates selected actions~\cite{angelopoulos2024conformal}.  Language-model self-knowledge and semantic uncertainty provide confidence signals~\cite{kadavath2022know,kuhn2023semantic}.  DeGro instead asks whether the encoded constraints logically permit several target values and whether the source licenses a restriction.  An \textsc{unknown} solver result is a coverage failure, not evidence of ambiguity; an ambiguous target requires repair, clarification, or abstention even when a language model is confident.
+\subsection{Grounded Repair, Abstention, and Faithfulness}
+Classical diagnosis, abductive inference, and formal model repair provide foundations for identifying defects and modifying specifications to satisfy a desired property~\cite{reiter1987diagnosis,dillig2013abduction,attie2008modelrepair}.  LLM-based repair extends this direction to declarative formal specifications~\cite{alhanahnah2024alloyrepair}.  Restoring determinacy alone is insufficient in our setting, since a guessed equality can force a unique target.  DeGro therefore requests a source-supported constraint and checks consistency, non-redundancy, and restored determinacy before acceptance.  These formal gates verify the effect of the edit; source support remains a separate semantic requirement.
 
-Classical diagnosis identifies faulty assumptions, and abduction searches for hypotheses that restore a desired property~\cite{reiter1987diagnosis,dillig2013abduction}.  SAT-based model repair changes a transition system until it satisfies a specification~\cite{attie2008modelrepair}, and LLM-based work repairs declarative Alloy models~\cite{alhanahnah2024alloyrepair}.  Our admissible edit is intentionally narrower: the proposal must cite its source, preserve consistency, add information not already entailed, and restore target determinacy.  This design prevents the trivial ``repair'' of pinning the target to a guessed answer.
+Selective prediction studies when to withhold an answer under a risk--coverage tradeoff~\cite{elyaniv2010foundations,geifman2017selective}, and semantic uncertainty estimates uncertainty in language-model outputs~\cite{kuhn2023semantic}.  DeGro bases its repair-or-abstain decision on two distinct questions: whether the encoded target is determinate and whether the source supports a constraint that resolves ambiguity.  MIRA-Math is directly relevant because it evaluates requesting and integrating necessary missing information~\cite{albateh2026mira}.  We adapt its validated latent states into matched sources with identical formalizations but different support for repair, isolating the decision to recover an omitted relation or abstain from unsupported completion.
 
-Autoformalization and theorem proving provide increasingly capable formal artifacts~\cite{wu2022autoformalization,jiang2024mma,jiang2023draft,yang2023leandojo,azerbayev2024llemma,xin2024deepseekprover}.  Benchmarks including miniF2F, ProofNet, Lean Workbook, and FormalMATH broaden the formal evaluation substrate~\cite{zheng2022minif2f,azerbayev2023proofnet,ying2024leanworkbook,yu2025formalmath}, but prover acceptance alone does not establish preservation of source meaning.  MIRA-Math studies questions requiring a hidden necessary fact~\cite{albateh2026mira}.  We use its validated latent states to construct matched repair and abstention cases while withholding the latent answer from the repair model.  The resulting evaluation focuses on grounded representation repair rather than theorem acceptance or information exchange.
+Autoformalization also separates formal validity from preservation of natural-language meaning~\cite{wu2022autoformalization,azerbayev2023proofnet}.  DeGro's guarantee is similarly representation-relative: a determinate specification can still contain a wrong target or an unsupported constraint.  Our paired and human-verified natural-error evaluations therefore distinguish determinacy diagnosis, grounded repair, and answer accuracy rather than treating a solver verdict as proof of source-to-formal faithfulness.
 
-\section{Method}
+\section{Methodology}
 DeGro is a two-stage framework: it first diagnoses whether a generated specification determines the requested target, then converts an ambiguous verdict into either a source-grounded repair or a principled abstention.  Figure~\ref{fig:workflow} summarizes the complete loop.
 
 \subsection{Problem Setup, Determinacy, and Soundness}
@@ -129,7 +180,25 @@ The agent emits one typed \textsc{ModelSpec} with variable sorts and bounds, sou
 \subsection{Stage I: Target-Determinacy Diagnosis}
 DeGro first tests $\mathrm{SAT}(F)$, returning \textsc{inconsistent} or \textsc{unknown} when appropriate, and otherwise evaluates Eq.~\eqref{eq:query}.  Unsatisfiability permits an answer under $F$; satisfiability returns two assignments with different targets and triggers repair.  This stage is deterministic: the model proposes $F$ but does not judge determinacy.
 
-The diagnostic record stores the base satisfiability verdict, the two-copy verdict, normalized target values, and complete witness assignments when available.  Unsupported theories and timeouts are recorded rather than coerced into Boolean outcomes.  This matters operationally: \textsc{unknown} indicates an inconclusive solver, whereas \textsc{ambiguous} is a positive certificate that two feasible targets exist.  Only the latter licenses a repair attempt.
+\begin{algorithm}[H]
+\caption{Target-determinacy verification}
+\label{alg:verify}
+\footnotesize
+\begin{algorithmic}[1]
+\Require Typed specification $F=(V,D,C,q)$
+\Ensure Status and optional witness pair
+\State $r_0 \gets \Call{CheckSat}{D\land C}$
+\State \textbf{if} $r_0=\textsc{unsat}$ \textbf{return} \textsc{inconsistent}
+\State \textbf{if} $r_0\neq\textsc{sat}$ \textbf{return} \textsc{unknown}
+\State $\Phi\gets F^{(1)}\land F^{(2)}\land(q^{(1)}\neq q^{(2)})$ using disjoint copies
+\State $(r_1,M) \gets \Call{CheckSat}{\Phi}$
+\State \textbf{if} $r_1=\textsc{unsat}$ \textbf{return} \textsc{determinate}
+\State \textbf{if} $r_1\neq\textsc{sat}$ \textbf{return} \textsc{unknown}
+\State \Return $\textsc{ambiguous},\Call{ProjectWitnesses}{M}$
+\end{algorithmic}
+\end{algorithm}
+
+The record stores both solver verdicts, normalized target values, and complete witnesses when available.  Only \textsc{ambiguous} licenses repair; unsupported theories and timeouts are never coerced into Boolean outcomes.
 
 \subsection{Stage II: Grounded Repair or Abstention}
 The repair model receives $P,C,q$ and the witness pair, then returns \textsc{add-constraint} with an exact supporting span or \textsc{abstain}.  A candidate must compile, cite text in $P$ (or a declared domain rule), preserve satisfiability, be non-redundant, and restore determinacy.  DeGro uses at most two rounds and otherwise returns \textsc{underspecified}.  Exact-span provenance is auditable but does not prove that the cited text was translated correctly.
@@ -189,9 +258,15 @@ Underspecified & no grounded repair & ask or abstain\\
 
 In interactive use, \textsc{underspecified} can request clarification; the benchmark scores abstention because no information channel exists.  Separating generation, deterministic verification, and repair reduces self-confirmation and yields an audit trail.  Interfaces should report that ``the encoded constraints determine the target,'' not that the source problem was formally proved.
 
-\section{Experiments and Results}
-\subsection{Experimental Setup}
-\paragraph{Controlled paired benchmark.}
+\section{Experiments}
+\subsection{Setup}
+\paragraph{Compared systems and model settings.}
+To answer RQ1, we compare \textsc{self-review}, \textsc{grounded self-review}, \textsc{determinacy-guided repair}, and \textsc{DeGro} under the same initial formalization and two-attempt budget.  GPT-OSS 20B and 120B use medium reasoning, temperature 1.0, and frozen prompts; all $120\times2\times4=960$ records per model are present.  The 120B substitution was selected after the original two-model plan and is therefore a post-hoc model comparison on the untouched fixed set.  The paired construction tests source-sensitive behavior for RQ2, and a disjoint 100-pair exploratory study compares verdict-only and witness variants for RQ3.
+
+Self-review receives the executable artifact and asks for correction without formal diagnosis.  Grounded self-review adds the same source-citation requirement used by DeGro.  Determinacy-guided repair supplies the typed solver verdict but no grounding interaction, isolating the diagnostic signal.  DeGro combines that signal with source evidence and applies the same deterministic acceptance gate used in scoring.  Since all methods begin from an identical $F^-$, differences cannot be attributed to initial-generation quality.
+
+\subsection{Data}
+\paragraph{Controlled paired benchmark (RQ2).}
 For each gold specification $F^*=\{c_1,\ldots,c_k,c^*\}$, we form $F^-=F^*\setminus\{c^*\}$ and retain it only if $F^*$ determines the target while $F^-$ is satisfiable and target-ambiguous.  Each pair shares $F^-$: an \textsc{omission} source contains the fact for $c^*$ and requires repair, whereas an \textsc{underspecified} source omits it and requires abstention.  The verifier state alone therefore cannot reveal the label.  After excluding an 80-pair pilot and 100-pair development set, we froze 120 confirmatory MIRA-Math pairs (240 cases, five families)~\cite{albateh2026mira}; the combined 300-pair analysis is secondary.
 
 \paragraph{Integrity checks.}
@@ -199,33 +274,31 @@ The builder imports the typed missing fact from MIRA-Math rather than asking an 
 
 The families exercise distinct structures.  Linear separation removes a relation that distinguishes otherwise compatible solutions; rank-deficient systems preserve several degrees of freedom.  Graph path sums and Chinese-remainder reconstruction combine discrete equalities with domain restrictions, while moment problems couple polynomial summaries within the supported degree bound.  Family-stratified results check that one easy template does not dominate the aggregate.  Because every retained deletion is mechanically verified as target-critical, the benchmark does not mislabel an irrelevant omission as a repair opportunity.
 
-\paragraph{Methods and hypotheses.}
-We compare \textsc{self-review}, \textsc{grounded self-review}, \textsc{determinacy-guided repair}, and \textsc{DeGro} under the same initial formalization and two-attempt budget.  GPT-OSS 20B and Gemma 4 31B use medium reasoning, temperature 1.0, and frozen prompts; all $120\times2\times4=960$ records per model are present.  A disjoint 100-pair exploratory study compares verdict-only and witness variants for RQ3.
-
-Self-review receives the executable artifact and asks for correction without formal diagnosis.  Grounded self-review adds the same source-citation requirement used by DeGro.  Determinacy-guided repair supplies the typed solver verdict but no grounding interaction, isolating the diagnostic signal.  DeGro combines that signal with source evidence and applies the same deterministic acceptance gate used in scoring.  Since all methods begin from an identical $F^-$, differences cannot be attributed to initial-generation quality.
-
-The preregistered primary comparison tests whether DeGro improves FDA over grounded self-review.  We test it separately for each model with exact paired McNemar tests and Holm correction across the two tests.  We report the paired percentage-point difference with a pair-cluster bootstrap 95\% interval.  Official model documentation describes configurable reasoning effort and structured output support for GPT-OSS~\cite{openai2025gptoss}.
-
-\paragraph{Metrics and analysis.}
-Repair success rate (RSR) requires a grounded, functionally correct addition; correct abstention rate (CAR) rewards abstention on underspecified cases.  Final decision accuracy (FDA) averages the balanced case types, over-repair rate is $1-\mathrm{CAR}$, and unsupported repair (UR) is the share of additions lacking source support.  Pair-cluster confidence intervals preserve within-pair dependence; semantic, functional, and grounded outcomes remain separate.
-
 \paragraph{Natural-error study.}
 For ecological validity, GPT-OSS 20B generated one Structured SymCode specification per MATH-500 problem without injected errors.  We froze all parsed, solver-supported, conclusive cases before annotation or outcome inspection and reused each initial specification across methods.  Model-proposed labels and evidence were hidden from verifier outputs, then fully checked by two reviewers: all 292 MATH-500 and 503 ALG514 cases.  Because separate pre-discussion human labels were not retained, we claim human verification, not independent annotation or inter-annotator agreement.  Labels distinguish correct, missing/wrong/extra constraint, wrong domain, wrong target, computational error, and other; only source-supported target-critical omissions enter the primary subset.
 
-For MATH-500, GPT-OSS 20B and Gemma 4 31B first proposed labels under a shared prompt while blinded to determinacy, witnesses, repairs, and method outcomes.  Reviewers inspected all 292 Gemma-proposed labels and accepted the adjudicated result.  For ALG514, GPT-OSS 120B proposed 503 labels and re-adjudicated all 22 cases where semantic status disagreed with verifier-compatible numerical status; reviewers then inspected all final labels.  Detector ambiguity could not define the positive class: a positive required a source-supported omission that can change the requested target.
+For MATH-500, two reviewers inspected all 292 final labels from an archived model-assisted review.  GPT-OSS 120B subsequently produced a fresh blinded proposal for every case under the same prompt; it agreed with the human-verified primary label on 207 of 292 cases (70.9\%), illustrating why model proposals were not treated as ground truth.  For ALG514, GPT-OSS 120B proposed 503 labels and re-adjudicated all 22 cases where semantic status disagreed with verifier-compatible numerical status; reviewers then inspected all final labels.  Detector ambiguity could not define the positive class: a positive required a source-supported omission that can change the requested target.
 
-Primary natural-error measures are ambiguity recall and end-to-end grounded repair; secondary measures include precision, false ambiguity/repair, and preservation of correct controls.  Proportions use Wilson 95\% intervals and paired answer accuracy uses exact McNemar.  Numeric agreement alone is not repair success.
+For RQ3, primary natural-error measures are ambiguity recall and end-to-end grounded repair, with conclusive solver coverage reported over all inputs; secondary measures include precision, false ambiguity/repair, and preservation of correct controls.  Proportions use Wilson 95\% intervals and paired answer accuracy uses exact McNemar.  Numeric agreement alone is not repair success.
 
 The original problem is the unit of analysis, and every method reuses its shared initial formalization.  Recall asks how often DeGro identifies verified target-critical omissions; precision asks how often an ambiguous verdict corresponds to that class.  Conditional repair counts accepted grounded fixes among detected omissions, whereas end-to-end repair retains every verified omission in the denominator.  This distinction exposes the gap between finding ambiguity and recovering the missing source relation.
 
 MATH-500 contributes 292 of 500 conclusive, solver-supported formalizations; ALG514 contributes 503 of 514.  Exclusions are reported in the coverage results.  DRAW-1K is omitted because corrected-verifier outcomes and final human labels were incomplete.
 
-\subsection{Results}
-Table~\ref{tab:main} reports the preregistered 120-pair analysis.  For GPT-OSS 20B, DeGro raises FDA from 90.0\% to 95.0\% relative to grounded self-review, a $+5.0$-point effect (95\% CI $[0.4,9.6]$; discordant counts 22 versus 10; exact McNemar $p=.050$, Holm $p=.100$).  For Gemma 4 31B, FDA changes from 97.9\% to 97.5\%, a $-0.4$-point effect (95\% CI $[-3.3,2.5]$; 5 versus 6; $p=1.0$).  Thus the confirmatory result supports a practically meaningful GPT-OSS gain but not a model-general advantage.  The strongest Gemma result is the verdict-only determinacy method (99.6\% FDA), showing that the additional grounding interaction can itself introduce errors.
+\subsection{Main Experiment}
+\paragraph{Primary comparison.}
+The preregistered 20B comparison tests whether DeGro improves FDA over grounded self-review.  We apply the same exact paired McNemar test to the post-hoc 120B replacement and report Holm correction across the two model-size results.  Paired percentage-point differences use pair-cluster bootstrap 95\% intervals.  Official model documentation describes configurable reasoning effort and structured output support for GPT-OSS~\cite{openai2025gptoss}.
 
-\begin{table}[t]
+\paragraph{Metrics and analysis.}
+For RQ1, repair success rate (RSR) requires a grounded, functionally correct addition; correct abstention rate (CAR) rewards abstention on underspecified cases, and final decision accuracy (FDA) averages the balanced case types.  Over-repair rate is $1-\mathrm{CAR}$, and unsupported repair (UR) is the share of additions lacking source support; UR is interpreted alongside RSR because abstaining on every case would trivially eliminate additions.  Pair-cluster confidence intervals preserve within-pair dependence; semantic, functional, and grounded outcomes remain separate.
+
+\section{Results}
+\paragraph{RQ1: repair-or-abstain decisions.}
+Table~\ref{tab:main} reports the fixed 120-pair analysis.  For GPT-OSS 20B, DeGro raises FDA from 90.0\% to 95.0\% relative to grounded self-review, a $+5.0$-point effect (95\% CI $[0.4,9.6]$; discordant counts 22 versus 10; exact McNemar $p=.050$).  For GPT-OSS 120B, FDA rises from 87.5\% to 93.8\%, a $+6.25$-point effect (95\% CI $[1.7,10.8]$; 24 versus 9; $p=.0135$).  Holm correction across these two model-specific comparisons gives $p=.0501$ and $p=.0271$, respectively.  The 20B result follows the preregistered analysis; the 120B replacement is post-hoc but uses the same untouched cases, prompts, and scoring.
+
+\begin{table}[H]
 \centering
-\caption{Confirmatory results on 120 preregistered pairs per model.  UR is unsupported additions divided by all proposed additions.}
+\caption{Results on the fixed 120-pair set.  The 20B comparison was preregistered; the 120B replacement is post-hoc.  UR is unsupported additions divided by all proposed additions.}
 \label{tab:main}
 \resizebox{\columnwidth}{!}{%
 \begin{tabular}{llrrrrr}
@@ -237,24 +310,29 @@ GPT-OSS & Self-review & 93.3 & 87.5 & 90.4 & 12.5 & 15.2\\
  & Determinacy-guided & 86.7 & 99.2 & 92.9 & 0.8 & 6.3\\
  & DeGro & 92.5 & 97.5 & \textbf{95.0} & 2.5 & 4.3\\
 \midrule
-Gemma 4 & Self-review & 100.0 & 93.3 & 96.7 & 6.7 & 6.3\\
-31B & Grounded self-review & 100.0 & 95.8 & 97.9 & 4.2 & 4.0\\
- & Determinacy-guided & 100.0 & 99.2 & \textbf{99.6} & 0.8 & 0.8\\
- & DeGro & 100.0 & 95.0 & 97.5 & 5.0 & 4.8\\
+GPT-OSS & Self-review & 100.0 & 55.0 & 77.5 & 45.0 & 31.0\\
+120B & Grounded self-review & 95.8 & 79.2 & 87.5 & 20.8 & 17.9\\
+ & Determinacy-guided & 98.3 & 84.2 & 91.2 & 15.8 & 15.1\\
+ & DeGro & 97.5 & 90.0 & \textbf{93.8} & 10.0 & 10.7\\
 \bottomrule
 \end{tabular}
 }
 \end{table}
 
-\paragraph{Secondary cumulative analysis.} Across all 300 pairs, DeGro versus grounded self-review changes FDA from 91.2\% to 96.2\% for GPT-OSS (difference $+5.0$ points, 95\% CI $[2.3,7.7]$; McNemar $p<.001$) and from 96.2\% to 97.8\% for Gemma (difference $+1.7$ points, 95\% CI $[-0.2,3.5]$; $p=.099$).  These cumulative estimates include development data and do not replace the 120-pair confirmatory tests.
+\paragraph{RQ1: source-grounded acceptance.}
+On the same confirmatory pairs, 20B DeGro lowers UR from 16.7\% to 4.3\% and raises CAR from 80.0\% to 97.5\%, while RSR falls from 100.0\% to 92.5\%.  For 120B, DeGro lowers UR from 17.9\% to 10.7\%, raises CAR from 79.2\% to 90.0\%, and raises RSR from 95.8\% to 97.5\%.  Thus the conservative action boundary improves for both sizes, although 20B trades some supported repairs for fewer unsupported additions.
 
-\paragraph{Human-verified natural errors.}
+\section{Analysis}
+\subsection{Cumulative and Natural-Error Analysis}
+\paragraph{Secondary cumulative analysis.} Across all 300 pairs, DeGro versus grounded self-review changes FDA from 91.2\% to 96.2\% for 20B (difference $+5.0$ points, 95\% CI $[2.3,7.8]$; McNemar $p<.001$) and from 88.3\% to 95.7\% for 120B (difference $+7.3$ points, 95\% CI $[4.7,10.0]$; $p<.001$).  These cumulative estimates include development data and do not replace the fixed 120-pair analysis.
+
+\paragraph{RQ3: human-verified natural errors.}
 On the supported MATH-500 cohort, 158 of 292 formalizations are correct; the remaining labels are 69 wrong-target, 32 wrong-constraint, 24 target-critical missing-constraint, eight extra-constraint, and one wrong-domain.  The detector identifies 21 of 24 target-critical omissions (87.5\% recall, 95\% Wilson CI $[69.0,95.7]$) but precision is 17.4\% ($21/121$), and only one omission is successfully repaired end to end ($1/24=4.2\%$).  DeGro nevertheless raises cohort answer accuracy from 49.3\% ($144/292$) to 53.8\% ($157/292$); 16 discordant cases favor DeGro and three favor the structured baseline (exact McNemar $p=.0044$).  This prevalence is conditional on 58.4\% solver-fragment coverage.
 
 ALG514~\cite{upadhyay2017derivations} provides a higher-coverage contrast: 503 of 514 cases enter the verified cohort, of which 477 are correct, 11 wrong-target, eight missing-constraint, and seven wrong-constraint.  The semantic-error rate is 5.2\% (95\% Wilson CI $[3.6,7.5]$).  Structured Solver and DeGro score 94.2\% ($484/514$) and 94.4\% ($485/514$), respectively, using order-invariant subset matching with $10^{-3}$ tolerance for ALG514's all-unknown, rounded solution vectors.  Nine numerically compatible answers retain a human-verified semantic error, directly showing that answer-only evaluation can conceal representation failures.  The one-case DeGro gain on ALG514 is exploratory.
 
-\paragraph{Detection--repair decomposition.}
-The natural-error results separate three questions that an aggregate answer score conflates.  First, representation coverage asks whether the structured language and solver can express and decide the generated model.  Second, ambiguity detection asks whether target-divergent assignments exist within that model.  Third, grounded repair asks whether the original source supports a new constraint that removes the disagreement.  MATH-500 performs moderately on the first stage (292 of 500), strongly on recall at the second (21 of 24 omissions), and poorly on the third (one of 24).  The bottleneck is therefore not simply detecting non-uniqueness; it is converting a solver counterexample into a semantically correct, cited edit.
+\paragraph{RQ3: detection--repair decomposition.}
+The RQ3 results separate three stages that an aggregate answer score conflates.  First, representation coverage asks whether the structured language and solver can express and decide the generated model.  Second, ambiguity detection asks whether target-divergent assignments exist within that model.  Third, grounded repair asks whether the original source supports a new constraint that removes the disagreement.  MATH-500 performs moderately on the first stage (292 of 500), strongly on recall at the second (21 of 24 omissions), and poorly on the third (one of 24).  Thus RQ3 identifies conversion of a solver counterexample into a semantically correct, cited edit as the main bottleneck on this cohort.
 
 Precision provides the complementary view.  Only 21 of 121 ambiguous MATH-500 specifications are verified target-critical omissions.  The remaining ambiguous cases include wrong targets, wrong constraints, and representations whose feasible set is broad for reasons other than a missing source fact.  These are legitimate warnings about $F$ but not opportunities for additive repair.  A high-recall detector can consequently be useful for routing while still requiring a strict gate: automatically treating every ambiguity as an omission would reproduce the over-repair behavior observed in generic self-review.
 
@@ -276,18 +354,18 @@ FDA assigns equal mass to repair on complete sources and abstention on underspec
   }
   \fill[black!38] (.85,0) rectangle (1.28,1.10);
   \fill[degroblue] (1.35,0) rectangle (1.78,1.65);
-  \fill[black!38] (2.75,0) rectangle (3.18,1.969);
-  \fill[degroblue] (3.25,0) rectangle (3.68,1.925);
+  \fill[black!38] (2.75,0) rectangle (3.18,.825);
+  \fill[degroblue] (3.25,0) rectangle (3.68,1.518);
   \node[above,font=\tiny] at (1.065,1.10) {90.0};
   \node[above,font=\tiny,text=degroblue] at (1.565,1.65) {\bfseries 95.0};
-  \node[above,font=\tiny] at (2.965,1.969) {97.9};
-  \node[above,font=\tiny,text=degroblue] at (3.465,1.925) {\bfseries 97.5};
+  \node[above,font=\tiny] at (2.965,.825) {87.5};
+  \node[above,font=\tiny,text=degroblue] at (3.465,1.518) {\bfseries 93.8};
   \node[align=center] at (1.315,-.28) {GPT-OSS\\20B};
-  \node[align=center] at (3.215,-.28) {Gemma 4\\31B};
+  \node[align=center] at (3.215,-.28) {GPT-OSS\\120B};
   \node[draw=black!38,fill=black!38,minimum width=3mm,minimum height=2mm,label={[font=\tiny]right:Grounded self-review}] at (.9,-.82) {};
   \node[draw=degroblue,fill=degroblue,minimum width=3mm,minimum height=2mm,label={[font=\tiny]right:DeGro}] at (2.9,-.82) {};
   \draw[decorate,decoration={brace,amplitude=3pt},degrogreen] (1.83,1.10) -- (1.83,1.65) node[midway,right=3pt,font=\tiny,text=degrogreen]{\bfseries +5.0};
-  \draw[decorate,decoration={brace,amplitude=3pt},degroorange] (3.73,1.969) -- (3.73,1.925) node[midway,right=3pt,font=\tiny,text=degroorange]{\bfseries -0.4};
+  \draw[decorate,decoration={brace,amplitude=3pt},degrogreen] (3.73,.825) -- (3.73,1.518) node[midway,right=3pt,font=\tiny,text=degrogreen]{\bfseries +6.3};
 \end{tikzpicture}
 \end{minipage}\hfill
 \begin{minipage}[t]{.49\textwidth}
@@ -309,12 +387,13 @@ FDA assigns equal mass to repair on complete sources and abstention on underspec
   \node[align=center,font=\tiny,text=black!65] at (2.1,-.25) {Coverage is measured over all 500 problems; recall and repair\\are measured over the 24 verified target-critical omissions.};
 \end{tikzpicture}
 \end{minipage}
-\caption{Two complementary views of the evidence.  (a) DeGro improves confirmatory FDA by five points for GPT-OSS 20B but not for Gemma 4 31B; the axis begins at 80\% to make the paired differences visible.  (b) Natural-error evaluation has a pronounced detection--repair gap: most target-critical omissions are detected, but only one is repaired end to end.}
-\Description{Panel a is a grouped bar chart comparing grounded self-review and DeGro final decision accuracy for GPT-OSS 20B and Gemma 4 31B. Panel b shows three horizontal bars for MATH-500 solver-fragment coverage, ambiguity recall, and end-to-end repair success, with counts and denominators.}
+\caption{Two complementary views of the evidence.  (a) DeGro improves FDA by 5.0 points for GPT-OSS 20B and 6.3 points for GPT-OSS 120B; the axis begins at 80\% to make the paired differences visible.  (b) Natural-error evaluation has a pronounced detection--repair gap: most target-critical omissions are detected, but only one is repaired end to end.}
+\Description{Panel a is a grouped bar chart comparing grounded self-review and DeGro final decision accuracy for GPT-OSS 20B and 120B. Panel b shows three horizontal bars for MATH-500 solver-fragment coverage, ambiguity recall, and end-to-end repair success, with counts and denominators.}
 \label{fig:result_summary}
 \end{figure*}
 
-\paragraph{Witness ablation.}
+\subsection{Witness Ablation and Family Effects}
+\paragraph{RQ3: witness ablation.}
 On the exploratory 100-pair set, DeGro scores 98.5 FDA versus 97.5 with witnesses (five versus three discordances favoring DeGro; Holm-adjusted $p=.727$).  A minimal witness raises RSR by six points over a bare verdict, also non-significantly ($p=.714$).  Concrete assignments therefore add no measurable benefit here: the typed verdict can be exposed by default and witnesses retained for audit or harder cases.
 
 \begin{table}[t]
@@ -337,10 +416,10 @@ DeGro+witnesses & 97 & 98 & 97.5 & 2\\
 \end{tabular}
 \end{table}
 
-This negative result narrows the contribution.  Every controlled instance contains one target-critical omission, so non-uniqueness already localizes the relevant defect; witness assignments add tokens but little new information.  Specifications with several missing facts or many nuisance dimensions may differ, but these data support determinacy-guided grounding, not a universal benefit from exposing concrete assignments.
+This part of RQ3 is answered only on the exploratory controlled set.  Every instance contains one target-critical omission, so non-uniqueness already localizes the relevant defect; witness assignments add tokens but little new information.  Specifications with several missing facts or many nuisance dimensions may differ, but these data support determinacy-guided grounding, not a universal benefit from exposing concrete assignments.
 
-\paragraph{Error patterns and cross-model behavior.}
-GPT-OSS generic review repairs over 92\% of omissions on the cumulative set but achieves at most 87\% CAR.  A bare verdict raises CAR to 98\% while lowering RSR to 87.7\%; DeGro restores repairs, preserves 99\% CAR, and reduces unsupported additions from 12.5\% to 3.4\% relative to grounded self-review.  Gemma repairs every omission; its bare verdict reaches 99.0 FDA while DeGro reaches 97.8, with unsupported-addition rates of 2.0\% and 4.2\%.  Family effects are concentrated: GPT gains 20.8 points on linear separation but DeGro reaches only 87.5\% on rank-deficient systems.  The aggregate effect is therefore neither uniform nor model-independent.
+\paragraph{RQ1: unsupported additions and repair tradeoffs.}
+For 20B, a bare verdict raises CAR to 98.0\% while lowering RSR to 87.7\%; DeGro restores repairs, reaches 99.0\% CAR, and reduces unsupported additions from 12.5\% to 3.4\% relative to grounded self-review.  For 120B, DeGro raises cumulative CAR from 79.7\% to 93.3\% and RSR from 97.0\% to 98.0\%, while reducing unsupported additions from 17.3\% to 7.0\%.  Family effects remain concentrated rather than uniform.
 
 \begin{table}[t]
 \centering
@@ -349,21 +428,22 @@ GPT-OSS generic review repairs over 92\% of omissions on the cumulative set but 
 \small
 \begin{tabular}{lrrrr}
 \toprule
-& \multicolumn{2}{c}{GPT-OSS 20B} & \multicolumn{2}{c}{Gemma 4 31B}\\
+& \multicolumn{2}{c}{GPT-OSS 20B} & \multicolumn{2}{c}{GPT-OSS 120B}\\
 Family & GSR & DeGro & GSR & DeGro\\
 \midrule
-CRT reconstruction & 100.0 & 99.2 & 100.0 & 100.0\\
-Graph path sums & 96.7 & 99.2 & 99.2 & 100.0\\
-Linear separation & 76.7 & 97.5 & 85.8 & 90.8\\
-Moment problem & 88.3 & 97.5 & 98.3 & 100.0\\
-Rank-deficient shared & 94.2 & 87.5 & 97.5 & 98.3\\
+CRT reconstruction & 100.0 & 99.2 & 99.2 & 100.0\\
+Graph path sums & 96.7 & 99.2 & 88.3 & 97.5\\
+Linear separation & 76.7 & 97.5 & 85.0 & 90.8\\
+Moment problem & 88.3 & 97.5 & 79.2 & 95.0\\
+Rank-deficient shared & 94.2 & 87.5 & 90.0 & 95.0\\
 \bottomrule
 \end{tabular}
 \end{table}
 
-Table~\ref{tab:family} explains how similar aggregate scores can arise from different mechanisms.  Generic GPT review often inserts a plausible but unstated relation in linear-separation cases; DeGro blocks most of these additions.  In rank-deficient systems, however, the same signal encourages abstention even when the complete source supports repair.  Gemma is near ceiling in four families and has little headroom.  A single average would hide both the beneficial and adverse regimes.
+Table~\ref{tab:family} explains the RQ1 tradeoff behind the aggregate scores.  Generic review often inserts a plausible but unstated relation; DeGro blocks many such additions.  The 20B rank-deficient family remains an adverse regime, whereas 120B improves in all five families.  Lower UR therefore cannot by itself establish better grounded decision-making; RSR, CAR, and family-specific losses must be read with it.
 
-\paragraph{Broad-benchmark coverage audit.}
+\subsection{Coverage Analysis}
+\paragraph{RQ3: broad-benchmark coverage audit.}
 To measure the representation bottleneck preceding verification, GPT-OSS 20B generated one shared Structured SymCode specification for each MATH-500 problem~\cite{hendrycks2021math}.  Of 500 specifications, 292 (58.4\%) parsed, reached the solver, and produced a conclusive verdict; Table~\ref{tab:coverage} accounts for every exclusion.
 
 \begin{table}[t]
@@ -407,30 +487,30 @@ The distinction is important for agent design.  An execution monitor answers whe
 Grounding itself is also only a proxy.  A model can cite the correct sentence yet encode the wrong equation, while an implicit mathematical convention may justify an expression without a contiguous span.  We therefore keep semantic validity, functional validity, provenance, and solver determinacy as separate fields.  This decomposition makes disagreement auditable and prevents numerical answer correctness from silently absorbing translation errors.
 
 \paragraph{External validity.}
-MIRA cases are controlled but templated; MATH-500 is natural but only 58.4\% lies inside the present solver fragment, whereas ALG514 reaches 97.9\% coverage in a narrower domain.  Labels were human-verified after model proposals, not independently annotated, and dataset prevalence is therefore reported separately.  Natural errors contain only 24 MATH-500 and eight ALG514 target-critical omissions: detection is high but repair remains limited.  GPT-OSS and Gemma also differ, directly bounding any model-general claim.
+MIRA cases are controlled but templated; MATH-500 is natural but only 58.4\% lies inside the present solver fragment, whereas ALG514 reaches 97.9\% coverage in a narrower domain.  Labels were human-verified after model proposals, not independently annotated, and dataset prevalence is therefore reported separately.  Natural errors contain only 24 MATH-500 and eight ALG514 target-critical omissions: detection is high but repair remains limited.  The two GPT-OSS sizes also differ materially in baseline abstention behavior, bounding any size-general claim.
 
 The controlled benchmark deliberately removes one known fact and therefore estimates a clean repair-versus-abstain decision under idealized representation control.  It underrepresents paraphrase, irrelevant prose, diagrams, implicit conventions, wrong constraints, and interacting translation errors.  The natural cohorts contain these phenomena but trade away causal control.  Their purposes are complementary: the paired benchmark identifies a policy effect, while the natural study estimates what the current pipeline actually encounters.  We do not merge them into one leaderboard number.
 
 The annotation protocol also avoids defining positives with DeGro's own verdict.  Detector outputs, repairs, method names, and downstream answer outcomes are hidden from the initial packet.  A target-critical omission must instead be established from the source and generated specification; correct, wrong-constraint, wrong-target, and wrong-domain cases remain in the denominator.  Because model proposals seeded review and no separate blinded pre-discussion labels were preserved, we claim human verification rather than independent annotation or inter-annotator reliability.
 
 \paragraph{Reproducibility and risk.}
-The artifact includes the compiler, two-copy query, gates, tests, builders, frozen manifests, prompts, raw records, and analysis.  The confirmatory output hash is \texttt{5616d0c6\ldots4ce3f0b}, and each model analysis consumes all 960 expected records.  Determinacy remains relative to $F$: wrong or extra constraints may force a unique wrong target, non-target omissions are invisible, and the current SMT fragment excludes much nonlinear, transcendental, and diagrammatic reasoning.  Interfaces must expose this scope rather than imply truth.  The data contain no personal information; AI assistance requires venue-compliant disclosure and does not reduce author responsibility.
+The artifact includes the compiler, two-copy query, gates, tests, builders, frozen manifests, prompts, raw records, and analysis.  The 20B and 120B confirmatory output hashes begin with \texttt{5616d0c6} and \texttt{38d18e69}; each model analysis consumes all 960 expected records, and the supplement records the complete hashes.  Determinacy remains relative to $F$: wrong or extra constraints may force a unique wrong target, non-target omissions are invisible, and the current SMT fragment excludes much nonlinear, transcendental, and diagrammatic reasoning.  Interfaces must expose this scope rather than imply truth.  The data contain no personal information; AI assistance requires venue-compliant disclosure and does not reduce author responsibility.
 
 The manifests record dataset revision and license, selection seed, family counts, exact model strings, decoding settings, prompt hashes, timestamps, and full output hashes.  Analysis scripts reconstruct every table from JSONL, reject incomplete expected pair counts, and preserve whether a row came from pilot, development, or confirmatory data.  Natural-error packets and verified labels are separately blinded and content-addressed.  These records allow the 120-pair headline to be reproduced without incorporating earlier observations.
 
 Several failure modes remain outside the certificate.  A wrong or extra constraint may force a unique but incorrect target; an omitted fact that does not affect $q$ is invisible; several interacting omissions may exceed the bounded repair budget; and witnesses may differ only on irrelevant variables.  The supported SMT fragment excludes much nonlinear, transcendental, and diagrammatic mathematics.  These are reasons to surface the encoded constraints, cited repair, and solver status in the interface, not to display an unqualified ``verified'' badge.
 
-Finally, the two models exhibit different instruction-following and abstention behavior, and hosted checkpoints may change.  DeGro's advantage should therefore be treated as a property of a specified model--prompt--gate configuration.  The Gemma null result is substantively useful: adding a stricter-looking grounding interaction is not automatically monotone in safety.  Deterministic gates remain necessary, and deployment thresholds should reflect the relative cost of fabricated facts and missed repairs.
+Finally, the two model sizes exhibit different instruction-following and abstention behavior, and hosted checkpoints may change.  DeGro's advantage should therefore be treated as a property of a specified model--prompt--gate configuration.  The 120B baseline over-repairs many underspecified cases despite its larger size.  Deterministic gates remain necessary, and deployment thresholds should reflect the relative cost of fabricated facts and missed repairs.
 
 \paragraph{Deployment implications.}
 DeGro is best used as a routing signal rather than a universal correctness badge.  A determinate, supported specification can proceed to answer generation; an ambiguous specification with a grounded candidate can enter the bounded repair loop; and an ambiguous specification without support should trigger clarification or abstention.  Inconsistent, unknown, and unsupported cases require different fallbacks, as Table~\ref{tab:policy} makes explicit.  Keeping these states typed prevents an agent from treating lack of a solver certificate as permission to guess.
 
 The results also suggest a conservative interface.  The system should expose the target expression, the relevant encoded constraints, the determinacy status, and any source span used for repair.  When a witness exists, it can be retained in the audit record even if the default language-model prompt receives only the verdict.  This design follows the ablation result: witnesses are valuable mechanical evidence, but displaying them to the repair model did not improve decisions on the present benchmark.  Users can then distinguish ``the current model fixes this quantity'' from the stronger and unsupported claim that the entire translation is correct.
 
-Finally, coverage must participate in any deployment comparison.  A narrow symbolic verifier may be highly reliable on supported inputs yet fail to represent a large fraction of natural problems.  Reporting conditional accuracy alone rewards systems for declining difficult instances before scoring.  We therefore recommend a three-part report: representation coverage over the original cohort, decision quality conditional on a conclusive verifier state, and end-to-end utility with unsupported, unknown, and call-error cases retained as failures.  The MATH-500 audit illustrates why all three are necessary.
+Deployment comparisons should report representation coverage, decision quality conditional on a conclusive verifier state, and end-to-end utility with unsupported, unknown, and call-error cases retained as failures.  Otherwise, a narrow symbolic verifier can appear reliable by declining difficult inputs before scoring.
 
 \section{Conclusion}
-DeGro checks whether feasible models agree on the quantity an agent will report, then uses source-grounded repair or abstention.  It improves GPT-OSS 20B by five FDA points on 120 preregistered pairs but does not improve Gemma, and concrete witnesses add no measurable benefit.  On natural errors, detection substantially exceeds successful repair.  Target determinacy is therefore a useful but representation-relative safety condition whose evaluation must include grounding behavior, solver coverage, and the boundary between source text and formalization.
+For RQ1, DeGro raises FDA by 5.0 points for GPT-OSS 20B and 6.25 points for GPT-OSS 120B on the fixed 120-pair set while reducing unsupported additions for both sizes, though 20B sacrifices some supported repairs; the 120B substitution is post-hoc.  For RQ2, the paired benchmark shows that correct behavior depends on source support even when the formalization and determinacy signal are identical.  For RQ3, conclusive-verifier coverage and detection substantially exceed end-to-end grounded repair on natural errors, while concrete witnesses add no measurable benefit on the exploratory single-omission set.  These answers support target determinacy as a representation-relative routing condition, with source grounding and coverage reported alongside decision accuracy.
 
 \clearpage
 \balance

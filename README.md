@@ -166,10 +166,10 @@ REVIEW_OUT='data/natural_errors/gpt_oss_20b_draw1k_test/gemma4_31b_annotations.j
 ./scripts/run_natural_preannotation.sh
 ```
 
-### Run the four-method, two-model MIRA ablation
+### Run the four-method MIRA ablation
 
-The focused ablation uses the same four methods for GPT-OSS 20B and Gemma 4
-31B:
+The current comparison uses the same four methods for GPT-OSS 20B and
+GPT-OSS 120B:
 
 | Paper label | Runner method |
 |---|---|
@@ -178,24 +178,18 @@ The focused ablation uses the same four methods for GPT-OSS 20B and Gemma 4
 | Determinacy-Guided Repair | `nonunique` |
 | DeGro | `nonunique_grounding` |
 
-Preview the configuration without making API calls:
+Run GPT-OSS 120B on the frozen pilot, development, and confirmatory splits:
 
 ```bash
-./scripts/run_mira_four_methods.sh --dry-run
+./scripts/run_gpt_oss_120b_mira.sh
+.venv/bin/python scripts/assemble_mira_full300.py
 ```
 
-Run both models on all 100 pairs:
-
-```bash
-./scripts/run_mira_four_methods.sh
-```
-
-By default, the script reuses the existing GPT-OSS results for this exact
-held-out set and runs only missing records, including the Gemma records. It
-runs a second retry wave, resumes successful records, and creates separate raw,
-complete, summary, and cluster-bootstrap analysis files for each model. To
-force a clean GPT-OSS rerun, pass `--no-reuse-gpt`. For a cheap end-to-end smoke
-test, use `--limit-pairs 1`.
+The runner resumes successful records, makes a second retry pass, and produces
+complete and analyzed files for every split. The GPT-OSS 20B files are reused
+without new inference calls. The 120B model substitution was chosen after the
+original two-model plan; its confirmatory-set results are reported as a
+post-hoc model comparison.
 
 ## Soundness boundary
 

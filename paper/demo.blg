@@ -23,8 +23,6 @@ Warning--no number and no volume in cui2026symdiag
 Warning--page numbers missing in both pages and numpages fields in cui2026symdiag
 Warning--empty address in demoura2008z3
 Warning--empty address in gao2023pal
-Warning--no number and no volume in gemma2026report
-Warning--page numbers missing in both pages and numpages fields in gemma2026report
 Warning--empty address in he2024olympiadbench
 Warning--empty publisher in hendrycks2021math
 Warning--empty address in hendrycks2021math
@@ -40,45 +38,45 @@ Warning--no number and no volume in sarkar2026cores
 Warning--page numbers missing in both pages and numpages fields in sarkar2026cores
 Warning--empty publisher in wei2022cot
 Warning--empty address in wei2022cot
-You've used 15 entries,
+You've used 14 entries,
             6273 wiz_defined-function locations,
-            1611 strings with 22672 characters,
-and the built_in function-call counts, 18979 in all, are:
-= -- 2270
-> -- 887
+            1606 strings with 22558 characters,
+and the built_in function-call counts, 18034 in all, are:
+= -- 2114
+> -- 870
 < -- 0
-+ -- 308
-- -- 313
-* -- 1556
-:= -- 1950
-add.period$ -- 72
-call.type$ -- 15
-change.case$ -- 155
-chr.to.int$ -- 15
-cite$ -- 43
-duplicate$ -- 1512
-empty$ -- 1082
-format.name$ -- 361
-if$ -- 4525
++ -- 304
+- -- 306
+* -- 1504
+:= -- 1871
+add.period$ -- 67
+call.type$ -- 14
+change.case$ -- 150
+chr.to.int$ -- 14
+cite$ -- 40
+duplicate$ -- 1428
+empty$ -- 1020
+format.name$ -- 354
+if$ -- 4266
 int.to.chr$ -- 2
 int.to.str$ -- 1
-missing$ -- 63
-newline$ -- 207
-num.names$ -- 105
-pop$ -- 724
+missing$ -- 59
+newline$ -- 195
+num.names$ -- 98
+pop$ -- 687
 preamble$ -- 1
-purify$ -- 275
+purify$ -- 262
 quote$ -- 0
-skip$ -- 523
+skip$ -- 499
 stack$ -- 0
-substring$ -- 1078
-swap$ -- 112
+substring$ -- 1023
+swap$ -- 108
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 352
-warning$ -- 28
-while$ -- 77
+type$ -- 336
+warning$ -- 26
+while$ -- 70
 width$ -- 0
-write$ -- 367
-(There were 28 warnings)
+write$ -- 345
+(There were 26 warnings)

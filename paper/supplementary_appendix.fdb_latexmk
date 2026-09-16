@@ -1,5 +1,5 @@
 # Fdb version 4
-["pdflatex"] 1789418881.65625 "supplementary_appendix.tex" "supplementary_appendix.pdf" "supplementary_appendix" 1789418883.02514 0
+["pdflatex"] 1789500421.5616 "supplementary_appendix.tex" "supplementary_appendix.pdf" "supplementary_appendix" 1789500422.50833 0
   "/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/newtx/ntx-ec-tlf-pc.enc" 1698694482 3136 bbe665bd0bb471a2da1e8fd326cff9fa ""
   "/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/newtx/ntx-ec-tlf.enc" 1698694482 2914 fdbc4a54b9bc76f4551b5303f2737d33 ""
   "/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/newtx/ntx-ot1-tlf.enc" 1422827479 2083 60e36f8eac802fcaf19eabe2633b406e ""
@@ -139,9 +139,9 @@
   "/usr/local/texlive/2025/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1759948538 5467155 19efa205003f9ecad95fbbaa6ff24da1 ""
   "/usr/local/texlive/2025/texmf-var/web2c/pdftex/pdflatex.fmt" 1759948473 3345731 542163a676e9c7fa4f99ea6da5b59371 ""
   "/usr/local/texlive/2025/texmf.cnf" 1741450484 577 418a7058ec8e006d8704f60ecd22c938 ""
-  "supplementary_appendix.aux" 1789418882.85631 1918 be99a9fa4513d1aadb22edf22b43019a "pdflatex"
-  "supplementary_appendix.out" 1789418882.85714 1270 552088336cf7917c840eed9683fcaed6 "pdflatex"
-  "supplementary_appendix.tex" 1789418868.92111 10589 896dd2bd10e9d269dc5b4158450ec2fe ""
+  "supplementary_appendix.aux" 1789500422.42372 1966 6f4769dc611e34d895e9f53ce77cfdb6 "pdflatex"
+  "supplementary_appendix.out" 1789500422.42435 1270 552088336cf7917c840eed9683fcaed6 "pdflatex"
+  "supplementary_appendix.tex" 1789500389.7877 10886 45c9f438bb11ff8edc1148db3e65d96f ""
   (generated)
   "supplementary_appendix.aux"
   "supplementary_appendix.log"

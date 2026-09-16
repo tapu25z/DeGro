@@ -13,10 +13,10 @@ SOURCES = {
         ("heldout100", Path("results/gpt_oss_20b_mira_four_methods_complete.jsonl")),
         ("confirmatory120", Path("results/gpt-oss_20b_mira_confirmatory_remaining_120_complete.jsonl")),
     ),
-    "gemma4_31b": (
-        ("pilot80", Path("results/gemma4_31b_mira_pilot80_current_four_methods_complete.jsonl")),
-        ("heldout100", Path("results/gemma4_31b_mira_four_methods_complete.jsonl")),
-        ("confirmatory120", Path("results/gemma4_31b_mira_confirmatory_remaining_120_complete.jsonl")),
+    "gpt_oss_120b": (
+        ("pilot80", Path("results/gpt_oss_120b_mira_pilot80_current_four_methods_complete.jsonl")),
+        ("heldout100", Path("results/gpt_oss_120b_mira_four_methods_complete.jsonl")),
+        ("confirmatory120", Path("results/gpt_oss_120b_mira_confirmatory_remaining_120_complete.jsonl")),
     ),
 }
 

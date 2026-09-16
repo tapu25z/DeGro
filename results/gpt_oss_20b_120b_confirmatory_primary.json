@@ -1,0 +1,30 @@
+{
+  "comparison": "FDA(nonunique_grounding) - FDA(grounded_self_review)",
+  "correction_family": "GPT-OSS 20B and post-hoc GPT-OSS 120B on fixed 120-pair set",
+  "results": [
+    {
+      "model": "20B",
+      "delta": 0.05,
+      "delta_ci95": [
+        0.004166666666666667,
+        0.09583333333333334
+      ],
+      "first_only": 22,
+      "second_only": 10,
+      "p_raw": 0.050102459732443094,
+      "p_holm_across_models": 0.050102459732443094
+    },
+    {
+      "model": "120B",
+      "delta": 0.0625,
+      "delta_ci95": [
+        0.016666666666666666,
+        0.10833333333333334
+      ],
+      "first_only": 24,
+      "second_only": 9,
+      "p_raw": 0.013530986849218607,
+      "p_holm_across_models": 0.027061973698437214
+    }
+  ]
+}

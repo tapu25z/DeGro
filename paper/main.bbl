@@ -2,7 +2,7 @@
 %%% Do NOT edit. File created by BibTeX with style
 %%% ACM-Reference-Format-Journals [18-Jan-2012].
 
-\begin{thebibliography}{57}
+\begin{thebibliography}{35}
 
 %%% ====================================================================
 %%% NOTE TO THE USER: you can override these defaults by providing
@@ -59,18 +59,6 @@
 \newblock
 
 
-\bibitem[Angelopoulos et~al\mbox{.}(2024)]%
-        {angelopoulos2024conformal}
-\bibfield{author}{\bibinfo{person}{Anastasios~N. Angelopoulos},
-  \bibinfo{person}{Stephen Bates}, \bibinfo{person}{Adam Fisch},
-  \bibinfo{person}{Lihua Lei}, {and} \bibinfo{person}{Tal Schuster}.}
-  \bibinfo{year}{2024}\natexlab{}.
-\newblock \showarticletitle{Conformal Risk Control}. In
-  \bibinfo{booktitle}{\emph{International Conference on Learning
-  Representations}}.
-\newblock
-
-
 \bibitem[Attie et~al\mbox{.}(2017)]%
         {attie2008modelrepair}
 \bibfield{author}{\bibinfo{person}{Paul~C. Attie}, \bibinfo{person}{Kinan Dak
@@ -94,20 +82,6 @@
   Undergraduate-Level Mathematics}.
 \newblock \bibinfo{journal}{\emph{arXiv preprint arXiv:2302.12433}}
   (\bibinfo{year}{2023}).
-\newblock
-
-
-\bibitem[Azerbayev et~al\mbox{.}(2024)]%
-        {azerbayev2024llemma}
-\bibfield{author}{\bibinfo{person}{Zhangir Azerbayev}, \bibinfo{person}{Hailey
-  Schoelkopf}, \bibinfo{person}{Keiran Paster}, \bibinfo{person}{Marco
-  Dos~Santos}, \bibinfo{person}{Stephen McAleer},
-  \bibinfo{person}{Albert~Qiaochu Jiang}, \bibinfo{person}{Jia Deng},
-  \bibinfo{person}{Stella Biderman}, {and} \bibinfo{person}{Sean Welleck}.}
-  \bibinfo{year}{2024}\natexlab{}.
-\newblock \showarticletitle{Llemma: An Open Language Model for Mathematics}. In
-  \bibinfo{booktitle}{\emph{International Conference on Learning
-  Representations}}.
 \newblock
 
 
@@ -175,32 +149,6 @@
 \href{https://doi.org/10.1007/10722167_15}{doi:\nolinkurl{10.1007/10722167_15}}
 
 
-\bibitem[Clarkson et~al\mbox{.}(2014)]%
-        {clarkson2014hyperltl}
-\bibfield{author}{\bibinfo{person}{Michael~R. Clarkson}, \bibinfo{person}{Bernd
-  Finkbeiner}, \bibinfo{person}{Masoud Koleini}, \bibinfo{person}{Kristopher~K.
-  Micinski}, \bibinfo{person}{Markus~N. Rabe}, {and} \bibinfo{person}{C{\'e}sar
-  S{\'a}nchez}.} \bibinfo{year}{2014}\natexlab{}.
-\newblock \showarticletitle{Temporal Logics for Hyperproperties}. In
-  \bibinfo{booktitle}{\emph{Principles of Security and Trust}}
-  \emph{(\bibinfo{series}{Lecture Notes in Computer Science},
-  Vol.~\bibinfo{volume}{8414})}. \bibinfo{pages}{265--284}.
-\newblock
-\href{https://doi.org/10.1007/978-3-642-54792-8_15}{doi:\nolinkurl{10.1007/978-3-642-54792-8_15}}
-
-
-\bibitem[Clarkson and Schneider(2010)]%
-        {clarkson2010hyperproperties}
-\bibfield{author}{\bibinfo{person}{Michael~R. Clarkson} {and}
-  \bibinfo{person}{Fred~B. Schneider}.} \bibinfo{year}{2010}\natexlab{}.
-\newblock \showarticletitle{Hyperproperties}.
-\newblock \bibinfo{journal}{\emph{Journal of Computer Security}}
-  \bibinfo{volume}{18}, \bibinfo{number}{6} (\bibinfo{year}{2010}),
-  \bibinfo{pages}{1157--1210}.
-\newblock
-\href{https://doi.org/10.3233/JCS-2009-0393}{doi:\nolinkurl{10.3233/JCS-2009-0393}}
-
-
 \bibitem[Cobbe et~al\mbox{.}(2021)]%
         {cobbe2021verifiers}
 \bibfield{author}{\bibinfo{person}{Karl Cobbe}, \bibinfo{person}{Vineet
@@ -213,19 +161,6 @@
 \newblock \showarticletitle{Training Verifiers to Solve Math Word Problems}. In
   \bibinfo{booktitle}{\emph{arXiv preprint arXiv:2110.14168}}.
 \newblock
-
-
-\bibitem[Cortes et~al\mbox{.}(2016)]%
-        {cortes2016rejection}
-\bibfield{author}{\bibinfo{person}{Corinna Cortes}, \bibinfo{person}{Giulia
-  DeSalvo}, {and} \bibinfo{person}{Mehryar Mohri}.}
-  \bibinfo{year}{2016}\natexlab{}.
-\newblock \showarticletitle{Learning with Rejection}. In
-  \bibinfo{booktitle}{\emph{Algorithmic Learning Theory}}
-  \emph{(\bibinfo{series}{Lecture Notes in Computer Science},
-  Vol.~\bibinfo{volume}{9925})}. \bibinfo{pages}{67--82}.
-\newblock
-\href{https://doi.org/10.1007/978-3-319-46379-7_5}{doi:\nolinkurl{10.1007/978-3-319-46379-7_5}}
 
 
 \bibitem[Cui et~al\mbox{.}(2026)]%
@@ -279,19 +214,6 @@
 \newblock
 
 
-\bibitem[Finkbeiner et~al\mbox{.}(2015)]%
-        {finkbeiner2015modelchecking}
-\bibfield{author}{\bibinfo{person}{Bernd Finkbeiner},
-  \bibinfo{person}{Markus~N. Rabe}, {and} \bibinfo{person}{C{\'e}sar
-  S{\'a}nchez}.} \bibinfo{year}{2015}\natexlab{}.
-\newblock \showarticletitle{Model Checking HyperLTL}. In
-  \bibinfo{booktitle}{\emph{Computer Aided Verification}}
-  \emph{(\bibinfo{series}{Lecture Notes in Computer Science},
-  Vol.~\bibinfo{volume}{9206})}. \bibinfo{pages}{30--48}.
-\newblock
-\href{https://doi.org/10.1007/978-3-319-21690-4_3}{doi:\nolinkurl{10.1007/978-3-319-21690-4_3}}
-
-
 \bibitem[Gao et~al\mbox{.}(2023)]%
         {gao2023pal}
 \bibfield{author}{\bibinfo{person}{Luyu Gao}, \bibinfo{person}{Aman Madaan},
@@ -311,18 +233,6 @@
 \newblock \showarticletitle{Selective Classification for Deep Neural Networks}.
   In \bibinfo{booktitle}{\emph{Advances in Neural Information Processing
   Systems}}, Vol.~\bibinfo{volume}{30}.
-\newblock
-
-
-\bibitem[Geifman and El-Yaniv(2019)]%
-        {geifman2019selectivenet}
-\bibfield{author}{\bibinfo{person}{Yonatan Geifman} {and} \bibinfo{person}{Ran
-  El-Yaniv}.} \bibinfo{year}{2019}\natexlab{}.
-\newblock \showarticletitle{{SelectiveNet}: A Deep Neural Network with an
-  Integrated Reject Option}. In \bibinfo{booktitle}{\emph{International
-  Conference on Machine Learning}} \emph{(\bibinfo{series}{Proceedings of
-  Machine Learning Research}, Vol.~\bibinfo{volume}{97})}.
-  \bibinfo{pages}{2151--2159}.
 \newblock
 
 
@@ -374,56 +284,6 @@
 \newblock \showarticletitle{Large Language Models Cannot Self-Correct Reasoning
   Yet}. In \bibinfo{booktitle}{\emph{International Conference on Learning
   Representations}}.
-\newblock
-
-
-\bibitem[Jiang et~al\mbox{.}(2024)]%
-        {jiang2024mma}
-\bibfield{author}{\bibinfo{person}{Albert~Qiaochu Jiang},
-  \bibinfo{person}{Wenda Li}, {and} \bibinfo{person}{Mateja Jamnik}.}
-  \bibinfo{year}{2024}\natexlab{}.
-\newblock \showarticletitle{Multilingual Mathematical Autoformalization}. In
-  \bibinfo{booktitle}{\emph{International Conference on Learning
-  Representations}}.
-\newblock
-
-
-\bibitem[Jiang et~al\mbox{.}(2023)]%
-        {jiang2023draft}
-\bibfield{author}{\bibinfo{person}{Albert~Qiaochu Jiang}, \bibinfo{person}{Sean
-  Welleck}, \bibinfo{person}{Jin~Peng Zhou}, \bibinfo{person}{Wenda Li},
-  \bibinfo{person}{Jiacheng Liu}, \bibinfo{person}{Mateja Jamnik},
-  \bibinfo{person}{Timoth{\'e}e Lacroix}, \bibinfo{person}{Yuhuai Wu}, {and}
-  \bibinfo{person}{Guillaume Lample}.} \bibinfo{year}{2023}\natexlab{}.
-\newblock \showarticletitle{Draft, Sketch, and Prove: Guiding Formal Theorem
-  Provers with Informal Proofs}. In \bibinfo{booktitle}{\emph{International
-  Conference on Learning Representations}}.
-\newblock
-
-
-\bibitem[Kadavath et~al\mbox{.}(2022)]%
-        {kadavath2022know}
-\bibfield{author}{\bibinfo{person}{Saurav Kadavath}, \bibinfo{person}{Tom
-  Conerly}, \bibinfo{person}{Amanda Askell}, \bibinfo{person}{Tom Henighan},
-  \bibinfo{person}{Dawn Drain}, \bibinfo{person}{Ethan Perez},
-  \bibinfo{person}{Nicholas Schiefer}, \bibinfo{person}{Zac Hatfield-Dodds},
-  \bibinfo{person}{Nova DasSarma}, \bibinfo{person}{Eli Tran-Johnson},
-  \bibinfo{person}{Scott Johnston}, \bibinfo{person}{Sheer El-Showk},
-  \bibinfo{person}{Andy Jones}, \bibinfo{person}{Nelson Elhage},
-  \bibinfo{person}{Tristan Hume}, \bibinfo{person}{Anna Chen},
-  \bibinfo{person}{Yuntao Bai}, \bibinfo{person}{Sam Bowman},
-  \bibinfo{person}{Stanislav Fort}, \bibinfo{person}{Deep Ganguli},
-  \bibinfo{person}{Danny Hernandez}, \bibinfo{person}{Josh Jacobson},
-  \bibinfo{person}{Jackson Kernion}, \bibinfo{person}{Shauna Kravec},
-  \bibinfo{person}{Liane Lovitt}, \bibinfo{person}{Kamal Ndousse},
-  \bibinfo{person}{Catherine Olsson}, \bibinfo{person}{Sam Ringer},
-  \bibinfo{person}{Dario Amodei}, \bibinfo{person}{Tom Brown},
-  \bibinfo{person}{Jack Clark}, \bibinfo{person}{Nicholas Joseph},
-  \bibinfo{person}{Ben Mann}, \bibinfo{person}{Sam McCandlish}, {and}
-  \bibinfo{person}{Jared Kaplan}.} \bibinfo{year}{2022}\natexlab{}.
-\newblock \showarticletitle{Language Models (Mostly) Know What They Know}.
-\newblock \bibinfo{journal}{\emph{arXiv preprint arXiv:2207.05221}}
-  (\bibinfo{year}{2022}).
 \newblock
 
 
@@ -510,17 +370,6 @@
 \newblock
 
 
-\bibitem[Mozannar and Sontag(2020)]%
-        {mozannar2020defer}
-\bibfield{author}{\bibinfo{person}{Hussein Mozannar} {and}
-  \bibinfo{person}{David Sontag}.} \bibinfo{year}{2020}\natexlab{}.
-\newblock \showarticletitle{Consistent Estimators for Learning to Defer to an
-  Expert}. In \bibinfo{booktitle}{\emph{International Conference on Machine
-  Learning}} \emph{(\bibinfo{series}{Proceedings of Machine Learning Research},
-  Vol.~\bibinfo{volume}{119})}. \bibinfo{pages}{7076--7087}.
-\newblock
-
-
 \bibitem[{OpenAI}(2025)]%
         {openai2025gptoss}
 \bibfield{author}{\bibinfo{person}{{OpenAI}}.} \bibinfo{year}{2025}\natexlab{}.
@@ -557,19 +406,6 @@
 \newblock
 
 
-\bibitem[Schick et~al\mbox{.}(2023)]%
-        {schick2023toolformer}
-\bibfield{author}{\bibinfo{person}{Timo Schick}, \bibinfo{person}{Jane
-  Dwivedi-Yu}, \bibinfo{person}{Roberto Dess{\`i}}, \bibinfo{person}{Roberta
-  Raileanu}, \bibinfo{person}{Maria Lomeli}, \bibinfo{person}{Luke
-  Zettlemoyer}, \bibinfo{person}{Nicola Cancedda}, {and}
-  \bibinfo{person}{Thomas Scialom}.} \bibinfo{year}{2023}\natexlab{}.
-\newblock \showarticletitle{Toolformer: Language Models Can Teach Themselves to
-  Use Tools}. In \bibinfo{booktitle}{\emph{Advances in Neural Information
-  Processing Systems}}, Vol.~\bibinfo{volume}{36}.
-\newblock
-
-
 \bibitem[Solar-Lezama et~al\mbox{.}(2006)]%
         {solarlezama2006cegis}
 \bibfield{author}{\bibinfo{person}{Armando Solar-Lezama},
@@ -582,18 +418,6 @@
   \bibinfo{pages}{404--415}.
 \newblock
 \href{https://doi.org/10.1145/1168857.1168907}{doi:\nolinkurl{10.1145/1168857.1168907}}
-
-
-\bibitem[Sousa and Dillig(2016)]%
-        {sousa2016cartesian}
-\bibfield{author}{\bibinfo{person}{Marcelo Sousa} {and} \bibinfo{person}{Isil
-  Dillig}.} \bibinfo{year}{2016}\natexlab{}.
-\newblock \showarticletitle{Cartesian Hoare Logic for Verifying $k$-Safety
-  Properties}. In \bibinfo{booktitle}{\emph{Proceedings of the 37th ACM SIGPLAN
-  Conference on Programming Language Design and Implementation}}.
-  \bibinfo{pages}{57--69}.
-\newblock
-\href{https://doi.org/10.1145/2908080.2908092}{doi:\nolinkurl{10.1145/2908080.2908092}}
 
 
 \bibitem[Terauchi and Aiken(2005)]%
@@ -652,31 +476,6 @@
 \newblock
 
 
-\bibitem[Wei et~al\mbox{.}(2022)]%
-        {wei2022cot}
-\bibfield{author}{\bibinfo{person}{Jason Wei}, \bibinfo{person}{Xuezhi Wang},
-  \bibinfo{person}{Dale Schuurmans}, \bibinfo{person}{Maarten Bosma},
-  \bibinfo{person}{Brian Ichter}, \bibinfo{person}{Fei Xia},
-  \bibinfo{person}{Ed Chi}, \bibinfo{person}{Quoc~V. Le}, {and}
-  \bibinfo{person}{Denny Zhou}.} \bibinfo{year}{2022}\natexlab{}.
-\newblock \showarticletitle{Chain-of-Thought Prompting Elicits Reasoning in
-  Large Language Models}. In \bibinfo{booktitle}{\emph{Advances in Neural
-  Information Processing Systems}}.
-\newblock
-
-
-\bibitem[Weng et~al\mbox{.}(2023)]%
-        {weng2023selfverification}
-\bibfield{author}{\bibinfo{person}{Yixuan Weng}, \bibinfo{person}{Minjun Zhu},
-  \bibinfo{person}{Shizhu He}, \bibinfo{person}{Kang Liu}, {and}
-  \bibinfo{person}{Jun Zhao}.} \bibinfo{year}{2023}\natexlab{}.
-\newblock \showarticletitle{Large Language Models Are Better Reasoners with
-  Self-Verification}.
-\newblock \bibinfo{journal}{\emph{Findings of the Association for Computational
-  Linguistics: EMNLP 2023}} (\bibinfo{year}{2023}).
-\newblock
-
-
 \bibitem[Wu et~al\mbox{.}(2022)]%
         {wu2022autoformalization}
 \bibfield{author}{\bibinfo{person}{Yuhuai Wu}, \bibinfo{person}{Albert~Qiaochu
@@ -686,97 +485,6 @@
 \newblock \showarticletitle{Autoformalization with Large Language Models}. In
   \bibinfo{booktitle}{\emph{Advances in Neural Information Processing
   Systems}}, Vol.~\bibinfo{volume}{35}.
-\newblock
-
-
-\bibitem[Xin et~al\mbox{.}(2024)]%
-        {xin2024deepseekprover}
-\bibfield{author}{\bibinfo{person}{Huajian Xin}, \bibinfo{person}{Daya Guo},
-  \bibinfo{person}{Zhihong Shao}, \bibinfo{person}{Zhizhou Ren},
-  \bibinfo{person}{Qihao Zhu}, \bibinfo{person}{Bo Liu}, \bibinfo{person}{Chong
-  Ruan}, \bibinfo{person}{Wenda Li}, {and} \bibinfo{person}{Xiaodan Liang}.}
-  \bibinfo{year}{2024}\natexlab{}.
-\newblock \showarticletitle{DeepSeek-Prover: Advancing Theorem Proving in
-  {LLM}s through Large-Scale Synthetic Data}.
-\newblock \bibinfo{journal}{\emph{arXiv preprint arXiv:2405.14333}}
-  (\bibinfo{year}{2024}).
-\newblock
-
-
-\bibitem[Yang et~al\mbox{.}(2023)]%
-        {yang2023leandojo}
-\bibfield{author}{\bibinfo{person}{Kaiyu Yang}, \bibinfo{person}{Aidan~M.
-  Swope}, \bibinfo{person}{Alex Gu}, \bibinfo{person}{Rahul Chalamala},
-  \bibinfo{person}{Peiyang Song}, \bibinfo{person}{Shixing Yu},
-  \bibinfo{person}{Saad Godil}, \bibinfo{person}{Ryan Prenger}, {and}
-  \bibinfo{person}{Anima Anandkumar}.} \bibinfo{year}{2023}\natexlab{}.
-\newblock \showarticletitle{LeanDojo: Theorem Proving with Retrieval-Augmented
-  Language Models}. In \bibinfo{booktitle}{\emph{Advances in Neural Information
-  Processing Systems}}, Vol.~\bibinfo{volume}{36}.
-\newblock
-
-
-\bibitem[Yao et~al\mbox{.}(2023)]%
-        {yao2023react}
-\bibfield{author}{\bibinfo{person}{Shunyu Yao}, \bibinfo{person}{Jeffrey Zhao},
-  \bibinfo{person}{Dian Yu}, \bibinfo{person}{Nan Du}, \bibinfo{person}{Izhak
-  Shafran}, \bibinfo{person}{Karthik Narasimhan}, {and} \bibinfo{person}{Yuan
-  Cao}.} \bibinfo{year}{2023}\natexlab{}.
-\newblock \showarticletitle{{ReAct}: Synergizing Reasoning and Acting in
-  Language Models}. In \bibinfo{booktitle}{\emph{International Conference on
-  Learning Representations}}.
-\newblock
-
-
-\bibitem[Ying et~al\mbox{.}(2024)]%
-        {ying2024leanworkbook}
-\bibfield{author}{\bibinfo{person}{Huaiyuan Ying}, \bibinfo{person}{Zijian Wu},
-  \bibinfo{person}{Yihan Geng}, \bibinfo{person}{Jiayu Wang},
-  \bibinfo{person}{Dahua Lin}, {and} \bibinfo{person}{Kai Chen}.}
-  \bibinfo{year}{2024}\natexlab{}.
-\newblock \showarticletitle{Lean Workbook: A Large-Scale Lean Problem Set
-  Formalized from Natural Language Math Problems}. In
-  \bibinfo{booktitle}{\emph{Advances in Neural Information Processing Systems
-  Datasets and Benchmarks Track}}.
-\newblock
-
-
-\bibitem[Yu et~al\mbox{.}(2025)]%
-        {yu2025formalmath}
-\bibfield{author}{\bibinfo{person}{Zhouliang Yu}, \bibinfo{person}{Ruotian
-  Peng}, \bibinfo{person}{Keyi Ding}, \bibinfo{person}{Yizhe Li},
-  \bibinfo{person}{Zhongyuan Peng}, \bibinfo{person}{Minghao Liu},
-  \bibinfo{person}{Yifan Zhang}, \bibinfo{person}{Zheng Yuan},
-  \bibinfo{person}{Huajian Xin}, \bibinfo{person}{Wenhao Huang},
-  \bibinfo{person}{Yandong Wen}, \bibinfo{person}{Ge Zhang}, {and}
-  \bibinfo{person}{Weiyang Liu}.} \bibinfo{year}{2025}\natexlab{}.
-\newblock \showarticletitle{FormalMATH: Benchmarking Formal Mathematical
-  Reasoning of Large Language Models}.
-\newblock \bibinfo{journal}{\emph{arXiv preprint arXiv:2505.02735}}
-  (\bibinfo{year}{2025}).
-\newblock
-
-
-\bibitem[Zeller and Hildebrandt(2002)]%
-        {zeller2002simplifying}
-\bibfield{author}{\bibinfo{person}{Andreas Zeller} {and} \bibinfo{person}{Ralf
-  Hildebrandt}.} \bibinfo{year}{2002}\natexlab{}.
-\newblock \showarticletitle{Simplifying and Isolating Failure-Inducing Input}.
-\newblock \bibinfo{journal}{\emph{IEEE Transactions on Software Engineering}}
-  \bibinfo{volume}{28}, \bibinfo{number}{2} (\bibinfo{year}{2002}),
-  \bibinfo{pages}{183--200}.
-\newblock
-\href{https://doi.org/10.1109/32.988498}{doi:\nolinkurl{10.1109/32.988498}}
-
-
-\bibitem[Zheng et~al\mbox{.}(2022)]%
-        {zheng2022minif2f}
-\bibfield{author}{\bibinfo{person}{Kunhao Zheng},
-  \bibinfo{person}{Jesse~Michael Han}, {and} \bibinfo{person}{Stanislas Polu}.}
-  \bibinfo{year}{2022}\natexlab{}.
-\newblock \showarticletitle{miniF2F: A Cross-System Benchmark for Formal
-  Olympiad-Level Mathematics}. In \bibinfo{booktitle}{\emph{International
-  Conference on Learning Representations}}.
 \newblock
 
 

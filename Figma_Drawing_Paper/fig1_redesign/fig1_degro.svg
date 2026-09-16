@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1500" height="700" viewBox="0 0 1500 700"><rect width="100%" height="100%" fill="white"/><defs><marker id="arr" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8" fill="none" stroke="#111" stroke-width="1.6"/></marker></defs>
+<path d="M500 30 L500 665" fill="none" stroke="#111" stroke-width="1.5" stroke-dasharray="2 5"/>
+<path d="M1000 30 L1000 665" fill="none" stroke="#111" stroke-width="1.5" stroke-dasharray="2 5"/>
+<text x="250.0" y="53.0" text-anchor="middle" dominant-baseline="middle" font-family="Arial, Helvetica, sans-serif" font-size="32" font-weight="700" fill="#111">① Execution-level</text>
+<text x="250.0" y="99.0" text-anchor="middle" dominant-baseline="middle" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="700" fill="#111">Program execution</text>
+<rect x="45" y="145" width="65" height="65" rx="12" fill="white" stroke="#111111" stroke-width="2"/>
+<text x="77.5" y="177.5" text-anchor="middle" dominant-baseline="middle" font-family="Arial, Helvetica, sans-serif" font-size="32" font-weight="700" fill="#111">Q</text>
+<path d="M110 177 L160 177" fill="none" stroke="#111" stroke-width="2.5" marker-end="url(#arr)"/>
+<rect x="160" y="132" width="285" height="90" rx="12" fill="#FFF2CC" stroke="#E5C568" stroke-width="2"/>
+<text x="302.5" y="160.2" text-anchor="middle" dominant-baseline="middle" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="700" fill="#111">LLM</text>
+<text x="302.5" y="193.79999999999998" text-anchor="middle" dominant-baseline="middle" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="700" fill="#111">Program</text>
+<path d="M302 234 L302 268" fill="none" stroke="#111" stroke-width="2.5" marker-end="url(#arr)"/>
+<text x="750.0" y="53.0" text-anchor="middle" dominant-baseline="middle" font-family="Arial, Helvetica, sans-serif" font-size="32" font-weight="700" fill="#111">② Outcome-level</text>
+<text x="750.0" y="99.0" text-anchor="middle" dominant-baseline="middle" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="700" fill="#111">Answer matching</text>
+<rect x="545" y="145" width="65" height="65" rx="12" fill="white" stroke="#111111" stroke-width="2"/>
+<text x="577.5" y="177.5" text-anchor="middle" dominant-baseline="middle" font-family="Arial, Helvetica, sans-serif" font-size="32" font-weight="700" fill="#111">Q</text>
+<path d="M610 177 L660 177" fill="none" stroke="#111" stroke-width="2.5" marker-end="url(#arr)"/>
+<rect x="660" y="132" width="285" height="90" rx="12" fill="#FFF2CC" stroke="#E5C568" stroke-width="2"/>
+<text x="802.5" y="160.2" text-anchor="middle" dominant-baseline="middle" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="700" fill="#111">LLM</text>
+<text x="802.5" y="193.79999999999998" text-anchor="middle" dominant-baseline="middle" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="700" fill="#111">Program</text>
+<path d="M802 234 L802 268" fill="none" stroke="#111" stroke-width="2.5" marker-end="url(#arr)"/>
+<text x="1250.0" y="53.0" text-anchor="middle" dominant-baseline="middle" font-family="Arial, Helvetica, sans-serif" font-size="32" font-weight="700" fill="#111">③ Determinacy-level</text>
+<text x="1250.0" y="99.0" text-anchor="middle" dominant-baseline="middle" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="700" fill="#111">DeGro (Ours)</text>
+<rect x="1045" y="145" width="65" height="65" rx="12" fill="white" stroke="#111111" stroke-width="2"/>
+<text x="1077.5" y="177.5" text-anchor="middle" dominant-baseline="middle" font-family="Arial, Helvetica, sans-serif" font-size="32" font-weight="700" fill="#111">Q</text>
+<path d="M1110 177 L1160 177" fill="none" stroke="#111" stroke-width="2.5" marker-end="url(#arr)"/>
+<rect x="1160" y="132" width="285" height="90" rx="12" fill="#FFF2CC" stroke="#E5C568" stroke-width="2"/>
+<text x="1302.5" y="160.2" text-anchor="middle" dominant-baseline="middle" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="700" fill="#111">LLM</text>
+<text x="1302.5" y="193.79999999999998" text-anchor="middle" dominant-baseline="middle" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="700" fill="#111">Program</text>
+<path d="M1302 234 L1302 268" fill="none" stroke="#111" stroke-width="2.5" marker-end="url(#arr)"/>
+<rect x="45" y="280" width="410" height="65" rx="12" fill="#D9E2F3" stroke="none" stroke-width="2"/>
+<text x="250.0" y="312.5" text-anchor="middle" dominant-baseline="middle" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="700" fill="#111">Execute Program</text>
+<path d="M250 357 L250 402" fill="none" stroke="#111" stroke-width="2.5" marker-end="url(#arr)"/>
+<rect x="45" y="414" width="410" height="65" rx="12" fill="#CAE5B2" stroke="none" stroke-width="2"/>
+<text x="250.0" y="446.5" text-anchor="middle" dominant-baseline="middle" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="700" fill="#111">Runtime Check</text>
+<path d="M250 491 L250 534" fill="none" stroke="#111" stroke-width="2.5" marker-end="url(#arr)"/>
+<text x="175.0" y="574.0" text-anchor="middle" dominant-baseline="middle" font-family="Arial, Helvetica, sans-serif" font-size="51" font-weight="700" fill="#2BB673">✓</text>
+<text x="325.0" y="574.0" text-anchor="middle" dominant-baseline="middle" font-family="Arial, Helvetica, sans-serif" font-size="51" font-weight="700" fill="#E84A45">×</text>
+<text x="250.0" y="630.0" text-anchor="middle" dominant-baseline="middle" font-family="Arial, Helvetica, sans-serif" font-size="29" font-weight="700" fill="#111">Runs / Fails</text>
+<rect x="545" y="280" width="410" height="65" rx="12" fill="#D9E2F3" stroke="none" stroke-width="2"/>
+<text x="750.0" y="312.5" text-anchor="middle" dominant-baseline="middle" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="700" fill="#111">Extract Answer</text>
+<path d="M750 357 L750 402" fill="none" stroke="#111" stroke-width="2.5" marker-end="url(#arr)"/>
+<rect x="545" y="414" width="410" height="65" rx="12" fill="#CAE5B2" stroke="none" stroke-width="2"/>
+<text x="750.0" y="446.5" text-anchor="middle" dominant-baseline="middle" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="700" fill="#111">Answer Matching</text>
+<path d="M750 491 L750 534" fill="none" stroke="#111" stroke-width="2.5" marker-end="url(#arr)"/>
+<text x="675.0" y="574.0" text-anchor="middle" dominant-baseline="middle" font-family="Arial, Helvetica, sans-serif" font-size="51" font-weight="700" fill="#2BB673">✓</text>
+<text x="825.0" y="574.0" text-anchor="middle" dominant-baseline="middle" font-family="Arial, Helvetica, sans-serif" font-size="51" font-weight="700" fill="#E84A45">×</text>
+<text x="750.0" y="630.0" text-anchor="middle" dominant-baseline="middle" font-family="Arial, Helvetica, sans-serif" font-size="29" font-weight="700" fill="#111">Correct / Incorrect</text>
+<rect x="1045" y="280" width="410" height="65" rx="12" fill="#D9E2F3" stroke="none" stroke-width="2"/>
+<text x="1250.0" y="312.5" text-anchor="middle" dominant-baseline="middle" font-family="Arial, Helvetica, sans-serif" font-size="25" font-weight="700" fill="#111">Target Determinacy Check</text>
+<path d="M1250 357 L1250 392" fill="none" stroke="#111" stroke-width="2.5" marker-end="url(#arr)"/>
+<rect x="1060" y="410" width="155" height="72" rx="12" fill="white" stroke="#6D8FB5" stroke-width="2"/>
+<text x="1137.5" y="446.0" text-anchor="middle" dominant-baseline="middle" font-family="Arial, Helvetica, sans-serif" font-size="32" font-weight="700" fill="#111">q = 4</text>
+<rect x="1285" y="410" width="155" height="72" rx="12" fill="white" stroke="#6D8FB5" stroke-width="2"/>
+<text x="1362.5" y="446.0" text-anchor="middle" dominant-baseline="middle" font-family="Arial, Helvetica, sans-serif" font-size="32" font-weight="700" fill="#111">q = 6</text>
+<text x="1250.0" y="446.0" text-anchor="middle" dominant-baseline="middle" font-family="Arial, Helvetica, sans-serif" font-size="38" font-weight="700" fill="#E84A45">≠</text>
+<text x="1250.0" y="508.0" text-anchor="middle" dominant-baseline="middle" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="400" fill="#111">Two feasible models</text>
+<path d="M1250 536 L1250 575" fill="none" stroke="#111" stroke-width="2.5" marker-end="url(#arr)"/>
+<rect x="1045" y="588" width="410" height="65" rx="12" fill="#CAE5B2" stroke="none" stroke-width="2"/>
+<text x="1250.0" y="620.5" text-anchor="middle" dominant-baseline="middle" font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="700" fill="#111">Grounded Repair / Abstain</text>
+</svg>

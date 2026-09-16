@@ -1,0 +1,46 @@
+This is BibTeX, Version 0.99d (TeX Live 2025)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: DeGro_ban_dich_tieng_Viet.aux
+The style file: plainnat.bst
+Database file #1: /Users/buihuynhtay/Documents/ChatGPT/degro/paper/refs.bib
+You've used 55 entries,
+            2773 wiz_defined-function locations,
+            874 strings with 17886 characters,
+and the built_in function-call counts, 35980 in all, are:
+= -- 2897
+> -- 3158
+< -- 44
++ -- 1055
+- -- 999
+* -- 3201
+:= -- 5581
+add.period$ -- 186
+call.type$ -- 55
+change.case$ -- 498
+chr.to.int$ -- 54
+cite$ -- 110
+duplicate$ -- 1392
+empty$ -- 2318
+format.name$ -- 1076
+if$ -- 7444
+int.to.chr$ -- 2
+int.to.str$ -- 1
+missing$ -- 55
+newline$ -- 301
+num.names$ -- 220
+pop$ -- 1084
+preamble$ -- 1
+purify$ -- 443
+quote$ -- 0
+skip$ -- 1225
+stack$ -- 0
+substring$ -- 719
+swap$ -- 262
+text.length$ -- 31
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 605
+warning$ -- 0
+while$ -- 221
+width$ -- 0
+write$ -- 742

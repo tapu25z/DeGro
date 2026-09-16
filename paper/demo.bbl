@@ -2,7 +2,7 @@
 %%% Do NOT edit. File created by BibTeX with style
 %%% ACM-Reference-Format-Journals [18-Jan-2012].
 
-\begin{thebibliography}{15}
+\begin{thebibliography}{14}
 
 %%% ====================================================================
 %%% NOTE TO THE USER: you can override these defaults by providing
@@ -131,20 +131,6 @@
 \newblock
 \urldef\tempurl%
 \url{https://proceedings.mlr.press/v202/gao23f.html}
-\showURL{%
-\tempurl}
-
-
-\bibitem[{Gemma Team}(2026)]%
-        {gemma2026report}
-\bibfield{author}{\bibinfo{person}{{Gemma Team}}.}
-  \bibinfo{year}{2026}\natexlab{}.
-\newblock \showarticletitle{Gemma 4 Technical Report}.
-\newblock \bibinfo{journal}{\emph{arXiv preprint arXiv:2607.02770}}
-  (\bibinfo{year}{2026}).
-\newblock
-\urldef\tempurl%
-\url{https://arxiv.org/abs/2607.02770}
 \showURL{%
 \tempurl}
 

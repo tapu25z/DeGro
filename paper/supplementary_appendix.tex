@@ -93,7 +93,7 @@ All four policies receive the same source, $F^-$, target, schema, and two-attemp
 \section{Extended Controlled Results}
 \begin{table}[h]
 \centering
-\caption{Confirmatory results on 120 preregistered pairs per model (percent).}
+\caption{Results on the fixed 120-pair set (percent). The 20B comparison was preregistered; the 120B replacement is post-hoc.}
 \begin{tabular}{@{}llrrrrr@{}}
 \toprule
 Model & Method & RSR & CAR & FDA & ORR & UR\\
@@ -103,16 +103,16 @@ GPT-OSS 20B & Self-review & 93.3 & 87.5 & 90.4 & 12.5 & 15.2\\
  & Determinacy-guided & 86.7 & 99.2 & 92.9 & 0.8 & 6.3\\
  & DeGro & 92.5 & 97.5 & \textbf{95.0} & 2.5 & 4.3\\
 \midrule
-Gemma 4 31B & Self-review & 100.0 & 93.3 & 96.7 & 6.7 & 6.3\\
- & Grounded self-review & 100.0 & 95.8 & 97.9 & 4.2 & 4.0\\
- & Determinacy-guided & 100.0 & 99.2 & \textbf{99.6} & 0.8 & 0.8\\
- & DeGro & 100.0 & 95.0 & 97.5 & 5.0 & 4.8\\
+GPT-OSS 120B & Self-review & 100.0 & 55.0 & 77.5 & 45.0 & 31.0\\
+ & Grounded self-review & 95.8 & 79.2 & 87.5 & 20.8 & 17.9\\
+ & Determinacy-guided & 98.3 & 84.2 & 91.2 & 15.8 & 15.1\\
+ & DeGro & 97.5 & 90.0 & \textbf{93.8} & 10.0 & 10.7\\
 \bottomrule
 \end{tabular}
 \end{table}
-For GPT-OSS, DeGro minus grounded self-review is $+5.0$ FDA points with pair-cluster 95\% CI $[0.4,9.6]$; exact $p=.050$ and Holm-adjusted $p=.100$. For Gemma, the difference is $-0.4$ points with CI $[-3.3,2.5]$ and $p=1.0$. The evidence therefore does not support a model-independent gain.
+For GPT-OSS 20B, DeGro minus grounded self-review is $+5.0$ FDA points with pair-cluster 95\% CI $[0.4,9.6]$ and exact $p=.050$. For GPT-OSS 120B, the difference is $+6.25$ points with CI $[1.7,10.8]$ and $p=.0135$. Holm correction across the two model-specific tests gives $p=.0501$ and $p=.0271$, respectively. The 120B substitution was selected after the original analysis plan and is treated as post-hoc.
 
-Across all 300 pairs, GPT-OSS changes from 91.2\% to 96.2\% FDA ($+5.0$, CI $[2.3,7.7]$, $p<.001$), while Gemma changes from 96.2\% to 97.8\% ($+1.7$, CI $[-0.2,3.5]$, $p=.099$). This cumulative analysis is secondary because it includes development observations. In a 100-pair exploratory ablation, exposing target-divergent witnesses to the repair model did not improve DeGro (98.5\% versus 97.5\% FDA; adjusted $p=.727$); witnesses remain valuable as audit evidence.
+Across all 300 pairs, GPT-OSS 20B changes from 91.2\% to 96.2\% FDA ($+5.0$, CI $[2.3,7.8]$, $p<.001$), while GPT-OSS 120B changes from 88.3\% to 95.7\% ($+7.3$, CI $[4.7,10.0]$, $p<.001$). This cumulative analysis is secondary because it includes development observations. In a 100-pair exploratory ablation, exposing target-divergent witnesses to the repair model did not improve DeGro (98.5\% versus 97.5\% FDA; adjusted $p=.727$); witnesses remain valuable as audit evidence.
 
 \section{Natural-Error Study}
 Exactly one Structured SymCode formalization was generated per problem and reused across methods. Cohort membership was frozen from parse, compiler, and solver states before annotation or repair-outcome inspection. Blinded annotation packets omitted the determinacy verdict, witness, repair, method, and answer outcome.
@@ -153,7 +153,8 @@ MIRA source revision & \code{72ff918901584d1d1e835a9f86d41e3d51a915a2}\\
 MIRA source SHA-256 & \code{78a021526f9457af6e3776ac470c4ef1202d18fd9a19539e7e289294997b2ad0}\\
 Selection seed & \code{20270911}\\
 Confirmatory prompt SHA-256 & \code{eafed6be4973c21e1efbb5cc804112c9d50c95764e8f5066b58bdee58b92bdda}\\
-Confirmatory output SHA-256 & \code{5616d0c6203f762560439ee193f1148133d06baf034d6c34c7250a0a44ce3f0b}\\
+GPT-OSS 20B confirmatory SHA-256 & \code{5616d0c6203f762560439ee193f1148133d06baf034d6c34c7250a0a44ce3f0b}\\
+GPT-OSS 120B confirmatory SHA-256 & \code{38d18e6905fb3acafb236f9e6a4b0aa3aed2cfb2dd8ece75f236074dbbf01067}\\
 MATH-500 verified labels & \code{4e1bbe0b9eaefdefe4569ec10fdd42daf8f1131d17dfbc410d0faed0b430ad38}\\
 ALG514 verified labels & \code{72217047ff8d41b4a3766e504325821bd07230d7b6dc7636475294ab8e5ffecd}\\
 \bottomrule

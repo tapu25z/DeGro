@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.10.9)  15 SEP 2026 03:48
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.10.9)  16 SEP 2026 02:27
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -940,11 +940,11 @@ Package rerunfilecheck Info: File `supplementary_appendix.out' has not changed.
 (rerunfilecheck)             Checksum: 552088336CF7917C840EED9683FCAED6;1270.
  ) 
 Here is how much of TeX's memory you used:
- 17724 strings out of 473190
- 272513 string characters out of 5715800
+ 17722 strings out of 473190
+ 272471 string characters out of 5715800
  707473 words of memory out of 5000000
  40614 multiletter control sequences out of 15000+600000
- 629704 words of font info for 170 fonts, out of 8000000 for 9000
+ 629612 words of font info for 169 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  80i,13n,93p,1019b,604s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2025/texmf-dist/fonts/type1/public/newtx/NewTXMI.pfb></us
@@ -955,7 +955,7 @@ live/2025/texmf-dist/fonts/type1/public/txfonts/t1xtt.pfb></usr/local/texlive/2
 mf-dist/fonts/type1/public/newtx/txsys.pfb></usr/local/texlive/2025/texmf-dist/
 fonts/type1/public/newtx/ztmb.pfb></usr/local/texlive/2025/texmf-dist/fonts/typ
 e1/public/newtx/ztmr.pfb>
-Output written on supplementary_appendix.pdf (3 pages, 144037 bytes).
+Output written on supplementary_appendix.pdf (3 pages, 144572 bytes).
 PDF statistics:
  120 PDF objects out of 1000 (max. 8388607)
  96 compressed objects within 1 object stream

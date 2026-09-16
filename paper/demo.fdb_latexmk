@@ -1,13 +1,13 @@
 # Fdb version 4
-["bibtex demo"] 1789045666.76693 "demo.aux" "demo.bbl" "demo" 1789045668.23923 0
+["bibtex demo"] 1789500533.10364 "demo.aux" "demo.bbl" "demo" 1789500534.52347 0
   "./demo_refs.bib" 1789044855.42731 6163 0aec512af9786ec6118eaad109efb21e ""
-  "demo.aux" 1789045667.85552 10139 750442cc05b9efccb9aec29effdac694 "pdflatex"
+  "demo.aux" 1789500534.17764 10040 7d042c1eb5777557142ab0bdb01189e2 "pdflatex"
   "vendor/ACM-Reference-Format.bst" 1784725464 93560 7091f2b0543d2c8bfe2e82ce5d54a029 ""
   (generated)
   "demo.bbl"
   "demo.blg"
   (rewritten before read)
-["pdflatex"] 1789045666.88194 "demo.tex" "demo.pdf" "demo" 1789045668.2394 0
+["pdflatex"] 1789500533.20611 "demo.tex" "demo.pdf" "demo" 1789500534.52362 0
   "/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/inconsolata/i4-t1-4.enc" 1558214095 7693 0f2dce6d313c82989ec3a67fc24df2a0 ""
   "/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/libertine/lbtn_25tcsq.enc" 1490131464 2921 8ca0eb0831f9bc5da080d3697cfe67bf ""
   "/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/libertine/lbtn_76gpa5.enc" 1490131464 2933 9ad527ce78d7c5fa0a642dead095f172 ""
@@ -216,10 +216,10 @@
   "/usr/local/texlive/2025/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1759948538 5467155 19efa205003f9ecad95fbbaa6ff24da1 ""
   "/usr/local/texlive/2025/texmf-var/web2c/pdftex/pdflatex.fmt" 1759948473 3345731 542163a676e9c7fa4f99ea6da5b59371 ""
   "/usr/local/texlive/2025/texmf.cnf" 1741450484 577 418a7058ec8e006d8704f60ecd22c938 ""
-  "demo.aux" 1789045667.85552 10139 750442cc05b9efccb9aec29effdac694 "pdflatex"
-  "demo.bbl" 1789045666.87893 11718 80bb66860a37117b41f70cfcf28204cd "bibtex demo"
-  "demo.out" 1789045667.85633 5803 930232ec1c74faf741b516e18a944c98 "pdflatex"
-  "demo.tex" 1789045652.38836 51141 0bbd782518eddd08ffdb85d78a6c4ec6 ""
+  "demo.aux" 1789500534.17764 10040 7d042c1eb5777557142ab0bdb01189e2 "pdflatex"
+  "demo.bbl" 1789500533.20307 11338 c92b9d4431ce29b2426f215c1c142083 "bibtex demo"
+  "demo.out" 1789500534.1785 5803 930232ec1c74faf741b516e18a944c98 "pdflatex"
+  "demo.tex" 1789500363.51699 50580 9cc733e793784a4842198be39340c8df ""
   "vendor/aamas.cls" 1784725464 122209 65113db2770441df189925e574f1dbe2 ""
   "vendor/by.pdf" 1784725464 5004 981f6317db1b416da3b30e5922ad167c ""
   (generated)

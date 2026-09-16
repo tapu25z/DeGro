@@ -62,6 +62,31 @@ def cluster_bootstrap_ci(rows: list[dict], metric: str, samples: int, seed: int)
     return percentile(estimates, 0.025), percentile(estimates, 0.975)
 
 
+def paired_cluster_bootstrap_ci(
+    rows: list[dict], metric: str, first: str, second: str, samples: int, seed: int
+) -> tuple[float, float]:
+    label, field = METRICS[metric]
+    by_pair: dict[str, list[int]] = defaultdict(list)
+    lookup = {
+        (row["pair_id"], row["label"], row["method"]): bool(row["score"][field])
+        for row in rows
+        if label is None or row["label"] == label
+    }
+    for pair_id, case_label in sorted({key[:2] for key in lookup}):
+        by_pair[pair_id].append(
+            int(lookup[(pair_id, case_label, first)])
+            - int(lookup[(pair_id, case_label, second)])
+        )
+    pair_ids = sorted(by_pair)
+    rng = random.Random(seed)
+    estimates = []
+    for _ in range(samples):
+        sampled = [rng.choice(pair_ids) for _ in pair_ids]
+        values = [value for pair_id in sampled for value in by_pair[pair_id]]
+        estimates.append(sum(values) / len(values))
+    return percentile(estimates, 0.025), percentile(estimates, 0.975)
+
+
 def exact_binomial_two_sided(successes: int, trials: int) -> float:
     if trials == 0:
         return 1.0
@@ -160,6 +185,9 @@ def main() -> None:
             continue
         result = {"hypothesis": hypothesis, "metric": metric, "first": first, "second": second}
         result.update(mcnemar(rows, metric, first, second))
+        result["delta_ci95"] = paired_cluster_bootstrap_ci(
+            rows, metric, first, second, args.bootstrap_samples, args.seed
+        )
         decision_comparisons.append(result)
     holm_adjust(decision_comparisons)
 

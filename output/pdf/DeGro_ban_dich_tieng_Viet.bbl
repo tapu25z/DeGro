@@ -1,0 +1,433 @@
+\begin{thebibliography}{55}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Al~Bateh and Saab~Jr(2026)]{albateh2026mira}
+Charbel Al~Bateh and Samer Saab~Jr.
+\newblock Mira-math: A benchmark for minimal information requesting and
+  mathematical reasoning.
+\newblock \emph{arXiv preprint arXiv:2607.07391}, 2026.
+
+\bibitem[Alhanahnah et~al.(2024)Alhanahnah, Hasan, and
+  Bagheri]{alhanahnah2024alloyrepair}
+Mohannad Alhanahnah, Md~Rashedul Hasan, and Hamid Bagheri.
+\newblock An empirical evaluation of pre-trained large language models for
+  repairing declarative formal specifications.
+\newblock \emph{arXiv preprint arXiv:2404.11050}, 2024.
+
+\bibitem[Angelopoulos et~al.(2024)Angelopoulos, Bates, Fisch, Lei, and
+  Schuster]{angelopoulos2024conformal}
+Anastasios~N. Angelopoulos, Stephen Bates, Adam Fisch, Lihua Lei, and Tal
+  Schuster.
+\newblock Conformal risk control.
+\newblock In \emph{International Conference on Learning Representations}, 2024.
+
+\bibitem[Attie et~al.(2017)Attie, Dak Al~Bab, and Sakr]{attie2008modelrepair}
+Paul~C. Attie, Kinan Dak Al~Bab, and Mouhammad Sakr.
+\newblock Model and program repair via {SAT} solving.
+\newblock \emph{ACM Transactions on Embedded Computing Systems}, 17\penalty0
+  (2), 2017.
+\newblock \doi{10.1145/3147426}.
+
+\bibitem[Azerbayev et~al.(2023)Azerbayev, Piotrowski, Schoelkopf, Ayers, Radev,
+  and Avigad]{azerbayev2023proofnet}
+Zhangir Azerbayev, Bartosz Piotrowski, Hailey Schoelkopf, Edward~W. Ayers,
+  Dragomir Radev, and Jeremy Avigad.
+\newblock Proofnet: Autoformalizing and formally proving undergraduate-level
+  mathematics.
+\newblock \emph{arXiv preprint arXiv:2302.12433}, 2023.
+
+\bibitem[Azerbayev et~al.(2024)Azerbayev, Schoelkopf, Paster, Dos~Santos,
+  McAleer, Jiang, Deng, Biderman, and Welleck]{azerbayev2024llemma}
+Zhangir Azerbayev, Hailey Schoelkopf, Keiran Paster, Marco Dos~Santos, Stephen
+  McAleer, Albert~Qiaochu Jiang, Jia Deng, Stella Biderman, and Sean Welleck.
+\newblock Llemma: An open language model for mathematics.
+\newblock In \emph{International Conference on Learning Representations}, 2024.
+
+\bibitem[{Bagheri Nezhad} et~al.(2026){Bagheri Nezhad}, Li, and
+  Agrawal]{nezhad2026symcode}
+Sina {Bagheri Nezhad}, Yao Li, and Ameeta Agrawal.
+\newblock Symcode: A neurosymbolic approach to mathematical reasoning via
+  verifiable code generation.
+\newblock In \emph{Findings of the Association for Computational Linguistics:
+  EACL 2026}, pages 1489--1503. Association for Computational Linguistics,
+  2026.
+\newblock \doi{10.18653/v1/2026.findings-eacl.76}.
+\newblock URL \url{https://aclanthology.org/2026.findings-eacl.76/}.
+
+\bibitem[Barthe et~al.(2004)Barthe, D'Argenio, and
+  Rezk]{barthe2004selfcomposition}
+Gilles Barthe, Pedro~R. D'Argenio, and Tamara Rezk.
+\newblock Secure information flow by self-composition.
+\newblock In \emph{17th IEEE Computer Security Foundations Workshop}, pages
+  100--114, 2004.
+\newblock \doi{10.1109/CSFW.2004.1310735}.
+
+\bibitem[Barthe et~al.(2011)Barthe, Crespo, and Kunz]{barthe2011product}
+Gilles Barthe, Juan~Manuel Crespo, and C{\'e}sar Kunz.
+\newblock Relational verification using product programs.
+\newblock In \emph{FM 2011: Formal Methods}, volume 6664 of \emph{Lecture Notes
+  in Computer Science}, pages 200--214, 2011.
+\newblock \doi{10.1007/978-3-642-21437-0_17}.
+
+\bibitem[Chen et~al.(2023)Chen, Ma, Wang, and Cohen]{chen2023pot}
+Wenhu Chen, Xueguang Ma, Xinyi Wang, and William~W. Cohen.
+\newblock Program of thoughts prompting: Disentangling computation from
+  reasoning for numerical reasoning tasks.
+\newblock \emph{Transactions on Machine Learning Research}, 2023.
+
+\bibitem[Clarke et~al.(2000)Clarke, Grumberg, Jha, Lu, and
+  Veith]{clarke2000cegar}
+Edmund~M. Clarke, Orna Grumberg, Somesh Jha, Yuan Lu, and Helmut Veith.
+\newblock Counterexample-guided abstraction refinement.
+\newblock In \emph{Computer Aided Verification}, volume 1855 of \emph{Lecture
+  Notes in Computer Science}, pages 154--169, 2000.
+\newblock \doi{10.1007/10722167_15}.
+
+\bibitem[Clarkson and Schneider(2010)]{clarkson2010hyperproperties}
+Michael~R. Clarkson and Fred~B. Schneider.
+\newblock Hyperproperties.
+\newblock \emph{Journal of Computer Security}, 18\penalty0 (6):\penalty0
+  1157--1210, 2010.
+\newblock \doi{10.3233/JCS-2009-0393}.
+
+\bibitem[Clarkson et~al.(2014)Clarkson, Finkbeiner, Koleini, Micinski, Rabe,
+  and S{\'a}nchez]{clarkson2014hyperltl}
+Michael~R. Clarkson, Bernd Finkbeiner, Masoud Koleini, Kristopher~K. Micinski,
+  Markus~N. Rabe, and C{\'e}sar S{\'a}nchez.
+\newblock Temporal logics for hyperproperties.
+\newblock In \emph{Principles of Security and Trust}, volume 8414 of
+  \emph{Lecture Notes in Computer Science}, pages 265--284, 2014.
+\newblock \doi{10.1007/978-3-642-54792-8_15}.
+
+\bibitem[Cobbe et~al.(2021)Cobbe, Kosaraju, Bavarian, Chen, Jun, Kaiser,
+  Plappert, Tworek, Hilton, Nakano, Hesse, and Schulman]{cobbe2021verifiers}
+Karl Cobbe, Vineet Kosaraju, Mohammad Bavarian, Mark Chen, Heewoo Jun, Lukasz
+  Kaiser, Matthias Plappert, Jerry Tworek, Jacob Hilton, Reiichiro Nakano,
+  Christopher Hesse, and John Schulman.
+\newblock Training verifiers to solve math word problems.
+\newblock In \emph{arXiv preprint arXiv:2110.14168}, 2021.
+
+\bibitem[Cortes et~al.(2016)Cortes, DeSalvo, and Mohri]{cortes2016rejection}
+Corinna Cortes, Giulia DeSalvo, and Mehryar Mohri.
+\newblock Learning with rejection.
+\newblock In \emph{Algorithmic Learning Theory}, volume 9925 of \emph{Lecture
+  Notes in Computer Science}, pages 67--82, 2016.
+\newblock \doi{10.1007/978-3-319-46379-7_5}.
+
+\bibitem[Cui et~al.(2026)Cui, Zhang, Huang, Li, Xu, Liu, Gao, Wang, and
+  Zhang]{cui2026symdiag}
+Wenyao Cui, Huaping Zhang, Yongyi Huang, Qiuchi Li, Jian Xu, Cheng-Lin Liu,
+  Chunxiao Gao, Juan Wang, and Baohua Zhang.
+\newblock Symdiag: Explainable diagnosis for llm reasoning via neuro-symbolic
+  verification.
+\newblock \emph{arXiv preprint arXiv:2608.08786}, 2026.
+
+\bibitem[de~Moura and Bj{\o}rner(2008)]{demoura2008z3}
+Leonardo de~Moura and Nikolaj Bj{\o}rner.
+\newblock {Z3}: An efficient {SMT} solver.
+\newblock In \emph{Tools and Algorithms for the Construction and Analysis of
+  Systems}, volume 4963 of \emph{Lecture Notes in Computer Science}, pages
+  337--340. Springer, 2008.
+\newblock \doi{10.1007/978-3-540-78800-3_24}.
+
+\bibitem[Dillig et~al.(2013)Dillig, Dillig, Li, and
+  McMillan]{dillig2013abduction}
+Isil Dillig, Thomas Dillig, Boyang Li, and Kenneth~L. McMillan.
+\newblock Inductive invariant generation via abductive inference.
+\newblock In \emph{Proceedings of the 34th ACM SIGPLAN Conference on
+  Programming Language Design and Implementation}, pages 443--456, 2013.
+\newblock \doi{10.1145/2491956.2462187}.
+
+\bibitem[El-Yaniv and Wiener(2010)]{elyaniv2010foundations}
+Ran El-Yaniv and Yair Wiener.
+\newblock On the foundations of noise-free selective classification.
+\newblock \emph{Journal of Machine Learning Research}, 11:\penalty0 1605--1641,
+  2010.
+
+\bibitem[Finkbeiner et~al.(2015)Finkbeiner, Rabe, and
+  S{\'a}nchez]{finkbeiner2015modelchecking}
+Bernd Finkbeiner, Markus~N. Rabe, and C{\'e}sar S{\'a}nchez.
+\newblock Model checking hyperltl.
+\newblock In \emph{Computer Aided Verification}, volume 9206 of \emph{Lecture
+  Notes in Computer Science}, pages 30--48, 2015.
+\newblock \doi{10.1007/978-3-319-21690-4_3}.
+
+\bibitem[Gao et~al.(2023)Gao, Madaan, Zhou, Alon, Liu, Yang, Callan, and
+  Neubig]{gao2023pal}
+Luyu Gao, Aman Madaan, Shuyan Zhou, Uri Alon, Pengfei Liu, Yiming Yang, Jamie
+  Callan, and Graham Neubig.
+\newblock Pal: Program-aided language models.
+\newblock In \emph{International Conference on Machine Learning}, 2023.
+
+\bibitem[Geifman and El-Yaniv(2017)]{geifman2017selective}
+Yonatan Geifman and Ran El-Yaniv.
+\newblock Selective classification for deep neural networks.
+\newblock In \emph{Advances in Neural Information Processing Systems},
+  volume~30, 2017.
+
+\bibitem[Geifman and El-Yaniv(2019)]{geifman2019selectivenet}
+Yonatan Geifman and Ran El-Yaniv.
+\newblock {SelectiveNet}: A deep neural network with an integrated reject
+  option.
+\newblock In \emph{International Conference on Machine Learning}, volume~97 of
+  \emph{Proceedings of Machine Learning Research}, pages 2151--2159, 2019.
+
+\bibitem[Gou et~al.(2024{\natexlab{a}})Gou, Shao, Gong, Shen, Yang, Duan, and
+  Chen]{gou2024critic}
+Zhibin Gou, Zhihong Shao, Yeyun Gong, Yelong Shen, Yujiu Yang, Nan Duan, and
+  Weizhu Chen.
+\newblock {CRITIC}: Large language models can self-correct with
+  tool-interactive critiquing.
+\newblock In \emph{International Conference on Learning Representations},
+  2024{\natexlab{a}}.
+
+\bibitem[Gou et~al.(2024{\natexlab{b}})Gou, Shao, Gong, Shen, Yang, Huang,
+  Duan, and Chen]{gou2024tora}
+Zhibin Gou, Zhihong Shao, Yeyun Gong, Yelong Shen, Yujiu Yang, Minlie Huang,
+  Nan Duan, and Weizhu Chen.
+\newblock {ToRA}: A tool-integrated reasoning agent for mathematical problem
+  solving.
+\newblock In \emph{International Conference on Learning Representations},
+  2024{\natexlab{b}}.
+
+\bibitem[Hendrycks et~al.(2021)Hendrycks, Burns, Kadavath, Arora, Basart, Tang,
+  Song, and Steinhardt]{hendrycks2021math}
+Dan Hendrycks, Collin Burns, Saurav Kadavath, Akul Arora, Steven Basart, Eric
+  Tang, Dawn Song, and Jacob Steinhardt.
+\newblock Measuring mathematical problem solving with the {MATH} dataset.
+\newblock In \emph{Proceedings of the Neural Information Processing Systems
+  Track on Datasets and Benchmarks}, volume~1, 2021.
+
+\bibitem[Huang et~al.(2024)Huang, Chen, Mishra, Zheng, Yu, Song, and
+  Zhou]{huang2024selfcorrect}
+Jie Huang, Xinyun Chen, Swaroop Mishra, Huaixiu~Steven Zheng, Adams~Wei Yu,
+  Xinying Song, and Denny Zhou.
+\newblock Large language models cannot self-correct reasoning yet.
+\newblock In \emph{International Conference on Learning Representations}, 2024.
+
+\bibitem[Jiang et~al.(2023)Jiang, Welleck, Zhou, Li, Liu, Jamnik, Lacroix, Wu,
+  and Lample]{jiang2023draft}
+Albert~Qiaochu Jiang, Sean Welleck, Jin~Peng Zhou, Wenda Li, Jiacheng Liu,
+  Mateja Jamnik, Timoth{\'e}e Lacroix, Yuhuai Wu, and Guillaume Lample.
+\newblock Draft, sketch, and prove: Guiding formal theorem provers with
+  informal proofs.
+\newblock In \emph{International Conference on Learning Representations}, 2023.
+
+\bibitem[Jiang et~al.(2024)Jiang, Li, and Jamnik]{jiang2024mma}
+Albert~Qiaochu Jiang, Wenda Li, and Mateja Jamnik.
+\newblock Multilingual mathematical autoformalization.
+\newblock In \emph{International Conference on Learning Representations}, 2024.
+
+\bibitem[Kadavath et~al.(2022)Kadavath, Conerly, Askell, Henighan, Drain,
+  Perez, Schiefer, Hatfield-Dodds, DasSarma, Tran-Johnson, Johnston, El-Showk,
+  Jones, Elhage, Hume, Chen, Bai, Bowman, Fort, Ganguli, Hernandez, Jacobson,
+  Kernion, Kravec, Lovitt, Ndousse, Olsson, Ringer, Amodei, Brown, Clark,
+  Joseph, Mann, McCandlish, and Kaplan]{kadavath2022know}
+Saurav Kadavath, Tom Conerly, Amanda Askell, Tom Henighan, Dawn Drain, Ethan
+  Perez, Nicholas Schiefer, Zac Hatfield-Dodds, Nova DasSarma, Eli
+  Tran-Johnson, Scott Johnston, Sheer El-Showk, Andy Jones, Nelson Elhage,
+  Tristan Hume, Anna Chen, Yuntao Bai, Sam Bowman, Stanislav Fort, Deep
+  Ganguli, Danny Hernandez, Josh Jacobson, Jackson Kernion, Shauna Kravec,
+  Liane Lovitt, Kamal Ndousse, Catherine Olsson, Sam Ringer, Dario Amodei, Tom
+  Brown, Jack Clark, Nicholas Joseph, Ben Mann, Sam McCandlish, and Jared
+  Kaplan.
+\newblock Language models (mostly) know what they know.
+\newblock \emph{arXiv preprint arXiv:2207.05221}, 2022.
+
+\bibitem[Kuhn et~al.(2023)Kuhn, Gal, and Farquhar]{kuhn2023semantic}
+Lorenz Kuhn, Yarin Gal, and Sebastian Farquhar.
+\newblock Semantic uncertainty: Linguistic invariances for uncertainty
+  estimation in natural language generation.
+\newblock In \emph{International Conference on Learning Representations}, 2023.
+
+\bibitem[Lian et~al.(2026)Lian, Sun, Chen, Zhang, Qin, and Teo]{lian2026reloop}
+Junbo~Jacob Lian, Yujun Sun, Huiling Chen, Chaoyu Zhang, Hanzhang Qin, and
+  Chung-Piaw Teo.
+\newblock Reloop: Structured modeling and behavioral verification for reliable
+  llm-based optimization.
+\newblock \emph{arXiv preprint arXiv:2602.15983}, 2026.
+
+\bibitem[Liffiton and Sakallah(2008)]{liffiton2008mus}
+Mark~H. Liffiton and Karem~A. Sakallah.
+\newblock Algorithms for computing minimal unsatisfiable subsets of
+  constraints.
+\newblock \emph{Journal of Automated Reasoning}, 40:\penalty0 1--33, 2008.
+\newblock \doi{10.1007/s10817-007-9084-z}.
+
+\bibitem[Lightman et~al.(2023)Lightman, Kosaraju, Burda, Edwards, Baker, Lee,
+  Leike, Schulman, Sutskever, and Cobbe]{lightman2023verify}
+Hunter Lightman, Vineet Kosaraju, Yura Burda, Harrison Edwards, Bowen Baker,
+  Teddy Lee, Jan Leike, John Schulman, Ilya Sutskever, and Karl Cobbe.
+\newblock Let's verify step by step.
+\newblock \emph{arXiv preprint arXiv:2305.20050}, 2023.
+
+\bibitem[Lyu et~al.(2023)Lyu, Havaldar, Stein, Zhang, Rao, Wong, Apidianaki,
+  and Callison-Burch]{lyu2023faithful}
+Qing Lyu, Shreya Havaldar, Adam Stein, Li~Zhang, Delip Rao, Eric Wong, Marianna
+  Apidianaki, and Chris Callison-Burch.
+\newblock Faithful chain-of-thought reasoning.
+\newblock In \emph{Proceedings of the 13th International Joint Conference on
+  Natural Language Processing and the 3rd Conference of the Asia-Pacific
+  Chapter of the Association for Computational Linguistics}, pages 305--329,
+  2023.
+\newblock \doi{10.18653/v1/2023.ijcnlp-main.20}.
+
+\bibitem[Madaan et~al.(2023)Madaan, Tandon, Gupta, Hallinan, Gao, Wiegreffe,
+  Alon, Dziri, Prabhumoye, Yang, Gupta, Majumder, Hermann, Welleck,
+  Yazdanbakhsh, and Clark]{madaan2023selfrefine}
+Aman Madaan, Niket Tandon, Prakhar Gupta, Skyler Hallinan, Luyu Gao, Sarah
+  Wiegreffe, Uri Alon, Nouha Dziri, Shrimai Prabhumoye, Yiming Yang, Shashank
+  Gupta, Bodhisattwa~Prasad Majumder, Katherine Hermann, Sean Welleck, Amir
+  Yazdanbakhsh, and Peter Clark.
+\newblock Self-refine: Iterative refinement with self-feedback.
+\newblock In \emph{Advances in Neural Information Processing Systems},
+  volume~36, 2023.
+
+\bibitem[Mozannar and Sontag(2020)]{mozannar2020defer}
+Hussein Mozannar and David Sontag.
+\newblock Consistent estimators for learning to defer to an expert.
+\newblock In \emph{International Conference on Machine Learning}, volume 119 of
+  \emph{Proceedings of Machine Learning Research}, pages 7076--7087, 2020.
+
+\bibitem[Reiter(1987)]{reiter1987diagnosis}
+Raymond Reiter.
+\newblock A theory of diagnosis from first principles.
+\newblock \emph{Artificial Intelligence}, 32\penalty0 (1):\penalty0 57--95,
+  1987.
+\newblock \doi{10.1016/0004-3702(87)90062-2}.
+
+\bibitem[Sarkar(2026)]{sarkar2026cores}
+Dipankar Sarkar.
+\newblock From errors to proofs: Minimal-core-guided repair for neuro-symbolic
+  constraint solving.
+\newblock \emph{arXiv preprint arXiv:2608.14771}, 2026.
+
+\bibitem[Schick et~al.(2023)Schick, Dwivedi-Yu, Dess{\`i}, Raileanu, Lomeli,
+  Zettlemoyer, Cancedda, and Scialom]{schick2023toolformer}
+Timo Schick, Jane Dwivedi-Yu, Roberto Dess{\`i}, Roberta Raileanu, Maria
+  Lomeli, Luke Zettlemoyer, Nicola Cancedda, and Thomas Scialom.
+\newblock Toolformer: Language models can teach themselves to use tools.
+\newblock In \emph{Advances in Neural Information Processing Systems},
+  volume~36, 2023.
+
+\bibitem[Solar-Lezama et~al.(2006)Solar-Lezama, Tancau, Bodik, Seshia, and
+  Saraswat]{solarlezama2006cegis}
+Armando Solar-Lezama, Liviu Tancau, Rastislav Bodik, Sanjit~A. Seshia, and
+  Vijay~A. Saraswat.
+\newblock Combinatorial sketching for finite programs.
+\newblock In \emph{Proceedings of the 12th International Conference on
+  Architectural Support for Programming Languages and Operating Systems}, pages
+  404--415, 2006.
+\newblock \doi{10.1145/1168857.1168907}.
+
+\bibitem[Sousa and Dillig(2016)]{sousa2016cartesian}
+Marcelo Sousa and Isil Dillig.
+\newblock Cartesian hoare logic for verifying $k$-safety properties.
+\newblock In \emph{Proceedings of the 37th ACM SIGPLAN Conference on
+  Programming Language Design and Implementation}, pages 57--69, 2016.
+\newblock \doi{10.1145/2908080.2908092}.
+
+\bibitem[Terauchi and Aiken(2005)]{terauchi2005safety}
+Tachio Terauchi and Alex Aiken.
+\newblock Secure information flow as a safety problem.
+\newblock In \emph{Static Analysis}, volume 3672 of \emph{Lecture Notes in
+  Computer Science}, pages 352--367, 2005.
+
+\bibitem[Uesato et~al.(2022)Uesato, Kushman, Kumar, Song, Siegel, Wang,
+  Creswell, Irving, and Higgins]{uesato2022feedback}
+Jonathan Uesato, Nate Kushman, Ramana Kumar, Francis Song, Noah Siegel, Lisa
+  Wang, Antonia Creswell, Geoffrey Irving, and Irina Higgins.
+\newblock Solving math word problems with process- and outcome-based feedback.
+\newblock \emph{arXiv preprint arXiv:2211.14275}, 2022.
+
+\bibitem[Upadhyay and Chang(2017)]{upadhyay2017derivations}
+Shyam Upadhyay and Ming-Wei Chang.
+\newblock Annotating derivations: A new evaluation strategy and dataset for
+  algebra word problems.
+\newblock In \emph{Proceedings of the 15th Conference of the European Chapter
+  of the Association for Computational Linguistics: Volume 1, Long Papers},
+  pages 494--504. Association for Computational Linguistics, 2017.
+\newblock URL \url{https://aclanthology.org/E17-1047/}.
+
+\bibitem[Wang et~al.(2024)Wang, Ren, Zhou, Lu, Luo, Shi, Zhang, Song, Zhan, and
+  Li]{wang2024mathcoder}
+Ke~Wang, Houxing Ren, Aojun Zhou, Zimu Lu, Sichun Luo, Weikang Shi, Renrui
+  Zhang, Linqi Song, Mingjie Zhan, and Hongsheng Li.
+\newblock Mathcoder: Seamless code integration in {LLM}s for enhanced
+  mathematical reasoning.
+\newblock In \emph{International Conference on Learning Representations}, 2024.
+
+\bibitem[Wei et~al.(2022)Wei, Wang, Schuurmans, Bosma, Ichter, Xia, Chi, Le,
+  and Zhou]{wei2022cot}
+Jason Wei, Xuezhi Wang, Dale Schuurmans, Maarten Bosma, Brian Ichter, Fei Xia,
+  Ed~Chi, Quoc~V. Le, and Denny Zhou.
+\newblock Chain-of-thought prompting elicits reasoning in large language
+  models.
+\newblock In \emph{Advances in Neural Information Processing Systems}, 2022.
+
+\bibitem[Weng et~al.(2023)Weng, Zhu, He, Liu, and
+  Zhao]{weng2023selfverification}
+Yixuan Weng, Minjun Zhu, Shizhu He, Kang Liu, and Jun Zhao.
+\newblock Large language models are better reasoners with self-verification.
+\newblock \emph{Findings of the Association for Computational Linguistics:
+  EMNLP 2023}, 2023.
+
+\bibitem[Wu et~al.(2022)Wu, Jiang, Li, Rabe, Staats, Jamnik, and
+  Szegedy]{wu2022autoformalization}
+Yuhuai Wu, Albert~Qiaochu Jiang, Wenda Li, Markus~N. Rabe, Charles Staats,
+  Mateja Jamnik, and Christian Szegedy.
+\newblock Autoformalization with large language models.
+\newblock In \emph{Advances in Neural Information Processing Systems},
+  volume~35, 2022.
+
+\bibitem[Xin et~al.(2024)Xin, Guo, Shao, Ren, Zhu, Liu, Ruan, Li, and
+  Liang]{xin2024deepseekprover}
+Huajian Xin, Daya Guo, Zhihong Shao, Zhizhou Ren, Qihao Zhu, Bo~Liu, Chong
+  Ruan, Wenda Li, and Xiaodan Liang.
+\newblock Deepseek-prover: Advancing theorem proving in {LLM}s through
+  large-scale synthetic data.
+\newblock \emph{arXiv preprint arXiv:2405.14333}, 2024.
+
+\bibitem[Yang et~al.(2023)Yang, Swope, Gu, Chalamala, Song, Yu, Godil, Prenger,
+  and Anandkumar]{yang2023leandojo}
+Kaiyu Yang, Aidan~M. Swope, Alex Gu, Rahul Chalamala, Peiyang Song, Shixing Yu,
+  Saad Godil, Ryan Prenger, and Anima Anandkumar.
+\newblock Leandojo: Theorem proving with retrieval-augmented language models.
+\newblock In \emph{Advances in Neural Information Processing Systems},
+  volume~36, 2023.
+
+\bibitem[Yao et~al.(2023)Yao, Zhao, Yu, Du, Shafran, Narasimhan, and
+  Cao]{yao2023react}
+Shunyu Yao, Jeffrey Zhao, Dian Yu, Nan Du, Izhak Shafran, Karthik Narasimhan,
+  and Yuan Cao.
+\newblock {ReAct}: Synergizing reasoning and acting in language models.
+\newblock In \emph{International Conference on Learning Representations}, 2023.
+
+\bibitem[Ying et~al.(2024)Ying, Wu, Geng, Wang, Lin, and
+  Chen]{ying2024leanworkbook}
+Huaiyuan Ying, Zijian Wu, Yihan Geng, Jiayu Wang, Dahua Lin, and Kai Chen.
+\newblock Lean workbook: A large-scale lean problem set formalized from natural
+  language math problems.
+\newblock In \emph{Advances in Neural Information Processing Systems Datasets
+  and Benchmarks Track}, 2024.
+
+\bibitem[Yu et~al.(2025)Yu, Peng, Ding, Li, Peng, Liu, Zhang, Yuan, Xin, Huang,
+  Wen, Zhang, and Liu]{yu2025formalmath}
+Zhouliang Yu, Ruotian Peng, Keyi Ding, Yizhe Li, Zhongyuan Peng, Minghao Liu,
+  Yifan Zhang, Zheng Yuan, Huajian Xin, Wenhao Huang, Yandong Wen, Ge~Zhang,
+  and Weiyang Liu.
+\newblock Formalmath: Benchmarking formal mathematical reasoning of large
+  language models.
+\newblock \emph{arXiv preprint arXiv:2505.02735}, 2025.
+
+\bibitem[Zheng et~al.(2022)Zheng, Han, and Polu]{zheng2022minif2f}
+Kunhao Zheng, Jesse~Michael Han, and Stanislas Polu.
+\newblock minif2f: A cross-system benchmark for formal olympiad-level
+  mathematics.
+\newblock In \emph{International Conference on Learning Representations}, 2022.
+
+\end{thebibliography}

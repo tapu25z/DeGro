@@ -1,0 +1,36 @@
+{
+  "model": "gpt-oss:120b",
+  "status": "complete",
+  "selection": "post-hoc replacement for gemma4:31b",
+  "temperature": 1.0,
+  "think": "medium",
+  "prompt_hash": "eafed6be4973c21e1efbb5cc804112c9d50c95764e8f5066b58bdee58b92bdda",
+  "splits": {
+    "pilot80": {
+      "pairs": 80,
+      "records": 640,
+      "sha256": "98aad9d07a7ef187a47c51c6b11c2257a4e1162a04a23c0359b4f8f2a6c31e23"
+    },
+    "heldout100": {
+      "pairs": 100,
+      "records": 800,
+      "sha256": "46f415c3b89f871d3c7edf22fd9c8d5ade5738edb187d01507875fab1f4a6c78"
+    },
+    "confirmatory120": {
+      "pairs": 120,
+      "records": 960,
+      "sha256": "38d18e6905fb3acafb236f9e6a4b0aa3aed2cfb2dd8ece75f236074dbbf01067"
+    },
+    "full300": {
+      "pairs": 300,
+      "records": 2400,
+      "sha256": "06e8fd72fac2375645cbd158c083f7628dfede36666ba77594be838da816e311"
+    }
+  },
+  "methods": [
+    "self_review",
+    "grounded_self_review",
+    "nonunique",
+    "nonunique_grounding"
+  ]
+}

@@ -107,3 +107,10 @@ An AI coding assistant (OpenAI Codex; model/version to be copied from the final 
 5. Run Self-Review, NonUnique, TargetWitness, and TargetCheck on GPT-OSS 20B.
 6. Compute paired confidence intervals and preregistered McNemar comparisons.
 7. Apply the go/no-go threshold before scaling to 120B and Gemma 4 31B.
+
+## GPT-OSS 120B replacement run (2026-09-16)
+
+- Replaced the submitted-paper Gemma comparison with a fresh GPT-OSS 120B run using the same frozen MIRA splits, prompts, temperature 1.0, and medium reasoning effort.
+- Completed 640 pilot, 800 development, and 960 fixed-set records with no missing or error records; the combined file contains 2,400 records.
+- On the fixed 120-pair set, DeGro improves FDA from 87.5% to 93.8% over grounded self-review (+6.25 points; pair-bootstrap 95% CI [1.7, 10.8]; exact McNemar p=.0135). The model substitution is disclosed as post-hoc.
+- A fresh blinded GPT-OSS 120B MATH-500 proposal pass completed all 292 cases and agrees with the human-verified primary labels on 207/292 (70.9%). Human labels were not replaced without renewed reviewer adjudication.
