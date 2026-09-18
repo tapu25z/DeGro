@@ -1,0 +1,60 @@
+{
+  "pairs": 350,
+  "cases": 700,
+  "extension_pairs": 50,
+  "new_records": 1200,
+  "total_records": 8400,
+  "review_status": "300 author-reviewed; extension50 pending",
+  "selection_timing": "extension selected after original300 outcomes; cumulative analysis post-hoc",
+  "primary_family": "FDA DeGro minus grounded self-review across three models",
+  "primary_comparisons": [
+    {
+      "hypothesis": "D4",
+      "metric": "FDA",
+      "first": "nonunique_grounding",
+      "second": "grounded_self_review",
+      "first_only": 76,
+      "second_only": 59,
+      "delta": 0.024285714285714285,
+      "p_raw": 0.16825920465992442,
+      "delta_ci95": [
+        -0.008571428571428572,
+        0.05714285714285714
+      ],
+      "p_holm": 0.16825920465992442,
+      "model": "gpt_oss_20b"
+    },
+    {
+      "hypothesis": "D4",
+      "metric": "FDA",
+      "first": "nonunique_grounding",
+      "second": "grounded_self_review",
+      "first_only": 86,
+      "second_only": 42,
+      "delta": 0.06285714285714286,
+      "p_raw": 0.00012535822987511428,
+      "delta_ci95": [
+        0.03139285714285718,
+        0.09571428571428571
+      ],
+      "p_holm": 0.00037607468962534284,
+      "model": "gpt_oss_120b"
+    },
+    {
+      "hypothesis": "D4",
+      "metric": "FDA",
+      "first": "nonunique_grounding",
+      "second": "grounded_self_review",
+      "first_only": 118,
+      "second_only": 67,
+      "delta": 0.07285714285714286,
+      "p_raw": 0.00021785347986380307,
+      "delta_ci95": [
+        0.03428571428571429,
+        0.11428571428571428
+      ],
+      "p_holm": 0.00043570695972760615,
+      "model": "nemotron_3_nano_30b"
+    }
+  ]
+}
