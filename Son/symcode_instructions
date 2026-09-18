@@ -1,0 +1,57 @@
+                    INPUT
+                      │
+                      ▼
+              Natural Language
+                  Problem
+                      │
+                      ▼
+              ┌──────────────┐
+              │   SymCode    │
+              │ Generate Code│
+              └──────┬───────┘
+                     │
+                     ▼
+              Execute SymCode
+                     │
+                     ▼
+              Candidate Answer
+                     │
+                     ▼
+             ┌────────────────┐
+             │ DeGro Check    │
+             │ Constraints    │
+             │ + Determinacy  │
+             └───────┬────────┘
+                     │
+              ┌──────┴──────┐
+              │             │
+        Determinate      NOT OK
+              │             │
+              ▼             ▼
+           ACCEPT      DeGro reads:
+              │         - Problem
+              │         - SymCode
+              │         - Constraints
+              │
+              │             │
+              │             ▼
+              │       Repair Code
+              │             │
+              │             ▼
+              │       ┌───────────┐
+              │       │ RUN AGAIN │
+              │       └─────┬─────┘
+              │             │
+              │             ▼
+              │       Check constraints
+              │       + Determinacy
+              │             │
+              │        ┌────┴────┐
+              │        │         │
+              │   Determinate   NOT OK
+              │        │         │
+              ▼        ▼         ▼
+           RETURN    ACCEPT    FAIL/ABSTAIN
+           ANSWER      │
+                       ▼
+                 RETURN ANSWER
