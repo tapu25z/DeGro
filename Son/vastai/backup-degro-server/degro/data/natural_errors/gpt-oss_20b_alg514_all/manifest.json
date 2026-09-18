@@ -1,0 +1,22 @@
+{
+  "study": "ALG514 all-fold natural-error study",
+  "unit": "one original problem and its shared joint-target formalization",
+  "source_results": 514,
+  "records": 503,
+  "excluded": {
+    "solver_not_supported": 6,
+    "not_supported": 1,
+    "solver_inconsistent": 4
+  },
+  "packet_sha256": "35b41922795b3ca86d3b9e2b21dfe33fb58ad68bbd2b02d5aa030fa5b9d020fa",
+  "blinded_fields": [
+    "initial_verdict",
+    "witnesses",
+    "repair",
+    "correct",
+    "method outcome"
+  ],
+  "source_patterns": [
+    "results/raw/gpt-oss_20b_alg514_natural_all_low_shard*.jsonl"
+  ]
+}

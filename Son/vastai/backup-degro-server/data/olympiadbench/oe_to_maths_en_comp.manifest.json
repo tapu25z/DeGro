@@ -1,0 +1,5 @@
+{
+  "source": "https://huggingface.co/datasets/Hothan/OlympiadBench/resolve/main/OlympiadBench/OE_TO_maths_en_COMP/OE_TO_maths_en_COMP.parquet",
+  "records": 674,
+  "sha256": "484500e5a3495492ccb8bf57c01ca704b2257ab90e32888be3ba5cfa454b2a4e"
+}

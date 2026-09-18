@@ -1,0 +1,24 @@
+[build-system]
+requires = ["setuptools>=75"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "targetcheck"
+version = "0.1.0"
+description = "Target-determinacy verification for structured mathematical formalizations"
+requires-python = ">=3.11"
+dependencies = [
+    "math-verify>=0.9,<1",
+    "pyarrow>=25,<26",
+    "sympy>=1.13,<2",
+    "z3-solver>=4.13,<5",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8,<9"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.setuptools.packages.find]
+include = ["targetcheck*"]

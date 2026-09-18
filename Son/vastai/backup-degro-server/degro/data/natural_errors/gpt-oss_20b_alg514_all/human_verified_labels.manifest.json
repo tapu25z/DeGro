@@ -1,0 +1,21 @@
+{
+  "status": "human verified",
+  "records": 503,
+  "reviewed_records": 503,
+  "accepted_without_label_change": 503,
+  "rejected_or_changed": 0,
+  "human_reviewers": 2,
+  "review_date": "2026-09-11",
+  "review_design": "full two-person review of AI-adjudicated labels",
+  "independent_blinded_label_sets": false,
+  "inter_annotator_agreement": null,
+  "agreement_note": "No separate pre-discussion human label files were recorded; do not report Cohen's kappa.",
+  "labels": {
+    "CORRECT": 477,
+    "MISSING_CONSTRAINT": 8,
+    "WRONG_CONSTRAINT": 7,
+    "WRONG_TARGET": 11
+  },
+  "sha256": "72217047ff8d41b4a3766e504325821bd07230d7b6dc7636475294ab8e5ffecd",
+  "source": "data/natural_errors/gpt-oss_20b_alg514_all/gpt_oss_120b_ai_adjudicated_labels.jsonl"
+}

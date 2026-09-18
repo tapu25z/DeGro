@@ -1,0 +1,21 @@
+{
+  "study": "DRAW-1K test-split natural-error study",
+  "unit": "one original problem and its shared joint-target formalization",
+  "source_results": 200,
+  "records": 194,
+  "excluded": {
+    "solver_inconsistent": 5,
+    "solver_not_supported": 1
+  },
+  "packet_sha256": "4539aa81fc43aca4a622a3d5409d1f9c775a611d992ace40063062960f5c808e",
+  "blinded_fields": [
+    "initial_verdict",
+    "witnesses",
+    "repair",
+    "correct",
+    "method outcome"
+  ],
+  "source_patterns": [
+    "results/raw/gpt-oss_20b_draw1k_natural_test_low_shard*.jsonl"
+  ]
+}

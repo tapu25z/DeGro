@@ -1,0 +1,22 @@
+{
+  "host": "http://127.0.0.1:11434",
+  "model": "qwen2:7b-instruct-q8_0",
+  "datasets": {
+    "alg514": 514,
+    "draw1k": 1000,
+    "math500": 500,
+    "mira_pilot": 160,
+    "mira_heldout": 200,
+    "mira_confirmatory": 240,
+    "olympiadbench": 674
+  },
+  "workers": 1,
+  "num_ctx": 8192,
+  "think": "off",
+  "completed": 0,
+  "pending_jobs": 3288,
+  "output": "/workspace/degro/Son/vastai/results/qwen2_7b-instruct-q8_0_symcode_degro.jsonl"
+}
+[1/3288] alg514 alg514/7 qwen2:7b-instruct-q8_0 -> ABSTAIN
+[2/3288] alg514 alg514/15 qwen2:7b-instruct-q8_0 -> ACCEPT
+[3/3288] alg514 alg514/17 qwen2:7b-instruct-q8_0 -> ACCEPT

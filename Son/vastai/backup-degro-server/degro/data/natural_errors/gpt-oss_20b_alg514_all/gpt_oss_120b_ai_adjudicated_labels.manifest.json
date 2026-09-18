@@ -1,0 +1,26 @@
+{
+  "status": "GPT-OSS 120B AI-adjudicated labels; not human verified",
+  "records": 503,
+  "ai_adjudicated": 22,
+  "changed_by_adjudication": 11,
+  "labels": {
+    "CORRECT": 477,
+    "MISSING_CONSTRAINT": 8,
+    "WRONG_CONSTRAINT": 7,
+    "WRONG_TARGET": 11
+  },
+  "transitions": {
+    "CORRECT->CORRECT": 2,
+    "CORRECT->MISSING_CONSTRAINT": 2,
+    "EXTRA_CONSTRAINT->CORRECT": 4,
+    "MISSING_CONSTRAINT->MISSING_CONSTRAINT": 1,
+    "WRONG_CONSTRAINT->CORRECT": 2,
+    "WRONG_CONSTRAINT->WRONG_CONSTRAINT": 1,
+    "WRONG_DOMAIN->CORRECT": 2,
+    "WRONG_TARGET->CORRECT": 1,
+    "WRONG_TARGET->WRONG_TARGET": 7
+  },
+  "sha256": "178050d7c0c539cf217c0eb4bcbb1a17dae8fce3a4b527d34fe27ea2b6137d0e",
+  "source_annotations": "data/natural_errors/gpt-oss_20b_alg514_all/gpt_oss_120b_annotations.jsonl",
+  "source_adjudications": "results/raw/gpt_oss_120b_alg514_final_adjudication_shard*.jsonl"
+}

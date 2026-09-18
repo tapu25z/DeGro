@@ -1,0 +1,114 @@
+{
+  "host": "http://127.0.0.1:11434",
+  "model": "qwen2:7b-instruct-q8_0",
+  "datasets": {
+    "alg514": 514,
+    "draw1k": 1000,
+    "math500": 500,
+    "mira_pilot": 160,
+    "mira_heldout": 200,
+    "mira_confirmatory": 240,
+    "olympiadbench": 674
+  },
+  "workers": 1,
+  "num_ctx": 8192,
+  "think": "off",
+  "completed": 3,
+  "pending_jobs": 3285,
+  "output": "/workspace/degro/Son/vastai/results/qwen2_7b-instruct-q8_0_symcode_degro.jsonl"
+}
+[1/3285] alg514 alg514/20 qwen2:7b-instruct-q8_0 -> ACCEPT
+[2/3285] alg514 alg514/27 qwen2:7b-instruct-q8_0 -> ACCEPT
+[3/3285] alg514 alg514/32 qwen2:7b-instruct-q8_0 -> ABSTAIN
+[4/3285] alg514 alg514/38 qwen2:7b-instruct-q8_0 -> ACCEPT
+[5/3285] alg514 alg514/44 qwen2:7b-instruct-q8_0 -> ACCEPT
+[6/3285] alg514 alg514/69 qwen2:7b-instruct-q8_0 -> ACCEPT
+[7/3285] alg514 alg514/82 qwen2:7b-instruct-q8_0 -> ACCEPT
+[8/3285] alg514 alg514/107 qwen2:7b-instruct-q8_0 -> ACCEPT
+[9/3285] alg514 alg514/116 qwen2:7b-instruct-q8_0 -> ACCEPT
+[10/3285] alg514 alg514/123 qwen2:7b-instruct-q8_0 -> ACCEPT
+[11/3285] alg514 alg514/135 qwen2:7b-instruct-q8_0 -> ACCEPT
+[12/3285] alg514 alg514/139 qwen2:7b-instruct-q8_0 -> ACCEPT
+[13/3285] alg514 alg514/154 qwen2:7b-instruct-q8_0 -> ACCEPT
+[14/3285] alg514 alg514/155 qwen2:7b-instruct-q8_0 -> ACCEPT
+[15/3285] alg514 alg514/158 qwen2:7b-instruct-q8_0 -> ACCEPT
+[16/3285] alg514 alg514/171 qwen2:7b-instruct-q8_0 -> ABSTAIN
+[17/3285] alg514 alg514/179 qwen2:7b-instruct-q8_0 -> ACCEPT
+[18/3285] alg514 alg514/200 qwen2:7b-instruct-q8_0 -> ACCEPT
+[19/3285] alg514 alg514/222 qwen2:7b-instruct-q8_0 -> ACCEPT
+[20/3285] alg514 alg514/230 qwen2:7b-instruct-q8_0 -> ACCEPT
+[21/3285] alg514 alg514/262 qwen2:7b-instruct-q8_0 -> ACCEPT
+[22/3285] alg514 alg514/266 qwen2:7b-instruct-q8_0 -> ACCEPT
+[23/3285] alg514 alg514/267 qwen2:7b-instruct-q8_0 -> ABSTAIN
+[24/3285] alg514 alg514/271 qwen2:7b-instruct-q8_0 -> ACCEPT
+[25/3285] alg514 alg514/286 qwen2:7b-instruct-q8_0 -> ACCEPT
+[26/3285] alg514 alg514/289 qwen2:7b-instruct-q8_0 -> ABSTAIN
+[27/3285] alg514 alg514/298 qwen2:7b-instruct-q8_0 -> NO_CERTIFICATE
+[28/3285] alg514 alg514/313 qwen2:7b-instruct-q8_0 -> ACCEPT
+[29/3285] alg514 alg514/315 qwen2:7b-instruct-q8_0 -> ACCEPT
+[30/3285] alg514 alg514/343 qwen2:7b-instruct-q8_0 -> ACCEPT
+[31/3285] alg514 alg514/353 qwen2:7b-instruct-q8_0 -> ACCEPT
+[32/3285] alg514 alg514/370 qwen2:7b-instruct-q8_0 -> NO_CERTIFICATE
+[33/3285] alg514 alg514/371 qwen2:7b-instruct-q8_0 -> ACCEPT
+[34/3285] alg514 alg514/376 qwen2:7b-instruct-q8_0 -> ACCEPT
+[35/3285] alg514 alg514/396 qwen2:7b-instruct-q8_0 -> ACCEPT
+[36/3285] alg514 alg514/397 qwen2:7b-instruct-q8_0 -> ACCEPT
+[37/3285] alg514 alg514/425 qwen2:7b-instruct-q8_0 -> ACCEPT
+[38/3285] alg514 alg514/428 qwen2:7b-instruct-q8_0 -> ACCEPT
+[39/3285] alg514 alg514/430 qwen2:7b-instruct-q8_0 -> ACCEPT
+[40/3285] alg514 alg514/432 qwen2:7b-instruct-q8_0 -> ACCEPT
+[41/3285] alg514 alg514/434 qwen2:7b-instruct-q8_0 -> ACCEPT
+[42/3285] alg514 alg514/438 qwen2:7b-instruct-q8_0 -> ABSTAIN
+[43/3285] alg514 alg514/443 qwen2:7b-instruct-q8_0 -> NO_CERTIFICATE
+[44/3285] alg514 alg514/460 qwen2:7b-instruct-q8_0 -> ACCEPT
+[45/3285] alg514 alg514/474 qwen2:7b-instruct-q8_0 -> ACCEPT
+[46/3285] alg514 alg514/485 qwen2:7b-instruct-q8_0 -> ACCEPT
+[47/3285] alg514 alg514/542 qwen2:7b-instruct-q8_0 -> ACCEPT
+[48/3285] alg514 alg514/576 qwen2:7b-instruct-q8_0 -> ACCEPT
+[49/3285] alg514 alg514/580 qwen2:7b-instruct-q8_0 -> ABSTAIN
+[50/3285] alg514 alg514/586 qwen2:7b-instruct-q8_0 -> ACCEPT
+[51/3285] alg514 alg514/657 qwen2:7b-instruct-q8_0 -> ACCEPT
+[52/3285] alg514 alg514/658 qwen2:7b-instruct-q8_0 -> ACCEPT
+[53/3285] alg514 alg514/665 qwen2:7b-instruct-q8_0 -> ACCEPT
+[54/3285] alg514 alg514/667 qwen2:7b-instruct-q8_0 -> ACCEPT
+[55/3285] alg514 alg514/704 qwen2:7b-instruct-q8_0 -> ACCEPT
+[56/3285] alg514 alg514/724 qwen2:7b-instruct-q8_0 -> ACCEPT
+[57/3285] alg514 alg514/760 qwen2:7b-instruct-q8_0 -> ACCEPT
+[58/3285] alg514 alg514/767 qwen2:7b-instruct-q8_0 -> ACCEPT
+[59/3285] alg514 alg514/817 qwen2:7b-instruct-q8_0 -> ACCEPT
+[60/3285] alg514 alg514/823 qwen2:7b-instruct-q8_0 -> ACCEPT
+[61/3285] alg514 alg514/878 qwen2:7b-instruct-q8_0 -> ACCEPT
+[62/3285] alg514 alg514/881 qwen2:7b-instruct-q8_0 -> ACCEPT
+[63/3285] alg514 alg514/920 qwen2:7b-instruct-q8_0 -> ACCEPT
+[64/3285] alg514 alg514/922 qwen2:7b-instruct-q8_0 -> ACCEPT
+[65/3285] alg514 alg514/972 qwen2:7b-instruct-q8_0 -> ACCEPT
+[66/3285] alg514 alg514/986 qwen2:7b-instruct-q8_0 -> ACCEPT
+[67/3285] alg514 alg514/1035 qwen2:7b-instruct-q8_0 -> ABSTAIN
+[68/3285] alg514 alg514/1075 qwen2:7b-instruct-q8_0 -> ACCEPT
+[69/3285] alg514 alg514/1089 qwen2:7b-instruct-q8_0 -> ABSTAIN
+[70/3285] alg514 alg514/1090 qwen2:7b-instruct-q8_0 -> ABSTAIN
+[71/3285] alg514 alg514/1099 qwen2:7b-instruct-q8_0 -> ACCEPT
+[72/3285] alg514 alg514/1102 qwen2:7b-instruct-q8_0 -> ACCEPT
+[73/3285] alg514 alg514/1106 qwen2:7b-instruct-q8_0 -> ACCEPT
+[74/3285] alg514 alg514/1119 qwen2:7b-instruct-q8_0 -> ACCEPT
+[75/3285] alg514 alg514/1140 qwen2:7b-instruct-q8_0 -> ACCEPT
+[76/3285] alg514 alg514/1164 qwen2:7b-instruct-q8_0 -> ACCEPT
+[77/3285] alg514 alg514/1191 qwen2:7b-instruct-q8_0 -> ACCEPT
+[78/3285] alg514 alg514/1194 qwen2:7b-instruct-q8_0 -> ACCEPT
+[79/3285] alg514 alg514/1219 qwen2:7b-instruct-q8_0 -> ABSTAIN
+[80/3285] alg514 alg514/1220 qwen2:7b-instruct-q8_0 -> ACCEPT
+[81/3285] alg514 alg514/1292 qwen2:7b-instruct-q8_0 -> ACCEPT
+[82/3285] alg514 alg514/1294 qwen2:7b-instruct-q8_0 -> ACCEPT
+[83/3285] alg514 alg514/1301 qwen2:7b-instruct-q8_0 -> ACCEPT
+[84/3285] alg514 alg514/1309 qwen2:7b-instruct-q8_0 -> ACCEPT
+[85/3285] alg514 alg514/1315 qwen2:7b-instruct-q8_0 -> ACCEPT
+[86/3285] alg514 alg514/1332 qwen2:7b-instruct-q8_0 -> ABSTAIN
+[87/3285] alg514 alg514/1341 qwen2:7b-instruct-q8_0 -> ACCEPT
+[88/3285] alg514 alg514/1362 qwen2:7b-instruct-q8_0 -> ACCEPT
+[89/3285] alg514 alg514/1366 qwen2:7b-instruct-q8_0 -> ACCEPT
+[90/3285] alg514 alg514/1371 qwen2:7b-instruct-q8_0 -> ACCEPT
+[91/3285] alg514 alg514/1375 qwen2:7b-instruct-q8_0 -> ACCEPT
+[92/3285] alg514 alg514/1379 qwen2:7b-instruct-q8_0 -> ACCEPT
+[93/3285] alg514 alg514/1404 qwen2:7b-instruct-q8_0 -> ACCEPT
+[94/3285] alg514 alg514/1444 qwen2:7b-instruct-q8_0 -> ACCEPT
+[95/3285] alg514 alg514/1486 qwen2:7b-instruct-q8_0 -> ACCEPT

@@ -1,0 +1,11 @@
+{
+  "cohort_records": 194,
+  "model_disagreements": 7,
+  "consensus_records": 187,
+  "consensus_audit_records": 39,
+  "human_review_queue": 46,
+  "audit_rule": "all consensus MISSING_CONSTRAINT plus deterministic label-stratified ceiling sample",
+  "audit_rate": 0.2,
+  "selection_salt": "natural-error-audit-v1",
+  "queue_sha256": "a6a1ad13d197f27765cb7c8601cba1a22f5a8150663a2d7d87fdb8f071fce98b"
+}

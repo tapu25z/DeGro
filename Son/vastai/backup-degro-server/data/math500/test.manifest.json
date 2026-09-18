@@ -1,0 +1,7 @@
+{
+  "dataset": "HuggingFaceH4/MATH-500",
+  "split": "test",
+  "rows": 500,
+  "source_api": "https://datasets-server.huggingface.co/rows",
+  "sha256": "037d98c223ab5b389057f1b6d6e68ba7655123ec73071e5ab26e569edbced689"
+}

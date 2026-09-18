@@ -1,0 +1,15 @@
+{
+  "process": "AI-assisted annotation pending human verification",
+  "records": 503,
+  "review_queue_sha256": "463a00e19db4ef0f264e149fe0dab06be2286bd14977dd7c2160b446217eee8f",
+  "models": [
+    "gpt-oss:120b"
+  ],
+  "prompt_sha256": [
+    "0f1093c9156904da78890ca09e9dc2048b4adf2541e14a103136e0bf03b7e094"
+  ],
+  "source_patterns": [
+    "results/raw/gpt_oss_120b_alg514_natural_preannotation_none_shard*.jsonl"
+  ],
+  "packet": "data/natural_errors/gpt-oss_20b_alg514_all/adjudication_packet.jsonl"
+}

@@ -1,0 +1,23 @@
+{
+  "status": "human verified",
+  "records": 292,
+  "reviewed_records": 292,
+  "accepted_without_label_change": 292,
+  "rejected_or_changed": 0,
+  "human_reviewers": 2,
+  "review_date": "2026-09-11",
+  "review_design": "full two-person review of Gemma 4 31B label proposals",
+  "independent_blinded_label_sets": false,
+  "inter_annotator_agreement": null,
+  "agreement_note": "No separate pre-discussion human label files were recorded; do not report Cohen's kappa.",
+  "labels": {
+    "CORRECT": 158,
+    "EXTRA_CONSTRAINT": 8,
+    "MISSING_CONSTRAINT": 24,
+    "WRONG_CONSTRAINT": 32,
+    "WRONG_DOMAIN": 1,
+    "WRONG_TARGET": 69
+  },
+  "sha256": "4e1bbe0b9eaefdefe4569ec10fdd42daf8f1131d17dfbc410d0faed0b430ad38",
+  "source": "data/natural_errors/gpt_oss_20b_math500/gemma4_31b_ai_assisted_human_review.jsonl"
+}
