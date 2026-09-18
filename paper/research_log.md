@@ -114,3 +114,31 @@ An AI coding assistant (OpenAI Codex; model/version to be copied from the final 
 - Completed 640 pilot, 800 development, and 960 fixed-set records with no missing or error records; the combined file contains 2,400 records.
 - On the fixed 120-pair set, DeGro improves FDA from 87.5% to 93.8% over grounded self-review (+6.25 points; pair-bootstrap 95% CI [1.7, 10.8]; exact McNemar p=.0135). The model substitution is disclosed as post-hoc.
 - A fresh blinded GPT-OSS 120B MATH-500 proposal pass completed all 292 cases and agrees with the human-verified primary labels on 207/292 (70.9%). Human labels were not replaced without renewed reviewer adjudication.
+
+## Nemotron 3 Nano 30B additional comparison (2026-09-17)
+
+- Completed the same frozen four-method MIRA benchmark: 640 pilot, 800 development, 960 fixed-set records, 2,400 total; no missing or unresolved error records in finalized outputs.
+- Same frozen prompts, temperature 1.0, and API `think="medium"` request. Equal API requests do not establish equal model reasoning budgets. The additional model was selected post-hoc.
+- Fixed-set DeGro FDA 90.83% versus grounded self-review 89.58%: +1.25 points, pair-cluster 95% CI [-2.5, 5.0], exact McNemar p=.6636 (12 versus 9 discordances). CAR 100.0% versus 98.33%; RSR 81.67% versus 80.83%; UR 1/99 versus 3/100. No statistically established incremental FDA benefit.
+- Cumulative FDA 90.33% versus 89.50%: +0.83 points, CI [-1.5, 3.3], exact p=.5901. This secondary analysis includes development data.
+- Sensitivity Holm over all three model tests gives p=.1002 (20B), .0406 (120B), .6636 (Nemotron); retain the original two-GPT-OSS family separately.
+- Transport workers were repartitioned and quota failures retried through account failover; every prior valid response was preserved, without score-based resampling. All frozen input hashes, raw configurations, expected unique keys, and recomputed scores were checked.
+- Added results and limitations to main paper and supplementary appendix; model source: NVIDIA, arXiv:2512.20848.
+
+## Nemotron 3 Super additional comparison (2026-09-17)
+
+- Completed all 2,400 records on the same frozen four-method MIRA benchmark: 640 pilot, 800 development, 960 fixed-set records. Exactly 2,400 successful raw records, zero error records; all expected keys and independently recomputed scores verified.
+- Same prompts, temperature 1.0, and API `think="medium"`; post-hoc model addition. Ollama reports tag digest `da11955bb451`. Equal API requests do not establish equal internal reasoning budgets.
+- Fixed-set DeGro FDA 90.83% versus grounded self-review 86.25%: +4.58 points, pair-cluster 95% CI [0.0, 9.17], exact McNemar p=.080143 (22 versus 11 discordances), statistically inconclusive. RSR 84.17% versus 74.17%; CAR 97.50% versus 98.33%; UR 5/106 versus 4/93. Verdict-only repair scores highest at 91.25%.
+- Full300 DeGro FDA 89.83% versus 84.17%: +5.67 points, CI [2.5, 8.67], p=.000509; verdict-only FDA 91.50%. This includes development observations and does not replace fixed-set inference.
+- Holm sensitivity over all four model tests: 20B .1503, 120B .0541, Nano .6636, Super .1603; none below .05. Original two-GPT-OSS family remains separately reported.
+- Main paper and supplement now include all four models, inconclusive fixed-set Super inference, and its verdict-only advantage. One-decimal values use half-up rounding; GPT-OSS 120B verdict-only FDA 91.25% now displays as 91.3% instead of 91.2%, without changing any underlying outcome.
+
+
+### 2026-09-17: DeGro source-coverage audit candidate
+
+User requested improvement for Nemotron3Nano30B and GPT-OSS120B. Designed one candidate from pilot80 only; original scorer and prompts unchanged. Registered protocol and synthetic100-pair stress test in `results/degro_v2/`. Original MIRA compatible pool exhausted; new data explicitly synthetic. All200 gold decisions rescored correct, no exact source overlap with original300. Eight prompt tests pass. Evaluation currently blocked: all17 accounts return429, including single-request check after pausing concurrent Ultra/experiment workers. Zero successful candidate outputs; no improvement or significance claim and no paper table update. Resume command and details in `results/degro_v2/report.md`.
+
+### 2026-09-17: DeGro source-coverage audit completed
+
+The previously rate-limited Nano 30B/GPT-OSS 120B experiment resumed and completed. Verified 320/320 development responses and 800/800 synthetic-test responses; every score was independently recomputed and every finalized row is the first valid response for its key. On the frozen synthetic 100-pair stress set, Nano FDA changed from 75.5% to 95.0% (+19.5 points, pair-cluster 95% CI [13.5,25.5], exact p=1.83e-8, two-model Holm p=3.66e-8). Nano UR increased from 1/53 (1.9%) to 8/98 (8.2%), an explicit repair-risk tradeoff. GPT-OSS 120B changed from 98.5% to 99.5% (+1.0, CI [-1.0,3.0], p=.625), with UR 3/102 to 1/101. The data are generated from the same algebraic templates because the original compatible MIRA pool is exhausted; they are not an external benchmark and do not replace confirmatory results. Main paper and supplement label this analysis exploratory.

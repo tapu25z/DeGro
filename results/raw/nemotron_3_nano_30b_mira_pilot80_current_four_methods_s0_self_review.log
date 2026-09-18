@@ -1,0 +1,8 @@
+[1/40] crt-000094 OMISSION self_review ok
+[2/40] crt-000094 UNDERSPECIFIED self_review ok
+[3/40] gra-000217 OMISSION self_review ok
+[4/40] gra-000217 UNDERSPECIFIED self_review ok
+Traceback (most recent call last):
+  File "/Users/buihuynhtay/Documents/ChatGPT/degro/scripts/run_pilot.py", line 10, in <module>
+    from targetcheck.pilot import METHODS, OUTPUT_SCHEMA, build_prompt, parse_decision, prompt_hash, score
+ModuleNotFoundError: No module named 'targetcheck'

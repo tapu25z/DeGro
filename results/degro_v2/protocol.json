@@ -1,0 +1,51 @@
+{
+  "created_utc": "2026-09-16T19:33:54.187046+00:00",
+  "candidate": "source_coverage_audit_v2",
+  "models": {
+    "nano30b": "nemotron-3-nano:30b",
+    "gpt120b": "gpt-oss:120b"
+  },
+  "temperature": 1.0,
+  "think": "medium",
+  "selection": "one candidate chosen from pilot80 error analysis; no adaptive search or test-based selection",
+  "new_test": "results/degro_v2/fresh_test100.jsonl",
+  "new_test_sha256": "b7c43c338143dee7873ecf12717d8f65acf0a10aa77ab6fc0fdb5ac811648a72",
+  "excluded_original_pairs": 300,
+  "test_pairs": 100,
+  "families": {
+    "linear_system_separator": 25,
+    "graph_path_sums": 25,
+    "crt_reconstruction": 25,
+    "rankdef_linear_shared": 25
+  },
+  "test_source": "newly generated synthetic stress test; original MIRA pool exhausted",
+  "selection_seed": 2026091701,
+  "retry": "up to 3 transport/parse attempts; first valid response retained regardless of score",
+  "metrics": [
+    "RSR",
+    "CAR",
+    "FDA",
+    "ORR"
+  ],
+  "primary": "new-test FDA candidate minus concurrently rerun original DeGro; two-model Holm adjustment; pair bootstrap10000",
+  "code_sha256": {
+    "targetcheck/degro_v2.py": "c1f4b3fb69a9c3e9ee51ec843c621bad35bd5f9aabfa86376c00555d6f73ac35",
+    "/Users/buihuynhtay/Documents/ChatGPT/degro/scripts/run_degro_v2_experiment.py": "0f598bb1665270fbc0b76882f6ef8a0fabba617133474554dc744e46d525e32e",
+    "targetcheck/pilot.py": "4e52a7fd8122eba95a3c4444bd76c47d841d5b4020a1a9711abd1e11630c28fe",
+    "scripts/run_degro_v2_experiment.py": "67b49551b7f84b6988d8b2f30ade1d24fb3a14bc00fe91ad6b4312c5cbaf6177"
+  },
+  "execution_amendment": "Before successful inference: reduce workers16 to4 after429; reject exact source duplicates before any test inference. Candidate unchanged.",
+  "verification": {
+    "gold_score": "200/200 correct",
+    "exact_source_overlap_original300": 0,
+    "prompt_tests": "8 passed"
+  },
+  "execution_status": {
+    "status": "blocked_by_service",
+    "checked_utc": "2026-09-16T19:35:58.511327+00:00",
+    "successful_experiment_records": 0,
+    "retained_error_records": 51,
+    "single_request_after_concurrency_stop": "all17 accounts returned HTTP429; some network retries",
+    "ultra": "paused to prioritize requested Nano30B/GPT120B improvement"
+  }
+}

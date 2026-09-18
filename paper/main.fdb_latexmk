@@ -1,13 +1,13 @@
 # Fdb version 4
-["bibtex main"] 1789548966.67803 "main.aux" "main.bbl" "main" 1789548969.80224 0
-  "./refs.bib" 1789417054.12035 19122 7cbe951a05088dd2f7243c34b1424c05 ""
-  "main.aux" 1789548969.15815 14019 9e77ae9caed6df410c1550af79107567 "pdflatex"
-  "vendor/ACM-Reference-Format.bst" 1784725464 93560 7091f2b0543d2c8bfe2e82ce5d54a029 ""
+["bibtex main"] 1789699382.54166 "main.aux" "main.bbl" "main" 1789699385.62487 0
+  "./refs.bib" 1789642568.44278 19388 865b7573e4174408d07f8f3fc386d4a6 ""
+  "/usr/local/texlive/2025/texmf-dist/bibtex/bst/acmart/ACM-Reference-Format.bst" 1735764768 90749 48abc1cbed6fafc6fc31528e3aa606ca ""
+  "main.aux" 1789699385.24501 18199 ca522619fe0bd229145e149eae46e36a "pdflatex"
   (generated)
   "main.bbl"
   "main.blg"
   (rewritten before read)
-["pdflatex"] 1789548966.86122 "main.tex" "main.pdf" "main" 1789548969.80247 0
+["pdflatex"] 1789699382.6529 "main.tex" "main.pdf" "main" 1789699385.62503 0
   "/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/inconsolata/i4-t1-4.enc" 1558214095 7693 0f2dce6d313c82989ec3a67fc24df2a0 ""
   "/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/libertine/lbtn_25tcsq.enc" 1490131464 2921 8ca0eb0831f9bc5da080d3697cfe67bf ""
   "/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/libertine/lbtn_76gpa5.enc" 1490131464 2933 9ad527ce78d7c5fa0a642dead095f172 ""
@@ -28,6 +28,7 @@
   "/usr/local/texlive/2025/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm5.tfm" 1246382020 940 75ac932a52f80982a9f8ea75d03a34cf ""
   "/usr/local/texlive/2025/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm7.tfm" 1246382020 940 228d6584342e91276bf566bcf9716b83 ""
   "/usr/local/texlive/2025/texmf-dist/fonts/tfm/public/cm/cmr9.tfm" 1136768653 1292 6b21b9c2c7bebb38aa2273f7ca0fb3af ""
+  "/usr/local/texlive/2025/texmf-dist/fonts/tfm/public/inconsolata/t1-zi4b-4.tfm" 1558214095 1348 9fb9f210dfa0e6ca8349d4cb497f5e46 ""
   "/usr/local/texlive/2025/texmf-dist/fonts/tfm/public/inconsolata/t1-zi4r-4.tfm" 1558214095 1328 82f7955e88a105d8e5acd89cb6526b12 ""
   "/usr/local/texlive/2025/texmf-dist/fonts/tfm/public/libertine/LinBiolinumT-tlf-t1--base.tfm" 1490131464 1744 9486ddc64e90094bbb83f53a83b0e415 ""
   "/usr/local/texlive/2025/texmf-dist/fonts/tfm/public/libertine/LinBiolinumT-tlf-t1.tfm" 1490131464 19548 768852037f39958c435d71846b8877ea ""
@@ -68,6 +69,7 @@
   "/usr/local/texlive/2025/texmf-dist/fonts/tfm/public/newtx/txmiaSTbb.tfm" 1569879884 920 99acdf374993fd46fd345f9cac168080 ""
   "/usr/local/texlive/2025/texmf-dist/fonts/tfm/public/newtx/txmiaX.tfm" 1736550153 1708 e6ab41b8c6f33e297f8c7977f1424a40 ""
   "/usr/local/texlive/2025/texmf-dist/fonts/tfm/public/newtx/txsys.tfm" 1724614892 1656 68b5079c64f1cefe2cf442b6a60cf2fd ""
+  "/usr/local/texlive/2025/texmf-dist/fonts/type1/public/inconsolata/Inconsolata-zi4b.pfb" 1558214095 80472 80293bde06887d309938fd1de50ad188 ""
   "/usr/local/texlive/2025/texmf-dist/fonts/type1/public/inconsolata/Inconsolata-zi4r.pfb" 1558214095 55526 184de5d68af8c544d6d1653244a2b006 ""
   "/usr/local/texlive/2025/texmf-dist/fonts/type1/public/libertine/LinBiolinumT.pfb" 1354061736 548786 1e51d517556d29f2841d57da58668a69 ""
   "/usr/local/texlive/2025/texmf-dist/fonts/type1/public/libertine/LinBiolinumTB.pfb" 1354061736 687959 b99c9f5a9b28f3dba077d1c078bceb3f ""
@@ -79,6 +81,7 @@
   "/usr/local/texlive/2025/texmf-dist/fonts/type1/public/newtx/LibertineMathRM.pfb" 1569879884 17941 ddba6afdead1586dc42d18763749eddd ""
   "/usr/local/texlive/2025/texmf-dist/fonts/type1/public/newtx/NewTXMI.pfb" 1724614892 32409 aee30089ce2d804d7327a2f8ccff0462 ""
   "/usr/local/texlive/2025/texmf-dist/fonts/type1/public/newtx/txmiaX.pfb" 1736550153 65081 1217ccf27de85b7db49806ee29c16745 ""
+  "/usr/local/texlive/2025/texmf-dist/fonts/type1/public/newtx/txsym.pfb" 1692649180 44726 c0c4f2d62278d1adbb6a666ba2cb0447 ""
   "/usr/local/texlive/2025/texmf-dist/fonts/type1/public/newtx/txsys.pfb" 1724614892 45985 fd5f8adcc4f0e93e9a95469e12126723 ""
   "/usr/local/texlive/2025/texmf-dist/fonts/vf/public/libertine/LinBiolinumT-tlf-t1.vf" 1490131464 1728 e76e04a950024a95b620698b679c9810 ""
   "/usr/local/texlive/2025/texmf-dist/fonts/vf/public/libertine/LinBiolinumTB-tlf-t1.vf" 1354061736 1728 4ae633ddccb76ba8d0a0906a5e2e8fdf ""
@@ -211,6 +214,7 @@
   "/usr/local/texlive/2025/texmf-dist/tex/latex/cmap/cmap.sty" 1612650595 3574 ddc11a0ae1c579d351ed20d2319ad422 ""
   "/usr/local/texlive/2025/texmf-dist/tex/latex/cmap/ot1.cmap" 1177721415 1207 4e0d96772f0d338847cbfb4eca683c81 ""
   "/usr/local/texlive/2025/texmf-dist/tex/latex/cmap/t1.cmap" 1215522782 1938 beaa4a8467aa0074076e0e19f2992e29 ""
+  "/usr/local/texlive/2025/texmf-dist/tex/latex/colortbl/colortbl.sty" 1720383029 12726 67708fc852a887b2ba598148f60c3756 ""
   "/usr/local/texlive/2025/texmf-dist/tex/latex/comment/comment.sty" 1472166125 10197 204f75d5d8d88aa345a8c402e879e63b ""
   "/usr/local/texlive/2025/texmf-dist/tex/latex/environ/environ.sty" 1399239813 4378 f429f0da968c278653359293040a8f52 ""
   "/usr/local/texlive/2025/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty" 1579991033 13886 d1306dcf79a944f6988e688c1785f9ce ""
@@ -310,6 +314,8 @@
   "/usr/local/texlive/2025/texmf-dist/tex/latex/tikzfill/tikzfill-common.sty" 1691524336 2573 42712c9e0a2df004e43df5b3c95f0c1e ""
   "/usr/local/texlive/2025/texmf-dist/tex/latex/tikzfill/tikzfill.image.sty" 1691524336 1120 ba535da48caa03bf1fd3f03ea87779f8 ""
   "/usr/local/texlive/2025/texmf-dist/tex/latex/tikzfill/tikzlibraryfill.image.code.tex" 1691524336 10931 717eb52299f416934beb8b2b7cd8cee6 ""
+  "/usr/local/texlive/2025/texmf-dist/tex/latex/tools/array.sty" 1730496337 14552 27664839421e418b87f56fa4c6f66b1a ""
+  "/usr/local/texlive/2025/texmf-dist/tex/latex/tools/tabularx.sty" 1717359999 7243 e5dac1240636811edb77568b81818372 ""
   "/usr/local/texlive/2025/texmf-dist/tex/latex/tools/verbatim.sty" 1717359999 7532 d2e1111e17bfebb1607d8ffa779705ec ""
   "/usr/local/texlive/2025/texmf-dist/tex/latex/totpages/totpages.sty" 1137110984 7670 b07e668265cf485332abe582e7ed306e ""
   "/usr/local/texlive/2025/texmf-dist/tex/latex/trimspaces/trimspaces.sty" 1253232110 1380 971a51b00a14503ddf754cab24c3f209 ""
@@ -321,11 +327,13 @@
   "/usr/local/texlive/2025/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1759948538 5467155 19efa205003f9ecad95fbbaa6ff24da1 ""
   "/usr/local/texlive/2025/texmf-var/web2c/pdftex/pdflatex.fmt" 1759948473 3345731 542163a676e9c7fa4f99ea6da5b59371 ""
   "/usr/local/texlive/2025/texmf.cnf" 1741450484 577 418a7058ec8e006d8704f60ecd22c938 ""
-  "figure/pipeline.jpg" 1789415582.15444 202329 49e7ae4eacb44e9d9c54db1993bf8c92 ""
-  "main.aux" 1789548969.15815 14019 9e77ae9caed6df410c1550af79107567 "pdflatex"
-  "main.bbl" 1789548966.85522 21659 291c743dd8b6cbce6d8e527d10d64104 "bibtex main"
-  "main.out" 1789548969.15987 4592 6b60b4cb05337f2d41bb83ba598aa540 "pdflatex"
-  "main.tex" 1789548962.24034 58445 f37eb2d37dcde13f1d516c3a6a7fb342 ""
+  "draw_paired_statistics.tex" 1789699378.87574 689 418b4830423953478ac4dbd94a0e261f ""
+  "figure/fig1_paradigms.png" 1789550081.90698 90690 4ca0154bde89f177eba296540b3f1a1a ""
+  "figure/pipeline.png" 1789667895.81413 362054 26ddde3d010b6ba5e2e84bb76b6a7771 ""
+  "main.aux" 1789699385.24501 18199 ca522619fe0bd229145e149eae46e36a "pdflatex"
+  "main.bbl" 1789699382.64851 22091 3c6298c3cda48141f79f4ae33739af4d "bibtex main"
+  "main.out" 1789699385.2464 4379 7b54fbea122295b4db7465dbc13770cb "pdflatex"
+  "main.tex" 1789699346.12363 79226 1257bb628e3e751aa7de53d5e8dfe351 ""
   "vendor/aamas.cls" 1784725464 122209 65113db2770441df189925e574f1dbe2 ""
   "vendor/by.pdf" 1784725464 5004 981f6317db1b416da3b30e5922ad167c ""
   (generated)

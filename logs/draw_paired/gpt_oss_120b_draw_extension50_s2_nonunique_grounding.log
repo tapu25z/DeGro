@@ -1,0 +1,26 @@
+Traceback (most recent call last):
+  File "/Users/buihuynhtay/Documents/ChatGPT/degro/scripts/run_pilot.py", line 10, in <module>
+    from targetcheck.pilot import METHODS, OUTPUT_SCHEMA, build_prompt, parse_decision, prompt_hash, score
+ModuleNotFoundError: No module named 'targetcheck'
+Traceback (most recent call last):
+  File "/Users/buihuynhtay/Documents/ChatGPT/degro/scripts/run_pilot.py", line 10, in <module>
+    from targetcheck.pilot import METHODS, OUTPUT_SCHEMA, build_prompt, parse_decision, prompt_hash, score
+ModuleNotFoundError: No module named 'targetcheck'
+Traceback (most recent call last):
+  File "/Users/buihuynhtay/Documents/ChatGPT/degro/scripts/run_pilot.py", line 10, in <module>
+    from targetcheck.pilot import METHODS, OUTPUT_SCHEMA, build_prompt, parse_decision, prompt_hash, score
+ModuleNotFoundError: No module named 'targetcheck'
+[1/12] draw-paired/911331/1/y OMISSION nonunique_grounding ok
+[2/12] draw-paired/911331/1/y UNDERSPECIFIED nonunique_grounding error
+[3/12] draw-paired/544767/1/x OMISSION nonunique_grounding error
+[4/12] draw-paired/544767/1/x UNDERSPECIFIED nonunique_grounding ok
+[5/12] draw-paired/251790/1/plane OMISSION nonunique_grounding ok
+[6/12] draw-paired/251790/1/plane UNDERSPECIFIED nonunique_grounding ok
+[7/12] draw-paired/240645/1/y OMISSION nonunique_grounding ok
+[6/12] draw-paired/911331/1/y UNDERSPECIFIED nonunique_grounding ok
+[7/12] draw-paired/544767/1/x OMISSION nonunique_grounding ok
+[8/12] draw-paired/240645/1/y UNDERSPECIFIED nonunique_grounding ok
+[9/12] draw-paired/256224/1/x OMISSION nonunique_grounding ok
+[10/12] draw-paired/256224/1/x UNDERSPECIFIED nonunique_grounding ok
+[11/12] draw-paired/587206/1/x OMISSION nonunique_grounding ok
+[12/12] draw-paired/587206/1/x UNDERSPECIFIED nonunique_grounding ok

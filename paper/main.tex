@@ -1,5 +1,7 @@
 \documentclass[sigconf,anonymous]{aamas}
 \usepackage{balance}
+\usepackage{colortbl}
+\usepackage{tabularx}
 \usepackage{algorithm}
 \usepackage[noend]{algpseudocode}
 \usepackage[most]{tcolorbox}
@@ -18,6 +20,8 @@
   enhanced,
   colback=degrolight,
   colframe=degrogray,
+  coltitle=black,
+  fonttitle=\bfseries\small,
   colbacktitle=degrogray,
   coltitle=white,
   title=Takeaway,
@@ -58,7 +62,8 @@
 \author{Anonymous Author(s)}
 
 \begin{abstract}
-Executable mathematical reasoning may run successfully while solving an underconstrained or mistranslated problem.  Execution checks expose syntax, runtime, and arithmetic failures but do not establish that the encoded constraints determine the requested quantity.  We introduce \emph{DeGro}, a neuro-symbolic framework for \emph{target determinacy diagnosis}.  DeGro asks a solver for two feasible assignments that disagree on the target; when they exist, a grounded policy adds only a source-supported constraint that restores determinacy or abstains.  On a fixed paired evaluation that varies source support while holding the formalization constant, DeGro improves repair-or-abstain accuracy for GPT-OSS 20B and 120B.  Human-verified natural-error studies show that DeGro improves accuracy on the supported MATH-500 cohort, while higher-coverage ALG514 reveals answer-compatible formalization errors.  Detection is much easier than repair, and concrete witnesses add no measurable benefit beyond the verdict.  Target determinacy is therefore an auditable intermediate guardrail, not a proof of source-to-formal faithfulness.
+Executable mathematical reasoning may run successfully while solving an underconstrained or mistranslated problem.  Execution checks expose syntax, runtime, and arithmetic failures but do not establish that the encoded constraints determine the requested quantity.  We introduce \emph{DeGro}, a neuro-symbolic framework for \emph{target determinacy diagnosis}.  DeGro asks a solver for two feasible assignments that disagree on the target; when they exist, a repair policy requests source support and accepts a constraint only if it passes provenance and formal checks that restore determinacy; otherwise, it abstains.  On a fixed paired evaluation that varies source support while holding the formalization constant, DeGro improves repair-or-abstain accuracy for GPT-OSS 20B and 120B.  Human-verified natural-error studies show that DeGro improves accuracy on the supported MATH-500 cohort, while higher-coverage ALG514 reveals answer-compatible formalization errors.  Detection is much easier than repair, and concrete witnesses add no measurable benefit beyond the verdict.  Target determinacy is therefore an auditable intermediate guardrail, not a proof of source-to-formal faithfulness.
+An additional 350-pair DRAW-Paired experiment uses natural algebra sources with injected omissions: DeGro improves FDA over grounded self-review by 6.3 points for GPT-OSS 120B and 7.3 for Nano, while the 20B difference is inconclusive and verdict-only repair performs best for 120B. This cumulative experiment is post-hoc and provisional: 300 pairs are author-reviewed after initial inference and a 50-pair extension awaits review.
 \end{abstract}
 \ccsdesc[500]{Computing methodologies~Knowledge representation and reasoning}
 \ccsdesc[500]{Computing methodologies~Intelligent agents}
@@ -75,20 +80,9 @@ Large language models increasingly delegate mathematical computation to programs
 
 \begin{figure}[H]
 \centering
-\begin{tikzpicture}[
-  panel/.style={draw=black!45,rounded corners=1.5pt,text width=.255\columnwidth,minimum height=21mm,align=center,inner sep=2.5pt,font=\scriptsize},
-  tag/.style={font=\scriptsize\bfseries,align=center},
-  arrow/.style={-{Latex[length=1.4mm]},semithick}
-]
-\node[panel,fill=black!3] (exec) {Program\\ \fcolorbox{black!35}{white}{\strut run}\\ \textcolor{degrogreen}{\bfseries succeeds}};
-\node[tag,above=1mm of exec] {Execution-level};
-\node[panel,fill=black!3,right=2mm of exec] (answer) {Prediction\\ \fcolorbox{black!35}{white}{\strut match}\\ \textcolor{degroorange}{\bfseries correct / wrong}};
-\node[tag,above=1mm of answer] {Outcome-level};
-\node[panel,fill=degrolight,right=2mm of answer] (diag) {$F^{(1)}\land F^{(2)}$\\ $q^{(1)}\neq q^{(2)}$\\ \textcolor{degroblue}{\bfseries diagnose} $\rightarrow$\\grounded repair / abstain};
-\node[tag,above=1mm of diag,text=degroblue] {Determinacy-level};
-\end{tikzpicture}
-\caption{Three levels of executable-reasoning evaluation.  Execution and outcome checks return coarse judgments; DeGro diagnoses whether feasible models disagree on the requested target and grounds the resulting action in the source.}
-\Description{A three-panel comparison of execution-level, outcome-level, and determinacy-level evaluation. The determinacy panel uses two copies of a specification with unequal targets and leads to grounded repair or abstention.}
+\includegraphics[width=\columnwidth]{figure/fig1_paradigms.png}
+\caption{Three levels of executable mathematical reasoning evaluation. Execution checks whether a program runs; outcome evaluation checks its final answer. DeGro diagnoses target ambiguity through two feasible models with different target values (illustrated by $q=4$ and $q=6$), then attempts source-grounded repair with deterministic acceptance gates or abstains. Target determinacy is relative to the encoded specification and does not establish faithfulness to the source problem.}
+\Description{Three columns compare execution-level, outcome-level, and determinacy-level evaluation. Execution routes a generated program through execution and runtime checks to runs or fails. Outcome evaluation extracts an answer and matches it with a reference to classify it as correct or incorrect. DeGro checks target determinacy; two feasible models with target values four and six illustrate ambiguity, which leads to grounded repair or abstention.}
 \label{fig:paradigms}
 \end{figure}
 
@@ -114,7 +108,7 @@ We evaluate this framework at two complementary levels.  A controlled paired ben
 \par\addvspace{10pt}
 
 \noindent\begin{minipage}{\columnwidth}
-\takeaway{DeGro checks whether the encoded constraints determine the requested target, accepts only source-supported repairs, and otherwise abstains.}
+\takeaway{DeGro checks whether the encoded constraints determine the requested target, requires cited support and formal validation for repairs, and otherwise abstains.}
 
 \par\addvspace{5pt}
 \setlength{\parskip}{5pt}
@@ -122,12 +116,21 @@ We evaluate this framework at two complementary levels.  A controlled paired ben
 
 \noindent\textbf{(1) A target-determinacy-guided repair-or-abstain framework.} We introduce DeGro, which combines two-copy target-determinacy diagnosis with source-grounded repair, deterministic acceptance gates, and explicit abstention (RQ1).
 
-\noindent\textbf{(2) A controlled paired benchmark for grounded repair decisions.} We construct matched cases that hold the formalization fixed while varying whether the source supports the missing constraint, isolating supported repair from unsupported completion (RQ2).
+\noindent\textbf{(2) Controlled and natural-source paired benchmarks.} We construct matched cases that hold the formalization fixed while varying whether the source supports the missing constraint. Alongside MIRA-Math, DRAW-Paired contributes 350 pairs derived from natural algebra word problems (300 author-reviewed and 50 pending review), isolating supported repair from unsupported completion (RQ2).
 
 \noindent\textbf{(3) A multi-stage empirical audit of executable reasoning.} We combine controlled and human-verified natural-error evaluations to separate representation coverage, ambiguity detection, and grounded repair; we additionally test whether concrete witnesses improve decisions (RQ3).
 
 \noindent The formal guarantee concerns $F$; the empirical answers concern model and policy behavior.
 \end{minipage}
+
+% Declare the pipeline early to place it on page 3.
+\begin{figure*}[!t]
+\centering
+\includegraphics[width=.96\textwidth]{figure/pipeline.png}
+\caption{DeGro in the executable-reasoning pipeline.  SymCode generates the executable artifact, while DeGro passes a structured \textsc{ModelSpec} to Z3-backed target-determinacy verification.  A determinate target can be answered, an ambiguous target enters grounded repair and validation, and an inconclusive check returns no certificate.}
+\Description{A pipeline from a mathematical problem through SymCode generation and Python code to DeGro. DeGro verifies a structured ModelSpec with Z3 and routes determinate, ambiguous, and no-verdict outcomes to answer, grounded repair or abstention, and no certificate, respectively.}
+\label{fig:workflow}
+\end{figure*}
 
 \section{Related Work}
 \subsection{Executable Mathematical Reasoning}
@@ -148,37 +151,34 @@ Selective prediction studies when to withhold an answer under a risk--coverage t
 Autoformalization also separates formal validity from preservation of natural-language meaning~\cite{wu2022autoformalization,azerbayev2023proofnet}.  DeGro's guarantee is similarly representation-relative: a determinate specification can still contain a wrong target or an unsupported constraint.  Our paired and human-verified natural-error evaluations therefore distinguish determinacy diagnosis, grounded repair, and answer accuracy rather than treating a solver verdict as proof of source-to-formal faithfulness.
 
 \section{Methodology}
-DeGro is a two-stage framework: it first diagnoses whether a generated specification determines the requested target, then converts an ambiguous verdict into either a source-grounded repair or a principled abstention.  Figure~\ref{fig:workflow} summarizes the complete loop.
+DeGro checks whether a generated mathematical specification determines the requested target. Stage I diagnoses target ambiguity using a symbolic solver. Stage II attempts to resolve an ambiguous target by adding a constraint with source provenance, or abstains if no candidate is accepted. Figure~\ref{fig:workflow} summarizes the pipeline.
 
-\subsection{Problem Setup, Determinacy, and Soundness}
-Let a natural-language problem be $P$.  A model produces $F=(V,D,C,q)$, where $V$ are variables, $D$ their domains, $C$ constraints, and $q(V)$ the requested expression.  Define
-\[
-\mathrm{Sol}(F)=\{m\mid m\models D\land C\}.
-\]
-The target is \emph{determinate under $F$} iff
-\[
-\forall m_1,m_2\in\mathrm{Sol}(F),\quad q(m_1)=q(m_2).
-\]
-This is weaker than solution uniqueness: $x=5,y\geq0$ has many models, but target $q=x$ is determinate.
-
-Construct renamed copies $F^{(1)}$ and $F^{(2)}$ and query
+\subsection{Problem Setup and Target Determinacy}
+Given a natural-language problem $P$, the model produces a specification $F=(V,D,C,q)$, where $V$ is the set of variables, $D$ their domains, $C$ the constraints, and $q(V)$ the requested expression. Its feasible assignments are
 \begin{equation}
-\Phi(F,q)=F^{(1)}\land F^{(2)}\land q(V^{(1)})\neq q(V^{(2)}).\label{eq:query}
+\mathrm{Sol}(F)=\{m\mid m\models D\land C\}.
+\label{eq:solutions}
 \end{equation}
-If \eqref{eq:query} is satisfiable, its two projected models form a \emph{target-divergent witness pair}.  If it is unsatisfiable and $F$ itself is satisfiable, the target is determinate.
+For a satisfiable $F$, the target is \emph{determinate} when every feasible assignment gives the same target value:
+\begin{equation}
+\mathrm{Det}(F,q)\iff
+\forall m_1,m_2\in\mathrm{Sol}(F),\quad q(m_1)=q(m_2).
+\label{eq:determinacy}
+\end{equation}
+Target determinacy does not require a unique assignment to all variables. For example, $x=5,y\geq0$ fixes the target $q=x$ even though $y$ remains free. An inconsistent specification is reported separately and never receives a determinacy certificate.
 
-\textbf{Guarantee.} For a sound solver and supported theory, $\mathrm{SAT}(F)$ and an \textsc{unsat} result for Eq.~\eqref{eq:query} imply that all models of $F$ agree on $q$; any disagreeing pair would satisfy the query.  Timeout and \textsc{unknown} prove nothing.  The guarantee is query-relative and strictly about $F$, not semantic equivalence $F\equiv P$: extra or wrong constraints may force a unique but mistranslated answer.  Conversely, arbitrary strengthening can always force determinacy, motivating a separate source-grounding requirement.  The policy therefore adds constraints only to ambiguous specifications; deleting or revising a determinate but wrong representation is outside scope.
+The specification is stored as a typed \textsc{ModelSpec}: a structured record of variable sorts and bounds, source-linked constraints, and the target. Computational and verification backends consume this same representation, avoiding discrepancies between independently generated programs. The supported fragment includes integer, real, and Boolean variables, arithmetic equalities and inequalities, finite domains, and selected modular constraints.
 
-Target determinacy is deliberately weaker than model uniqueness.  A scheduling model may leave many assignments free while fixing total cost, and a word problem may admit several assignments to nuisance variables while fixing the requested quantity.  Rejecting such cases would confuse representational freedom with answer ambiguity.  A witness pair is also independently checkable: substitute each assignment into $D\land C$ and compare its target value.  Determinacy is monotone under consistent strengthening, but the converse is unsafe because an arbitrary fact such as $q=6$ can always collapse the feasible target set.
-
-\paragraph{Running example.}
-Let $V=\{a,b\}$ be nonnegative integers, $C=(a+b=10)$, and $q=a$.  The duplicated query can return $(a_1,b_1)=(4,6)$ and $(a_2,b_2)=(6,4)$.  If $P$ says ``A receives two more than B,'' then $a=b+2$ is supported, consistent, non-redundant, and sufficient, yielding $a=6$.  Without that sentence, the same equation is a fabricated assumption and the correct action is abstention.  The repair model sees neither the hidden gold value nor the missing gold constraint.
-
-\paragraph{Structured representation.}
-The agent emits one typed \textsc{ModelSpec} with variable sorts and bounds, source-linked constraints, and a target.  Deterministic compilers translate it to computational and verification backends, avoiding independently generated SymPy and SMT programs.  The supported fragment covers integer, real, and Boolean variables, arithmetic equalities and inequalities, finite domains, and selected modular constraints; other syntax yields \textsc{not-supported}.
+The certificate concerns $F$, not whether $F$ correctly represents $P$. Wrong or extra constraints can fix a target while mistranslating the source. DeGro therefore repairs only ambiguous specifications by adding constraints; correcting a determinate but incorrect representation is outside its scope.
 
 \subsection{Stage I: Target-Determinacy Diagnosis}
-DeGro first tests $\mathrm{SAT}(F)$, returning \textsc{inconsistent} or \textsc{unknown} when appropriate, and otherwise evaluates Eq.~\eqref{eq:query}.  Unsatisfiability permits an answer under $F$; satisfiability returns two assignments with different targets and triggers repair.  This stage is deterministic: the model proposes $F$ but does not judge determinacy.
+DeGro first checks whether $D\land C$ is satisfiable. An unsatisfiable result yields \textsc{inconsistent}; a timeout or inconclusive solver result yields \textsc{unknown}. If the specification is satisfiable, DeGro constructs two copies with disjoint variable names and asks whether they can produce different target values:
+\begin{equation}
+\Phi(F,q)=F^{(1)}\land F^{(2)}\land
+q(V^{(1)})\neq q(V^{(2)}).
+\label{eq:query}
+\end{equation}
+If $\Phi$ is satisfiable, its projections form a \emph{target-divergent witness pair}, and the status is \textsc{ambiguous}. If $\Phi$ is unsatisfiable, the status is \textsc{determinate}, since the initial check has already established that $F$ has a solution. Unsupported representations yield \textsc{unsupported} before solver verification. Only \textsc{ambiguous} enters Stage II.
 
 \begin{algorithm}[H]
 \caption{Target-determinacy verification}
@@ -198,44 +198,32 @@ DeGro first tests $\mathrm{SAT}(F)$, returning \textsc{inconsistent} or \textsc{
 \end{algorithmic}
 \end{algorithm}
 
-The record stores both solver verdicts, normalized target values, and complete witnesses when available.  Only \textsc{ambiguous} licenses repair; unsupported theories and timeouts are never coerced into Boolean outcomes.
+\paragraph{Soundness.}
+Assuming semantics-preserving compilation and a sound solver for the supported theory, $\mathrm{SAT}(F)$ together with $\mathrm{UNSAT}(\Phi)$ establishes target determinacy: any two feasible assignments with different targets would satisfy Eq.~\eqref{eq:query}, contradicting unsatisfiability. Conversely, a satisfying assignment to $\Phi$ supplies two feasible witnesses with different targets. Timeout and \textsc{unknown} provide no certificate. The implementation uses a restricted expression compiler and separate variable maps for the two Z3 copies~\cite{demoura2008z3}.
 
 \subsection{Stage II: Grounded Repair or Abstention}
-The repair model receives $P,C,q$ and the witness pair, then returns \textsc{add-constraint} with an exact supporting span or \textsc{abstain}.  A candidate must compile, cite text in $P$ (or a declared domain rule), preserve satisfiability, be non-redundant, and restore determinacy.  DeGro uses at most two rounds and otherwise returns \textsc{underspecified}.  Exact-span provenance is auditable but does not prove that the cited text was translated correctly.
+The verifier retains the target-divergent witness pair as a certificate, but the default repair prompt receives only the source problem, the encoded constraints and target, and the typed \textsc{ambiguous} verdict. It returns either \textsc{add-constraint} with an exact supporting source span (or a permitted domain rule), or \textsc{abstain}. It receives neither the hidden gold target nor the missing gold constraint. An exploratory ablation additionally exposes the concrete witnesses to test whether their values help beyond the verdict; they do not improve decisions on the present benchmark. In either variant, the model must recover a relation from the source rather than select a witness as correct.
 
-The witness is diagnostic rather than corrective: it identifies a disagreement but does not reveal which missing relation the source licenses.  The language model proposes that relation, and the deterministic gate decides whether it can enter the trusted specification.  If an accepted addition yields a new divergent pair instead of determinacy, the second and final round receives the updated diagnosis.  A rejected proposal never partially mutates $F$.  Thus the loop is bounded and rollback-free, unlike unconstrained self-refinement whose successive edits may obscure their evidential basis.
-
-\subsection{Trusted Implementation and Repair Semantics}
-The implementation compiles a restricted expression AST to Z3~\cite{demoura2008z3}, rejecting arbitrary calls, undeclared names, malformed comparisons, and unsupported operators.  Independent variable maps prevent aliasing between copies.  Grounding is a deterministic deployment gate, not a prompt instruction; raw proposals and gated outcomes are both retained.  The trusted base is the parser, compiler, solver, and gate, while the language model remains untrusted.
-
-Integer, real, and Boolean declarations are typed explicitly, and declared bounds compile into constraints.  The computational and verification backends consume the same normalized \textsc{ModelSpec}; independently generated Python and SMT artifacts could otherwise disagree while both appear valid.  Every record stores the initial verdict, proposed action, cited span, rejection reason, final verdict, model configuration, and prompt hash.  This audit trail separates model behavior from enforcement behavior.
-
-\paragraph{Repair acceptance.}
-Let $\mathrm{span}(c)$ be the source substring cited for candidate $c$, and let $\mathcal{R}$ be a frozen set of allowed domain-semantics rules.  The gate accepts $c$ exactly when
+\paragraph{Acceptance gate.}
+For a proposed constraint $c$ and a frozen set $\mathcal{R}$ of permitted domain-semantics rules, the deterministic gate accepts $c$ only when
 \begin{align}
-\mathrm{Accept}(c) \iff{}& \mathrm{Compiles}(c) \land
-  \mathrm{Grounded}(c,P,\mathcal{R}) \nonumber\\
-&\land\ \mathrm{SAT}(F\land c) \land \neg(F\models c)
-  \land \mathrm{Det}(F\land c,q),
+\mathrm{Accept}(c)\iff{}&\mathrm{Compiles}(c)\land
+\mathrm{Provenance}(c,P,\mathcal{R})\nonumber\\
+&\land\mathrm{SAT}(F\land c)\land\neg(F\models c)
+\land\mathrm{Det}(F\land c,q).
 \label{eq:accept}
 \end{align}
-where grounding requires an exact source span or named rule in $\mathcal{R}$.  The first accepted candidate is committed; otherwise $F$ is preserved.  Thus redundant restatements, unsupported target pins, and insufficient additions cannot receive repair credit, while a supported expression need not match the gold syntax.
+These checks require that the candidate compile, cite a source span occurring in $P$ or a rule in $\mathcal{R}$, preserve consistency, add a non-redundant restriction, and restore target determinacy. Compilation failures and inconclusive checks do not permit acceptance.
 
-\paragraph{Complexity and failure states.}
-Encoding size is linear in $|F|$, although solver time depends on the theory.  A determinate input needs no repair call; an ambiguous one incurs at most two calls plus rechecks.  We preserve distinct states: \textsc{unsupported} for representation limits, \textsc{unknown} for solver inconclusiveness, \textsc{inconsistent} for an unsatisfiable $F$, and \textsc{underspecified} when an ambiguous target lacks a grounded repair.
+Provenance is an auditable check, not a proof that the constraint correctly expresses the cited text. Passing the gate therefore establishes valid provenance and determinacy under the repaired specification, rather than semantic correctness with respect to $P$. Semantic source support and functional correctness are evaluated separately for repair credit; an incorrect translation or unsupported target pin does not earn credit merely by passing the gate.
 
-These states have different controller implications.  An unsupported construct should route to another tool or a broader compiler; an unknown query may warrant a larger solver budget; an inconsistent model requires revising the encoding; and an underspecified source should trigger clarification or abstention.  Collapsing all four into ``failure'' would make both coverage reporting and agent behavior uninterpretable.  Likewise, a determinate verdict authorizes only an answer scoped to $F$, not an assertion that the source has been fully formalized.
+\paragraph{Bounded repair.}
+DeGro allows at most two proposal attempts. The first accepted constraint is committed and terminates the loop. If the first proposal is rejected, the second attempt receives the rejection reason and operates on the unchanged $F$. Rejected constraints are not accumulated: each candidate must restore determinacy on its own, and a supported but insufficient addition is rejected. If the model abstains or neither candidate passes, the outcome is \textsc{no-admissible-repair-found}, and $F$ is preserved.
 
-\begin{figure*}[t]
-\centering
-\includegraphics[width=.82\textwidth]{figure/pipeline.jpg}
-\caption{DeGro in the executable-reasoning pipeline.  SymCode generates the executable artifact, while DeGro passes a structured \textsc{ModelSpec} to Z3-backed target-determinacy verification.  A determinate target can be answered, an ambiguous target enters grounded repair and validation, and an inconclusive check returns no certificate.}
-\Description{A pipeline from a mathematical problem through SymCode generation and Python code to DeGro. DeGro verifies a structured ModelSpec with Z3 and routes determinate, ambiguous, and no-verdict outcomes to answer, grounded repair or abstention, and no certificate, respectively.}
-\label{fig:workflow}
-\end{figure*}
+Failure to find an admissible repair does not prove that the source is underspecified: the model may have missed a relation already present in the source.
 
-\subsection{Agent Integration and Controller Semantics}
-DeGro is a verifier policy inside a larger agent.  It converts an executable artifact into a typed observation that the controller maps to an action (Table~\ref{tab:policy}).
+\paragraph{Controller policy.}
+Table~\ref{tab:policy} maps verifier states to agent actions. A determinate result permits an answer scoped to the current specification, including an accepted repair when present. In interactive use, failure to find a repair can trigger clarification or abstention; the benchmark scores abstention because no clarification channel is available. Inconsistent, unknown, and unsupported states require distinct fallbacks rather than being treated as ambiguous inputs. The parser, compiler, solver, and gate form the trusted boundary; the language model only proposes specifications and repairs. Logs retain solver verdicts, witnesses, proposals, cited support, and rejection reasons for auditing.
 
 \begin{table}[t]
 \centering
@@ -251,28 +239,37 @@ Ambiguous & targets disagree & grounded repair\\
 Inconsistent & $F$ unsat & revise encoding\\
 Unknown & solver inconclusive & fallback/escalate\\
 Unsupported & outside fragment & alternate tool\\
-Underspecified & no grounded repair & ask or abstain\\
+No repair found & no accepted candidate & ask or abstain\\
 \bottomrule
 \end{tabular}
 \end{table}
 
-In interactive use, \textsc{underspecified} can request clarification; the benchmark scores abstention because no information channel exists.  Separating generation, deterministic verification, and repair reduces self-confirmation and yields an audit trail.  Interfaces should report that ``the encoded constraints determine the target,'' not that the source problem was formally proved.
 
-\section{Experiments}
+
+\section{Experiments and Results}
 \subsection{Setup}
 \paragraph{Compared systems and model settings.}
-To answer RQ1, we compare \textsc{self-review}, \textsc{grounded self-review}, \textsc{determinacy-guided repair}, and \textsc{DeGro} under the same initial formalization and two-attempt budget.  GPT-OSS 20B and 120B use medium reasoning, temperature 1.0, and frozen prompts; all $120\times2\times4=960$ records per model are present.  The 120B substitution was selected after the original two-model plan and is therefore a post-hoc model comparison on the untouched fixed set.  The paired construction tests source-sensitive behavior for RQ2, and a disjoint 100-pair exploratory study compares verdict-only and witness variants for RQ3.
+To answer RQ1, we compare \textsc{self-review}, \textsc{grounded self-review}, \textsc{determinacy-guided repair}, and \textsc{DeGro} under the same initial formalization and a two-attempt repair budget. All methods receive the source, current constraints, and target, ensuring that performance differences reflect repair behavior rather than initial-generation quality.
 
-Self-review receives the executable artifact and asks for correction without formal diagnosis.  Grounded self-review adds the same source-citation requirement used by DeGro.  Determinacy-guided repair supplies the typed solver verdict but no grounding interaction, isolating the diagnostic signal.  DeGro combines that signal with source evidence and applies the same deterministic acceptance gate used in scoring.  Since all methods begin from an identical $F^-$, differences cannot be attributed to initial-generation quality.
+Self-review asks the model to revise the formalization without an explicit diagnostic signal or grounding requirement. Grounded self-review adds the same exact-span grounding rule used by DeGro, requiring every introduced constraint to be supported by the source, but receives neither the solver verdict nor witness information. Determinacy-guided repair receives the typed \textsc{ambiguous} verdict without the grounding requirement, isolating the effect of determinacy feedback. DeGro combines the ambiguity verdict with exact-span grounding and applies the same deterministic acceptance gate used during evaluation. In the main comparison, witness values are not exposed to the repair model.
+
+We evaluate these methods with GPT-OSS 20B and GPT-OSS 120B~\cite{openai2025gptoss}, and Nemotron 3 Nano 30B~\cite{nvidia2025nemotronnano}, using the same cases, methods, frozen prompts, temperature 1.0, and matched medium-reasoning API settings, yielding $120\times2\times4=960$ complete records per model. Because identical API settings do not necessarily correspond to identical internal reasoning budgets across model families, cross-model comparisons are interpreted as robustness checks rather than strictly compute-matched comparisons.
+
+For RQ2, the paired construction evaluates whether repair behavior is sensitive to evidence in the source. For the controlled component of RQ3, we use a separate exploratory development set of 100 pairs to test whether the repair model benefits from seeing two concrete assignments that both satisfy the current formalization but yield different target values, rather than receiving only the typed \textsc{ambiguous} verdict.
 
 \subsection{Data}
 \paragraph{Controlled paired benchmark (RQ2).}
-For each gold specification $F^*=\{c_1,\ldots,c_k,c^*\}$, we form $F^-=F^*\setminus\{c^*\}$ and retain it only if $F^*$ determines the target while $F^-$ is satisfiable and target-ambiguous.  Each pair shares $F^-$: an \textsc{omission} source contains the fact for $c^*$ and requires repair, whereas an \textsc{underspecified} source omits it and requires abstention.  The verifier state alone therefore cannot reveal the label.  After excluding an 80-pair pilot and 100-pair development set, we froze 120 confirmatory MIRA-Math pairs (240 cases, five families)~\cite{albateh2026mira}; the combined 300-pair analysis is secondary.
+For each gold specification $F^*=\{c_1,\ldots,c_k,c^*\}$, we form $F^-=F^*\setminus\{c^*\}$ and retain it only if $F^*$ determines the target while $F^-$ is satisfiable and target-ambiguous.  Each pair shares this same underconstrained formalization $F^-$.  In the \textsc{omission} case, the source still states the fact represented by $c^*$, so the formalization has omitted source information and repair is correct.  In the \textsc{underspecified} case, that fact is absent from the source itself, so no source-supported constraint can restore it and abstention is correct.  The two cases therefore have the same constraints and solver verdict but require opposite actions; the source is the only label-revealing input.  After excluding an 80-pair pilot and 100-pair development set, we froze 120 confirmatory MIRA-Math pairs (240 cases, five families)~\cite{albateh2026mira}; the combined 300-pair analysis is secondary.
 
 \paragraph{Integrity checks.}
 The builder imports the typed missing fact from MIRA-Math rather than asking an LLM to corrupt the problem, then applies all three solver checks.  The final set exhausts compatible unseen identifiers; its manifest records source revision \texttt{72ff918}, license, selection seed, family counts, and prompt/output hashes.  The five families cover linear separation, rank-deficient systems, path sums, Chinese-remainder reconstruction, and moment constraints.
 
 The families exercise distinct structures.  Linear separation removes a relation that distinguishes otherwise compatible solutions; rank-deficient systems preserve several degrees of freedom.  Graph path sums and Chinese-remainder reconstruction combine discrete equalities with domain restrictions, while moment problems couple polynomial summaries within the supported degree bound.  Family-stratified results check that one easy template does not dominate the aggregate.  Because every retained deletion is mechanically verified as target-critical, the benchmark does not mislabel an irrelevant omission as a repair opportunity.
+
+\paragraph{Main natural-source paired benchmark (DRAW-Paired).}
+DRAW-Paired uses DRAW-1K's 600 training and 200 development problems~\cite{upadhyay2017derivations}; its 200 test problems remain untouched. Excluding one duplicate identifier and 200 single-equation problems leaves 599 solver-eligible systems: deleting a gold equation preserves satisfiability but makes a real-valued target ambiguous, while the full-system target matches a published gold solution. Gold coefficient alignments propose supporting sentences. The initial seeded cohort has 300 pairs (223 training-derived, 77 development-derived). A source-disjoint, split-proportional extension selects 50 of 67 remaining unflagged proposals (37 training-derived, 13 development-derived), giving 350 pairs and 700 cases. Pair members share retained equations, target, and domains; only the supporting span is deleted in the underspecified member. These are injected omissions on natural sources, not naturally occurring model errors.
+
+The author reviewed the initial 300 spans and deletions after provisional inference. Two title-abbreviation segmentation errors were corrected and both affected pairs rerun across all models and policies; other responses were retained and rescored. The extension was selected after initial outcomes, locked before its own inference, and awaits human span/deletion review. Solver checks do not establish semantic validity: the cumulative estimate is provisional and post-hoc, not preregistered or fully human-verified. Each model has 2,800 complete records under the same four policies and decoding settings; original 300-pair outputs remain archived. Retries retain the first valid response, without score-based resampling. The primary FDA comparison is DeGro minus grounded self-review, with 10,000 pair-cluster bootstrap resamples and Holm correction across three models. The supplement details provenance.
 
 \paragraph{Natural-error study.}
 For ecological validity, GPT-OSS 20B generated one Structured SymCode specification per MATH-500 problem without injected errors.  We froze all parsed, solver-supported, conclusive cases before annotation or outcome inspection and reused each initial specification across methods.  Model-proposed labels and evidence were hidden from verifier outputs, then fully checked by two reviewers: all 292 MATH-500 and 503 ALG514 cases.  Because separate pre-discussion human labels were not retained, we claim human verification, not independent annotation or inter-annotator agreement.  Labels distinguish correct, missing/wrong/extra constraint, wrong domain, wrong target, computational error, and other; only source-supported target-critical omissions enter the primary subset.
@@ -283,48 +280,260 @@ For RQ3, primary natural-error measures are ambiguity recall and end-to-end grou
 
 The original problem is the unit of analysis, and every method reuses its shared initial formalization.  Recall asks how often DeGro identifies verified target-critical omissions; precision asks how often an ambiguous verdict corresponds to that class.  Conditional repair counts accepted grounded fixes among detected omissions, whereas end-to-end repair retains every verified omission in the denominator.  This distinction exposes the gap between finding ambiguity and recovering the missing source relation.
 
-MATH-500 contributes 292 of 500 conclusive, solver-supported formalizations; ALG514 contributes 503 of 514.  Exclusions are reported in the coverage results.  DRAW-1K is omitted because corrected-verifier outcomes and final human labels were incomplete.
+MATH-500 contributes 292 of 500 conclusive, solver-supported formalizations; ALG514 contributes 503 of 514. Exclusions are reported in the coverage results. The original DRAW-1K natural-error audit remains omitted because corrected-verifier outcomes and final human labels were incomplete; this is separate from the gold-equation-derived DRAW-Paired experiment.
+
+\begin{table*}[t]
+\centering
+\caption{Main paired experiments on MIRA-Math (120 fixed pairs, 240 cases) and DRAW-Paired (350 pairs, 700 cases; 300 author-reviewed and 50 pending review). Values are percentages. FDA is primary; RSR and CAR decompose repair and abstention, and UR measures unsupported additions among proposed additions. Blue rows denote DeGro; bold FDA marks the best policy within each model and dataset. Only the MIRA GPT-OSS 20B comparison was preregistered; other comparisons are post-hoc. The cumulative DRAW-Paired estimate is provisional pending review of its extension.}
+\label{tab:main}
+\label{tab:draw_paired}
+\fontsize{8.5}{10}\selectfont
+\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{1.12}
+\begin{tabularx}{.98\textwidth}{ll*{8}{>{\centering\arraybackslash}X}}
+\toprule
+ & & \multicolumn{4}{c}{\textbf{MIRA-Math: controlled sources}} & \multicolumn{4}{c}{\textbf{DRAW-Paired: natural sources}}\\
+\cmidrule(lr){3-6}\cmidrule(lr){7-10}
+\textbf{Model} & \textbf{Method} & FDA$\uparrow$ & RSR$\uparrow$ & CAR$\uparrow$ & UR$\downarrow$ & FDA$\uparrow$ & RSR$\uparrow$ & CAR$\uparrow$ & UR$\downarrow$\\
+\midrule
+GPT-OSS & Self-review & 90.4 & 93.3 & 87.5 & 15.2 & 74.4 & 68.3 & 80.6 & 42.3\\
+20B & Grounded self-review & 90.0 & 100.0 & 80.0 & 16.7 & 73.1 & 62.6 & 83.7 & 43.8\\
+ & Determinacy-guided & 92.9 & 86.7 & 99.2 & 6.3 & 75.3 & 59.7 & 90.9 & 43.5\\
+\rowcolor{degroblue!12}
+ & \textbf{DeGro (ours)} & \textbf{95.0} & 92.5 & 97.5 & 4.3 & \textbf{75.6} & 60.3 & 90.9 & 42.8\\
+\midrule
+GPT-OSS & Self-review & 77.5 & 100.0 & 55.0 & 31.0 & 72.4 & 68.9 & 76.0 & 43.4\\
+120B & Grounded self-review & 87.5 & 95.8 & 79.2 & 17.9 & 69.3 & 54.3 & 84.3 & 50.0\\
+ & Determinacy-guided & 91.3 & 98.3 & 84.2 & 15.1 & \textbf{78.6} & 70.9 & 86.3 & 36.1\\
+\rowcolor{degroblue!12}
+ & \textbf{DeGro (ours)} & \textbf{93.8} & 97.5 & 90.0 & 10.7 & 75.6 & 59.1 & 92.0 & 42.7\\
+\midrule
+Nemotron & Self-review & 84.6 & 76.7 & 92.5 & 25.8 & 65.0 & 46.3 & 83.7 & 56.8\\
+Nano 30B & Grounded self-review & 89.6 & 80.8 & 98.3 & 3.0 & 60.0 & 34.0 & 86.0 & 63.9\\
+ & Determinacy-guided & 73.8 & 50.8 & 96.7 & 24.7 & 63.9 & 36.0 & 91.7 & 54.8\\
+\rowcolor{degroblue!12}
+ & \textbf{DeGro (ours)} & \textbf{90.8} & 81.7 & 100.0 & 1.0 & \textbf{67.3} & 42.0 & 92.6 & 51.2\\
+\bottomrule
+\end{tabularx}
+\end{table*}
 
 \subsection{Main Experiment}
 \paragraph{Primary comparison.}
-The preregistered 20B comparison tests whether DeGro improves FDA over grounded self-review.  We apply the same exact paired McNemar test to the post-hoc 120B replacement and report Holm correction across the two model-size results.  Paired percentage-point differences use pair-cluster bootstrap 95\% intervals.  Official model documentation describes configurable reasoning effort and structured output support for GPT-OSS~\cite{openai2025gptoss}.
+The preregistered 20B comparison tests whether DeGro improves FDA over grounded self-review.  We apply the same exact paired McNemar test to the post-hoc GPT-OSS 120B replacement and report Holm correction across the two model-size results.  Paired percentage-point differences use pair-cluster bootstrap 95\% intervals.  Official model documentation describes configurable reasoning effort and structured output support for GPT-OSS~\cite{openai2025gptoss}.
 
 \paragraph{Metrics and analysis.}
-For RQ1, repair success rate (RSR) requires a grounded, functionally correct addition; correct abstention rate (CAR) rewards abstention on underspecified cases, and final decision accuracy (FDA) averages the balanced case types.  Over-repair rate is $1-\mathrm{CAR}$, and unsupported repair (UR) is the share of additions lacking source support; UR is interpreted alongside RSR because abstaining on every case would trivially eliminate additions.  Pair-cluster confidence intervals preserve within-pair dependence; semantic, functional, and grounded outcomes remain separate.
+For RQ1, the primary metric is final decision accuracy (FDA): a case is correct only when the method makes a grounded, functionally correct repair on an omission case or abstains on an underspecified case.  Because every controlled pair contains one case of each type, $\mathrm{FDA}=(\mathrm{RSR}+\mathrm{CAR})/2$.  Repair success rate (RSR) is the proportion of omission cases repaired correctly, and correct abstention rate (CAR) is the proportion of underspecified cases on which the method abstains.  Unsupported repair (UR) is the share of proposed additions that lack source support; it must be interpreted alongside RSR because always abstaining would trivially produce no unsupported additions.  Over-repair rate equals $1-\mathrm{CAR}$ and is omitted from the main table as redundant.  Pair-cluster confidence intervals preserve within-pair dependence; semantic, functional, and grounded outcomes remain separate.
 
-\section{Results}
+\subsection{Main Results}
+
+
 \paragraph{RQ1: repair-or-abstain decisions.}
-Table~\ref{tab:main} reports the fixed 120-pair analysis.  For GPT-OSS 20B, DeGro raises FDA from 90.0\% to 95.0\% relative to grounded self-review, a $+5.0$-point effect (95\% CI $[0.4,9.6]$; discordant counts 22 versus 10; exact McNemar $p=.050$).  For GPT-OSS 120B, FDA rises from 87.5\% to 93.8\%, a $+6.25$-point effect (95\% CI $[1.7,10.8]$; 24 versus 9; $p=.0135$).  Holm correction across these two model-specific comparisons gives $p=.0501$ and $p=.0271$, respectively.  The 20B result follows the preregistered analysis; the 120B replacement is post-hoc but uses the same untouched cases, prompts, and scoring.
+Table~\ref{tab:main} reports the fixed 120-pair analysis.  For GPT-OSS 20B, DeGro raises FDA from 90.0\% to 95.0\% relative to grounded self-review, a $+5.0$-point effect (95\% CI $[0.4,9.6]$; discordant counts 22 versus 10; exact McNemar $p=.050$).  For GPT-OSS 120B, FDA rises from 87.5\% to 93.8\%, a $+6.25$-point effect (95\% CI $[1.7,10.8]$; 24 versus 9; $p=.0135$).  Holm correction across these two GPT-OSS comparisons gives $p=.0501$ and $p=.0271$, respectively.  The 20B result follows the preregistered analysis; the 120B replacement is post-hoc but uses the same untouched cases, prompts, and scoring.
 
-\begin{table}[H]
+
+\begin{figure*}[t]
 \centering
-\caption{Results on the fixed 120-pair set.  The 20B comparison was preregistered; the 120B replacement is post-hoc.  UR is unsupported additions divided by all proposed additions.}
-\label{tab:main}
-\resizebox{\columnwidth}{!}{%
-\begin{tabular}{llrrrrr}
-\toprule
-Model & Method & RSR$\uparrow$ & CAR$\uparrow$ & FDA$\uparrow$ & ORR$\downarrow$ & UR$\downarrow$\\
-\midrule
-GPT-OSS & Self-review & 93.3 & 87.5 & 90.4 & 12.5 & 15.2\\
-20B & Grounded self-review & 100.0 & 80.0 & 90.0 & 20.0 & 16.7\\
- & Determinacy-guided & 86.7 & 99.2 & 92.9 & 0.8 & 6.3\\
- & DeGro & 92.5 & 97.5 & \textbf{95.0} & 2.5 & 4.3\\
-\midrule
-GPT-OSS & Self-review & 100.0 & 55.0 & 77.5 & 45.0 & 31.0\\
-120B & Grounded self-review & 95.8 & 79.2 & 87.5 & 20.8 & 17.9\\
- & Determinacy-guided & 98.3 & 84.2 & 91.2 & 15.8 & 15.1\\
- & DeGro & 97.5 & 90.0 & \textbf{93.8} & 10.0 & 10.7\\
-\bottomrule
-\end{tabular}
-}
-\end{table}
+\begin{minipage}[t]{.32\textwidth}\centering
+\textbf{(a) Final decision accuracy}\par\smallskip
+\begin{tikzpicture}[x=1.12cm,y=.03cm,font=\scriptsize]
+\draw[black!12] (0,0) -- (3.05,0); \node[anchor=east,font=\fontsize{6.5}{7.5}\selectfont,text=black!65] at (-.08,0) {0};
+\draw[black!12] (0,25) -- (3.05,25); \node[anchor=east,font=\fontsize{6.5}{7.5}\selectfont,text=black!65] at (-.08,25) {25};
+\draw[black!12] (0,50) -- (3.05,50); \node[anchor=east,font=\fontsize{6.5}{7.5}\selectfont,text=black!65] at (-.08,50) {50};
+\draw[black!12] (0,75) -- (3.05,75); \node[anchor=east,font=\fontsize{6.5}{7.5}\selectfont,text=black!65] at (-.08,75) {75};
+\draw[black!12] (0,100) -- (3.05,100); \node[anchor=east,font=\fontsize{6.5}{7.5}\selectfont,text=black!65] at (-.08,100) {100};
+\node[anchor=west,font=\fontsize{6.5}{7.5}\selectfont,text=black!65] at (0,112) {FDA (\%) $\uparrow$};
+\fill[degroorange!85] (0.22999999999999998,0) rectangle (0.46,90);
+\fill[degroblue] (0.54,0) rectangle (0.77,95);
+\node[above,font=\fontsize{6.5}{7.5}\selectfont,text=degroorange!80!black,rotate=65,anchor=west] at (0.33999999999999997,91) {90.0};
+\node[above,font=\fontsize{6.5}{7.5}\selectfont,text=degroblue,rotate=65,anchor=west] at (0.66,96) {95.0};
+\node[align=center,font=\fontsize{6.5}{7.5}\selectfont,anchor=north] at (0.5,-4) {GPT-OSS\\20B};
+\fill[degroorange!85] (1.23,0) rectangle (1.46,87.5);
+\fill[degroblue] (1.54,0) rectangle (1.77,93.8);
+\node[above,font=\fontsize{6.5}{7.5}\selectfont,text=degroorange!80!black,rotate=65,anchor=west] at (1.34,88.5) {87.5};
+\node[above,font=\fontsize{6.5}{7.5}\selectfont,text=degroblue,rotate=65,anchor=west] at (1.66,94.8) {93.8};
+\node[align=center,font=\fontsize{6.5}{7.5}\selectfont,anchor=north] at (1.5,-4) {GPT-OSS\\120B};
+\fill[degroorange!85] (2.23,0) rectangle (2.46,89.6);
+\fill[degroblue] (2.54,0) rectangle (2.77,90.8);
+\node[above,font=\fontsize{6.5}{7.5}\selectfont,text=degroorange!80!black,rotate=65,anchor=west] at (2.34,90.6) {89.6};
+\node[above,font=\fontsize{6.5}{7.5}\selectfont,text=degroblue,rotate=65,anchor=west] at (2.66,91.8) {90.8};
+\node[align=center,font=\fontsize{6.5}{7.5}\selectfont,anchor=north] at (2.5,-4) {Nano\\30B};
+\draw[black!50] (0,0) -- (3.05,0);
+\end{tikzpicture}\end{minipage}\hfill
+\begin{minipage}[t]{.32\textwidth}\centering
+\textbf{(b) Grounded repair success}\par\smallskip
+\begin{tikzpicture}[x=1.12cm,y=.03cm,font=\scriptsize]
+\draw[black!12] (0,0) -- (3.05,0); \node[anchor=east,font=\fontsize{6.5}{7.5}\selectfont,text=black!65] at (-.08,0) {0};
+\draw[black!12] (0,25) -- (3.05,25); \node[anchor=east,font=\fontsize{6.5}{7.5}\selectfont,text=black!65] at (-.08,25) {25};
+\draw[black!12] (0,50) -- (3.05,50); \node[anchor=east,font=\fontsize{6.5}{7.5}\selectfont,text=black!65] at (-.08,50) {50};
+\draw[black!12] (0,75) -- (3.05,75); \node[anchor=east,font=\fontsize{6.5}{7.5}\selectfont,text=black!65] at (-.08,75) {75};
+\draw[black!12] (0,100) -- (3.05,100); \node[anchor=east,font=\fontsize{6.5}{7.5}\selectfont,text=black!65] at (-.08,100) {100};
+\node[anchor=west,font=\fontsize{6.5}{7.5}\selectfont,text=black!65] at (0,112) {RSR (\%) $\uparrow$};
+\fill[degroorange!85] (0.22999999999999998,0) rectangle (0.46,100);
+\fill[degroblue] (0.54,0) rectangle (0.77,92.5);
+\node[above,font=\fontsize{6.5}{7.5}\selectfont,text=degroorange!80!black,rotate=65,anchor=west] at (0.33999999999999997,101) {100.0};
+\node[above,font=\fontsize{6.5}{7.5}\selectfont,text=degroblue,rotate=65,anchor=west] at (0.66,93.5) {92.5};
+\node[align=center,font=\fontsize{6.5}{7.5}\selectfont,anchor=north] at (0.5,-4) {GPT-OSS\\20B};
+\fill[degroorange!85] (1.23,0) rectangle (1.46,95.8);
+\fill[degroblue] (1.54,0) rectangle (1.77,97.5);
+\node[above,font=\fontsize{6.5}{7.5}\selectfont,text=degroorange!80!black,rotate=65,anchor=west] at (1.34,96.8) {95.8};
+\node[above,font=\fontsize{6.5}{7.5}\selectfont,text=degroblue,rotate=65,anchor=west] at (1.66,98.5) {97.5};
+\node[align=center,font=\fontsize{6.5}{7.5}\selectfont,anchor=north] at (1.5,-4) {GPT-OSS\\120B};
+\fill[degroorange!85] (2.23,0) rectangle (2.46,80.8);
+\fill[degroblue] (2.54,0) rectangle (2.77,81.7);
+\node[above,font=\fontsize{6.5}{7.5}\selectfont,text=degroorange!80!black,rotate=65,anchor=west] at (2.34,81.8) {80.8};
+\node[above,font=\fontsize{6.5}{7.5}\selectfont,text=degroblue,rotate=65,anchor=west] at (2.66,82.7) {81.7};
+\node[align=center,font=\fontsize{6.5}{7.5}\selectfont,anchor=north] at (2.5,-4) {Nano\\30B};
+\draw[black!50] (0,0) -- (3.05,0);
+\end{tikzpicture}\end{minipage}\hfill
+\begin{minipage}[t]{.32\textwidth}\centering
+\textbf{(c) Correct abstention}\par\smallskip
+\begin{tikzpicture}[x=1.12cm,y=.03cm,font=\scriptsize]
+\draw[black!12] (0,0) -- (3.05,0); \node[anchor=east,font=\fontsize{6.5}{7.5}\selectfont,text=black!65] at (-.08,0) {0};
+\draw[black!12] (0,25) -- (3.05,25); \node[anchor=east,font=\fontsize{6.5}{7.5}\selectfont,text=black!65] at (-.08,25) {25};
+\draw[black!12] (0,50) -- (3.05,50); \node[anchor=east,font=\fontsize{6.5}{7.5}\selectfont,text=black!65] at (-.08,50) {50};
+\draw[black!12] (0,75) -- (3.05,75); \node[anchor=east,font=\fontsize{6.5}{7.5}\selectfont,text=black!65] at (-.08,75) {75};
+\draw[black!12] (0,100) -- (3.05,100); \node[anchor=east,font=\fontsize{6.5}{7.5}\selectfont,text=black!65] at (-.08,100) {100};
+\node[anchor=west,font=\fontsize{6.5}{7.5}\selectfont,text=black!65] at (0,112) {CAR (\%) $\uparrow$};
+\fill[degroorange!85] (0.22999999999999998,0) rectangle (0.46,80);
+\fill[degroblue] (0.54,0) rectangle (0.77,97.5);
+\node[above,font=\fontsize{6.5}{7.5}\selectfont,text=degroorange!80!black,rotate=65,anchor=west] at (0.33999999999999997,81) {80.0};
+\node[above,font=\fontsize{6.5}{7.5}\selectfont,text=degroblue,rotate=65,anchor=west] at (0.66,98.5) {97.5};
+\node[align=center,font=\fontsize{6.5}{7.5}\selectfont,anchor=north] at (0.5,-4) {GPT-OSS\\20B};
+\fill[degroorange!85] (1.23,0) rectangle (1.46,79.2);
+\fill[degroblue] (1.54,0) rectangle (1.77,90);
+\node[above,font=\fontsize{6.5}{7.5}\selectfont,text=degroorange!80!black,rotate=65,anchor=west] at (1.34,80.2) {79.2};
+\node[above,font=\fontsize{6.5}{7.5}\selectfont,text=degroblue,rotate=65,anchor=west] at (1.66,91) {90.0};
+\node[align=center,font=\fontsize{6.5}{7.5}\selectfont,anchor=north] at (1.5,-4) {GPT-OSS\\120B};
+\fill[degroorange!85] (2.23,0) rectangle (2.46,98.3);
+\fill[degroblue] (2.54,0) rectangle (2.77,100);
+\node[above,font=\fontsize{6.5}{7.5}\selectfont,text=degroorange!80!black,rotate=65,anchor=west] at (2.34,99.3) {98.3};
+\node[above,font=\fontsize{6.5}{7.5}\selectfont,text=degroblue,rotate=65,anchor=west] at (2.66,101) {100.0};
+\node[align=center,font=\fontsize{6.5}{7.5}\selectfont,anchor=north] at (2.5,-4) {Nano\\30B};
+\draw[black!50] (0,0) -- (3.05,0);
+\end{tikzpicture}\end{minipage}
+\par\smallskip
+{\small\textcolor{degroorange!85}{\rule{9pt}{5pt}}\ Grounded self-review\qquad\textcolor{degroblue}{\rule{9pt}{5pt}}\ DeGro}
+\caption{MIRA-Math comparison on the same fixed 120 pairs. DeGro has higher FDA than grounded self-review for all three models, while RSR and CAR expose model-specific tradeoffs. The GPT-OSS 20B comparison is preregistered; the GPT-OSS 120B and Nemotron Nano comparisons are post-hoc, and the Nano FDA difference is statistically inconclusive. All axes start at zero.}
+\Description{Three grouped bar charts compare grounded self-review in orange and DeGro in blue for GPT-OSS 20B, GPT-OSS 120B, and Nemotron Nano 30B. Panels show final decision accuracy, grounded repair success, and correct abstention, with numerical labels and zero-based percentage axes.}
+\label{fig:result_summary}
+\end{figure*}
+
 
 \paragraph{RQ1: source-grounded acceptance.}
-On the same confirmatory pairs, 20B DeGro lowers UR from 16.7\% to 4.3\% and raises CAR from 80.0\% to 97.5\%, while RSR falls from 100.0\% to 92.5\%.  For 120B, DeGro lowers UR from 17.9\% to 10.7\%, raises CAR from 79.2\% to 90.0\%, and raises RSR from 95.8\% to 97.5\%.  Thus the conservative action boundary improves for both sizes, although 20B trades some supported repairs for fewer unsupported additions.
+On the same confirmatory pairs, 20B DeGro lowers UR from 16.7\% to 4.3\% and raises CAR from 80.0\% to 97.5\%, while RSR falls from 100.0\% to 92.5\%.  For GPT-OSS 120B, DeGro lowers UR from 17.9\% to 10.7\%, raises CAR from 79.2\% to 90.0\%, and raises RSR from 95.8\% to 97.5\%.  Thus the conservative action boundary improves for both sizes, although 20B trades some supported repairs for fewer unsupported additions.  Figure~\ref{fig:qualitative_case} illustrates how the combined signal rejects a superficially grounded but non-resolving edit.
+
+\begin{figure*}[t]
+\centering
+\begin{tcolorbox}[
+  enhanced,
+  width=.98\textwidth,
+  colback=degrolight,
+  colframe=degrogray,
+  boxrule=.65pt,
+  arc=2pt,
+  left=7pt,right=7pt,top=9pt,bottom=5pt,
+  overlay={\node[anchor=west,fill=white,draw=degrogray,rounded corners=2pt,
+    inner xsep=7pt,inner ysep=2pt,font=\bfseries\small]
+    at ([xshift=10pt]frame.north west) {Query and current formalization};}
+]
+\small
+\textbf{Source:} $-2a+3b-4c=15$. $-a+2b+4c=-8$. Find the integer value of $a$.\par
+\textbf{Encoded constraints:} the two displayed equations; all variables are already integers.\hfill
+\textbf{Solver verdict:} \textsc{ambiguous}.
+\end{tcolorbox}
+\vspace{2pt}
+
+\begin{minipage}[t]{.238\textwidth}
+\centering\textbf{Self-Review}\par\smallskip
+\begin{tcolorbox}[
+  enhanced,height=38mm,valign=top,
+  colback=white,colframe=degrogray!80,boxrule=.65pt,arc=2pt,
+  left=5pt,right=5pt,top=4pt,bottom=4pt,
+  title={\scriptsize Model output},fonttitle=\bfseries\scriptsize,
+  colbacktitle=degrogray!10,coltitle=black
+]
+\scriptsize
+\texttt{ADD\_CONSTRAINT}\par
+\textcolor{degrogray}{Cites: ``Find the integer value of $a$.''}\par\smallskip
+\centering $a=\operatorname{int}(a)$\par
+\vfill
+\raggedright Redundant with the declared domain; the target remains ambiguous.\hfill
+{\Large\bfseries\textcolor{red!75!black}{$\times$}}
+\end{tcolorbox}
+\end{minipage}\hfill
+\begin{minipage}[t]{.238\textwidth}
+\centering\textbf{Grounded Self-Review}\par\smallskip
+\begin{tcolorbox}[
+  enhanced,height=38mm,valign=top,
+  colback=white,colframe=degroorange!85!black,boxrule=.65pt,arc=2pt,
+  left=5pt,right=5pt,top=4pt,bottom=4pt,
+  title={\scriptsize Model output},fonttitle=\bfseries\scriptsize,
+  colbacktitle=degroorange!12,coltitle=black
+]
+\scriptsize
+\texttt{ADD\_CONSTRAINT}\par
+\textcolor{degrogray}{Cites: ``integer value of $a$''}\par\smallskip
+\centering $a=\operatorname{int}(a)$\par
+\vfill
+\raggedright Lexically grounded, but non-resolving and already enforced.\hfill
+{\Large\bfseries\textcolor{red!75!black}{$\times$}}
+\end{tcolorbox}
+\end{minipage}\hfill
+\begin{minipage}[t]{.238\textwidth}
+\centering\textbf{Determinacy-Guided}\par\smallskip
+\begin{tcolorbox}[
+  enhanced,height=38mm,valign=top,
+  colback=white,colframe=degroorange!85!black,boxrule=.65pt,arc=2pt,
+  left=5pt,right=5pt,top=4pt,bottom=4pt,
+  title={\scriptsize Model output},fonttitle=\bfseries\scriptsize,
+  colbacktitle=degroorange!12,coltitle=black
+]
+\scriptsize
+\texttt{ADD\_CONSTRAINT}\par
+\textcolor{degrogray}{Cites: ``Find the integer value of $a$.''}\par\smallskip
+\centering $a\bmod 1=0$\par
+\vfill
+\raggedright Reacts to ambiguity, but invents no missing source relation.\hfill
+{\Large\bfseries\textcolor{red!75!black}{$\times$}}
+\end{tcolorbox}
+\end{minipage}\hfill
+\begin{minipage}[t]{.238\textwidth}
+\centering\textbf{\textcolor{degroblue}{DeGro (ours)}}\par\smallskip
+\begin{tcolorbox}[
+  enhanced,height=38mm,valign=top,
+  colback=degroblue!5,colframe=degroblue,boxrule=1pt,arc=2pt,
+  left=5pt,right=5pt,top=4pt,bottom=4pt,
+  title={\scriptsize Verified decision},fonttitle=\bfseries\scriptsize,
+  colbacktitle=degroblue!16,coltitle=black
+]
+\scriptsize
+\texttt{ABSTAIN}\par
+\textcolor{degrogray}{Ambiguous target; no unused source relation supports a repair.}\par\smallskip
+\centering\textbf{No constraint added}\par
+\vfill
+\raggedright Correctly withholds an unsupported completion.\hfill
+{\Large\bfseries\textcolor{degrogreen!80!black}{$\checkmark$}}
+\end{tcolorbox}
+\end{minipage}
+\caption{Illustrative GPT-OSS 120B output on confirmatory case \texttt{lin-000271}.  The source supplies two equations for three integer variables, so the target is not uniquely determined.  All three baselines add an integrality condition that is already enforced and does not resolve ambiguity; DeGro is the only method to abstain.  This selected example explains the mechanism and is not a substitute for the aggregate comparison in Table~\ref{tab:main}.}
+\Description{A source problem and its ambiguous two-equation formalization appear above four output cards. Self-review and grounded self-review add a redundant integer declaration, while determinacy-guided repair adds an equivalent modulo condition; all three are marked incorrect. DeGro abstains because no missing relation is supported by the source and is marked correct.}
+\label{fig:qualitative_case}
+\end{figure*}
+
+\subsection{Main Natural-Source Experiment: DRAW-Paired}
+The right-hand block of Table~\ref{tab:main} reports the provisional cumulative DRAW-Paired results alongside the controlled MIRA results. Relative to grounded self-review, DeGro improves FDA by 2.4 points for 20B, 6.3 for 120B, and 7.3 for Nano. All three increase correct abstention; 20B trades away supported repairs (62.6\% to 60.3\% RSR), whereas 120B and Nano improve both components. DeGro is not uniformly best: verdict-only repair reaches 78.6\% FDA for 120B versus DeGro's 75.6\%, driven by higher repair success. This limits any claim that the grounding instruction invariably improves decision accuracy. Moreover, exact-span provenance does not establish semantic entailment, and the relatively high UR requires reporting repair utility alongside abstention. The pending extension review limits semantic validity of the cumulative estimate.
+
+\input{draw_paired_statistics.tex}
 
 \section{Analysis}
 \subsection{Cumulative and Natural-Error Analysis}
-\paragraph{Secondary cumulative analysis.} Across all 300 pairs, DeGro versus grounded self-review changes FDA from 91.2\% to 96.2\% for 20B (difference $+5.0$ points, 95\% CI $[2.3,7.8]$; McNemar $p<.001$) and from 88.3\% to 95.7\% for 120B (difference $+7.3$ points, 95\% CI $[4.7,10.0]$; $p<.001$).  These cumulative estimates include development data and do not replace the fixed 120-pair analysis.
+\paragraph{Additional model comparisons.} For Nemotron 3 Nano 30B, DeGro raises FDA from 89.6\% to 90.8\% over grounded self-review ($+1.25$ points, pair-cluster 95\% CI $[-2.5,5.0]$; 12 versus 9 discordances; exploratory exact $p=.664$).  This does not establish an incremental accuracy benefit for this model.  Grounded self-review already reaches 98.3\% CAR; DeGro reaches 100.0\% CAR and reduces UR from 3.0\% to 1.0\%, while RSR remains similar (80.8\% versus 81.7\%).  The verdict-only method reaches only 73.8\% FDA, reinforcing the need to report model-specific repair losses.
+
+The two-test Holm family above covers GPT-OSS; the later Nemotron Nano result is exploratory and reported separately without family-wise adjustment.
+
+\paragraph{Secondary cumulative analysis.} Across all 300 pairs, DeGro versus grounded self-review changes FDA from 91.2\% to 96.2\% for 20B (difference $+5.0$ points, 95\% CI $[2.3,7.8]$; McNemar $p<.001$) and from 88.3\% to 95.7\% for 120B (difference $+7.3$ points, 95\% CI $[4.7,10.0]$; $p<.001$).  For Nemotron Nano, the cumulative FDA difference is $+0.83$ points (89.5\% versus 90.3\%; 95\% CI $[-1.5,3.3]$; $p=.590$).  These cumulative estimates include development data and do not replace the fixed 120-pair analysis.
+
+\paragraph{Exploratory source-coverage prompt.} Error analysis on the 80-pair development set motivated one frozen prompt refinement: explicitly compare every source condition with $F$, distinguish ambiguity of $F$ from missing information in the source, and expose already enforced variable domains.  The 300 solver-compatible MIRA pairs were already exhausted, so we tested this refinement on a new 100-pair synthetic stress set spanning four algebraic families; this is neither an external benchmark nor an additional MIRA test set.  We concurrently reran the original DeGro prompt.  For Nano 30B, FDA rises from 75.5\% to 95.0\% ($+19.5$ points, pair-cluster 95\% CI $[13.5,25.5]$; exact $p<.001$), with RSR rising from 52.0\% to 90.0\% and CAR from 99.0\% to 100.0\%.  This increased repair activity also raises UR from 1/53 (1.9\%) to 8/98 (8.2\%).  For GPT-OSS 120B, FDA changes from 98.5\% to 99.5\% ($+1.0$ point, CI $[-1.0,3.0]$; $p=.625$), while UR falls from 3/102 (2.9\%) to 1/101 (1.0\%).  Holm adjustment over these two exploratory tests gives $p<.001$ and $p=.625$.  The supplement reports the full protocol and table; these results motivate a future frozen external evaluation and do not revise the confirmatory claims above.
 
 \paragraph{RQ3: human-verified natural errors.}
 On the supported MATH-500 cohort, 158 of 292 formalizations are correct; the remaining labels are 69 wrong-target, 32 wrong-constraint, 24 target-critical missing-constraint, eight extra-constraint, and one wrong-domain.  The detector identifies 21 of 24 target-critical omissions (87.5\% recall, 95\% Wilson CI $[69.0,95.7]$) but precision is 17.4\% ($21/121$), and only one omission is successfully repaired end to end ($1/24=4.2\%$).  DeGro nevertheless raises cohort answer accuracy from 49.3\% ($144/292$) to 53.8\% ($157/292$); 16 discordant cases favor DeGro and three favor the structured baseline (exact McNemar $p=.0044$).  This prevalence is conditional on 58.4\% solver-fragment coverage.
@@ -341,131 +550,117 @@ Answer accuracy alone also understates the semantic distinction.  On MATH-500, D
 \paragraph{Decision-theoretic reading.}
 FDA assigns equal mass to repair on complete sources and abstention on underspecified sources because every controlled item contributes one of each.  Real applications may penalize fabrication more heavily than missed repair.  The case-level release permits alternative utilities, but the qualitative tradeoff is already visible: generic grounded review attains high RSR while over-repairing, whereas a bare determinacy verdict favors abstention.  DeGro attempts to recover useful repairs without surrendering the conservative action boundary.  Whether that balance is preferable depends on the downstream cost of an unsupported assertion, which should be declared rather than hidden inside a single accuracy metric.
 
-\begin{figure*}[t]
-\centering
-\begin{minipage}[t]{.47\textwidth}
-\centering
-\textbf{(a) Confirmatory final decision accuracy}\par\smallskip
-\begin{tikzpicture}[x=1cm,y=1cm,font=\scriptsize]
-  \draw[->,black!60] (.45,0) -- (.45,2.48) node[above,rotate=90,anchor=south,font=\tiny]{FDA (\%)};
-  \foreach \lab/\yy in {80/0,85/.55,90/1.10,95/1.65,100/2.20}{
-    \draw[black!18] (.45,\yy) -- (4.25,\yy);
-    \node[anchor=east] at (.38,\yy) {\lab};
-  }
-  \fill[black!38] (.85,0) rectangle (1.28,1.10);
-  \fill[degroblue] (1.35,0) rectangle (1.78,1.65);
-  \fill[black!38] (2.75,0) rectangle (3.18,.825);
-  \fill[degroblue] (3.25,0) rectangle (3.68,1.518);
-  \node[above,font=\tiny] at (1.065,1.10) {90.0};
-  \node[above,font=\tiny,text=degroblue] at (1.565,1.65) {\bfseries 95.0};
-  \node[above,font=\tiny] at (2.965,.825) {87.5};
-  \node[above,font=\tiny,text=degroblue] at (3.465,1.518) {\bfseries 93.8};
-  \node[align=center] at (1.315,-.28) {GPT-OSS\\20B};
-  \node[align=center] at (3.215,-.28) {GPT-OSS\\120B};
-  \node[draw=black!38,fill=black!38,minimum width=3mm,minimum height=2mm,label={[font=\tiny]right:Grounded self-review}] at (.9,-.82) {};
-  \node[draw=degroblue,fill=degroblue,minimum width=3mm,minimum height=2mm,label={[font=\tiny]right:DeGro}] at (2.9,-.82) {};
-  \draw[decorate,decoration={brace,amplitude=3pt},degrogreen] (1.83,1.10) -- (1.83,1.65) node[midway,right=3pt,font=\tiny,text=degrogreen]{\bfseries +5.0};
-  \draw[decorate,decoration={brace,amplitude=3pt},degrogreen] (3.73,.825) -- (3.73,1.518) node[midway,right=3pt,font=\tiny,text=degrogreen]{\bfseries +6.3};
-\end{tikzpicture}
-\end{minipage}\hfill
-\begin{minipage}[t]{.49\textwidth}
-\centering
-\textbf{(b) MATH-500 diagnostic funnel}\par\smallskip
-\begin{tikzpicture}[font=\scriptsize]
-  \node[anchor=east,align=right,text width=28mm] at (0,2.15) {Solver-fragment\\coverage};
-  \node[anchor=east,align=right,text width=28mm] at (0,1.25) {Target-critical\\ambiguity recall};
-  \node[anchor=east,align=right,text width=28mm] at (0,.35) {End-to-end\\grounded repair};
-  \foreach \yy in {2.15,1.25,.35}{\fill[black!8] (0.12,\yy-.18) rectangle (4.12,\yy+.18);}
-  \fill[degroblue] (0.12,1.97) rectangle (2.456,2.33);
-  \fill[degrogreen] (0.12,1.07) rectangle (3.62,1.43);
-  \fill[degroorange] (0.12,.17) rectangle (.288,.53);
-  \node[anchor=west,font=\tiny] at (2.52,2.15) {58.4\%  (292/500)};
-  \node[anchor=west,font=\tiny] at (3.69,1.25) {87.5\%  (21/24)};
-  \node[anchor=west,font=\tiny] at (.35,.35) {\bfseries 4.2\%  (1/24)};
-  \draw[->,black!45] (2.1,1.79) -- (2.1,1.60);
-  \draw[->,black!45] (2.1,.89) -- (2.1,.70);
-  \node[align=center,font=\tiny,text=black!65] at (2.1,-.25) {Coverage is measured over all 500 problems; recall and repair\\are measured over the 24 verified target-critical omissions.};
-\end{tikzpicture}
-\end{minipage}
-\caption{Two complementary views of the evidence.  (a) DeGro improves FDA by 5.0 points for GPT-OSS 20B and 6.3 points for GPT-OSS 120B; the axis begins at 80\% to make the paired differences visible.  (b) Natural-error evaluation has a pronounced detection--repair gap: most target-critical omissions are detected, but only one is repaired end to end.}
-\Description{Panel a is a grouped bar chart comparing grounded self-review and DeGro final decision accuracy for GPT-OSS 20B and 120B. Panel b shows three horizontal bars for MATH-500 solver-fragment coverage, ambiguity recall, and end-to-end repair success, with counts and denominators.}
-\label{fig:result_summary}
-\end{figure*}
+
 
 \subsection{Witness Ablation and Family Effects}
 \paragraph{RQ3: witness ablation.}
 On the exploratory 100-pair set, DeGro scores 98.5 FDA versus 97.5 with witnesses (five versus three discordances favoring DeGro; Holm-adjusted $p=.727$).  A minimal witness raises RSR by six points over a bare verdict, also non-significantly ($p=.714$).  Concrete assignments therefore add no measurable benefit here: the typed verdict can be exposed by default and witnesses retained for audit or harder cases.
 
-\begin{table}[t]
+\begin{figure}[t]
 \centering
-\caption{Exploratory GPT-OSS 20B ablation on 100 development pairs.}
-\label{tab:ablation}
-\small
-\begin{tabular}{lrrrr}
-\toprule
-Method & RSR & CAR & FDA & ORR\\
-\midrule
-Self-review & 92 & 84 & 88.0 & 16\\
-Bare non-uniqueness & 87 & 97 & 92.0 & 3\\
-Minimal witness & 93 & 93 & 93.0 & 7\\
-Target witnesses & 86 & 94 & 90.0 & 6\\
-Minimal witness+ground & 97 & 99 & 98.0 & 1\\
-DeGro & 97 & 100 & \textbf{98.5} & 0\\
-DeGro+witnesses & 97 & 98 & 97.5 & 2\\
-\bottomrule
-\end{tabular}
-\end{table}
+\begin{tikzpicture}[x=.25cm,y=.47cm,font=\scriptsize]
+  \fill[degroblue!10] (-9.1,1.56) rectangle (20.7,2.44);
+  \foreach \x/\lab in {0/80,5/85,10/90,15/95,20/100}{
+    \draw[black!12] (\x,.25) -- (\x,7.45);
+    \node[anchor=north,font=\tiny,text=black!65] at (\x,.15) {\lab};
+  }
+  \foreach \name/\yy in {Self-review/7,Bare verdict/6,Minimal witness/5,Target witnesses/4,Minimal witness + ground/3,DeGro/2,DeGro + witnesses/1}{
+    \draw[black!8] (0,\yy) -- (20,\yy);
+    \node[anchor=east,font=\tiny] at (-.45,\yy) {\name};
+  }
+  % Coordinates subtract 80 from each percentage.
+  \foreach \yy/\rsr/\car/\fda in {7/12/4/8,6/7/17/12,5/13/13/13,4/6/14/10,3/17/19/18,2/17/20/18.5,1/17/18/17.5}{
+    \fill[degrogreen] (\rsr,\yy) circle (2.1pt);
+    \fill[degroorange] (\car,\yy) circle (2.1pt);
+    \fill[degroblue] (\fda,\yy) circle (2.4pt);
+  }
+  \node[anchor=west,font=\tiny,text=degrogreen] at (0,7.85) {$\bullet$ RSR};
+  \node[anchor=west,font=\tiny,text=degroorange] at (6.0,7.85) {$\bullet$ CAR};
+  \node[anchor=west,font=\tiny,text=degroblue] at (12.0,7.85) {$\bullet$ FDA};
+  \node[anchor=west,font=\tiny,text=degroblue] at (18.8,2.32) {\bfseries 98.5};
+  \node[anchor=west,font=\tiny,text=black!65] at (0,-.5) {Score (\%); axis begins at 80};
+\end{tikzpicture}
+\caption{Exploratory GPT-OSS 20B ablation on 100 development pairs. Concrete witnesses do not improve FDA over DeGro without witnesses. ORR is omitted because it is exactly $100-\mathrm{CAR}$.}
+\Description{A horizontal dot plot compares repair success rate, correct abstention rate, and final decision accuracy for seven ablation methods. DeGro without witnesses has the highest final decision accuracy at 98.5 percent.}
+\label{fig:ablation}
+\end{figure}
 
 This part of RQ3 is answered only on the exploratory controlled set.  Every instance contains one target-critical omission, so non-uniqueness already localizes the relevant defect; witness assignments add tokens but little new information.  Specifications with several missing facts or many nuisance dimensions may differ, but these data support determinacy-guided grounding, not a universal benefit from exposing concrete assignments.
 
 \paragraph{RQ1: unsupported additions and repair tradeoffs.}
-For 20B, a bare verdict raises CAR to 98.0\% while lowering RSR to 87.7\%; DeGro restores repairs, reaches 99.0\% CAR, and reduces unsupported additions from 12.5\% to 3.4\% relative to grounded self-review.  For 120B, DeGro raises cumulative CAR from 79.7\% to 93.3\% and RSR from 97.0\% to 98.0\%, while reducing unsupported additions from 17.3\% to 7.0\%.  Family effects remain concentrated rather than uniform.
+For 20B, a bare verdict raises CAR to 98.0\% while lowering RSR to 87.7\%; DeGro restores repairs, reaches 99.0\% CAR, and reduces unsupported additions from 12.5\% to 3.4\% relative to grounded self-review.  For GPT-OSS 120B, DeGro raises cumulative CAR from 79.7\% to 93.3\% and RSR from 97.0\% to 98.0\%, while reducing unsupported additions from 17.3\% to 7.0\%.  Family effects remain concentrated rather than uniform.
 
-\begin{table}[t]
+\begin{figure*}[t]
 \centering
-\caption{Cumulative FDA by family for grounded self-review (GSR) and DeGro. Each family contains 60 pairs.}
-\label{tab:family}
-\small
-\begin{tabular}{lrrrr}
-\toprule
-& \multicolumn{2}{c}{GPT-OSS 20B} & \multicolumn{2}{c}{GPT-OSS 120B}\\
-Family & GSR & DeGro & GSR & DeGro\\
-\midrule
-CRT reconstruction & 100.0 & 99.2 & 99.2 & 100.0\\
-Graph path sums & 96.7 & 99.2 & 88.3 & 97.5\\
-Linear separation & 76.7 & 97.5 & 85.0 & 90.8\\
-Moment problem & 88.3 & 97.5 & 79.2 & 95.0\\
-Rank-deficient shared & 94.2 & 87.5 & 90.0 & 95.0\\
-\bottomrule
-\end{tabular}
-\end{table}
+\begin{minipage}[t]{.48\textwidth}\centering
+\textbf{(a) GPT-OSS 20B}\par\smallskip
+\begin{tikzpicture}[x=.24cm,y=.53cm,font=\scriptsize]
+  \foreach \x/\lab in {0/75,5/80,10/85,15/90,20/95,25/100}{
+    \draw[black!12] (\x,.35) -- (\x,5.65); \node[anchor=north,font=\tiny,text=black!65] at (\x,.22) {\lab};
+  }
+  \foreach \name/\yy in {CRT reconstruction/5,Graph path sums/4,Linear separation/3,Moment problem/2,Rank-deficient shared/1}{\node[anchor=east,font=\tiny] at (-.5,\yy) {\name};}
+  \foreach \yy/\gsr/\ours in {5/25/24.2,4/21.7/24.2,3/1.7/22.5,2/13.3/22.5,1/19.2/12.5}{
+    \draw[line width=1.15pt,black!25] (\gsr,\yy)--(\ours,\yy);
+    \fill[degroorange] (\gsr,\yy) circle (2.6pt); \fill[degroblue] (\ours,\yy) circle (2.6pt);
+  }
+\end{tikzpicture}
+\end{minipage}\hfill
+\begin{minipage}[t]{.48\textwidth}\centering
+\textbf{(b) GPT-OSS 120B}\par\smallskip
+\begin{tikzpicture}[x=.24cm,y=.53cm,font=\scriptsize]
+  \foreach \x/\lab in {0/75,5/80,10/85,15/90,20/95,25/100}{
+    \draw[black!12] (\x,.35) -- (\x,5.65); \node[anchor=north,font=\tiny,text=black!65] at (\x,.22) {\lab};
+  }
+  \foreach \name/\yy in {CRT reconstruction/5,Graph path sums/4,Linear separation/3,Moment problem/2,Rank-deficient shared/1}{\node[anchor=east,font=\tiny] at (-.5,\yy) {\name};}
+  \foreach \yy/\gsr/\ours in {5/24.2/25,4/13.3/22.5,3/10/15.8,2/4.2/20,1/15/20}{
+    \draw[line width=1.15pt,black!25] (\gsr,\yy)--(\ours,\yy);
+    \fill[degroorange] (\gsr,\yy) circle (2.6pt); \fill[degroblue] (\ours,\yy) circle (2.6pt);
+  }
+\end{tikzpicture}
+\end{minipage}
+\par\smallskip
+{\small\textcolor{degroorange}{\rule{9pt}{5pt}}\ Grounded self-review\qquad\textcolor{degroblue}{\rule{9pt}{5pt}}\ DeGro\qquad FDA (\%); axes begin at 75}
+\caption{Cumulative FDA by family; each family contains 60 pairs. DeGro improves four of five families for GPT-OSS 20B and all five for GPT-OSS 120B. The 20B rank-deficient family is the sole adverse regime.}
+\Description{Two dumbbell charts compare cumulative final decision accuracy for grounded self-review and DeGro across five problem families. DeGro improves four families for GPT-OSS 20B and all five for GPT-OSS 120B.}
+\label{fig:family}
+\end{figure*}
 
-Table~\ref{tab:family} explains the RQ1 tradeoff behind the aggregate scores.  Generic review often inserts a plausible but unstated relation; DeGro blocks many such additions.  The 20B rank-deficient family remains an adverse regime, whereas 120B improves in all five families.  Lower UR therefore cannot by itself establish better grounded decision-making; RSR, CAR, and family-specific losses must be read with it.
+Figure~\ref{fig:family} explains the RQ1 tradeoff behind the aggregate scores.  Generic review often inserts a plausible but unstated relation; DeGro blocks many such additions.  The 20B rank-deficient family remains an adverse regime, whereas 120B improves in all five families.  Lower UR therefore cannot by itself establish better grounded decision-making; RSR, CAR, and family-specific losses must be read with it.
 
 \subsection{Coverage Analysis}
 \paragraph{RQ3: broad-benchmark coverage audit.}
-To measure the representation bottleneck preceding verification, GPT-OSS 20B generated one shared Structured SymCode specification for each MATH-500 problem~\cite{hendrycks2021math}.  Of 500 specifications, 292 (58.4\%) parsed, reached the solver, and produced a conclusive verdict; Table~\ref{tab:coverage} accounts for every exclusion.
+To measure the representation bottleneck preceding verification, GPT-OSS 20B generated one shared Structured SymCode specification for each MATH-500 problem~\cite{hendrycks2021math}.  Of 500 specifications, 292 (58.4\%) parsed, reached the solver, and produced a conclusive verdict; Figure~\ref{fig:coverage} accounts for every exclusion.
 
-\begin{table}[t]
+\begin{figure}[t]
 \centering
-\caption{Frozen MATH-500 cohort accounting for the shared initial structured specification.}
-\label{tab:coverage}
-\small
-\begin{tabular}{lrr}
-\toprule
-Disposition & Count & Percent\\
-\midrule
-Conclusive and solver-supported & 292 & 58.4\\
-Model-level unsupported & 65 & 13.0\\
-Solver-level unsupported & 112 & 22.4\\
-Inconsistent & 9 & 1.8\\
-Solver unknown & 9 & 1.8\\
-Call error & 13 & 2.6\\
-\midrule
-Total & 500 & 100.0\\
-\bottomrule
-\end{tabular}
-\end{table}
+\begin{tikzpicture}[x=.105cm,y=.55cm,font=\scriptsize]
+  \foreach \x/\lab in {0/0,10/10,20/20,30/30,40/40,50/50,60/60}{
+    \draw[black!10] (\x,.45)--(\x,6.55); \node[anchor=north,font=\tiny,text=black!65] at (\x,.35) {\lab};
+  }
+  \node[anchor=east,font=\tiny] at (-.6,6) {Conclusive};
+  \node[anchor=east,font=\tiny] at (-.6,5) {Solver unsupported};
+  \node[anchor=east,font=\tiny] at (-.6,4) {Model unsupported};
+  \node[anchor=east,font=\tiny] at (-.6,3) {Call error};
+  \node[anchor=east,font=\tiny] at (-.6,2) {Inconsistent};
+  \node[anchor=east,font=\tiny] at (-.6,1) {Solver unknown};
+  \fill[degroblue] (0,5.68) rectangle (58.4,6.32);
+  \fill[degroorange] (0,4.68) rectangle (22.4,5.32);
+  \fill[degroorange!65] (0,3.68) rectangle (13.0,4.32);
+  \fill[black!45] (0,2.68) rectangle (2.6,3.32);
+  \fill[black!32] (0,1.68) rectangle (1.8,2.32);
+  \fill[black!22] (0,.68) rectangle (1.8,1.32);
+  \node[anchor=east,font=\tiny,text=white] at (57.7,6) {\bfseries 58.4\% (292)};
+  \node[anchor=west,font=\tiny] at (22.9,5) {22.4\% (112)};
+  \node[anchor=west,font=\tiny] at (13.5,4) {13.0\% (65)};
+  \node[anchor=west,font=\tiny] at (3.1,3) {2.6\% (13)};
+  \node[anchor=west,font=\tiny] at (2.3,2) {1.8\% (9)};
+  \node[anchor=west,font=\tiny] at (2.3,1) {1.8\% (9)};
+  \node[anchor=west,font=\tiny,text=black!65] at (0,-.15) {Share of MATH-500 (\%)};
+\end{tikzpicture}
+\caption{Frozen MATH-500 cohort accounting for all 500 shared initial structured specifications. Solver-level unsupported cases are the largest exclusion category.}
+\Description{A horizontal bar chart accounts for all 500 MATH-500 specifications. Conclusive solver-supported cases comprise 58.4 percent; solver-level unsupported cases comprise 22.4 percent; the other four categories are smaller.}
+\label{fig:coverage}
+\end{figure}
 
 Coverage is fixed solely from parsing and solver state, not observed answers.  Solver-level unsupported cases dominate and require a broader theory or compiler; model-level failures instead require better structured generation.  Conditional accuracy concerns the 292 supported problems, whereas end-to-end accuracy assigns failures to the other 208.  All Structured Solver records completed; DeGro completed 285, with six call errors and one unsupported record.  We retain the frozen denominator and count all seven as incorrect.
 
@@ -473,7 +668,7 @@ This separation prevents a favorable post-hoc coverage slice.  Conditional accur
 
 \subsection{Discussion and Limitations}
 \paragraph{Interpretation and validity.}
-The paired design holds latent values, target, domains, retained constraints, and solver verdict fixed; only the source support for $c^*$ changes.  The repair policy never receives $c^*$, the gold target, or the gold action.  The 120 confirmatory pairs were frozen before inspection, with tests and Holm correction declared in the manifest.  The cumulative analysis remains secondary and the witness ablation exploratory.  FDA equally weights repair and correct abstention; UR must be interpreted with RSR and CAR because always abstaining produces zero unsupported additions but no repair utility.
+The paired design holds latent values, target, domains, retained constraints, and solver verdict fixed; only the source support for $c^*$ changes.  The repair policy never receives $c^*$, the gold target, or the gold action.  The 120 confirmatory pairs were frozen before inspection, with tests and Holm correction declared in the manifest.  The cumulative analysis remains secondary, and both the witness ablation and source-coverage refinement are exploratory.  The latter was designed from development errors and tested only on synthetic instances from the same task templates; its large Nano gain requires confirmation on an independently sourced frozen benchmark.  FDA equally weights repair and correct abstention; UR must be interpreted with RSR and CAR because always abstaining produces zero unsupported additions but no repair utility.
 
 A conventional mixture of complete and incomplete questions admits shortcuts: families may differ in difficulty, wording may reveal that a fact is missing, and a policy may simply learn to repair every ambiguous solver state.  Our paired construction rules out these shortcuts because both members share the same formalization and diagnostic.  Correct behavior changes only with the natural-language support for the withheld constraint.  Exact McNemar tests then depend only on pairs for which the two policies disagree, while pair-cluster bootstrap intervals preserve the dependence between the two case types.
 
@@ -494,13 +689,13 @@ The controlled benchmark deliberately removes one known fact and therefore estim
 The annotation protocol also avoids defining positives with DeGro's own verdict.  Detector outputs, repairs, method names, and downstream answer outcomes are hidden from the initial packet.  A target-critical omission must instead be established from the source and generated specification; correct, wrong-constraint, wrong-target, and wrong-domain cases remain in the denominator.  Because model proposals seeded review and no separate blinded pre-discussion labels were preserved, we claim human verification rather than independent annotation or inter-annotator reliability.
 
 \paragraph{Reproducibility and risk.}
-The artifact includes the compiler, two-copy query, gates, tests, builders, frozen manifests, prompts, raw records, and analysis.  The 20B and 120B confirmatory output hashes begin with \texttt{5616d0c6} and \texttt{38d18e69}; each model analysis consumes all 960 expected records, and the supplement records the complete hashes.  Determinacy remains relative to $F$: wrong or extra constraints may force a unique wrong target, non-target omissions are invisible, and the current SMT fragment excludes much nonlinear, transcendental, and diagrammatic reasoning.  Interfaces must expose this scope rather than imply truth.  The data contain no personal information; AI assistance requires venue-compliant disclosure and does not reduce author responsibility.
+The artifact includes the compiler, two-copy query, gates, tests, builders, frozen manifests, prompts, raw records, and analysis, including both additional Nemotron runs.  The 20B and 120B confirmatory output hashes begin with \texttt{5616d0c6} and \texttt{38d18e69}; each model analysis consumes all 960 expected records, and the supplement records the complete hashes.  Determinacy remains relative to $F$: wrong or extra constraints may force a unique wrong target, non-target omissions are invisible, and the current SMT fragment excludes much nonlinear, transcendental, and diagrammatic reasoning.  Interfaces must expose this scope rather than imply truth.  The data contain no personal information; AI assistance requires venue-compliant disclosure and does not reduce author responsibility.
 
 The manifests record dataset revision and license, selection seed, family counts, exact model strings, decoding settings, prompt hashes, timestamps, and full output hashes.  Analysis scripts reconstruct every table from JSONL, reject incomplete expected pair counts, and preserve whether a row came from pilot, development, or confirmatory data.  Natural-error packets and verified labels are separately blinded and content-addressed.  These records allow the 120-pair headline to be reproduced without incorporating earlier observations.
 
 Several failure modes remain outside the certificate.  A wrong or extra constraint may force a unique but incorrect target; an omitted fact that does not affect $q$ is invisible; several interacting omissions may exceed the bounded repair budget; and witnesses may differ only on irrelevant variables.  The supported SMT fragment excludes much nonlinear, transcendental, and diagrammatic mathematics.  These are reasons to surface the encoded constraints, cited repair, and solver status in the interface, not to display an unqualified ``verified'' badge.
 
-Finally, the two model sizes exhibit different instruction-following and abstention behavior, and hosted checkpoints may change.  DeGro's advantage should therefore be treated as a property of a specified model--prompt--gate configuration.  The 120B baseline over-repairs many underspecified cases despite its larger size.  Deterministic gates remain necessary, and deployment thresholds should reflect the relative cost of fabricated facts and missed repairs.
+Finally, the tested models exhibit different instruction-following and abstention behavior, and hosted checkpoints may change.  The additional Nano result shows that strong baseline abstention can leave little incremental FDA benefit for DeGro.  DeGro's advantage should therefore be treated as a property of a specified model--prompt--gate configuration.  The GPT-OSS 120B baseline over-repairs many underspecified cases despite its larger size.  Deterministic gates remain necessary, and deployment thresholds should reflect the relative cost of fabricated facts and missed repairs.
 
 \paragraph{Deployment implications.}
 DeGro is best used as a routing signal rather than a universal correctness badge.  A determinate, supported specification can proceed to answer generation; an ambiguous specification with a grounded candidate can enter the bounded repair loop; and an ambiguous specification without support should trigger clarification or abstention.  Inconsistent, unknown, and unsupported cases require different fallbacks, as Table~\ref{tab:policy} makes explicit.  Keeping these states typed prevents an agent from treating lack of a solver certificate as permission to guess.
@@ -510,7 +705,8 @@ The results also suggest a conservative interface.  The system should expose the
 Deployment comparisons should report representation coverage, decision quality conditional on a conclusive verifier state, and end-to-end utility with unsupported, unknown, and call-error cases retained as failures.  Otherwise, a narrow symbolic verifier can appear reliable by declining difficult inputs before scoring.
 
 \section{Conclusion}
-For RQ1, DeGro raises FDA by 5.0 points for GPT-OSS 20B and 6.25 points for GPT-OSS 120B on the fixed 120-pair set while reducing unsupported additions for both sizes, though 20B sacrifices some supported repairs; the 120B substitution is post-hoc.  For RQ2, the paired benchmark shows that correct behavior depends on source support even when the formalization and determinacy signal are identical.  For RQ3, conclusive-verifier coverage and detection substantially exceed end-to-end grounded repair on natural errors, while concrete witnesses add no measurable benefit on the exploratory single-omission set.  These answers support target determinacy as a representation-relative routing condition, with source grounding and coverage reported alongside decision accuracy.
+DRAW-Paired extends the design to 350 natural algebra sources (300 author-reviewed, 50 pending review). DeGro improves FDA over grounded self-review across the three models, but verdict-only repair remains better for GPT-OSS 120B. Review followed initial inference, and the extension was selected after initial outcomes; these provisional, post-hoc results complement rather than replace the MIRA confirmatory evidence.
+For RQ1, DeGro raises FDA by 5.0 points for GPT-OSS 20B and 6.25 points for GPT-OSS 120B on the fixed 120-pair set while reducing unsupported additions for both sizes, though 20B sacrifices some supported repairs; the 120B substitution is post-hoc.  The post-hoc Nemotron Nano comparison gives a statistically inconclusive fixed-set difference of $+1.25$ points, limiting claims of model-general improvement.  For RQ2, the paired benchmark shows that correct behavior depends on source support even when the formalization and determinacy signal are identical.  For RQ3, conclusive-verifier coverage and detection substantially exceed end-to-end grounded repair on natural errors, while concrete witnesses add no measurable benefit on the exploratory single-omission set.  These answers support target determinacy as a representation-relative routing condition, with source grounding and coverage reported alongside decision accuracy.
 
 \clearpage
 \balance

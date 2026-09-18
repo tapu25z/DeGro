@@ -1,0 +1,16 @@
+[1/20] ran-000570 OMISSION self_review ok
+[2/20] ran-000570 UNDERSPECIFIED self_review error
+[3/20] gra-000189 OMISSION self_review error
+[4/20] gra-000189 UNDERSPECIFIED self_review error
+[5/20] lin-000259 OMISSION self_review error
+[6/20] lin-000259 UNDERSPECIFIED self_review error
+[7/20] crt-000062 OMISSION self_review error
+[8/20] crt-000062 UNDERSPECIFIED self_review error
+[9/20] crt-000089 OMISSION self_review error
+[10/20] crt-000089 UNDERSPECIFIED self_review error
+[11/20] gra-000234 OMISSION self_review error
+[12/20] gra-000234 UNDERSPECIFIED self_review error
+[13/20] ran-000565 OMISSION self_review error
+[14/20] ran-000565 UNDERSPECIFIED self_review error
+[15/20] lin-000260 OMISSION self_review error
+[16/20] lin-000260 UNDERSPECIFIED self_review error

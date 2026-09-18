@@ -26,4 +26,4 @@ Công thức hai bản sao, feasibility check, trạng thái unknown/unsupported
 
 **Figure 1: Three levels of executable mathematical reasoning evaluation.** Execution checks whether a program runs; outcome evaluation checks its final answer. DeGro diagnoses target ambiguity through two feasible models with different target values (illustrated by q=4 and q=6), then attempts source-grounded repair with deterministic acceptance gates or abstains. Target determinacy is relative to the encoded specification and does not establish faithfulness to the source problem.
 
-Nên đặt hình trải hai cột khi đưa vào paper. main.tex chưa được thay đổi.
+Bản ít chữ đã được chèn tạm vào main.tex dưới dạng figure một cột theo yêu cầu; hình nằm ở cột phải trang 1 trong bản PDF đã biên dịch.

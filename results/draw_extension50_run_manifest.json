@@ -1,0 +1,23 @@
+{
+  "started_utc": "2026-09-18T02:33:35.451844+00:00",
+  "data": "data/paired/draw_paired/draw_paired_extension50.jsonl",
+  "data_sha256": "a8b54041cee7950899068f70a64e8cef9c3be72e21253ce17ae9b8db28c758c3",
+  "models": {
+    "gpt_oss_20b": "gpt-oss:20b",
+    "gpt_oss_120b": "gpt-oss:120b",
+    "nemotron_3_nano_30b": "nemotron-3-nano:30b"
+  },
+  "methods": [
+    "self_review",
+    "grounded_self_review",
+    "nonunique",
+    "nonunique_grounding"
+  ],
+  "temperature": 1.0,
+  "think": "medium",
+  "prompt_hash": "eafed6be4973c21e1efbb5cc804112c9d50c95764e8f5066b58bdee58b92bdda",
+  "extension_pairs": 50,
+  "combined_pairs": 350,
+  "review": "extension pending; original300 author-reviewed",
+  "selection_timing": "extension selected after original300 outcomes; cumulative analysis is post-hoc"
+}

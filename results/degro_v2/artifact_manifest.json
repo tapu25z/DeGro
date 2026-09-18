@@ -1,0 +1,27 @@
+{
+  "status": "complete",
+  "records": {
+    "development": 320,
+    "synthetic_test": 800
+  },
+  "artifacts": {
+    "results/degro_v2/analysis.json": "909a5f73cac297db139e05dc723d3568b71d402dc179ee9f7769558bfe274665",
+    "results/degro_v2/verification.json": "b8aeac09d0a9ec801acd57f8f27e005959115e8fd7d4464ec44eed7ffe072ee6",
+    "results/degro_v2/by_family.json": "8a1cf21921327dc9c9a285d02e862fa7d7409cfdf63ab47de27efda9f6cf1fb3",
+    "results/degro_v2/report.md": "b7be77a527a08747ae18e51568c37fba404a6a89921315823867981a83f1c03e",
+    "results/degro_v2/development80_complete.jsonl": "957258df04b93b2b48b772c4b72b27a3bf37a52adfa46ec4c7693559fdbf43f1",
+    "results/degro_v2/fresh_test100_complete.jsonl": "b500c5b710a360f22a8697425439798ef66d95f4dabe89718fd4f2fcf9ae3131",
+    "output/pdf/DeGro_with_source_coverage_v2.pdf": "d784db43a66420ab9701592dea1f315b1c6c9e67bce8092b5631314050d4eb8c",
+    "output/pdf/DeGro_supplement_with_source_coverage_v2.pdf": "2811580954c6574b6ad528ec2ac621ef6c6e1da3a06088c4b04e7bd28e88fa35"
+  },
+  "pdf_qa": {
+    "main_pages": 11,
+    "supplement_pages": 4,
+    "all_pages_rendered_and_visually_inspected": true,
+    "overfull_boxes": 0
+  },
+  "tests": {
+    "prompt_and_metadata_independence": "8 passed",
+    "all_scores_independently_recomputed": true
+  }
+}

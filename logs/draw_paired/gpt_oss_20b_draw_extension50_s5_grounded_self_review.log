@@ -1,0 +1,30 @@
+Traceback (most recent call last):
+  File "/Users/buihuynhtay/Documents/ChatGPT/degro/scripts/run_pilot.py", line 10, in <module>
+    from targetcheck.pilot import METHODS, OUTPUT_SCHEMA, build_prompt, parse_decision, prompt_hash, score
+ModuleNotFoundError: No module named 'targetcheck'
+Traceback (most recent call last):
+  File "/Users/buihuynhtay/Documents/ChatGPT/degro/scripts/run_pilot.py", line 10, in <module>
+    from targetcheck.pilot import METHODS, OUTPUT_SCHEMA, build_prompt, parse_decision, prompt_hash, score
+ModuleNotFoundError: No module named 'targetcheck'
+Traceback (most recent call last):
+  File "/Users/buihuynhtay/Documents/ChatGPT/degro/scripts/run_pilot.py", line 10, in <module>
+    from targetcheck.pilot import METHODS, OUTPUT_SCHEMA, build_prompt, parse_decision, prompt_hash, score
+ModuleNotFoundError: No module named 'targetcheck'
+[1/12] draw-paired/406873/1/x OMISSION grounded_self_review ok
+[2/12] draw-paired/406873/1/x UNDERSPECIFIED grounded_self_review error
+[3/12] draw-paired/747692/1/student OMISSION grounded_self_review error
+[4/12] draw-paired/747692/1/student UNDERSPECIFIED grounded_self_review error
+[5/12] draw-paired/296468/1/x OMISSION grounded_self_review error
+[6/12] draw-paired/296468/1/x UNDERSPECIFIED grounded_self_review ok
+[7/12] draw-paired/82514/1/x OMISSION grounded_self_review error
+[3/12] draw-paired/406873/1/x UNDERSPECIFIED grounded_self_review ok
+[4/12] draw-paired/747692/1/student OMISSION grounded_self_review ok
+[5/12] draw-paired/747692/1/student UNDERSPECIFIED grounded_self_review ok
+[6/12] draw-paired/296468/1/x OMISSION grounded_self_review ok
+[7/12] draw-paired/82514/1/x OMISSION grounded_self_review ok
+[8/12] draw-paired/82514/1/x UNDERSPECIFIED grounded_self_review error
+[9/12] draw-paired/235689/1/y OMISSION grounded_self_review ok
+[10/12] draw-paired/235689/1/y UNDERSPECIFIED grounded_self_review ok
+[11/12] draw-paired/356048/1/y OMISSION grounded_self_review ok
+[12/12] draw-paired/356048/1/y UNDERSPECIFIED grounded_self_review ok
+[12/12] draw-paired/82514/1/x UNDERSPECIFIED grounded_self_review ok

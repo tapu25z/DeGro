@@ -1,0 +1,12 @@
+[23/30] mom-000365 OMISSION nonunique_grounding ok
+[24/30] mom-000365 UNDERSPECIFIED nonunique_grounding ok
+[25/30] gra-000238 OMISSION nonunique_grounding error
+[26/30] gra-000238 UNDERSPECIFIED nonunique_grounding error
+[27/30] ran-000578 OMISSION nonunique_grounding error
+[28/30] ran-000578 UNDERSPECIFIED nonunique_grounding error
+[25/30] gra-000238 OMISSION nonunique_grounding ok
+[26/30] gra-000238 UNDERSPECIFIED nonunique_grounding ok
+[27/30] ran-000578 OMISSION nonunique_grounding ok
+[28/30] ran-000578 UNDERSPECIFIED nonunique_grounding ok
+[29/30] lin-000246 OMISSION nonunique_grounding ok
+[30/30] lin-000246 UNDERSPECIFIED nonunique_grounding ok

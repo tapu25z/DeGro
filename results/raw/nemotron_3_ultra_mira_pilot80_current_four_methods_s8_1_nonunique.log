@@ -1,0 +1,14 @@
+[1/20] gra-000198 OMISSION nonunique ok
+[2/20] gra-000198 UNDERSPECIFIED nonunique error
+[3/20] lin-000245 OMISSION nonunique error
+[4/20] lin-000245 UNDERSPECIFIED nonunique error
+[5/20] ran-000554 OMISSION nonunique error
+[6/20] ran-000554 UNDERSPECIFIED nonunique error
+[7/20] lin-000264 OMISSION nonunique error
+[8/20] lin-000264 UNDERSPECIFIED nonunique error
+[9/20] gra-000204 OMISSION nonunique error
+[10/20] gra-000204 UNDERSPECIFIED nonunique error
+[11/20] lin-000287 OMISSION nonunique error
+[12/20] lin-000287 UNDERSPECIFIED nonunique error
+[13/20] gra-000215 OMISSION nonunique error
+[14/20] gra-000215 UNDERSPECIFIED nonunique error

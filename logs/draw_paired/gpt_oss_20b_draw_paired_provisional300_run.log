@@ -1,0 +1,5 @@
+[gpt_oss_20b_draw_paired_provisional300] wave 1
+[gpt_oss_20b_draw_paired_provisional300] wave 2
+[gpt_oss_20b_draw_paired_provisional300] wave 3
+{"records": 2400, "expected": 2400, "ok": 2400, "errors": 0, "missing": 0, "complete": true}
+[gpt_oss_20b_draw_paired_provisional300] complete

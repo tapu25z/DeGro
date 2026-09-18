@@ -1,0 +1,83 @@
+{
+  "model": "nemotron-3-super",
+  "provider": "https://ollama.com",
+  "started_at_utc": "2026-09-16T18:46:12.562188+00:00",
+  "comparison_status": "post-hoc additional model comparison on same frozen MIRA splits",
+  "temperature": 1.0,
+  "think_request": "medium",
+  "reasoning_note": "Equal API requests do not establish equal internal reasoning budgets.",
+  "methods": [
+    "self_review",
+    "grounded_self_review",
+    "nonunique",
+    "nonunique_grounding"
+  ],
+  "expected_records": 2400,
+  "expected_split_records": {
+    "pilot80": 640,
+    "heldout100": 800,
+    "confirmatory120": 960
+  },
+  "prompt_hash": "eafed6be4973c21e1efbb5cc804112c9d50c95764e8f5066b58bdee58b92bdda",
+  "input_sha256": {
+    "data/paired/mira_pilot_80.jsonl": "05509c28b346af6da831c866e03a04abafb8c7a870ee561913a1741fe85a9df1",
+    "data/paired/mira_heldout_100.jsonl": "8838abb1c078a3b2bd7bbc057b1e4b2bf7bdb4764f7f2e80a5d9e1bad4c143c9",
+    "data/paired/mira_confirmatory_remaining_120.jsonl": "5616d0c6203f762560439ee193f1148133d06baf034d6c34c7250a0a44ce3f0b",
+    "scripts/run_pilot.py": "5d47b3b1a4dfd54e4cb605a336c4afbaa35eccde387377cff7f84d9f409cb1ca",
+    "targetcheck/pilot.py": "4e52a7fd8122eba95a3c4444bd76c47d841d5b4020a1a9711abd1e11630c28fe",
+    "scripts/analyze_confirmatory.py": "e85a5fcb91b0e3c9c8adca43ff8c1a4abe83864c5b8eada05568dcff6310648c",
+    "scripts/finalize_pilot.py": "be1f40c225d47ab2b4141f14aae0dc0968e8b51d81016e2168a222d4140ac8e8"
+  },
+  "retry_policy": "Up to three waves; preserve first valid response; bounded account failover on authentication/quota/rate-limit errors only.",
+  "documentation": [
+    "https://ollama.com/library/nemotron-3-super"
+  ],
+  "provider_model_metadata": [
+    {
+      "name": "nemotron-3-super",
+      "model": "nemotron-3-super",
+      "modified_at": "2026-03-11T00:00:00Z",
+      "size": 230500000000,
+      "digest": "da11955bb451",
+      "details": {
+        "parent_model": "",
+        "format": "",
+        "family": "",
+        "families": null,
+        "parameter_size": "",
+        "quantization_level": ""
+      }
+    }
+  ],
+  "provider_metadata_checked_at_utc": "2026-09-16T18:47:57.514229+00:00",
+  "model_documentation": "https://research.nvidia.com/labs/nemotron/files/NVIDIA-Nemotron-3-Super-Technical-Report.pdf",
+  "output_sha256": {
+    "results/nemotron_3_super_mira_pilot80_current_four_methods_complete.jsonl": "c62222a461c2c22f06f182134b057fb92eb9bf494998fd42df5c746e3234a12f",
+    "results/nemotron_3_super_mira_four_methods_complete.jsonl": "5ddfe56ba0ef8ef3ffd2457eb7328ee1c1c6901c32aacbcb4d6886fe3e505d6f",
+    "results/nemotron_3_super_mira_confirmatory_remaining_120_complete.jsonl": "7826c4561fcedb63e76eb9eea79f64deaa3ac7a86761c75df91532484bcfef2f",
+    "results/nemotron_3_super_mira_full300_complete.jsonl": "9dbcbb67028448d609f4f436b7535591da159fea82c4d29020109bc85d48e447",
+    "results/nemotron_3_super_mira_full300_analysis.json": "7a3c49269b2a2cf4a1959ced413c5f508b59d0b4f0ed29469332ff34dbcb084b",
+    "results/nemotron_3_super_mira_confirmatory_remaining_120_analysis.json": "7044088db9a59f4e025006f0f7c9a7fc99e32911abc10d58668a8c69d6bf1d5f",
+    "results/four_model_confirmatory_holm_sensitivity.json": "08187d1d75f8f03b6ab179a16321d66f148c1836ec73c302b320c70e8df3e95d",
+    "results/nemotron_3_super_mira_report.md": "b7d5c72a946144d863ce30ff4b57f41336da1ce36b3b3bd99fc6443d1cdf7ac2",
+    "output/pdf/DeGro_with_Nemotron_Super.pdf": "3feef93aab787d9307fef759283f3432c23d4d37a085fcf47c9ac2f972cec798",
+    "output/pdf/DeGro_supplement_with_Nemotron_Super.pdf": "a2e8ce0d809274a74859aa7ece11f29514d4d42d24801fb07c88d78c5a1ccedf",
+    "scripts/run_nemotron_3_super_mira.sh": "cefa688ac342ddacc6b1da04c938b9a4c525c1f130897c71a0524914390c1ac7",
+    "scripts/assemble_mira_full300.py": "b2e10049e37784ab5b7b4ad0b63a36f7ee376fd961c2da6354b832389f464d71"
+  },
+  "actual_split_records": {
+    "pilot80": 640,
+    "heldout100": 800,
+    "confirmatory120": 960
+  },
+  "completed_at_utc": "2026-09-16T19:12:19.892879+00:00",
+  "raw_attempt_records": 2400,
+  "verification": "Frozen input hashes, raw request configurations, all expected unique keys, and independently recomputed scores matched. No finalized errors or missing records.",
+  "analysis_settings": {
+    "bootstrap_samples": 10000,
+    "seed": 20270910,
+    "clustering": "pair_id",
+    "test": "exact two-sided McNemar"
+  },
+  "pdf_qa": "Main 11 pages and supplement 4 pages rendered and visually inspected; no overflow or unresolved references. Standard float placement warning does not affect rendering."
+}

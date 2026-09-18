@@ -1,0 +1,17 @@
+[1/26] ran-000592 OMISSION nonunique ok
+[2/26] ran-000592 UNDERSPECIFIED nonunique error
+[3/26] gra-000223 OMISSION nonunique error
+[4/26] gra-000223 UNDERSPECIFIED nonunique error
+[5/26] mom-000400 OMISSION nonunique error
+[6/26] mom-000400 UNDERSPECIFIED nonunique error
+[7/26] crt-000084 OMISSION nonunique error
+[8/26] crt-000084 UNDERSPECIFIED nonunique error
+[9/26] lin-000265 OMISSION nonunique error
+[10/26] lin-000265 UNDERSPECIFIED nonunique error
+[11/26] ran-000576 OMISSION nonunique error
+[12/26] ran-000576 UNDERSPECIFIED nonunique error
+[13/26] mom-000375 OMISSION nonunique error
+[14/26] mom-000375 UNDERSPECIFIED nonunique error
+[15/26] lin-000243 OMISSION nonunique error
+[16/26] lin-000243 UNDERSPECIFIED nonunique error
+[17/26] gra-000203 OMISSION nonunique error

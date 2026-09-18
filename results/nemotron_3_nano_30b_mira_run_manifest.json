@@ -1,0 +1,58 @@
+{
+  "model": "nemotron-3-nano:30b",
+  "provider": "https://ollama.com",
+  "started_at_utc": "2026-09-16T16:56:06.718175+00:00",
+  "comparison_status": "post-hoc additional model comparison; original fixed evaluation cases retained",
+  "temperature": 1.0,
+  "think_request": "medium",
+  "reasoning_note": "The same API think request is used across models; this does not establish equal internal reasoning budgets.",
+  "methods": [
+    "self_review",
+    "grounded_self_review",
+    "nonunique",
+    "nonunique_grounding"
+  ],
+  "expected_records": 2400,
+  "expected_split_records": {
+    "pilot80": 640,
+    "heldout100": 800,
+    "confirmatory120": 960
+  },
+  "prompt_hash": "eafed6be4973c21e1efbb5cc804112c9d50c95764e8f5066b58bdee58b92bdda",
+  "input_sha256": {
+    "data/paired/mira_pilot_80.jsonl": "05509c28b346af6da831c866e03a04abafb8c7a870ee561913a1741fe85a9df1",
+    "data/paired/mira_heldout_100.jsonl": "8838abb1c078a3b2bd7bbc057b1e4b2bf7bdb4764f7f2e80a5d9e1bad4c143c9",
+    "data/paired/mira_confirmatory_remaining_120.jsonl": "5616d0c6203f762560439ee193f1148133d06baf034d6c34c7250a0a44ce3f0b",
+    "scripts/run_pilot.py": "5d47b3b1a4dfd54e4cb605a336c4afbaa35eccde387377cff7f84d9f409cb1ca",
+    "targetcheck/pilot.py": "4e52a7fd8122eba95a3c4444bd76c47d841d5b4020a1a9711abd1e11630c28fe",
+    "scripts/analyze_confirmatory.py": "e85a5fcb91b0e3c9c8adca43ff8c1a4abe83864c5b8eada05568dcff6310648c",
+    "scripts/finalize_pilot.py": "be1f40c225d47ab2b4141f14aae0dc0968e8b51d81016e2168a222d4140ac8e8"
+  },
+  "retry_policy": "Resume the first valid response; up to three waves, with the provider client rotating accounts only for authentication, quota, or rate-limit responses. Transport workers were repartitioned to eight shards, retaining all prior valid responses.",
+  "documentation": [
+    "https://ollama.com/library/nemotron-3-nano",
+    "https://docs.ollama.com/capabilities/thinking"
+  ],
+  "transport_note": "Slow in-flight workers were interrupted and resumed through responsive accounts, retaining every already valid response. No score-based resampling.",
+  "output_sha256": {
+    "results/nemotron_3_nano_30b_mira_pilot80_current_four_methods_complete.jsonl": "7048b9d8eb334bab97c320c7ac8d22f4d439d502407d17b61788431ad78cbf0f",
+    "results/nemotron_3_nano_30b_mira_four_methods_complete.jsonl": "637d4d78b9b42332ca0ae1b058ef570b1c9b9e311d411e4ff06390da777a4b63",
+    "results/nemotron_3_nano_30b_mira_confirmatory_remaining_120_complete.jsonl": "59eaaa1b86fb26b333c0340448c833e7485e708e7f0b4442d04e8e91cb9ff595",
+    "results/nemotron_3_nano_30b_mira_full300_complete.jsonl": "05707d8c59ab1c07349f1a041b2575d19f6131696c07d682c13238c1f37b583e",
+    "results/nemotron_3_nano_30b_mira_full300_analysis.json": "0a9b504889176cea57dd7a0c9b0f23db9b46238c464c426b434e305c89aa8654",
+    "results/nemotron_3_nano_30b_mira_confirmatory_remaining_120_analysis.json": "a3763a70a4cdc78c9d3a939eff897e2f766fdf47a48e3e99e1e75bca7669b671",
+    "results/three_model_confirmatory_holm_sensitivity.json": "ba47c7e4baf13f9f0e5a66c8489a7b3b33b341efb468c46cc4988f060208b766",
+    "output/pdf/DeGro_with_Nemotron.pdf": "506e12b9cc60b082e7304c08aacfa444c3ec859a604c2ff19c10233147c8e919",
+    "output/pdf/DeGro_supplement_with_Nemotron.pdf": "1e2db16e9c8405754d44da1a2f9649e97af10ce59acad180e6c20ed87a1a37e4",
+    "scripts/run_nemotron_3_nano_30b_mira.sh": "8518e6e9de931b2f706846adc644ce6a7f28d0c9d1b6156be7fd0373976e18c0",
+    "scripts/assemble_mira_full300.py": "0112b37632e1ff47bbde8bb167a97c666cb17121a15a9431aa7c886dff7b595f"
+  },
+  "actual_split_records": {
+    "pilot80": 640,
+    "heldout100": 800,
+    "confirmatory120": 960
+  },
+  "completed_at_utc": "2026-09-16T18:02:18.835880+00:00",
+  "verification": "All frozen input hashes and raw configuration matched; every expected case/method key appeared exactly once; every stored score independently recomputed; no unresolved errors.",
+  "pdf_qa": "Main 11 pages and supplement 4 pages rendered and visually inspected; no overflow or unresolved references in final build logs."
+}

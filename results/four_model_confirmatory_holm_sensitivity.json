@@ -1,0 +1,25 @@
+{
+  "status": "Sensitivity across all four model-specific fixed-set FDA comparisons. Original two-GPT-OSS family retained separately; both Nemotron additions are post-hoc.",
+  "comparisons": [
+    {
+      "model": "gpt_oss_20b",
+      "p_raw": 0.050102459732443094,
+      "p_holm": 0.15030737919732928
+    },
+    {
+      "model": "gpt_oss_120b",
+      "p_raw": 0.013530986849218607,
+      "p_holm": 0.05412394739687443
+    },
+    {
+      "model": "nemotron_3_nano_30b",
+      "p_raw": 0.6636238098144531,
+      "p_holm": 0.6636238098144531
+    },
+    {
+      "model": "nemotron_3_super",
+      "p_raw": 0.08014331245794892,
+      "p_holm": 0.16028662491589785
+    }
+  ]
+}

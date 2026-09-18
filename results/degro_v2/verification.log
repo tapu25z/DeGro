@@ -1,0 +1,40 @@
+{
+  "completed_utc": "2026-09-16T20:09:54.982179+00:00",
+  "splits": {
+    "development80": {
+      "expected": 320,
+      "verified": 320,
+      "attempt_status": {
+        "error": 51,
+        "ok": 320
+      },
+      "first_success_preserved": true,
+      "all_scores_recomputed": true,
+      "config_and_prompt_verified": true
+    },
+    "fresh_test100": {
+      "expected": 800,
+      "verified": 800,
+      "attempt_status": {
+        "ok": 800,
+        "error": 28
+      },
+      "first_success_preserved": true,
+      "all_scores_recomputed": true,
+      "config_and_prompt_verified": true
+    }
+  },
+  "new_test_overlap": {
+    "original_pair_ids": 0,
+    "exact_problem_text": 0
+  },
+  "output_sha256": {
+    "results/degro_v2/development80_complete.jsonl": "957258df04b93b2b48b772c4b72b27a3bf37a52adfa46ec4c7693559fdbf43f1",
+    "results/degro_v2/fresh_test100_complete.jsonl": "b500c5b710a360f22a8697425439798ef66d95f4dabe89718fd4f2fcf9ae3131"
+  },
+  "analysis_sha256": "909a5f73cac297db139e05dc723d3568b71d402dc179ee9f7769558bfe274665",
+  "runner_hashes": {
+    "protocol_initial": "67b49551b7f84b6988d8b2f30ade1d24fb3a14bc00fe91ad6b4312c5cbaf6177",
+    "final_transport_runner": "67b49551b7f84b6988d8b2f30ade1d24fb3a14bc00fe91ad6b4312c5cbaf6177"
+  }
+}

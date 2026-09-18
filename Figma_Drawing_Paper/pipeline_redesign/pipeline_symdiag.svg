@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="700" viewBox="0 0 1600 700" role="img" aria-labelledby="title desc">
+  <title id="title">DeGro pipeline with compact SymCode context</title>
+  <desc id="desc">Stage I includes a compact upstream context from the problem through SymCode to an executable artifact, followed by DeGro ModelSpec extraction and target-determinacy diagnosis. Only ambiguous cases enter Stage II for grounded repair and deterministic validation.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M1,1 L11,6 L1,11" fill="none" stroke="#171717" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+    <style>
+      .t { font-family: Arial, Helvetica, sans-serif; fill: #171717; }
+      .section { font-size: 30px; font-weight: 700; }
+      .eyebrow { font-size: 18px; font-weight: 700; letter-spacing: 1.3px; }
+      .title { font-size: 23px; font-weight: 700; }
+      .sub { font-size: 16px; font-weight: 400; }
+      .status { font-size: 16px; font-weight: 700; letter-spacing: .25px; }
+      .arrow { fill: none; stroke: #171717; stroke-width: 2.7; stroke-linecap: round; stroke-linejoin: round; marker-end: url(#arrow); }
+      .line { fill: none; stroke: #171717; stroke-width: 2.7; stroke-linecap: round; stroke-linejoin: round; }
+      .rule { stroke: #707070; stroke-width: 1.5; stroke-dasharray: 3 8; }
+    </style>
+  </defs>
+
+  <rect width="1600" height="700" fill="#ffffff"/>
+
+  <!-- Stage I -->
+  <text class="t eyebrow" x="65" y="48">DEGRO · STAGE I</text>
+  <text class="t section" x="65" y="86">Target-determinacy diagnosis</text>
+
+  <text class="t eyebrow" x="65" y="132">UPSTREAM CONTEXT</text>
+  <rect x="65" y="158" width="145" height="84" rx="12" fill="#ffffff" stroke="#171717" stroke-width="2"/>
+  <text class="t title" x="137.5" y="209" text-anchor="middle">Problem</text>
+  <path class="arrow" d="M210 200 H234"/>
+
+  <rect x="250" y="149" width="255" height="102" rx="13" fill="#FFF1C8" stroke="#E0B94D" stroke-width="2"/>
+  <text class="t title" x="377.5" y="190" text-anchor="middle">SymCode</text>
+  <text class="t sub" x="377.5" y="220" text-anchor="middle">generate · execute · debug</text>
+  <path class="arrow" d="M505 200 H529"/>
+
+  <rect x="545" y="149" width="200" height="102" rx="13" fill="#CFE8BC"/>
+  <text class="t title" x="645" y="190" text-anchor="middle">Artifact</text>
+  <text class="t sub" x="645" y="220" text-anchor="middle">code + answer</text>
+
+  <line class="rule" x1="775" y1="119" x2="775" y2="344"/>
+  <text class="t eyebrow" x="796" y="132">DEGRO STARTS HERE</text>
+  <path class="arrow" d="M745 200 H799"/>
+
+  <rect x="815" y="149" width="225" height="102" rx="13" fill="#FFF1C8" stroke="#E0B94D" stroke-width="2"/>
+  <text class="t title" x="927.5" y="190" text-anchor="middle">ModelSpec</text>
+  <text class="t sub" x="927.5" y="220" text-anchor="middle">variables · constraints · target</text>
+  <path class="arrow" d="M1040 200 H1064"/>
+
+  <rect x="1080" y="137" width="275" height="126" rx="13" fill="#DCE7F7"/>
+  <text class="t title" x="1217.5" y="177" text-anchor="middle">Z3 determinacy check</text>
+  <rect x="1110" y="196" width="215" height="42" rx="8" fill="#ffffff" stroke="#6D8FB5" stroke-width="1.8"/>
+  <text class="t sub" x="1217.5" y="223" text-anchor="middle">F(x₁) ∧ F(x₂) ∧ q(x₁) ≠ q(x₂)</text>
+
+  <path class="line" d="M1355 200 H1380 M1380 151 V309"/>
+
+  <path class="arrow" d="M1380 151 H1394"/>
+  <rect x="1410" y="126" width="125" height="50" rx="9" fill="#CFE8BC"/>
+  <circle cx="1431" cy="151" r="8" fill="#2BAE66"/>
+  <text class="t status" x="1448" y="157">DETERMINATE</text>
+  <text class="t sub" x="1472.5" y="194" text-anchor="middle">→ answer</text>
+
+  <path class="arrow" d="M1380 230 H1394"/>
+  <rect x="1410" y="205" width="125" height="50" rx="9" fill="#E9D1D1"/>
+  <circle cx="1431" cy="230" r="8" fill="#D94D4D"/>
+  <text class="t status" x="1448" y="236">NO VERDICT</text>
+  <text class="t sub" x="1472.5" y="273" text-anchor="middle">→ no certificate</text>
+
+  <path class="arrow" d="M1380 309 H1394"/>
+  <rect x="1410" y="284" width="125" height="50" rx="9" fill="#F5DE82"/>
+  <circle cx="1431" cy="309" r="8" fill="#E2AF16"/>
+  <text class="t status" x="1448" y="315">AMBIGUOUS</text>
+
+  <line class="rule" x1="65" y1="381" x2="1535" y2="381"/>
+
+  <!-- Stage II -->
+  <text class="t eyebrow" x="65" y="427">DEGRO · STAGE II</text>
+  <text class="t section" x="65" y="465">Grounded repair or abstention</text>
+
+  <path class="arrow" d="M1472 334 V405 H515 V524"/>
+
+  <rect x="350" y="524" width="330" height="92" rx="13" fill="#F3D9C2"/>
+  <text class="t title" x="515" y="562" text-anchor="middle">Source-grounded proposal</text>
+  <text class="t sub" x="515" y="590" text-anchor="middle">add one constraint or abstain</text>
+  <path class="arrow" d="M680 570 H724"/>
+
+  <rect x="740" y="524" width="330" height="92" rx="13" fill="#DCE7F7"/>
+  <text class="t title" x="905" y="562" text-anchor="middle">Deterministic gates</text>
+  <text class="t sub" x="905" y="590" text-anchor="middle">support · SAT · novelty · determinacy</text>
+
+  <path class="line" d="M1070 570 H1125 M1125 545 V595"/>
+  <path class="arrow" d="M1125 545 H1189"/>
+  <rect x="1205" y="516" width="330" height="58" rx="11" fill="#CFE8BC"/>
+  <text class="t title" x="1370" y="553" text-anchor="middle">Repaired answer</text>
+
+  <path class="arrow" d="M1125 595 H1189"/>
+  <rect x="1205" y="582" width="330" height="58" rx="11" fill="#F3D9C2"/>
+  <text class="t title" x="1370" y="619" text-anchor="middle">Abstain</text>
+</svg>

@@ -168,7 +168,7 @@ def _semantically_equivalent(
         gold_spec = ModelSpec(spec.variables, (gold,), spec.target, spec.metadata)
         candidate_assertion = compile_spec(candidate_spec).assertions[-1]
         gold_assertion = compile_spec(gold_spec).assertions[-1]
-    except UnsupportedExpression:
+    except (UnsupportedExpression, z3.Z3Exception):
         return False
 
     solver = z3.Solver()

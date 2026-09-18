@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.10.9)  16 SEP 2026 02:27
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.10.9)  18 SEP 2026 09:43
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -926,27 +926,80 @@ LaTeX Font Info:    Font shape `TS1/ntxtlf/m/n' will be
 al/texlive/2025/texmf-dist/fonts/enc/dvips/newtx/ntx-ec-tlf.enc}{/usr/local/tex
 live/2025/texmf-dist/fonts/enc/dvips/newtx/ntx-ot1-tlf.enc}{/usr/local/texlive/
 2025/texmf-dist/fonts/enc/dvips/newtx/ntx-ec-tlf-pc.enc}]
+LaTeX Font Info:    Font shape `T1/ntxtlf/m/n' will be
+(Font)              scaled to size 8.0pt on input line 91.
+LaTeX Font Info:    Trying to load font information for T1+ntxtt on input line 
+91.
+
+(/usr/local/texlive/2025/texmf-dist/tex/latex/newtx/t1ntxtt.fd
+File: t1ntxtt.fd 2012/04/20 v3.1
+)
+LaTeX Font Info:    Font shape `T1/ntxtt/m/n' will be
+(Font)              scaled to size 8.0pt on input line 91.
+Package microtype Info: Loading generic protrusion settings for font family
+(microtype)             `ntxtt' (encoding: T1).
+(microtype)             For optimal results, create family-specific settings.
+(microtype)             See the microtype manual for details.
+LaTeX Font Info:    Font shape `OT1/minntx/m/n' will be
+(Font)              scaled to size 8.0pt on input line 91.
+LaTeX Font Info:    Font shape `OT1/minntx/m/n' will be
+(Font)              scaled to size 6.0pt on input line 91.
+LaTeX Font Info:    Font shape `OML/ntxmi/m/it' will be
+(Font)              scaled to size 8.0pt on input line 91.
+LaTeX Font Info:    Font shape `OML/ntxmi/m/it' will be
+(Font)              scaled to size 6.0pt on input line 91.
+LaTeX Font Info:    Font shape `LMS/ntxsy/m/n' will be
+(Font)              scaled to size 8.0pt on input line 91.
+LaTeX Font Info:    Font shape `LMS/ntxsy/m/n' will be
+(Font)              scaled to size 6.0pt on input line 91.
+LaTeX Font Info:    Font shape `LMX/ntxexx/m/n' will be
+(Font)              scaled to size 8.0pt on input line 91.
+LaTeX Font Info:    Font shape `LMX/ntxexx/m/n' will be
+(Font)              scaled to size 6.0pt on input line 91.
+LaTeX Font Info:    Font shape `U/ntxmia/m/it' will be
+(Font)              scaled to size 8.0pt on input line 91.
+LaTeX Font Info:    Font shape `U/ntxmia/m/it' will be
+(Font)              scaled to size 6.0pt on input line 91.
+LaTeX Font Info:    Font shape `U/ntxsym/m/n' will be
+(Font)              scaled to size 8.0pt on input line 91.
+LaTeX Font Info:    Font shape `U/ntxsym/m/n' will be
+(Font)              scaled to size 6.0pt on input line 91.
+LaTeX Font Info:    Font shape `U/ntxsyc/m/n' will be
+(Font)              scaled to size 8.0pt on input line 91.
+LaTeX Font Info:    Font shape `U/ntxsyc/m/n' will be
+(Font)              scaled to size 6.0pt on input line 91.
+LaTeX Font Info:    Font shape `U/ntxexa/m/n' will be
+(Font)              scaled to size 8.0pt on input line 91.
+LaTeX Font Info:    Font shape `U/ntxexa/m/n' will be
+(Font)              scaled to size 6.0pt on input line 91.
+
 
 [2{/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/tex-gyre/q-ts1.enc}]
-(/usr/local/texlive/2025/texmf-dist/tex/latex/newtx/t1ntxtt.fd)
 
-[3] (./supplementary_appendix.aux)
+[3]
+
+[4] (./supplementary_appendix.bbl
+LaTeX Font Info:    Font shape `T1/ntxtlf/m/it' will be
+(Font)              scaled to size 10.0pt on input line 7.
+)
+
+[5] (./supplementary_appendix.aux)
  ***********
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2020/03/25>
  ***********
 Package rerunfilecheck Info: File `supplementary_appendix.out' has not changed.
 
-(rerunfilecheck)             Checksum: 552088336CF7917C840EED9683FCAED6;1270.
+(rerunfilecheck)             Checksum: 65F8EF915350B7AA9F954DADAE3F36DB;1786.
  ) 
 Here is how much of TeX's memory you used:
- 17722 strings out of 473190
- 272471 string characters out of 5715800
- 707473 words of memory out of 5000000
- 40614 multiletter control sequences out of 15000+600000
- 629612 words of font info for 169 fonts, out of 8000000 for 9000
+ 17770 strings out of 473190
+ 273437 string characters out of 5715800
+ 708518 words of memory out of 5000000
+ 40625 multiletter control sequences out of 15000+600000
+ 633753 words of font info for 183 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 80i,13n,93p,1019b,604s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 80i,13n,93p,1271b,588s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2025/texmf-dist/fonts/type1/public/newtx/NewTXMI.pfb></us
 r/local/texlive/2025/texmf-dist/fonts/type1/public/newtx/NewTXMI7.pfb></usr/loc
 al/texlive/2025/texmf-dist/fonts/type1/public/tex-gyre/qtmr.pfb></usr/local/tex
@@ -954,11 +1007,12 @@ live/2025/texmf-dist/fonts/type1/public/txfonts/t1xtt.pfb></usr/local/texlive/2
 025/texmf-dist/fonts/type1/public/newtx/txmiaX.pfb></usr/local/texlive/2025/tex
 mf-dist/fonts/type1/public/newtx/txsys.pfb></usr/local/texlive/2025/texmf-dist/
 fonts/type1/public/newtx/ztmb.pfb></usr/local/texlive/2025/texmf-dist/fonts/typ
-e1/public/newtx/ztmr.pfb>
-Output written on supplementary_appendix.pdf (3 pages, 144572 bytes).
+e1/public/newtx/ztmr.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public
+/newtx/ztmri.pfb>
+Output written on supplementary_appendix.pdf (5 pages, 180942 bytes).
 PDF statistics:
- 120 PDF objects out of 1000 (max. 8388607)
- 96 compressed objects within 1 object stream
- 24 named destinations out of 1000 (max. 500000)
- 27193 words of extra memory for PDF output out of 29859 (max. 10000000)
+ 148 PDF objects out of 1000 (max. 8388607)
+ 119 compressed objects within 2 object streams
+ 31 named destinations out of 1000 (max. 500000)
+ 29257 words of extra memory for PDF output out of 29859 (max. 10000000)
 

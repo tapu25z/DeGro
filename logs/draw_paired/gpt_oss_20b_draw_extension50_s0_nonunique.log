@@ -1,0 +1,34 @@
+Traceback (most recent call last):
+  File "/Users/buihuynhtay/Documents/ChatGPT/degro/scripts/run_pilot.py", line 10, in <module>
+    from targetcheck.pilot import METHODS, OUTPUT_SCHEMA, build_prompt, parse_decision, prompt_hash, score
+ModuleNotFoundError: No module named 'targetcheck'
+Traceback (most recent call last):
+  File "/Users/buihuynhtay/Documents/ChatGPT/degro/scripts/run_pilot.py", line 10, in <module>
+    from targetcheck.pilot import METHODS, OUTPUT_SCHEMA, build_prompt, parse_decision, prompt_hash, score
+ModuleNotFoundError: No module named 'targetcheck'
+Traceback (most recent call last):
+  File "/Users/buihuynhtay/Documents/ChatGPT/degro/scripts/run_pilot.py", line 10, in <module>
+    from targetcheck.pilot import METHODS, OUTPUT_SCHEMA, build_prompt, parse_decision, prompt_hash, score
+ModuleNotFoundError: No module named 'targetcheck'
+[1/14] draw-paired/267695/1/x OMISSION nonunique ok
+[2/14] draw-paired/267695/1/x UNDERSPECIFIED nonunique ok
+[3/14] draw-paired/464290/1/y OMISSION nonunique ok
+[4/14] draw-paired/464290/1/y UNDERSPECIFIED nonunique ok
+[5/14] draw-paired/413708/1/y OMISSION nonunique ok
+[6/14] draw-paired/413708/1/y UNDERSPECIFIED nonunique error
+[7/14] draw-paired/511333/1/smaller OMISSION nonunique error
+[8/14] draw-paired/511333/1/smaller UNDERSPECIFIED nonunique error
+[9/14] draw-paired/151268/2/x OMISSION nonunique error
+[10/14] draw-paired/151268/2/x UNDERSPECIFIED nonunique error
+[11/14] draw-paired/381197/1/x OMISSION nonunique error
+[6/14] draw-paired/413708/1/y UNDERSPECIFIED nonunique error
+[7/14] draw-paired/511333/1/smaller OMISSION nonunique error
+[8/14] draw-paired/511333/1/smaller UNDERSPECIFIED nonunique ok
+[9/14] draw-paired/151268/2/x OMISSION nonunique ok
+[10/14] draw-paired/151268/2/x UNDERSPECIFIED nonunique ok
+[11/14] draw-paired/381197/1/x OMISSION nonunique ok
+[12/14] draw-paired/381197/1/x UNDERSPECIFIED nonunique ok
+[13/14] draw-paired/408038/2/x OMISSION nonunique ok
+[14/14] draw-paired/408038/2/x UNDERSPECIFIED nonunique ok
+[13/14] draw-paired/413708/1/y UNDERSPECIFIED nonunique ok
+[14/14] draw-paired/511333/1/smaller OMISSION nonunique ok

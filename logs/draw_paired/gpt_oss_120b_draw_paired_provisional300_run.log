@@ -1,0 +1,34 @@
+[gpt_oss_120b_draw_paired_provisional300] wave 1
+[gpt_oss_120b_draw_paired_provisional300] wave 2
+[gpt_oss_120b_draw_paired_provisional300] wave 3
+Traceback (most recent call last):
+  File "/Users/buihuynhtay/Documents/ChatGPT/degro/scripts/finalize_pilot.py", line 81, in <module>
+    main()
+    ~~~~^^
+  File "/Users/buihuynhtay/Documents/ChatGPT/degro/scripts/finalize_pilot.py", line 49, in main
+    "score": score(case_by_key[key[:2]], output),
+             ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/buihuynhtay/Documents/ChatGPT/degro/targetcheck/pilot.py", line 205, in score
+    gate = validate_repair(row["problem"], ModelSpec.from_dict(row["spec"]), candidate)
+  File "/Users/buihuynhtay/Documents/ChatGPT/degro/targetcheck/grounding.py", line 35, in validate_repair
+    compiled_candidate = compile_spec(candidate_spec)
+  File "/Users/buihuynhtay/Documents/ChatGPT/degro/targetcheck/compiler_z3.py", line 147, in compile_spec
+    compiled = compiler.compile(constraint.expression)
+  File "/Users/buihuynhtay/Documents/ChatGPT/degro/targetcheck/compiler_z3.py", line 40, in compile
+    return self.visit(node)
+           ~~~~~~~~~~^^^^^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.7/Frameworks/Python.framework/Versions/3.14/lib/python3.14/ast.py", line 506, in visit
+    return visitor(node)
+  File "/Users/buihuynhtay/Documents/ChatGPT/degro/targetcheck/compiler_z3.py", line 97, in visit_Compare
+    left = self.visit(node.left)
+  File "/opt/homebrew/Cellar/python@3.14/3.14.7/Frameworks/Python.framework/Versions/3.14/lib/python3.14/ast.py", line 506, in visit
+    return visitor(node)
+  File "/Users/buihuynhtay/Documents/ChatGPT/degro/targetcheck/compiler_z3.py", line 87, in visit_BinOp
+    return left % right
+           ~~~~~^~~~~~~
+  File "/Users/buihuynhtay/Documents/ChatGPT/degro/.venv/lib/python3.14/site-packages/z3/z3.py", line 2720, in __mod__
+    _z3_assert(a.is_int(), "Z3 integer expression expected")
+    ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/buihuynhtay/Documents/ChatGPT/degro/.venv/lib/python3.14/site-packages/z3/z3.py", line 115, in _z3_assert
+    raise Z3Exception(msg)
+z3.z3types.Z3Exception: Z3 integer expression expected

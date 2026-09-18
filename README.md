@@ -23,15 +23,15 @@ For Ollama Cloud, put one API key per line in the Git-ignored `api.txt`, then ru
 
 The client rotates across accounts only on authentication, quota, or rate-limit responses (HTTP 401/402/403/429). Logs contain a one-based account index and status, never the key value.
 
-### Run the core seven-method smoke experiment
+### Run the core nine-method smoke experiment
 
-The default smoke test runs one paired item: two source conditions times seven methods, for fourteen API calls.
+The default smoke test runs one paired item: two source conditions times nine methods, for eighteen API calls.
 
 ```bash
 ./scripts/run_smoke.sh
 ```
 
-To smoke-test three pairs (42 calls):
+To smoke-test three pairs (54 calls):
 
 ```bash
 ./scripts/run_smoke.sh 3
@@ -190,6 +190,46 @@ complete and analyzed files for every split. The GPT-OSS 20B files are reused
 without new inference calls. The 120B model substitution was chosen after the
 original two-model plan; its confirmatory-set results are reported as a
 post-hoc model comparison.
+
+### Additional Nemotron comparisons
+
+```bash
+zsh scripts/run_nemotron_3_nano_30b_mira.sh
+zsh scripts/run_nemotron_3_super_mira.sh
+.venv/bin/python scripts/assemble_mira_full300.py --models nemotron_3_nano_30b
+```
+
+This post-hoc comparison retains the frozen 80/100/120-pair splits, four
+methods, prompts, temperature 1.0, and API `think="medium"` request. Equal
+API requests do not establish equal internal reasoning budgets. The runner
+resumes the first valid response, retries transport failures with account
+failover, and refuses to analyze incomplete splits. Raw responses and a
+run manifest accompany the split and cumulative analyses.
+
+On the fixed 120-pair set, DeGro reaches 90.8% FDA versus 89.6% for grounded
+self-review (+1.25 points, pair-cluster 95% CI [-2.5, 5.0], exact McNemar
+p=0.664). This is statistically inconclusive; DeGro reaches 100% CAR, while
+grounded self-review already reaches 98.3% CAR. Both later Nemotron tests are
+exploratory and separate from the original two-test GPT-OSS Holm family.
+
+For Super, fixed-set DeGro FDA is 90.8% versus 86.3% grounded self-review
+(+4.58 points, 95% CI [0.0, 9.2], exact p=.0801), statistically inconclusive.
+Verdict-only repair scores highest at 91.3%. The full 300-pair Super comparison
+is secondary: 89.8% versus 84.2% (+5.67, CI [2.5, 8.7], p=.000509).
+All 2400 expected records are valid; the report and manifest accompany results.
+
+## Exploratory source-coverage refinement
+
+A prompt refinement developed from the 80-pair development errors now asks the
+repair model to audit every source condition against the formalization and makes
+the already enforced variable domains explicit. Its frozen comparison is in
+`results/degro_v2/`: 320 development responses and 800 new-test responses are
+complete and independently verified. On a separate 100-pair synthetic stress
+set, Nano 30B FDA changes from 75.5% to 95.0% (+19.5 points, 95% CI
+[13.5, 25.5], Holm-adjusted p<.001), while GPT-OSS 120B changes from 98.5% to
+99.5% (+1.0 point, CI [-1.0, 3.0], adjusted p=.625). Nano UR rises from 1.9%
+to 8.2%, so the gain comes with more unsupported repairs. This is an exploratory
+synthetic evaluation, not a replacement for the frozen MIRA confirmatory results.
 
 ## Soundness boundary
 

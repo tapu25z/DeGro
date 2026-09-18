@@ -1,0 +1,19 @@
+{
+  "stage": "MIXED_REVIEW_STATUS",
+  "base_pairs": 300,
+  "extension_pairs": 50,
+  "pairs": 350,
+  "cases": 700,
+  "seed": 20260919,
+  "remaining_clean_pool": 67,
+  "extension_split_counts": {
+    "dev": 13,
+    "train": 37
+  },
+  "base_sha256": "5920469f580e4603a41f6bcbba18f529f4cb5aa4b9de72903c527d3385c790ed",
+  "extension_sha256": "a8b54041cee7950899068f70a64e8cef9c3be72e21253ce17ae9b8db28c758c3",
+  "combined_sha256": "bdfef5249a1bb77f4044cf22828cdf3d4a5e101fa02b0722c219f78e3489946e",
+  "review_packet": "data/paired/draw_paired/draw_paired_extension50_review.jsonl",
+  "human_review_complete": false,
+  "selection": "disjoint source indices; clean proposals; proportional split allocation; seeded SHA256 rank; extension chosen after original300 outcomes"
+}

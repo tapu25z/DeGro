@@ -1,0 +1,4 @@
+[nemotron_3_nano_30b_draw_paired_provisional300] wave 1
+[nemotron_3_nano_30b_draw_paired_provisional300] wave 2
+[nemotron_3_nano_30b_draw_paired_provisional300] wave 3
+{"records": 2400, "expected": 2400, "ok": 2399, "errors": 1, "missing": 0, "complete": false}
