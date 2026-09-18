@@ -1,5 +1,5 @@
 {
-  "stage": "MIXED_REVIEW_STATUS",
+  "stage": "FROZEN_HUMAN_REVIEWED_POST_INFERENCE",
   "base_pairs": 300,
   "extension_pairs": 50,
   "pairs": 350,
@@ -12,8 +12,16 @@
   },
   "base_sha256": "5920469f580e4603a41f6bcbba18f529f4cb5aa4b9de72903c527d3385c790ed",
   "extension_sha256": "a8b54041cee7950899068f70a64e8cef9c3be72e21253ce17ae9b8db28c758c3",
-  "combined_sha256": "bdfef5249a1bb77f4044cf22828cdf3d4a5e101fa02b0722c219f78e3489946e",
+  "combined_sha256": "aee2697aa98adec904a059b668eb646a32036e032b650d0c79f4044697054561",
   "review_packet": "data/paired/draw_paired/draw_paired_extension50_review.jsonl",
-  "human_review_complete": false,
-  "selection": "disjoint source indices; clean proposals; proportional split allocation; seeded SHA256 rank; extension chosen after original300 outcomes"
+  "human_review_complete": true,
+  "selection": "disjoint source indices; clean proposals; proportional split allocation; seeded SHA256 rank; extension chosen after original300 outcomes",
+  "frozen": true,
+  "reviewed_at_utc": "2026-09-18T02:50:30.270757+00:00",
+  "reviewer": "author",
+  "review_status_counts": {
+    "APPROVE": 350
+  },
+  "extension_review_packet_sha256": "3d528b299e2fa893033d8b1fce25468a68f76a65cad26337a551734243835efd",
+  "review_timing": "Both cohorts author-reviewed after their respective inference; extension selected after original300 outcomes"
 }

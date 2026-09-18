@@ -25,7 +25,9 @@ def main():
         primary.append({**result,'model':stem})
         models[stem] = {'records':len(rows),'original_records_preserved':True,'sha256':hashlib.sha256(path.read_bytes()).hexdigest(),'summary':analysis['summary']}
     holm_adjust(primary)
-    report = {'pairs':350,'cases':700,'extension_pairs':50,'new_records':1200,'total_records':8400,'review_status':'300 author-reviewed; extension50 pending','selection_timing':'extension selected after original300 outcomes; cumulative analysis post-hoc','primary_family':'FDA DeGro minus grounded self-review across three models','primary_comparisons':primary,'models':models}
+    manifest = json.loads(Path('data/paired/draw_paired/draw_paired350.manifest.json').read_text())
+    review_status = '350 author-reviewed after inference' if manifest['human_review_complete'] else '300 author-reviewed; extension50 pending'
+    report = {'pairs':350,'cases':700,'extension_pairs':50,'new_records':1200,'total_records':8400,'review_status':review_status,'selection_timing':'extension selected after original300 outcomes; cumulative analysis post-hoc','primary_family':'FDA DeGro minus grounded self-review across three models','primary_comparisons':primary,'models':models}
     Path('results/draw_paired350_report.json').write_text(json.dumps(report,indent=2)+'\n')
     print(json.dumps({k:v for k,v in report.items() if k!='models'},indent=2))
 
