@@ -1,0 +1,36 @@
+Traceback (most recent call last):
+  File "/Users/buihuynhtay/Documents/ChatGPT/degro/scripts/run_pilot.py", line 10, in <module>
+    from targetcheck.pilot import METHODS, OUTPUT_SCHEMA, build_prompt, parse_decision, prompt_hash, score
+ModuleNotFoundError: No module named 'targetcheck'
+Traceback (most recent call last):
+  File "/Users/buihuynhtay/Documents/ChatGPT/degro/scripts/run_pilot.py", line 10, in <module>
+    from targetcheck.pilot import METHODS, OUTPUT_SCHEMA, build_prompt, parse_decision, prompt_hash, score
+ModuleNotFoundError: No module named 'targetcheck'
+Traceback (most recent call last):
+  File "/Users/buihuynhtay/Documents/ChatGPT/degro/scripts/run_pilot.py", line 10, in <module>
+    from targetcheck.pilot import METHODS, OUTPUT_SCHEMA, build_prompt, parse_decision, prompt_hash, score
+ModuleNotFoundError: No module named 'targetcheck'
+[1/12] draw-paired/406873/1/x OMISSION nonunique_grounding ok
+[2/12] draw-paired/406873/1/x UNDERSPECIFIED nonunique_grounding ok
+[3/12] draw-paired/747692/1/student OMISSION nonunique_grounding error
+[4/12] draw-paired/747692/1/student UNDERSPECIFIED nonunique_grounding error
+[5/12] draw-paired/296468/1/x OMISSION nonunique_grounding error
+[6/12] draw-paired/296468/1/x UNDERSPECIFIED nonunique_grounding error
+[7/12] draw-paired/82514/1/x OMISSION nonunique_grounding error
+[8/12] draw-paired/82514/1/x UNDERSPECIFIED nonunique_grounding ok
+[9/12] draw-paired/235689/1/y OMISSION nonunique_grounding error
+[10/12] draw-paired/235689/1/y UNDERSPECIFIED nonunique_grounding error
+[11/12] draw-paired/356048/1/y OMISSION nonunique_grounding error
+[4/12] draw-paired/747692/1/student OMISSION nonunique_grounding error
+[5/12] draw-paired/747692/1/student UNDERSPECIFIED nonunique_grounding error
+[6/12] draw-paired/296468/1/x OMISSION nonunique_grounding error
+[7/12] draw-paired/296468/1/x UNDERSPECIFIED nonunique_grounding error
+[8/12] draw-paired/82514/1/x OMISSION nonunique_grounding ok
+[9/12] draw-paired/235689/1/y OMISSION nonunique_grounding ok
+[10/12] draw-paired/235689/1/y UNDERSPECIFIED nonunique_grounding ok
+[11/12] draw-paired/356048/1/y OMISSION nonunique_grounding ok
+[12/12] draw-paired/356048/1/y UNDERSPECIFIED nonunique_grounding ok
+[9/12] draw-paired/747692/1/student OMISSION nonunique_grounding ok
+[10/12] draw-paired/747692/1/student UNDERSPECIFIED nonunique_grounding ok
+[11/12] draw-paired/296468/1/x OMISSION nonunique_grounding ok
+[12/12] draw-paired/296468/1/x UNDERSPECIFIED nonunique_grounding ok

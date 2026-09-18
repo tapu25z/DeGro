@@ -1,0 +1,322 @@
+{
+  "records": 2800,
+  "methods": [
+    "grounded_self_review",
+    "nonunique",
+    "nonunique_grounding",
+    "self_review"
+  ],
+  "summary": {
+    "grounded_self_review": {
+      "RSR": {
+        "estimate": 0.34,
+        "ci95": [
+          0.2914285714285714,
+          0.3914285714285714
+        ]
+      },
+      "Semantic": {
+        "estimate": 0.5685714285714286,
+        "ci95": [
+          0.5171428571428571,
+          0.62
+        ]
+      },
+      "Functional": {
+        "estimate": 0.5485714285714286,
+        "ci95": [
+          0.49714285714285716,
+          0.6
+        ]
+      },
+      "Grounded": {
+        "estimate": 0.34,
+        "ci95": [
+          0.2914285714285714,
+          0.3914285714285714
+        ]
+      },
+      "CAR": {
+        "estimate": 0.86,
+        "ci95": [
+          0.8228571428571428,
+          0.8942857142857142
+        ]
+      },
+      "FDA": {
+        "estimate": 0.6,
+        "ci95": [
+          0.5671428571428572,
+          0.6328571428571429
+        ]
+      },
+      "ORR": {
+        "estimate": 0.14,
+        "ci95": [
+          0.10571428571428572,
+          0.17714285714285713
+        ]
+      },
+      "Unsupported": {
+        "count": 211,
+        "additions": 330,
+        "rate": 0.6393939393939394
+      }
+    },
+    "nonunique": {
+      "RSR": {
+        "estimate": 0.36,
+        "ci95": [
+          0.31142857142857144,
+          0.4085714285714286
+        ]
+      },
+      "Semantic": {
+        "estimate": 0.5514285714285714,
+        "ci95": [
+          0.5,
+          0.6028571428571429
+        ]
+      },
+      "Functional": {
+        "estimate": 0.44571428571428573,
+        "ci95": [
+          0.3942857142857143,
+          0.49714285714285716
+        ]
+      },
+      "Grounded": {
+        "estimate": 0.36,
+        "ci95": [
+          0.30857142857142855,
+          0.4085714285714286
+        ]
+      },
+      "CAR": {
+        "estimate": 0.9171428571428571,
+        "ci95": [
+          0.8885714285714286,
+          0.9457142857142857
+        ]
+      },
+      "FDA": {
+        "estimate": 0.6385714285714286,
+        "ci95": [
+          0.61,
+          0.6671428571428571
+        ]
+      },
+      "ORR": {
+        "estimate": 0.08285714285714285,
+        "ci95": [
+          0.054285714285714284,
+          0.11142857142857143
+        ]
+      },
+      "Unsupported": {
+        "count": 153,
+        "additions": 279,
+        "rate": 0.5483870967741935
+      }
+    },
+    "nonunique_grounding": {
+      "RSR": {
+        "estimate": 0.42,
+        "ci95": [
+          0.36857142857142855,
+          0.4714285714285714
+        ]
+      },
+      "Semantic": {
+        "estimate": 0.64,
+        "ci95": [
+          0.5914285714285714,
+          0.6914285714285714
+        ]
+      },
+      "Functional": {
+        "estimate": 0.6257142857142857,
+        "ci95": [
+          0.5742857142857143,
+          0.6742857142857143
+        ]
+      },
+      "Grounded": {
+        "estimate": 0.42,
+        "ci95": [
+          0.36857142857142855,
+          0.4714285714285714
+        ]
+      },
+      "CAR": {
+        "estimate": 0.9257142857142857,
+        "ci95": [
+          0.8971428571428571,
+          0.9514285714285714
+        ]
+      },
+      "FDA": {
+        "estimate": 0.6728571428571428,
+        "ci95": [
+          0.6428571428571429,
+          0.7028571428571428
+        ]
+      },
+      "ORR": {
+        "estimate": 0.07428571428571429,
+        "ci95": [
+          0.04857142857142857,
+          0.10285714285714286
+        ]
+      },
+      "Unsupported": {
+        "count": 154,
+        "additions": 301,
+        "rate": 0.5116279069767442
+      }
+    },
+    "self_review": {
+      "RSR": {
+        "estimate": 0.46285714285714286,
+        "ci95": [
+          0.4085714285714286,
+          0.5142857142857142
+        ]
+      },
+      "Semantic": {
+        "estimate": 0.6828571428571428,
+        "ci95": [
+          0.6342857142857142,
+          0.7314285714285714
+        ]
+      },
+      "Functional": {
+        "estimate": 0.5428571428571428,
+        "ci95": [
+          0.49142857142857144,
+          0.5942857142857143
+        ]
+      },
+      "Grounded": {
+        "estimate": 0.46285714285714286,
+        "ci95": [
+          0.4114285714285714,
+          0.5171428571428571
+        ]
+      },
+      "CAR": {
+        "estimate": 0.8371428571428572,
+        "ci95": [
+          0.7971428571428572,
+          0.8742857142857143
+        ]
+      },
+      "FDA": {
+        "estimate": 0.65,
+        "ci95": [
+          0.6171428571428571,
+          0.6842857142857143
+        ]
+      },
+      "ORR": {
+        "estimate": 0.16285714285714287,
+        "ci95": [
+          0.12571428571428572,
+          0.20285714285714285
+        ]
+      },
+      "Unsupported": {
+        "count": 213,
+        "additions": 375,
+        "rate": 0.568
+      }
+    }
+  },
+  "planned_mcnemar": [],
+  "decision_mcnemar": [
+    {
+      "hypothesis": "D1",
+      "metric": "FDA",
+      "first": "grounded_self_review",
+      "second": "self_review",
+      "first_only": 86,
+      "second_only": 121,
+      "delta": -0.05,
+      "p_raw": 0.017905614973719813,
+      "delta_ci95": [
+        -0.09142857142857143,
+        -0.008571428571428572
+      ],
+      "p_holm": 0.017905614973719813
+    },
+    {
+      "hypothesis": "D4",
+      "metric": "FDA",
+      "first": "nonunique_grounding",
+      "second": "grounded_self_review",
+      "first_only": 118,
+      "second_only": 67,
+      "delta": 0.07285714285714286,
+      "p_raw": 0.00021785347986380307,
+      "delta_ci95": [
+        0.03428571428571429,
+        0.11428571428571428
+      ],
+      "p_holm": 0.00043570695972760615
+    }
+  ],
+  "skipped_comparisons": [
+    {
+      "hypothesis": "H1",
+      "metric": "RSR",
+      "first": "minimal_witness",
+      "second": "nonunique",
+      "reason": "method absent from this run"
+    },
+    {
+      "hypothesis": "H2",
+      "metric": "RSR",
+      "first": "minimal_witness",
+      "second": "random_pair",
+      "reason": "method absent from this run"
+    },
+    {
+      "hypothesis": "H3",
+      "metric": "CAR",
+      "first": "targetcheck",
+      "second": "target_witness",
+      "reason": "method absent from this run"
+    },
+    {
+      "hypothesis": "H4",
+      "metric": "FDA",
+      "first": "targetcheck",
+      "second": "nonunique_grounding",
+      "reason": "method absent from this run"
+    }
+  ],
+  "by_family": {
+    "draw_natural_algebra": {
+      "grounded_self_review": {
+        "RSR": 0.34,
+        "CAR": 0.86,
+        "FDA": 0.6
+      },
+      "nonunique": {
+        "RSR": 0.36,
+        "CAR": 0.9171428571428571,
+        "FDA": 0.6385714285714286
+      },
+      "nonunique_grounding": {
+        "RSR": 0.42,
+        "CAR": 0.9257142857142857,
+        "FDA": 0.6728571428571428
+      },
+      "self_review": {
+        "RSR": 0.46285714285714286,
+        "CAR": 0.8371428571428572,
+        "FDA": 0.65
+      }
+    }
+  }
+}

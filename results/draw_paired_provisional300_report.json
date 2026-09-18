@@ -1,0 +1,98 @@
+{
+  "dataset_stage": "PROVISIONAL_AWAITING_HUMAN_REVIEW",
+  "claim_scope": "exploratory/provisional until exact spans and deletions are human-approved",
+  "dataset": "data/paired/draw_paired/draw_paired_provisional_300.jsonl",
+  "dataset_sha256": "7c2ff26b0d1bb91a0953b4058fbb6d207c59fd73ce4c096c73dd8fe53c16a16f",
+  "pairs": 300,
+  "cases": 600,
+  "methods": [
+    "self_review",
+    "grounded_self_review",
+    "nonunique",
+    "nonunique_grounding"
+  ],
+  "primary_comparison": "nonunique_grounding minus grounded_self_review on FDA",
+  "multiplicity": "Holm correction across the three model-specific primary comparisons",
+  "models": [
+    {
+      "model": "GPT-OSS 20B",
+      "records": 2400,
+      "baseline": {
+        "RSR": 0.6233333333333333,
+        "CAR": 0.83,
+        "FDA": 0.7266666666666667,
+        "unsupported_rate_among_additions": 0.44510385756676557
+      },
+      "degro": {
+        "RSR": 0.5966666666666667,
+        "CAR": 0.8966666666666666,
+        "FDA": 0.7466666666666667,
+        "unsupported_rate_among_additions": 0.440625
+      },
+      "fda_delta": 0.02,
+      "fda_delta_ci95": [
+        -0.015,
+        0.055
+      ],
+      "first_only": 64,
+      "second_only": 52,
+      "p_raw": 0.3070896636491835,
+      "p_holm_across_models": 0.3070896636491835
+    },
+    {
+      "model": "GPT-OSS 120B",
+      "records": 2400,
+      "baseline": {
+        "RSR": 0.53,
+        "CAR": 0.8433333333333334,
+        "FDA": 0.6866666666666666,
+        "unsupported_rate_among_additions": 0.5092592592592593
+      },
+      "degro": {
+        "RSR": 0.59,
+        "CAR": 0.9166666666666666,
+        "FDA": 0.7533333333333333,
+        "unsupported_rate_among_additions": 0.43086816720257237
+      },
+      "fda_delta": 0.06666666666666667,
+      "fda_delta_ci95": [
+        0.03166666666666667,
+        0.10166666666666667
+      ],
+      "first_only": 76,
+      "second_only": 36,
+      "p_raw": 0.00019823699855458428,
+      "p_holm_across_models": 0.0005947109956637529
+    },
+    {
+      "model": "Nemotron Nano 30B",
+      "records": 2400,
+      "baseline": {
+        "RSR": 0.33,
+        "CAR": 0.8633333333333333,
+        "FDA": 0.5966666666666667,
+        "unsupported_rate_among_additions": 0.6464285714285715
+      },
+      "degro": {
+        "RSR": 0.4066666666666667,
+        "CAR": 0.92,
+        "FDA": 0.6633333333333333,
+        "unsupported_rate_among_additions": 0.5252918287937743
+      },
+      "fda_delta": 0.06666666666666667,
+      "fda_delta_ci95": [
+        0.023333333333333334,
+        0.11
+      ],
+      "first_only": 100,
+      "second_only": 60,
+      "p_raw": 0.001953728034064342,
+      "p_holm_across_models": 0.003907456068128684
+    }
+  ],
+  "output_sha256": {
+    "gpt_oss_20b_draw_paired_provisional300_complete.jsonl": "0721dc33e46a6ec3fe48c22b9d18c00053d4db621f7114715bf9afd671d514e4",
+    "gpt_oss_120b_draw_paired_provisional300_complete.jsonl": "2a6d8c809123998869e83f2f9b5d8e45caf01062ce8fbed685c2ec5342ce16f8",
+    "nemotron_3_nano_30b_draw_paired_provisional300_complete.jsonl": "501419bc05e01a87b8b2efd920fc00162144a39bb44f3cbcaf287dfd0401d714"
+  }
+}

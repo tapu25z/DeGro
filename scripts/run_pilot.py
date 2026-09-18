@@ -30,6 +30,8 @@ def main() -> None:
     parser.add_argument("--model", default="gpt-oss:20b")
     parser.add_argument("--methods", nargs="+", choices=METHODS, default=list(METHODS))
     parser.add_argument("--limit-pairs", type=int)
+    parser.add_argument("--pair-id")
+    parser.add_argument("--label", choices=("OMISSION", "UNDERSPECIFIED"))
     parser.add_argument("--num-shards", type=int, default=1)
     parser.add_argument("--shard-index", type=int, default=0)
     parser.add_argument("--account-offset", type=int)
@@ -38,6 +40,12 @@ def main() -> None:
     parser.add_argument("--resume-from", type=Path, nargs="*", default=[])
     args = parser.parse_args()
     rows = [json.loads(line) for line in args.data.read_text().splitlines()]
+    if args.pair_id:
+        rows = [row for row in rows if row["pair_id"] == args.pair_id]
+        if not rows:
+            raise SystemExit(f"pair id not found: {args.pair_id}")
+    if args.label:
+        rows = [row for row in rows if row["label"] == args.label]
     if args.limit_pairs:
         ids = list(dict.fromkeys(row["pair_id"] for row in rows))[: args.limit_pairs]
         rows = [row for row in rows if row["pair_id"] in ids]

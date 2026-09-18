@@ -1,0 +1,23 @@
+{
+  "dataset_name": "DRAW-Paired",
+  "stage": "PROVISIONAL_AWAITING_HUMAN_REVIEW",
+  "created_at_utc": "2026-09-17T18:13:01.707313+00:00",
+  "candidate_path": "data/paired/draw_paired/candidates.jsonl",
+  "candidate_sha256": "8e241c3a19d289e64f85c05ae2338b582428600e1c3939b550c37234e5da5f99",
+  "selection_seed": 20260918,
+  "selection_rule": "unflagged span proposals; proportional source-split allocation; SHA-256 seeded rank",
+  "available_unflagged_pairs": 367,
+  "pairs": 300,
+  "cases": 600,
+  "pairs_by_split": {
+    "dev": 77,
+    "train": 223
+  },
+  "oracle_score_checks": 600,
+  "output_sha256": "2ff961ec38cb3b4380686ecacc7374aecefbfc0ccd11c897873cbd9c508cd709",
+  "cohort_review_packet": "data/paired/draw_paired/draw_paired_provisional_300_review.jsonl",
+  "cohort_review_packet_sha256": "23e2ddb98489647783b6c55e8b3d76579220420fc493d3ec55922b431fd2ab04",
+  "human_review_complete": false,
+  "frozen": false,
+  "claim_scope": "exploratory/provisional only until exact spans and deletions are human-approved"
+}

@@ -1,5 +1,13 @@
 # Fdb version 4
-["pdflatex"] 1789500421.5616 "supplementary_appendix.tex" "supplementary_appendix.pdf" "supplementary_appendix" 1789500422.50833 0
+["bibtex supplementary_appendix"] 1789669329.38392 "supplementary_appendix.aux" "supplementary_appendix.bbl" "supplementary_appendix" 1789699389.06491 0
+  "./refs.bib" 1789642568.44278 19388 865b7573e4174408d07f8f3fc386d4a6 ""
+  "/usr/local/texlive/2025/texmf-dist/bibtex/bst/base/plain.bst" 1292289607 20613 bd3fbfa9f64872b81ac57a0dd2ed855f ""
+  "supplementary_appendix.aux" 1789699388.78683 2627 a839889283b7f5412acc5f639d17fead "pdflatex"
+  (generated)
+  "supplementary_appendix.bbl"
+  "supplementary_appendix.blg"
+  (rewritten before read)
+["pdflatex"] 1789699388.09178 "supplementary_appendix.tex" "supplementary_appendix.pdf" "supplementary_appendix" 1789699389.06506 0
   "/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/newtx/ntx-ec-tlf-pc.enc" 1698694482 3136 bbe665bd0bb471a2da1e8fd326cff9fa ""
   "/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/newtx/ntx-ec-tlf.enc" 1698694482 2914 fdbc4a54b9bc76f4551b5303f2737d33 ""
   "/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/newtx/ntx-ot1-tlf.enc" 1422827479 2083 60e36f8eac802fcaf19eabe2633b406e ""
@@ -9,6 +17,7 @@
   "/usr/local/texlive/2025/texmf-dist/fonts/tfm/public/newtx/NewTXMI.tfm" 1572128992 1408 ef71a9098da4d5a1a85b5920860b6731 ""
   "/usr/local/texlive/2025/texmf-dist/fonts/tfm/public/newtx/NewTXMI7.tfm" 1572128992 1556 4df22ac3e5cc03ff0898d83d8817c6cf ""
   "/usr/local/texlive/2025/texmf-dist/fonts/tfm/public/newtx/ntx-Bold-tlf-t1.tfm" 1708895146 11564 e66d72473587e55f718c159f23e34b6e ""
+  "/usr/local/texlive/2025/texmf-dist/fonts/tfm/public/newtx/ntx-Italic-tlf-t1.tfm" 1708895146 11524 8ba2f557ba7dc63d1e9e4c8cc65c9b60 ""
   "/usr/local/texlive/2025/texmf-dist/fonts/tfm/public/newtx/ntx-Regular-tlf-ot1.tfm" 1600636029 3008 ca0c83ca288d9f1c5d2fca0e8e268f10 ""
   "/usr/local/texlive/2025/texmf-dist/fonts/tfm/public/newtx/ntx-Regular-tlf-ot1r.tfm" 1690487162 3056 db59b44fb00cc29b676bd92c4dc6750f ""
   "/usr/local/texlive/2025/texmf-dist/fonts/tfm/public/newtx/ntx-Regular-tlf-sc-t1.tfm" 1708895146 12276 8de6ae5fb2f9bd3a12436b80d518726e ""
@@ -37,6 +46,7 @@
   "/usr/local/texlive/2025/texmf-dist/fonts/type1/public/newtx/txsys.pfb" 1724614892 45985 fd5f8adcc4f0e93e9a95469e12126723 ""
   "/usr/local/texlive/2025/texmf-dist/fonts/type1/public/newtx/ztmb.pfb" 1698694482 255251 958c6ad4e5518904a53cf1118c612893 ""
   "/usr/local/texlive/2025/texmf-dist/fonts/type1/public/newtx/ztmr.pfb" 1698694482 286816 82db2bfe6920054b1a43661c07078412 ""
+  "/usr/local/texlive/2025/texmf-dist/fonts/type1/public/newtx/ztmri.pfb" 1698694482 248316 6c047e35119cde1bffb3263909816feb ""
   "/usr/local/texlive/2025/texmf-dist/fonts/type1/public/tex-gyre/qtmr.pfb" 1255129411 133302 8dca243a80ecf4cfe00077d4bd995bd7 ""
   "/usr/local/texlive/2025/texmf-dist/fonts/type1/public/txfonts/t1xtt.pfb" 1136849748 26301 f08b3c26ea42c3177a262c2ac37d6a91 ""
   "/usr/local/texlive/2025/texmf-dist/fonts/vf/public/newtx/ntx-Regular-tlf-ot1.vf" 1583272976 956 44be8e0aea9c6d145fc21c9948a6b4b5 ""
@@ -139,9 +149,10 @@
   "/usr/local/texlive/2025/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1759948538 5467155 19efa205003f9ecad95fbbaa6ff24da1 ""
   "/usr/local/texlive/2025/texmf-var/web2c/pdftex/pdflatex.fmt" 1759948473 3345731 542163a676e9c7fa4f99ea6da5b59371 ""
   "/usr/local/texlive/2025/texmf.cnf" 1741450484 577 418a7058ec8e006d8704f60ecd22c938 ""
-  "supplementary_appendix.aux" 1789500422.42372 1966 6f4769dc611e34d895e9f53ce77cfdb6 "pdflatex"
-  "supplementary_appendix.out" 1789500422.42435 1270 552088336cf7917c840eed9683fcaed6 "pdflatex"
-  "supplementary_appendix.tex" 1789500389.7877 10886 45c9f438bb11ff8edc1148db3e65d96f ""
+  "supplementary_appendix.aux" 1789699388.78683 2627 a839889283b7f5412acc5f639d17fead "pdflatex"
+  "supplementary_appendix.bbl" 1789669329.55521 441 3daa631ac55cd4f5ab4fb2c4df20000a "bibtex supplementary_appendix"
+  "supplementary_appendix.out" 1789699388.78735 1786 65f8ef915350b7aa9f954dadae3f36db "pdflatex"
+  "supplementary_appendix.tex" 1789698241.40738 17854 0ca7b78b0df458df4e9f830ee09c7325 ""
   (generated)
   "supplementary_appendix.aux"
   "supplementary_appendix.log"

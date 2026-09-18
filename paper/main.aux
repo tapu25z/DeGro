@@ -5,9 +5,9 @@
 \citation{gao2023pal,nezhad2026symcode}
 \@writefile{toc}{\contentsline {section}{Abstract}{1}{section*.1}\protected@file@percent }
 \@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Three levels of executable-reasoning evaluation. Execution and outcome checks return coarse judgments; DeGro diagnoses whether feasible models disagree on the requested target and grounds the resulting action in the source.}}{1}{figure.caption.5}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Three levels of executable mathematical reasoning evaluation. Execution checks whether a program runs; outcome evaluation checks its final answer. DeGro diagnoses target ambiguity through two feasible models with different target values (illustrated by $q=4$ and $q=6$), then attempts source-grounded repair with deterministic acceptance gates or abstains. Target determinacy is relative to the encoded specification and does not establish faithfulness to the source problem.}}{1}{figure.caption.5}\protected@file@percent }
 \providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
-\newlabel{fig:paradigms}{{1}{1}{Three levels of executable-reasoning evaluation. Execution and outcome checks return coarse judgments; DeGro diagnoses whether feasible models disagree on the requested target and grounds the resulting action in the source}{figure.caption.5}{}}
+\newlabel{fig:paradigms}{{1}{1}{Three levels of executable mathematical reasoning evaluation. Execution checks whether a program runs; outcome evaluation checks its final answer. DeGro diagnoses target ambiguity through two feasible models with different target values (illustrated by $q=4$ and $q=6$), then attempts source-grounded repair with deterministic acceptance gates or abstains. Target determinacy is relative to the encoded specification and does not establish faithfulness to the source problem}{figure.caption.5}{}}
 \citation{gao2023pal,chen2023pot}
 \citation{wang2024mathcoder,gou2024tora}
 \citation{lyu2023faithful}
@@ -18,6 +18,8 @@
 \citation{lian2026reloop}
 \citation{cui2026symdiag}
 \citation{sarkar2026cores,liffiton2008mus}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Executable Mathematical Reasoning}{2}{subsection.2.1}\protected@file@percent }
 \citation{barthe2004selfcomposition,terauchi2005safety,barthe2011product}
 \citation{clarke2000cegar,solarlezama2006cegis}
 \citation{reiter1987diagnosis,dillig2013abduction,attie2008modelrepair}
@@ -25,75 +27,83 @@
 \citation{elyaniv2010foundations,geifman2017selective}
 \citation{kuhn2023semantic}
 \citation{albateh2026mira}
-\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Executable Mathematical Reasoning}{2}{subsection.2.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Symbolic Diagnosis and Relational Verification}{2}{subsection.2.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.3}Grounded Repair, Abstention, and Faithfulness}{2}{subsection.2.3}\protected@file@percent }
 \citation{wu2022autoformalization,azerbayev2023proofnet}
-\@writefile{toc}{\contentsline {section}{\numberline {3}Methodology}{3}{section.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Problem Setup, Determinacy, and Soundness}{3}{subsection.3.1}\protected@file@percent }
-\newlabel{eq:query}{{1}{3}{Problem Setup, Determinacy, and Soundness}{equation.1}{}}
-\@writefile{toc}{\contentsline {paragraph}{Running example.}{3}{section*.6}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Structured representation.}{3}{section*.7}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Stage I: Target-Determinacy Diagnosis}{3}{subsection.3.2}\protected@file@percent }
-\@writefile{loa}{\contentsline {algorithm}{\numberline {1}{\ignorespaces Target-determinacy verification}}{3}{algorithm.1}\protected@file@percent }
-\newlabel{alg:verify}{{1}{3}{Target-determinacy verification}{algorithm.1}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Stage II: Grounded Repair or Abstention}{3}{subsection.3.3}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces DeGro in the executable-reasoning pipeline. SymCode generates the executable artifact, while DeGro passes a structured \textsc  {ModelSpec} to Z3-backed target-determinacy verification. A determinate target can be answered, an ambiguous target enters grounded repair and validation, and an inconclusive check returns no certificate.}}{3}{figure.caption.6}\protected@file@percent }
+\newlabel{fig:workflow}{{2}{3}{DeGro in the executable-reasoning pipeline. SymCode generates the executable artifact, while DeGro passes a structured \textsc {ModelSpec} to Z3-backed target-determinacy verification. A determinate target can be answered, an ambiguous target enters grounded repair and validation, and an inconclusive check returns no certificate}{figure.caption.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Symbolic Diagnosis and Relational Verification}{3}{subsection.2.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.3}Grounded Repair, Abstention, and Faithfulness}{3}{subsection.2.3}\protected@file@percent }
 \citation{demoura2008z3}
-\citation{albateh2026mira}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Trusted Implementation and Repair Semantics}{4}{subsection.3.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Repair acceptance.}{4}{section*.8}\protected@file@percent }
-\newlabel{eq:accept}{{2}{4}{Repair acceptance}{equation.2}{}}
-\@writefile{toc}{\contentsline {paragraph}{Complexity and failure states.}{4}{section*.9}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.5}Agent Integration and Controller Semantics}{4}{subsection.3.5}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Controller semantics for DeGro integration.}}{4}{table.caption.11}\protected@file@percent }
-\newlabel{tab:policy}{{1}{4}{Controller semantics for DeGro integration}{table.caption.11}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {4}Experiments}{4}{section.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Setup}{4}{subsection.4.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Compared systems and model settings.}{4}{section*.12}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Data}{4}{subsection.4.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Controlled paired benchmark (RQ2).}{4}{section*.13}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Integrity checks.}{4}{section*.14}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Methodology}{4}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Problem Setup and Target Determinacy}{4}{subsection.3.1}\protected@file@percent }
+\newlabel{eq:solutions}{{1}{4}{Problem Setup and Target Determinacy}{equation.1}{}}
+\newlabel{eq:determinacy}{{2}{4}{Problem Setup and Target Determinacy}{equation.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Stage I: Target-Determinacy Diagnosis}{4}{subsection.3.2}\protected@file@percent }
+\newlabel{eq:query}{{3}{4}{Stage I: Target-Determinacy Diagnosis}{equation.3}{}}
+\@writefile{loa}{\contentsline {algorithm}{\numberline {1}{\ignorespaces Target-determinacy verification}}{4}{algorithm.1}\protected@file@percent }
+\newlabel{alg:verify}{{1}{4}{Target-determinacy verification}{algorithm.1}{}}
+\@writefile{toc}{\contentsline {paragraph}{Soundness.}{4}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Stage II: Grounded Repair or Abstention}{4}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Acceptance gate.}{4}{section*.8}\protected@file@percent }
+\newlabel{eq:accept}{{4}{4}{Acceptance gate}{equation.4}{}}
+\@writefile{toc}{\contentsline {paragraph}{Bounded repair.}{4}{section*.9}\protected@file@percent }
 \citation{openai2025gptoss}
-\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces DeGro in the executable-reasoning pipeline. SymCode generates the executable artifact, while DeGro passes a structured \textsc  {ModelSpec} to Z3-backed target-determinacy verification. A determinate target can be answered, an ambiguous target enters grounded repair and validation, and an inconclusive check returns no certificate.}}{5}{figure.caption.10}\protected@file@percent }
-\newlabel{fig:workflow}{{2}{5}{DeGro in the executable-reasoning pipeline. SymCode generates the executable artifact, while DeGro passes a structured \textsc {ModelSpec} to Z3-backed target-determinacy verification. A determinate target can be answered, an ambiguous target enters grounded repair and validation, and an inconclusive check returns no certificate}{figure.caption.10}{}}
-\@writefile{toc}{\contentsline {paragraph}{Natural-error study.}{5}{section*.15}\protected@file@percent }
+\citation{nvidia2025nemotronnano}
+\citation{albateh2026mira}
 \citation{upadhyay2017derivations}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Controller semantics for DeGro integration.}}{5}{table.caption.11}\protected@file@percent }
+\newlabel{tab:policy}{{1}{5}{Controller semantics for DeGro integration}{table.caption.11}{}}
+\@writefile{toc}{\contentsline {paragraph}{Controller policy.}{5}{section*.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experiments and Results}{5}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Setup}{5}{subsection.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Compared systems and model settings.}{5}{section*.12}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Data}{5}{subsection.4.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Controlled paired benchmark (RQ2).}{5}{section*.13}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Integrity checks.}{5}{section*.14}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Main natural-source paired benchmark (DRAW-Paired).}{5}{section*.15}\protected@file@percent }
+\citation{openai2025gptoss}
+\@writefile{toc}{\contentsline {paragraph}{Natural-error study.}{6}{section*.16}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Main Experiment}{6}{subsection.4.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Primary comparison.}{6}{section*.16}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Metrics and analysis.}{6}{section*.17}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {5}Results}{6}{section.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{RQ1: repair-or-abstain decisions.}{6}{section*.18}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Results on the fixed 120-pair set. The 20B comparison was preregistered; the 120B replacement is post-hoc. UR is unsupported additions divided by all proposed additions.}}{6}{table.caption.19}\protected@file@percent }
-\newlabel{tab:main}{{2}{6}{Results on the fixed 120-pair set. The 20B comparison was preregistered; the 120B replacement is post-hoc. UR is unsupported additions divided by all proposed additions}{table.caption.19}{}}
-\@writefile{toc}{\contentsline {paragraph}{RQ1: source-grounded acceptance.}{6}{section*.20}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {6}Analysis}{6}{section.6}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.1}Cumulative and Natural-Error Analysis}{6}{subsection.6.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Secondary cumulative analysis.}{6}{section*.21}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{RQ3: human-verified natural errors.}{6}{section*.22}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{RQ3: detection--repair decomposition.}{6}{section*.23}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Primary comparison.}{6}{section*.18}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Metrics and analysis.}{6}{section*.19}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Main Results}{6}{subsection.4.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{RQ1: repair-or-abstain decisions.}{6}{section*.20}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{RQ1: source-grounded acceptance.}{6}{section*.22}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Main Natural-Source Experiment: DRAW-Paired}{6}{subsection.4.5}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Main paired experiments on MIRA-Math (120 fixed pairs, 240 cases) and DRAW-Paired (350 pairs, 700 cases; 300 author-reviewed and 50 pending review). Values are percentages. FDA is primary; RSR and CAR decompose repair and abstention, and UR measures unsupported additions among proposed additions. Blue rows denote DeGro; bold FDA marks the best policy within each model and dataset. Only the MIRA GPT-OSS 20B comparison was preregistered; other comparisons are post-hoc. The cumulative DRAW-Paired estimate is provisional pending review of its extension.}}{7}{table.caption.17}\protected@file@percent }
+\newlabel{tab:main}{{2}{7}{Main paired experiments on MIRA-Math (120 fixed pairs, 240 cases) and DRAW-Paired (350 pairs, 700 cases; 300 author-reviewed and 50 pending review). Values are percentages. FDA is primary; RSR and CAR decompose repair and abstention, and UR measures unsupported additions among proposed additions. Blue rows denote DeGro; bold FDA marks the best policy within each model and dataset. Only the MIRA GPT-OSS 20B comparison was preregistered; other comparisons are post-hoc. The cumulative DRAW-Paired estimate is provisional pending review of its extension}{table.caption.17}{}}
+\newlabel{tab:draw_paired}{{2}{7}{Main paired experiments on MIRA-Math (120 fixed pairs, 240 cases) and DRAW-Paired (350 pairs, 700 cases; 300 author-reviewed and 50 pending review). Values are percentages. FDA is primary; RSR and CAR decompose repair and abstention, and UR measures unsupported additions among proposed additions. Blue rows denote DeGro; bold FDA marks the best policy within each model and dataset. Only the MIRA GPT-OSS 20B comparison was preregistered; other comparisons are post-hoc. The cumulative DRAW-Paired estimate is provisional pending review of its extension}{table.caption.17}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces MIRA-Math comparison on the same fixed 120 pairs. DeGro has higher FDA than grounded self-review for all three models, while RSR and CAR expose model-specific tradeoffs. The GPT-OSS 20B comparison is preregistered; the GPT-OSS 120B and Nemotron Nano comparisons are post-hoc, and the Nano FDA difference is statistically inconclusive. All axes start at zero.}}{7}{figure.caption.21}\protected@file@percent }
+\newlabel{fig:result_summary}{{3}{7}{MIRA-Math comparison on the same fixed 120 pairs. DeGro has higher FDA than grounded self-review for all three models, while RSR and CAR expose model-specific tradeoffs. The GPT-OSS 20B comparison is preregistered; the GPT-OSS 120B and Nemotron Nano comparisons are post-hoc, and the Nano FDA difference is statistically inconclusive. All axes start at zero}{figure.caption.21}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Analysis}{7}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Cumulative and Natural-Error Analysis}{7}{subsection.5.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Additional model comparisons.}{7}{section*.24}\protected@file@percent }
+\citation{upadhyay2017derivations}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Illustrative GPT-OSS 120B output on confirmatory case \texttt  {lin-000271}. The source supplies two equations for three integer variables, so the target is not uniquely determined. All three baselines add an integrality condition that is already enforced and does not resolve ambiguity; DeGro is the only method to abstain. This selected example explains the mechanism and is not a substitute for the aggregate comparison in Table\nonbreakingspace \ref {tab:main}.}}{8}{figure.caption.23}\protected@file@percent }
+\newlabel{fig:qualitative_case}{{4}{8}{Illustrative GPT-OSS 120B output on confirmatory case \texttt {lin-000271}. The source supplies two equations for three integer variables, so the target is not uniquely determined. All three baselines add an integrality condition that is already enforced and does not resolve ambiguity; DeGro is the only method to abstain. This selected example explains the mechanism and is not a substitute for the aggregate comparison in Table~\ref {tab:main}}{figure.caption.23}{}}
+\@writefile{toc}{\contentsline {paragraph}{Secondary cumulative analysis.}{8}{section*.25}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Exploratory source-coverage prompt.}{8}{section*.26}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{RQ3: human-verified natural errors.}{8}{section*.27}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{RQ3: detection--repair decomposition.}{8}{section*.28}\protected@file@percent }
 \citation{hendrycks2021math}
-\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Exploratory GPT-OSS 20B ablation on 100 development pairs.}}{7}{table.caption.27}\protected@file@percent }
-\newlabel{tab:ablation}{{3}{7}{Exploratory GPT-OSS 20B ablation on 100 development pairs}{table.caption.27}{}}
-\@writefile{toc}{\contentsline {paragraph}{Decision-theoretic reading.}{7}{section*.24}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.2}Witness Ablation and Family Effects}{7}{subsection.6.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{RQ3: witness ablation.}{7}{section*.26}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{RQ1: unsupported additions and repair tradeoffs.}{7}{section*.28}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Cumulative FDA by family for grounded self-review (GSR) and DeGro. Each family contains 60 pairs.}}{7}{table.caption.29}\protected@file@percent }
-\newlabel{tab:family}{{4}{7}{Cumulative FDA by family for grounded self-review (GSR) and DeGro. Each family contains 60 pairs}{table.caption.29}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Frozen MATH-500 cohort accounting for the shared initial structured specification.}}{7}{table.caption.31}\protected@file@percent }
-\newlabel{tab:coverage}{{5}{7}{Frozen MATH-500 cohort accounting for the shared initial structured specification}{table.caption.31}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.3}Coverage Analysis}{7}{subsection.6.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{RQ3: broad-benchmark coverage audit.}{7}{section*.30}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Two complementary views of the evidence. (a) DeGro improves FDA by 5.0 points for GPT-OSS 20B and 6.3 points for GPT-OSS 120B; the axis begins at 80\% to make the paired differences visible. (b) Natural-error evaluation has a pronounced detection--repair gap: most target-critical omissions are detected, but only one is repaired end to end.}}{8}{figure.caption.25}\protected@file@percent }
-\newlabel{fig:result_summary}{{3}{8}{Two complementary views of the evidence. (a) DeGro improves FDA by 5.0 points for GPT-OSS 20B and 6.3 points for GPT-OSS 120B; the axis begins at 80\% to make the paired differences visible. (b) Natural-error evaluation has a pronounced detection--repair gap: most target-critical omissions are detected, but only one is repaired end to end}{figure.caption.25}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.4}Discussion and Limitations}{8}{subsection.6.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Interpretation and validity.}{8}{section*.32}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Scope of the claim.}{8}{section*.33}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{External validity.}{8}{section*.34}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Reproducibility and risk.}{9}{section*.35}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Deployment implications.}{9}{section*.36}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {7}Conclusion}{9}{section.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Decision-theoretic reading.}{9}{section*.29}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Witness Ablation and Family Effects}{9}{subsection.5.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{RQ3: witness ablation.}{9}{section*.30}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{RQ1: unsupported additions and repair tradeoffs.}{9}{section*.32}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Exploratory GPT-OSS 20B ablation on 100 development pairs. Concrete witnesses do not improve FDA over DeGro without witnesses. ORR is omitted because it is exactly $100-\mathrm  {CAR}$.}}{9}{figure.caption.31}\protected@file@percent }
+\newlabel{fig:ablation}{{5}{9}{Exploratory GPT-OSS 20B ablation on 100 development pairs. Concrete witnesses do not improve FDA over DeGro without witnesses. ORR is omitted because it is exactly $100-\mathrm {CAR}$}{figure.caption.31}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Coverage Analysis}{9}{subsection.5.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{RQ3: broad-benchmark coverage audit.}{9}{section*.34}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Cumulative FDA by family; each family contains 60 pairs. DeGro improves four of five families for GPT-OSS 20B and all five for GPT-OSS 120B. The 20B rank-deficient family is the sole adverse regime.}}{10}{figure.caption.33}\protected@file@percent }
+\newlabel{fig:family}{{6}{10}{Cumulative FDA by family; each family contains 60 pairs. DeGro improves four of five families for GPT-OSS 20B and all five for GPT-OSS 120B. The 20B rank-deficient family is the sole adverse regime}{figure.caption.33}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Frozen MATH-500 cohort accounting for all 500 shared initial structured specifications. Solver-level unsupported cases are the largest exclusion category.}}{10}{figure.caption.35}\protected@file@percent }
+\newlabel{fig:coverage}{{7}{10}{Frozen MATH-500 cohort accounting for all 500 shared initial structured specifications. Solver-level unsupported cases are the largest exclusion category}{figure.caption.35}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Discussion and Limitations}{10}{subsection.5.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Interpretation and validity.}{10}{section*.36}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Scope of the claim.}{10}{section*.37}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{External validity.}{10}{section*.38}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Reproducibility and risk.}{11}{section*.39}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Deployment implications.}{11}{section*.40}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{11}{section.6}\protected@file@percent }
 \bibstyle{ACM-Reference-Format}
 \bibdata{refs}
 \bibcite{albateh2026mira}{{1}{2026}{{Al~Bateh and Saab~Jr}}{{}}}
@@ -122,15 +132,16 @@
 \bibcite{lightman2023verify}{{24}{2023}{{Lightman et~al\mbox  {.}}}{{}}}
 \bibcite{lyu2023faithful}{{25}{2023}{{Lyu et~al\mbox  {.}}}{{}}}
 \bibcite{madaan2023selfrefine}{{26}{2023}{{Madaan et~al\mbox  {.}}}{{}}}
-\bibcite{openai2025gptoss}{{27}{2025}{{OpenAI}}{{}}}
-\bibcite{reiter1987diagnosis}{{28}{1987}{{Reiter}}{{}}}
-\bibcite{sarkar2026cores}{{29}{2026}{{Sarkar}}{{}}}
-\bibcite{solarlezama2006cegis}{{30}{2006}{{Solar-Lezama et~al\mbox  {.}}}{{}}}
-\bibcite{terauchi2005safety}{{31}{2005}{{Terauchi and Aiken}}{{}}}
-\bibcite{uesato2022feedback}{{32}{2022}{{Uesato et~al\mbox  {.}}}{{}}}
-\bibcite{upadhyay2017derivations}{{33}{2017}{{Upadhyay and Chang}}{{}}}
-\bibcite{wang2024mathcoder}{{34}{2024}{{Wang et~al\mbox  {.}}}{{}}}
-\bibcite{wu2022autoformalization}{{35}{2022}{{Wu et~al\mbox  {.}}}{{}}}
+\bibcite{nvidia2025nemotronnano}{{27}{2025}{{NVIDIA}}{{}}}
+\bibcite{openai2025gptoss}{{28}{2025}{{OpenAI}}{{}}}
+\bibcite{reiter1987diagnosis}{{29}{1987}{{Reiter}}{{}}}
+\bibcite{sarkar2026cores}{{30}{2026}{{Sarkar}}{{}}}
+\bibcite{solarlezama2006cegis}{{31}{2006}{{Solar-Lezama et~al\mbox  {.}}}{{}}}
+\bibcite{terauchi2005safety}{{32}{2005}{{Terauchi and Aiken}}{{}}}
+\bibcite{uesato2022feedback}{{33}{2022}{{Uesato et~al\mbox  {.}}}{{}}}
+\bibcite{upadhyay2017derivations}{{34}{2017}{{Upadhyay and Chang}}{{}}}
+\bibcite{wang2024mathcoder}{{35}{2024}{{Wang et~al\mbox  {.}}}{{}}}
+\bibcite{wu2022autoformalization}{{36}{2022}{{Wu et~al\mbox  {.}}}{{}}}
 \newlabel{tocindent-1}{0pt}
 \newlabel{tocindent0}{0pt}
 \newlabel{tocindent1}{4.185pt}
@@ -138,6 +149,6 @@
 \newlabel{tocindent3}{0pt}
 \newlabel{tocindent4}{0pt}
 \newlabel{tocindent5}{0pt}
-\@writefile{toc}{\contentsline {section}{References}{10}{section*.38}\protected@file@percent }
-\newlabel{TotPages}{{10}{10}{}{page.10}{}}
-\gdef \@abspage@last{10}
+\@writefile{toc}{\contentsline {section}{References}{12}{section*.42}\protected@file@percent }
+\newlabel{TotPages}{{12}{12}{}{page.12}{}}
+\gdef \@abspage@last{12}

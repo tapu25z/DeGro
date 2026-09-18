@@ -1,0 +1,206 @@
+{
+  "development80/nano30b/source_coverage_audit_v2": {
+    "crt_reconstruction": {
+      "cases": 40,
+      "FDA_percent": 100.0,
+      "RSR_percent": 100.0,
+      "CAR_percent": 100.0,
+      "unsupported_adds": 0,
+      "all_adds": 20
+    },
+    "graph_path_sums": {
+      "cases": 40,
+      "FDA_percent": 100.0,
+      "RSR_percent": 100.0,
+      "CAR_percent": 100.0,
+      "unsupported_adds": 0,
+      "all_adds": 20
+    },
+    "linear_system_separator": {
+      "cases": 40,
+      "FDA_percent": 100.0,
+      "RSR_percent": 100.0,
+      "CAR_percent": 100.0,
+      "unsupported_adds": 0,
+      "all_adds": 20
+    },
+    "rankdef_linear_shared": {
+      "cases": 40,
+      "FDA_percent": 95.0,
+      "RSR_percent": 90.0,
+      "CAR_percent": 100.0,
+      "unsupported_adds": 1,
+      "all_adds": 19
+    }
+  },
+  "development80/gpt120b/source_coverage_audit_v2": {
+    "crt_reconstruction": {
+      "cases": 40,
+      "FDA_percent": 100.0,
+      "RSR_percent": 100.0,
+      "CAR_percent": 100.0,
+      "unsupported_adds": 0,
+      "all_adds": 20
+    },
+    "graph_path_sums": {
+      "cases": 40,
+      "FDA_percent": 100.0,
+      "RSR_percent": 100.0,
+      "CAR_percent": 100.0,
+      "unsupported_adds": 0,
+      "all_adds": 20
+    },
+    "linear_system_separator": {
+      "cases": 40,
+      "FDA_percent": 100.0,
+      "RSR_percent": 100.0,
+      "CAR_percent": 100.0,
+      "unsupported_adds": 0,
+      "all_adds": 20
+    },
+    "rankdef_linear_shared": {
+      "cases": 40,
+      "FDA_percent": 100.0,
+      "RSR_percent": 100.0,
+      "CAR_percent": 100.0,
+      "unsupported_adds": 0,
+      "all_adds": 20
+    }
+  },
+  "fresh_test100/nano30b/nonunique_grounding": {
+    "crt_reconstruction": {
+      "cases": 50,
+      "FDA_percent": 92.0,
+      "RSR_percent": 88.0,
+      "CAR_percent": 96.0,
+      "unsupported_adds": 1,
+      "all_adds": 23
+    },
+    "graph_path_sums": {
+      "cases": 50,
+      "FDA_percent": 90.0,
+      "RSR_percent": 80.0,
+      "CAR_percent": 100.0,
+      "unsupported_adds": 0,
+      "all_adds": 20
+    },
+    "linear_system_separator": {
+      "cases": 50,
+      "FDA_percent": 64.0,
+      "RSR_percent": 28.0,
+      "CAR_percent": 100.0,
+      "unsupported_adds": 0,
+      "all_adds": 7
+    },
+    "rankdef_linear_shared": {
+      "cases": 50,
+      "FDA_percent": 56.0,
+      "RSR_percent": 12.0,
+      "CAR_percent": 100.0,
+      "unsupported_adds": 0,
+      "all_adds": 3
+    }
+  },
+  "fresh_test100/nano30b/source_coverage_audit_v2": {
+    "crt_reconstruction": {
+      "cases": 50,
+      "FDA_percent": 100.0,
+      "RSR_percent": 100.0,
+      "CAR_percent": 100.0,
+      "unsupported_adds": 0,
+      "all_adds": 25
+    },
+    "graph_path_sums": {
+      "cases": 50,
+      "FDA_percent": 92.0,
+      "RSR_percent": 84.0,
+      "CAR_percent": 100.0,
+      "unsupported_adds": 4,
+      "all_adds": 25
+    },
+    "linear_system_separator": {
+      "cases": 50,
+      "FDA_percent": 96.0,
+      "RSR_percent": 92.0,
+      "CAR_percent": 100.0,
+      "unsupported_adds": 0,
+      "all_adds": 23
+    },
+    "rankdef_linear_shared": {
+      "cases": 50,
+      "FDA_percent": 92.0,
+      "RSR_percent": 84.0,
+      "CAR_percent": 100.0,
+      "unsupported_adds": 4,
+      "all_adds": 25
+    }
+  },
+  "fresh_test100/gpt120b/nonunique_grounding": {
+    "crt_reconstruction": {
+      "cases": 50,
+      "FDA_percent": 100.0,
+      "RSR_percent": 100.0,
+      "CAR_percent": 100.0,
+      "unsupported_adds": 0,
+      "all_adds": 25
+    },
+    "graph_path_sums": {
+      "cases": 50,
+      "FDA_percent": 96.0,
+      "RSR_percent": 100.0,
+      "CAR_percent": 92.0,
+      "unsupported_adds": 2,
+      "all_adds": 27
+    },
+    "linear_system_separator": {
+      "cases": 50,
+      "FDA_percent": 98.0,
+      "RSR_percent": 96.0,
+      "CAR_percent": 100.0,
+      "unsupported_adds": 1,
+      "all_adds": 25
+    },
+    "rankdef_linear_shared": {
+      "cases": 50,
+      "FDA_percent": 100.0,
+      "RSR_percent": 100.0,
+      "CAR_percent": 100.0,
+      "unsupported_adds": 0,
+      "all_adds": 25
+    }
+  },
+  "fresh_test100/gpt120b/source_coverage_audit_v2": {
+    "crt_reconstruction": {
+      "cases": 50,
+      "FDA_percent": 100.0,
+      "RSR_percent": 100.0,
+      "CAR_percent": 100.0,
+      "unsupported_adds": 0,
+      "all_adds": 25
+    },
+    "graph_path_sums": {
+      "cases": 50,
+      "FDA_percent": 100.0,
+      "RSR_percent": 100.0,
+      "CAR_percent": 100.0,
+      "unsupported_adds": 0,
+      "all_adds": 25
+    },
+    "linear_system_separator": {
+      "cases": 50,
+      "FDA_percent": 98.0,
+      "RSR_percent": 100.0,
+      "CAR_percent": 96.0,
+      "unsupported_adds": 1,
+      "all_adds": 26
+    },
+    "rankdef_linear_shared": {
+      "cases": 50,
+      "FDA_percent": 100.0,
+      "RSR_percent": 100.0,
+      "CAR_percent": 100.0,
+      "unsupported_adds": 0,
+      "all_adds": 25
+    }
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "dataset_name": "DRAW-Paired",
+  "stage": "CANDIDATES_AWAITING_HUMAN_REVIEW",
+  "source_path": "data/draw1k/draw1k.jsonl",
+  "source_sha256": "972346cad58dcefe65284158b365792e3ab9091f3de179b64de07f691565b716",
+  "included_splits": [
+    "train",
+    "dev"
+  ],
+  "input_rows": 800,
+  "unique_source_rows": 799,
+  "candidate_pairs": 599,
+  "candidate_cases_if_all_approved": 1198,
+  "clean_span_proposals": 367,
+  "candidate_pairs_by_split": {
+    "dev": 147,
+    "train": 452
+  },
+  "clean_span_proposals_by_split": {
+    "dev": 94,
+    "train": 273
+  },
+  "span_flag_counts": {
+    "aligned_tokens_cross_clauses": 9,
+    "fallback_clause": 10,
+    "no_aligned_coefficient": 1,
+    "single_clause_problem": 39,
+    "span_also_supports_retained_equation": 224,
+    "span_contains_question_cue": 66
+  },
+  "filter_counts": {
+    "duplicate_source_index": 1,
+    "eligible": 599,
+    "fewer_than_two_equations": 200
+  },
+  "candidate_sha256": "8e241c3a19d289e64f85c05ae2338b582428600e1c3939b550c37234e5da5f99",
+  "review_packet_sha256": "d4e3c1fb7ef889240ba2558fe3f5b8786bd23f69bc49988c7cd5305f1e41a705",
+  "human_review_complete": false,
+  "frozen": false
+}

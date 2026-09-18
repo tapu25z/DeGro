@@ -33,7 +33,7 @@ def validate_repair(
         base = compile_spec(spec)
         candidate_spec = ModelSpec(spec.variables, (candidate,), spec.target, spec.metadata)
         compiled_candidate = compile_spec(candidate_spec)
-    except UnsupportedExpression as exc:
+    except (UnsupportedExpression, z3.Z3Exception) as exc:
         return GateResult(False, f"candidate is not supported: {exc}")
 
     consistency = z3.Solver()

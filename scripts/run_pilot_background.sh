@@ -1,7 +1,7 @@
 #!/bin/zsh
 set -u
 
-project_dir="/Users/buihuynhtay/Documents/ChatGPT/target-check"
+project_dir="${0:A:h:h}"
 cd "$project_dir" || exit 1
 mkdir -p results/raw
 exec >> results/pilot_background.log 2>&1

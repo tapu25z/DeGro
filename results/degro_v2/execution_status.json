@@ -1,0 +1,10 @@
+{
+  "status": "complete",
+  "resumed_utc": "2026-09-16T19:41:02.890726+00:00",
+  "network_workers": 16,
+  "note": "First two success records obtained with4 workers; resumed with16 after service recovery. All successful saved responses preserved. Ultra remains paused.",
+  "transport_adjustment": "After114 fresh-test records, resume with32 workers to reduce slow tail; all saved successes retained, no inference configuration or test changes. Reduced to16 after service503 failures; resume only missing successes.",
+  "completed_utc": "2026-09-16T20:13:08.177283+00:00",
+  "verified_development_records": 320,
+  "verified_test_records": 800
+}

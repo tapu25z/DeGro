@@ -1,0 +1,16 @@
+{
+  "dataset_name": "DRAW-Paired",
+  "stage": "FROZEN",
+  "created_at_utc": "2026-09-17T18:18:05.923801+00:00",
+  "review_packet": "data/paired/draw_paired/draw_paired_provisional_300_review.jsonl",
+  "review_packet_sha256": "b3b2baa968fefb27dd705aa4feb41fda4ec0ebbdbb16ac76a6b32a3005ca2465",
+  "review_status_counts": {
+    "APPROVE": 300
+  },
+  "allow_partial": false,
+  "pairs": 300,
+  "cases": 600,
+  "output_sha256": "5920469f580e4603a41f6bcbba18f529f4cb5aa4b9de72903c527d3385c790ed",
+  "human_review_complete": true,
+  "frozen": true
+}

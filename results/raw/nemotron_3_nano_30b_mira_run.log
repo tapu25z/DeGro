@@ -1,0 +1,21 @@
+[nemotron_3_nano_30b_mira_confirmatory_remaining_120] wave 1
+[nemotron_3_nano_30b_mira_confirmatory_remaining_120] wave 2
+[nemotron_3_nano_30b_mira_pilot80_current_four_methods] wave 1
+[nemotron_3_nano_30b_mira_four_methods] wave 1
+[nemotron_3_nano_30b_mira_confirmatory_remaining_120] wave 1
+[nemotron_3_nano_30b_mira_pilot80_current_four_methods] wave 1
+[nemotron_3_nano_30b_mira_four_methods] wave 1
+[nemotron_3_nano_30b_mira_confirmatory_remaining_120] wave 1
+[nemotron_3_nano_30b_mira_confirmatory_remaining_120] wave 2
+[nemotron_3_nano_30b_mira_confirmatory_remaining_120] wave 3
+{"records": 960, "expected": 960, "ok": 960, "errors": 0, "missing": 0, "complete": true}
+[nemotron_3_nano_30b_mira_confirmatory_remaining_120] complete
+[nemotron_3_nano_30b_mira_pilot80_current_four_methods] wave 2
+[nemotron_3_nano_30b_mira_pilot80_current_four_methods] wave 3
+{"records": 640, "expected": 640, "ok": 640, "errors": 0, "missing": 0, "complete": true}
+[nemotron_3_nano_30b_mira_pilot80_current_four_methods] complete
+[nemotron_3_nano_30b_mira_four_methods] wave 2
+[nemotron_3_nano_30b_mira_four_methods] wave 3
+{"records": 800, "expected": 800, "ok": 800, "errors": 0, "missing": 0, "complete": true}
+[nemotron_3_nano_30b_mira_four_methods] complete
+{"model": "nemotron_3_nano_30b", "records": 2400, "split_counts": {"pilot80": 640, "heldout100": 800, "confirmatory120": 960}}

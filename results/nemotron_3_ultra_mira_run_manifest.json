@@ -1,0 +1,52 @@
+{
+  "model": "nemotron-3-ultra",
+  "provider": "https://ollama.com",
+  "started_at_utc": "2026-09-16T19:22:52.258981+00:00",
+  "comparison_status": "post-hoc additional model comparison on the same frozen MIRA splits",
+  "temperature": 1.0,
+  "think_request": "medium",
+  "reasoning_note": "Equal API requests do not establish equal internal reasoning budgets.",
+  "methods": [
+    "self_review",
+    "grounded_self_review",
+    "nonunique",
+    "nonunique_grounding"
+  ],
+  "expected_records": 2400,
+  "expected_split_records": {
+    "pilot80": 640,
+    "heldout100": 800,
+    "confirmatory120": 960
+  },
+  "prompt_hash": "eafed6be4973c21e1efbb5cc804112c9d50c95764e8f5066b58bdee58b92bdda",
+  "input_sha256": {
+    "data/paired/mira_pilot_80.jsonl": "05509c28b346af6da831c866e03a04abafb8c7a870ee561913a1741fe85a9df1",
+    "data/paired/mira_heldout_100.jsonl": "8838abb1c078a3b2bd7bbc057b1e4b2bf7bdb4764f7f2e80a5d9e1bad4c143c9",
+    "data/paired/mira_confirmatory_remaining_120.jsonl": "5616d0c6203f762560439ee193f1148133d06baf034d6c34c7250a0a44ce3f0b",
+    "scripts/run_pilot.py": "5d47b3b1a4dfd54e4cb605a336c4afbaa35eccde387377cff7f84d9f409cb1ca",
+    "targetcheck/pilot.py": "4e52a7fd8122eba95a3c4444bd76c47d841d5b4020a1a9711abd1e11630c28fe",
+    "scripts/analyze_confirmatory.py": "e85a5fcb91b0e3c9c8adca43ff8c1a4abe83864c5b8eada05568dcff6310648c",
+    "scripts/finalize_pilot.py": "be1f40c225d47ab2b4141f14aae0dc0968e8b51d81016e2168a222d4140ac8e8"
+  },
+  "retry_policy": "Up to three waves; preserve first valid response; bounded account failover only for authentication/quota/rate-limit errors.",
+  "provider_model_metadata": [
+    {
+      "name": "nemotron-3-ultra",
+      "model": "nemotron-3-ultra",
+      "modified_at": "2026-06-04T00:00:00Z",
+      "size": 0,
+      "digest": "4eecabff7a75",
+      "details": {
+        "parent_model": "",
+        "format": "",
+        "family": "",
+        "families": null,
+        "parameter_size": "",
+        "quantization_level": ""
+      }
+    }
+  ],
+  "documentation": [
+    "https://ollama.com/library/nemotron-3-ultra"
+  ]
+}

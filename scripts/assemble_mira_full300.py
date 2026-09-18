@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 from __future__ import annotations
 
+import argparse
 import json
 import subprocess
 from pathlib import Path
@@ -8,6 +9,21 @@ from pathlib import Path
 
 METHODS = {"self_review", "grounded_self_review", "nonunique", "nonunique_grounding"}
 SOURCES = {
+    "nemotron_3_ultra": (
+        ("pilot80", Path("results/nemotron_3_ultra_mira_pilot80_current_four_methods_complete.jsonl")),
+        ("heldout100", Path("results/nemotron_3_ultra_mira_four_methods_complete.jsonl")),
+        ("confirmatory120", Path("results/nemotron_3_ultra_mira_confirmatory_remaining_120_complete.jsonl")),
+    ),
+    "nemotron_3_super": (
+        ("pilot80", Path("results/nemotron_3_super_mira_pilot80_current_four_methods_complete.jsonl")),
+        ("heldout100", Path("results/nemotron_3_super_mira_four_methods_complete.jsonl")),
+        ("confirmatory120", Path("results/nemotron_3_super_mira_confirmatory_remaining_120_complete.jsonl")),
+    ),
+    "nemotron_3_nano_30b": (
+        ("pilot80", Path("results/nemotron_3_nano_30b_mira_pilot80_current_four_methods_complete.jsonl")),
+        ("heldout100", Path("results/nemotron_3_nano_30b_mira_four_methods_complete.jsonl")),
+        ("confirmatory120", Path("results/nemotron_3_nano_30b_mira_confirmatory_remaining_120_complete.jsonl")),
+    ),
     "gpt_oss_20b": (
         ("pilot80", Path("results/gpt_oss_20b_mira_pilot80_current_four_methods_complete.jsonl")),
         ("heldout100", Path("results/gpt_oss_20b_mira_four_methods_complete.jsonl")),
@@ -22,7 +38,11 @@ SOURCES = {
 
 
 def main() -> None:
-    for model, sources in SOURCES.items():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--models", nargs="+", choices=tuple(SOURCES), default=["gpt_oss_20b", "gpt_oss_120b"])
+    args = parser.parse_args()
+    for model in args.models:
+        sources = SOURCES[model]
         records = {}
         split_counts = {}
         for split, path in sources:

@@ -1,0 +1,26 @@
+Traceback (most recent call last):
+  File "/Users/buihuynhtay/Documents/ChatGPT/degro/scripts/run_pilot.py", line 10, in <module>
+    from targetcheck.pilot import METHODS, OUTPUT_SCHEMA, build_prompt, parse_decision, prompt_hash, score
+ModuleNotFoundError: No module named 'targetcheck'
+Traceback (most recent call last):
+  File "/Users/buihuynhtay/Documents/ChatGPT/degro/scripts/run_pilot.py", line 10, in <module>
+    from targetcheck.pilot import METHODS, OUTPUT_SCHEMA, build_prompt, parse_decision, prompt_hash, score
+ModuleNotFoundError: No module named 'targetcheck'
+Traceback (most recent call last):
+  File "/Users/buihuynhtay/Documents/ChatGPT/degro/scripts/run_pilot.py", line 10, in <module>
+    from targetcheck.pilot import METHODS, OUTPUT_SCHEMA, build_prompt, parse_decision, prompt_hash, score
+ModuleNotFoundError: No module named 'targetcheck'
+[1/14] draw-paired/267695/1/x OMISSION self_review ok
+[2/14] draw-paired/267695/1/x UNDERSPECIFIED self_review ok
+[3/14] draw-paired/464290/1/y OMISSION self_review ok
+[4/14] draw-paired/464290/1/y UNDERSPECIFIED self_review ok
+[5/14] draw-paired/413708/1/y OMISSION self_review ok
+[6/14] draw-paired/413708/1/y UNDERSPECIFIED self_review ok
+[7/14] draw-paired/511333/1/smaller OMISSION self_review ok
+[8/14] draw-paired/511333/1/smaller UNDERSPECIFIED self_review ok
+[9/14] draw-paired/151268/2/x OMISSION self_review ok
+[10/14] draw-paired/151268/2/x UNDERSPECIFIED self_review ok
+[11/14] draw-paired/381197/1/x OMISSION self_review ok
+[12/14] draw-paired/381197/1/x UNDERSPECIFIED self_review ok
+[13/14] draw-paired/408038/2/x OMISSION self_review ok
+[14/14] draw-paired/408038/2/x UNDERSPECIFIED self_review ok

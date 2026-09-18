@@ -295,10 +295,6 @@ INPUT /usr/local/texlive/2025/texmf-dist/fonts/vf/public/newtx/ntxsy7.vf
 INPUT /usr/local/texlive/2025/texmf-dist/fonts/tfm/public/newtx/txsys.tfm
 INPUT /usr/local/texlive/2025/texmf-dist/fonts/tfm/public/newtx/txex-bar.tfm
 INPUT /usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/newtx/ntx-ec-tlf-pc.enc
-INPUT /usr/local/texlive/2025/texmf-dist/fonts/vf/public/newtx/ntxmi7.vf
-INPUT /usr/local/texlive/2025/texmf-dist/fonts/tfm/public/newtx/NewTXMI7.tfm
-INPUT /usr/local/texlive/2025/texmf-dist/fonts/tfm/public/newtx/stxscr.tfm
-INPUT /usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/tex-gyre/q-ts1.enc
 INPUT /usr/local/texlive/2025/texmf-dist/fonts/tfm/public/newtx/ntx-Regular-tlf-t1.tfm
 INPUT /usr/local/texlive/2025/texmf-dist/tex/latex/newtx/t1ntxtt.fd
 INPUT /usr/local/texlive/2025/texmf-dist/tex/latex/newtx/t1ntxtt.fd
@@ -320,6 +316,14 @@ INPUT /usr/local/texlive/2025/texmf-dist/fonts/tfm/public/newtx/ntxsyc.tfm
 INPUT /usr/local/texlive/2025/texmf-dist/fonts/tfm/public/newtx/ntxsyc.tfm
 INPUT /usr/local/texlive/2025/texmf-dist/fonts/tfm/public/newtx/ntxexa.tfm
 INPUT /usr/local/texlive/2025/texmf-dist/fonts/tfm/public/newtx/ntxexa.tfm
+INPUT /usr/local/texlive/2025/texmf-dist/fonts/vf/public/newtx/ntxmi7.vf
+INPUT /usr/local/texlive/2025/texmf-dist/fonts/tfm/public/newtx/NewTXMI7.tfm
+INPUT /usr/local/texlive/2025/texmf-dist/fonts/tfm/public/newtx/stxscr.tfm
+INPUT /usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/tex-gyre/q-ts1.enc
+INPUT ./supplementary_appendix.bbl
+INPUT ./supplementary_appendix.bbl
+INPUT supplementary_appendix.bbl
+INPUT /usr/local/texlive/2025/texmf-dist/fonts/tfm/public/newtx/ntx-Italic-tlf-t1.tfm
 INPUT supplementary_appendix.aux
 INPUT ./supplementary_appendix.out
 INPUT ./supplementary_appendix.out
@@ -331,3 +335,4 @@ INPUT /usr/local/texlive/2025/texmf-dist/fonts/type1/public/newtx/txmiaX.pfb
 INPUT /usr/local/texlive/2025/texmf-dist/fonts/type1/public/newtx/txsys.pfb
 INPUT /usr/local/texlive/2025/texmf-dist/fonts/type1/public/newtx/ztmb.pfb
 INPUT /usr/local/texlive/2025/texmf-dist/fonts/type1/public/newtx/ztmr.pfb
+INPUT /usr/local/texlive/2025/texmf-dist/fonts/type1/public/newtx/ztmri.pfb

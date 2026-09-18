@@ -1,0 +1,87 @@
+{
+  "metrics_percent": {
+    "nano30b": {
+      "development_original": {
+        "RSR": 77.5,
+        "CAR": 100.0,
+        "FDA": 88.75,
+        "ORR": 0.0
+      },
+      "development_candidate": {
+        "RSR": 97.5,
+        "CAR": 100.0,
+        "FDA": 98.75,
+        "ORR": 0.0
+      },
+      "fresh_test": {
+        "nonunique_grounding": {
+          "RSR": 52.0,
+          "CAR": 99.0,
+          "FDA": 75.5,
+          "ORR": 1.0
+        },
+        "source_coverage_audit_v2": {
+          "RSR": 90.0,
+          "CAR": 100.0,
+          "FDA": 95.0,
+          "ORR": 0.0
+        }
+      }
+    },
+    "gpt120b": {
+      "development_original": {
+        "RSR": 97.5,
+        "CAR": 98.75,
+        "FDA": 98.125,
+        "ORR": 1.25
+      },
+      "development_candidate": {
+        "RSR": 100.0,
+        "CAR": 100.0,
+        "FDA": 100.0,
+        "ORR": 0.0
+      },
+      "fresh_test": {
+        "nonunique_grounding": {
+          "RSR": 99.0,
+          "CAR": 98.0,
+          "FDA": 98.5,
+          "ORR": 2.0
+        },
+        "source_coverage_audit_v2": {
+          "RSR": 100.0,
+          "CAR": 99.0,
+          "FDA": 99.5,
+          "ORR": 1.0
+        }
+      }
+    }
+  },
+  "fresh_test_comparisons": [
+    {
+      "first_only": 45,
+      "second_only": 6,
+      "delta": 0.195,
+      "p_raw": 1.8323628836469652e-08,
+      "model": "nano30b",
+      "delta_ci95": [
+        0.135,
+        0.255
+      ],
+      "p_holm": 3.6647257672939304e-08
+    },
+    {
+      "first_only": 3,
+      "second_only": 1,
+      "delta": 0.01,
+      "p_raw": 0.625,
+      "model": "gpt120b",
+      "delta_ci95": [
+        -0.01,
+        0.03
+      ],
+      "p_holm": 0.625
+    }
+  ],
+  "note": "Exploratory follow-up on fresh instances on a newly generated synthetic stress test; no replacement of historical confirmatory results."
+}

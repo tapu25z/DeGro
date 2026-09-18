@@ -1,0 +1,5 @@
+method	n	RSR	Semantic	Functional	Grounded	CAR	FDA	ORR	Unsupported	errors_excluded
+grounded_self_review	200	0.850	0.850	0.850	0.850	0.990	0.920	0.010	0.023	0
+nonunique	200	0.490	0.560	0.520	0.490	0.940	0.715	0.060	0.258	0
+nonunique_grounding	200	0.820	0.820	0.830	0.820	1.000	0.910	0.000	0.012	0
+self_review	200	0.800	0.860	0.850	0.800	0.930	0.865	0.070	0.231	0

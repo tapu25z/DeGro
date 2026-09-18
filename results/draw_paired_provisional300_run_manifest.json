@@ -1,0 +1,21 @@
+{
+  "created_at_utc": "2026-09-17T17:06:23.605622+00:00",
+  "stage": "PROVISIONAL_AWAITING_HUMAN_REVIEW",
+  "data": "data/paired/draw_paired/draw_paired_provisional_300.jsonl",
+  "data_sha256": "7c2ff26b0d1bb91a0953b4058fbb6d207c59fd73ce4c096c73dd8fe53c16a16f",
+  "models": [
+    "gpt-oss:20b",
+    "gpt-oss:120b",
+    "nemotron-3-nano:30b"
+  ],
+  "methods": [
+    "self_review",
+    "grounded_self_review",
+    "nonunique",
+    "nonunique_grounding"
+  ],
+  "temperature": 1.0,
+  "think": "medium",
+  "prompt_hash": "eafed6be4973c21e1efbb5cc804112c9d50c95764e8f5066b58bdee58b92bdda",
+  "claim_scope": "exploratory/provisional until exact spans and deletions are human-approved"
+}

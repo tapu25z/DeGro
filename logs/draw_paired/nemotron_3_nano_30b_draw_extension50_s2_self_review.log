@@ -1,0 +1,35 @@
+Traceback (most recent call last):
+  File "/Users/buihuynhtay/Documents/ChatGPT/degro/scripts/run_pilot.py", line 10, in <module>
+    from targetcheck.pilot import METHODS, OUTPUT_SCHEMA, build_prompt, parse_decision, prompt_hash, score
+ModuleNotFoundError: No module named 'targetcheck'
+Traceback (most recent call last):
+  File "/Users/buihuynhtay/Documents/ChatGPT/degro/scripts/run_pilot.py", line 10, in <module>
+    from targetcheck.pilot import METHODS, OUTPUT_SCHEMA, build_prompt, parse_decision, prompt_hash, score
+ModuleNotFoundError: No module named 'targetcheck'
+Traceback (most recent call last):
+  File "/Users/buihuynhtay/Documents/ChatGPT/degro/scripts/run_pilot.py", line 10, in <module>
+    from targetcheck.pilot import METHODS, OUTPUT_SCHEMA, build_prompt, parse_decision, prompt_hash, score
+ModuleNotFoundError: No module named 'targetcheck'
+[1/12] draw-paired/911331/1/y OMISSION self_review error
+[2/12] draw-paired/911331/1/y UNDERSPECIFIED self_review error
+[3/12] draw-paired/544767/1/x OMISSION self_review error
+[4/12] draw-paired/544767/1/x UNDERSPECIFIED self_review error
+[5/12] draw-paired/251790/1/plane OMISSION self_review ok
+[6/12] draw-paired/251790/1/plane UNDERSPECIFIED self_review error
+[7/12] draw-paired/240645/1/y OMISSION self_review error
+[8/12] draw-paired/240645/1/y UNDERSPECIFIED self_review error
+[9/12] draw-paired/256224/1/x OMISSION self_review error
+[10/12] draw-paired/256224/1/x UNDERSPECIFIED self_review error
+[11/12] draw-paired/587206/1/x OMISSION self_review ok
+[12/12] draw-paired/587206/1/x UNDERSPECIFIED self_review ok
+[4/12] draw-paired/911331/1/y OMISSION self_review ok
+[5/12] draw-paired/911331/1/y UNDERSPECIFIED self_review ok
+[6/12] draw-paired/544767/1/x OMISSION self_review ok
+[7/12] draw-paired/544767/1/x UNDERSPECIFIED self_review ok
+[8/12] draw-paired/251790/1/plane UNDERSPECIFIED self_review error
+[9/12] draw-paired/240645/1/y OMISSION self_review error
+[8/12] draw-paired/251790/1/plane UNDERSPECIFIED self_review ok
+[9/12] draw-paired/240645/1/y OMISSION self_review ok
+[10/12] draw-paired/240645/1/y UNDERSPECIFIED self_review ok
+[11/12] draw-paired/256224/1/x OMISSION self_review ok
+[12/12] draw-paired/256224/1/x UNDERSPECIFIED self_review ok

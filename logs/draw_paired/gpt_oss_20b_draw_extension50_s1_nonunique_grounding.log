@@ -1,0 +1,39 @@
+Traceback (most recent call last):
+  File "/Users/buihuynhtay/Documents/ChatGPT/degro/scripts/run_pilot.py", line 10, in <module>
+    from targetcheck.pilot import METHODS, OUTPUT_SCHEMA, build_prompt, parse_decision, prompt_hash, score
+ModuleNotFoundError: No module named 'targetcheck'
+Traceback (most recent call last):
+  File "/Users/buihuynhtay/Documents/ChatGPT/degro/scripts/run_pilot.py", line 10, in <module>
+    from targetcheck.pilot import METHODS, OUTPUT_SCHEMA, build_prompt, parse_decision, prompt_hash, score
+ModuleNotFoundError: No module named 'targetcheck'
+Traceback (most recent call last):
+  File "/Users/buihuynhtay/Documents/ChatGPT/degro/scripts/run_pilot.py", line 10, in <module>
+    from targetcheck.pilot import METHODS, OUTPUT_SCHEMA, build_prompt, parse_decision, prompt_hash, score
+ModuleNotFoundError: No module named 'targetcheck'
+[1/14] draw-paired/937657/1/x OMISSION nonunique_grounding ok
+[2/14] draw-paired/937657/1/x UNDERSPECIFIED nonunique_grounding error
+[3/14] draw-paired/630415/1/x OMISSION nonunique_grounding error
+[4/14] draw-paired/630415/1/x UNDERSPECIFIED nonunique_grounding error
+[5/14] draw-paired/80012/1/x OMISSION nonunique_grounding error
+[6/14] draw-paired/80012/1/x UNDERSPECIFIED nonunique_grounding error
+[7/14] draw-paired/406012/1/f OMISSION nonunique_grounding error
+[8/14] draw-paired/406012/1/f UNDERSPECIFIED nonunique_grounding error
+[9/14] draw-paired/276154/1/x OMISSION nonunique_grounding error
+[10/14] draw-paired/276154/1/x UNDERSPECIFIED nonunique_grounding error
+[11/14] draw-paired/415249/1/x OMISSION nonunique_grounding ok
+[12/14] draw-paired/415249/1/x UNDERSPECIFIED nonunique_grounding error
+[3/14] draw-paired/937657/1/x UNDERSPECIFIED nonunique_grounding error
+[4/14] draw-paired/630415/1/x OMISSION nonunique_grounding error
+[5/14] draw-paired/630415/1/x UNDERSPECIFIED nonunique_grounding error
+[6/14] draw-paired/80012/1/x OMISSION nonunique_grounding ok
+[7/14] draw-paired/80012/1/x UNDERSPECIFIED nonunique_grounding ok
+[8/14] draw-paired/406012/1/f OMISSION nonunique_grounding ok
+[9/14] draw-paired/406012/1/f UNDERSPECIFIED nonunique_grounding ok
+[10/14] draw-paired/276154/1/x OMISSION nonunique_grounding ok
+[11/14] draw-paired/276154/1/x UNDERSPECIFIED nonunique_grounding ok
+[12/14] draw-paired/415249/1/x UNDERSPECIFIED nonunique_grounding ok
+[13/14] draw-paired/349191/1/x OMISSION nonunique_grounding ok
+[14/14] draw-paired/349191/1/x UNDERSPECIFIED nonunique_grounding ok
+[12/14] draw-paired/937657/1/x UNDERSPECIFIED nonunique_grounding ok
+[13/14] draw-paired/630415/1/x OMISSION nonunique_grounding ok
+[14/14] draw-paired/630415/1/x UNDERSPECIFIED nonunique_grounding ok
