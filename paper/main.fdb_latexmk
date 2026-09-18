@@ -1,13 +1,13 @@
 # Fdb version 4
-["bibtex main"] 1789699470.39568 "main.aux" "main.bbl" "main" 1789699473.43696 0
-  "./refs.bib" 1789642568.44278 19388 865b7573e4174408d07f8f3fc386d4a6 ""
-  "/usr/local/texlive/2025/texmf-dist/bibtex/bst/acmart/ACM-Reference-Format.bst" 1735764768 90749 48abc1cbed6fafc6fc31528e3aa606ca ""
-  "main.aux" 1789699472.97989 18187 85184931145e89a2e34202d89c29de08 "pdflatex"
+["bibtex main"] 1789712404.1495 "main.aux" "main.bbl" "main" 1789712407.43916 0
+  "./refs.bib" 1789699606.47608 19388 865b7573e4174408d07f8f3fc386d4a6 ""
+  "main.aux" 1789712407.0065 18176 6c30ddb6e07262327001c1fe9af5f34c "pdflatex"
+  "vendor/ACM-Reference-Format.bst" 1784725464 93560 7091f2b0543d2c8bfe2e82ce5d54a029 ""
   (generated)
   "main.bbl"
   "main.blg"
   (rewritten before read)
-["pdflatex"] 1789699470.50814 "main.tex" "main.pdf" "main" 1789699473.43723 0
+["pdflatex"] 1789712404.27162 "main.tex" "main.pdf" "main" 1789712407.43939 0
   "/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/inconsolata/i4-t1-4.enc" 1558214095 7693 0f2dce6d313c82989ec3a67fc24df2a0 ""
   "/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/libertine/lbtn_25tcsq.enc" 1490131464 2921 8ca0eb0831f9bc5da080d3697cfe67bf ""
   "/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/libertine/lbtn_76gpa5.enc" 1490131464 2933 9ad527ce78d7c5fa0a642dead095f172 ""
@@ -327,13 +327,13 @@
   "/usr/local/texlive/2025/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1759948538 5467155 19efa205003f9ecad95fbbaa6ff24da1 ""
   "/usr/local/texlive/2025/texmf-var/web2c/pdftex/pdflatex.fmt" 1759948473 3345731 542163a676e9c7fa4f99ea6da5b59371 ""
   "/usr/local/texlive/2025/texmf.cnf" 1741450484 577 418a7058ec8e006d8704f60ecd22c938 ""
-  "draw_paired_statistics.tex" 1789699378.87574 689 418b4830423953478ac4dbd94a0e261f ""
-  "figure/fig1_paradigms.png" 1789550081.90698 90690 4ca0154bde89f177eba296540b3f1a1a ""
-  "figure/pipeline.png" 1789667895.81413 362054 26ddde3d010b6ba5e2e84bb76b6a7771 ""
-  "main.aux" 1789699472.97989 18187 85184931145e89a2e34202d89c29de08 "pdflatex"
-  "main.bbl" 1789699470.50403 22091 3c6298c3cda48141f79f4ae33739af4d "bibtex main"
-  "main.out" 1789699472.98185 4379 7b54fbea122295b4db7465dbc13770cb "pdflatex"
-  "main.tex" 1789699467.16739 78748 a4438e7738649e7ac886cb0dea8bf572 ""
+  "draw_paired_statistics.tex" 1789701647.96112 1025 4641dbe8100cbb0459d619d5664a1007 ""
+  "figure/fig1_paradigms.png" 1789699606.46934 90690 4ca0154bde89f177eba296540b3f1a1a ""
+  "figure/pipeline.png" 1789699606.47171 362054 26ddde3d010b6ba5e2e84bb76b6a7771 ""
+  "main.aux" 1789712407.0065 18176 6c30ddb6e07262327001c1fe9af5f34c "pdflatex"
+  "main.bbl" 1789712404.26732 22091 1f416eba10c77658b75bbe71c0d9721a "bibtex main"
+  "main.out" 1789712407.00895 4488 8f3476e893ef629df4877d818e748e3f "pdflatex"
+  "main.tex" 1789712356.52756 79347 8c2168917511b8bc88eea9e25576a477 ""
   "vendor/aamas.cls" 1784725464 122209 65113db2770441df189925e574f1dbe2 ""
   "vendor/by.pdf" 1784725464 5004 981f6317db1b416da3b30e5922ad167c ""
   (generated)

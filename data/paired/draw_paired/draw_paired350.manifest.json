@@ -1,18 +1,18 @@
 {
   "stage": "FROZEN_HUMAN_REVIEWED_POST_INFERENCE",
-  "base_pairs": 300,
-  "extension_pairs": 50,
-  "pairs": 350,
-  "cases": 700,
+  "base_pairs": 256,
+  "extension_pairs": 44,
+  "pairs": 300,
+  "cases": 600,
   "seed": 20260919,
   "remaining_clean_pool": 67,
   "extension_split_counts": {
     "dev": 13,
     "train": 37
   },
-  "base_sha256": "5920469f580e4603a41f6bcbba18f529f4cb5aa4b9de72903c527d3385c790ed",
-  "extension_sha256": "a8b54041cee7950899068f70a64e8cef9c3be72e21253ce17ae9b8db28c758c3",
-  "combined_sha256": "aee2697aa98adec904a059b668eb646a32036e032b650d0c79f4044697054561",
+  "base_sha256": "eac4753b7fbf9276bd102de96134a370cafaa24d6851414cd096c1cccf974ca3",
+  "extension_sha256": "a1e5984ce7415df9a1fa4a6f2fcb35f9ca9745d5e8a5522c26e75a246513be45",
+  "combined_sha256": "414ca56b46f0fa188555ae0fb33895d630602ad1db858f5c4569a8e5c96a2e25",
   "review_packet": "data/paired/draw_paired/draw_paired_extension50_review.jsonl",
   "human_review_complete": true,
   "selection": "disjoint source indices; clean proposals; proportional split allocation; seeded SHA256 rank; extension chosen after original300 outcomes",
@@ -20,8 +20,18 @@
   "reviewed_at_utc": "2026-09-18T02:50:30.270757+00:00",
   "reviewer": "author",
   "review_status_counts": {
-    "APPROVE": 350
+    "APPROVE": 300,
+    "REJECT": 50
   },
-  "extension_review_packet_sha256": "3d528b299e2fa893033d8b1fce25468a68f76a65cad26337a551734243835efd",
-  "review_timing": "Both cohorts author-reviewed after their respective inference; extension selected after original300 outcomes"
+  "extension_review_packet_sha256": "e892dde685501a18eb513ecc5808538ec9daf4308413b02d6ab97119cf4e41d4",
+  "review_timing": "Both cohorts author-reviewed after their respective inference; extension selected after original300 outcomes",
+  "exclusion_audit": "data/paired/draw_paired/exclusion_audit.json",
+  "exclusion_ids_sha256": "5f850689221e721de3f4d7f7a2ba42c2f87275eb76fd873d1c8e724bcbe14a6d",
+  "review_packet_sha256": "e892dde685501a18eb513ecc5808538ec9daf4308413b02d6ab97119cf4e41d4",
+  "original_pairs": 350,
+  "excluded_pairs": 50,
+  "retained_split_counts": {
+    "train": 221,
+    "dev": 79
+  }
 }

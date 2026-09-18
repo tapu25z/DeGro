@@ -31,16 +31,18 @@ def holm(rows: list[dict]) -> None:
 
 
 def main() -> None:
+    case_count = len(DATA.read_text().splitlines())
+    expected_count = case_count * 4
     model_rows = []
     output_hashes = {}
     for model_name, stem in MODELS.items():
         complete = Path(f"results/{stem}_draw_paired_provisional300_complete.jsonl")
         analysis_path = Path(f"results/{stem}_draw_paired_provisional300_analysis.json")
         records = [json.loads(line) for line in complete.read_text().splitlines()]
-        if len(records) != 2400:
-            raise ValueError(f"{model_name}: expected 2400 records, found {len(records)}")
+        if len(records) != expected_count:
+            raise ValueError(f"{model_name}: expected {expected_count} records, found {len(records)}")
         keys = {(row["pair_id"], row["label"], row["method"]) for row in records}
-        if len(keys) != 2400 or any(row.get("status") != "ok" for row in records):
+        if len(keys) != expected_count or any(row.get("status") != "ok" for row in records):
             raise ValueError(f"{model_name}: output is not complete and unique")
         analysis = json.loads(analysis_path.read_text())
         comparison = next(
@@ -81,8 +83,8 @@ def main() -> None:
         "claim_scope": "exploratory/provisional until exact spans and deletions are human-approved",
         "dataset": str(DATA),
         "dataset_sha256": digest(DATA),
-        "pairs": 300,
-        "cases": 600,
+        "pairs": case_count // 2,
+        "cases": case_count,
         "methods": ["self_review", BASELINE, "nonunique", DEGRO],
         "primary_comparison": f"{DEGRO} minus {BASELINE} on FDA",
         "multiplicity": "Holm correction across the three model-specific primary comparisons",
@@ -94,7 +96,7 @@ def main() -> None:
     json_path.write_text(json.dumps(report, indent=2) + "\n")
 
     lines = [
-        "# DRAW-Paired provisional 300",
+        f"# DRAW-Paired provisional cohort ({case_count // 2} retained pairs)",
         "",
         "> Provisional: exact source spans and deletions still require human approval.",
         "",

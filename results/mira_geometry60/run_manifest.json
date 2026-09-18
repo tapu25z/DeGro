@@ -1,0 +1,20 @@
+{
+  "models": {
+    "gpt_oss_20b": "gpt-oss:20b",
+    "gpt_oss_120b": "gpt-oss:120b"
+  },
+  "temperature": 1.0,
+  "think": "medium",
+  "methods": [
+    "self_review",
+    "grounded_self_review",
+    "nonunique",
+    "nonunique_grounding"
+  ],
+  "pairs": 60,
+  "expected_per_model": 480,
+  "prompt_hash": "eafed6be4973c21e1efbb5cc804112c9d50c95764e8f5066b58bdee58b92bdda",
+  "data_sha256": "dfbb83a551a4b39ad0d4abbee138ce7e8e581e5c6500cc6f914f598efaad5f51",
+  "selection": "first valid response; never select by score",
+  "max_retry_waves": 4
+}

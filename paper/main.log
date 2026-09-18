@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.10.9)  18 SEP 2026 09:44
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.10.9)  18 SEP 2026 13:20
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -6,7 +6,7 @@ entering extended mode
 (./main.tex
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-01-18>
-(./vendor/aamas.cls
+(vendor/aamas.cls
 Document Class: aamas 2026/06/27 v2.19 Typesetting articles for the Association
  for Computing Machinery
 (/usr/local/texlive/2025/texmf-dist/tex/latex/xkeyval/xkeyval.sty
@@ -1587,8 +1587,8 @@ local/texlive/2025/texmf-dist/fonts/enc/dvips/libertine/lbtn_76gpa5.enc}
 {/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/libertine/lbtn_nh77jq.enc}{
 /usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/libertine/lbtn_7grukw.enc}{/
 usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/libertine/lbtn_naooyc.enc}{/u
-sr/local/texlive/2025/texmf-dist/fonts/enc/dvips/libertine/lbtn_oexx6f.enc} <./
-vendor/by.pdf> <./figure/fig1_paradigms.png>]
+sr/local/texlive/2025/texmf-dist/fonts/enc/dvips/libertine/lbtn_oexx6f.enc} <ve
+ndor/by.pdf> <./figure/fig1_paradigms.png>]
 Underfull \hbox (badness 5637) in paragraph at lines 102--103
 \T1/LinuxLibertineT-TLF/b/n/9 (+20) (RQ1) De-ci-sion qual-ity and trade-offs. \
 T1/LinuxLibertineT-TLF/m/n/9 (+20) How do target-
@@ -1663,27 +1663,26 @@ LaTeX Font Info:    Font shape `U/ntxexa/m/n' will be
 (Font)              scaled to size 8.0pt on input line 233.
 LaTeX Font Info:    Font shape `U/ntxexa/m/n' will be
 (Font)              scaled to size 6.0pt on input line 233.
-
-
-LaTeX Font Info:    Trying to load font information for T1+zi4 on input line 26
-5.
-(/usr/local/texlive/2025/texmf-dist/tex/latex/inconsolata/t1zi4.fd
+LaTeX Font Info:    Trying to load font information for T1+zi4 on input line 25
+6.
+ (/usr/local/texlive/2025/texmf-dist/tex/latex/inconsolata/t1zi4.fd
 File: t1zi4.fd 2018/01/14 T1/zi4 (Inconsolata)
 )
 LaTeX Font Info:    Font shape `T1/zi4/m/n' will be
-(Font)              scaled to size 9.0pt on input line 265.
+(Font)              scaled to size 9.0pt on input line 256.
 Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `zi4' (encoding: T1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
 
 
+
+
 [5.5{/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/inconsolata/i4-t1-4.enc
 }]
+
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/n' will be
 (Font)              scaled to size 8.5pt on input line 290.
-
-
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/n' will be
 (Font)              scaled to size 6.5pt on input line 339.
 LaTeX Font Info:    Calculating math sizes for size <6.5> on input line 344.
@@ -1735,6 +1734,9 @@ LaTeX Font Info:    Font shape `U/ntxexa/m/n' will be
 (Font)              scaled to size 4.74496pt on input line 344.
 LaTeX Font Info:    Font shape `U/ntxexa/m/n' will be
 (Font)              scaled to size 3.57501pt on input line 344.
+
+
+[6.6]
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/sc' will be
 (Font)              scaled to size 8.0pt on input line 442.
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/b/n' will be
@@ -1783,9 +1785,7 @@ LaTeX Font Info:    Font shape `T1/zi4/b/n' will be
 (Font)              scaled to size 9.0pt on input line 518.
 
 
-[6.6] (./draw_paired_statistics.tex)
-
-
+(./draw_paired_statistics.tex)
 
 [7.7]
 
@@ -1793,9 +1793,9 @@ LaTeX Font Info:    Font shape `T1/zi4/b/n' will be
 
 [8.8]
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/n' will be
-(Font)              scaled to size 5.0pt on input line 566.
+(Font)              scaled to size 5.0pt on input line 563.
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/b/n' will be
-(Font)              scaled to size 5.0pt on input line 580.
+(Font)              scaled to size 5.0pt on input line 577.
 
 
 
@@ -1808,7 +1808,13 @@ LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/b/n' will be
 
 
 
-[11.11] (./main.bbl
+[11.11]
+
+
+
+[12.12
+
+] (./main.bbl
 
 LaTeX Info: Redefining \tempurl on input line 470.
 )
@@ -1818,7 +1824,7 @@ File: se-pdfdoc.def 2019/11/29 v1.12 stringenc: PDFDocEncoding
 )
 (/usr/local/texlive/2025/texmf-dist/tex/generic/stringenc/se-utf8.def
 File: se-utf8.def 2019/11/29 v1.12 stringenc: UTF-8
-) [12.12
+) [13.13
 
 ]
 (./main.aux)
@@ -1827,17 +1833,17 @@ LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-01-18>
  ***********
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 7B54FBEA122295B4DB7465DBC13770CB;4379.
+(rerunfilecheck)             Checksum: 8F3476E893EF629DF4877D818E748E3F;4488.
  )
 (\end occurred when \ifx on line 2 was incomplete) 
 Here is how much of TeX's memory you used:
- 40876 strings out of 473190
- 805040 string characters out of 5715800
- 1305056 words of memory out of 5000000
+ 40882 strings out of 473190
+ 805172 string characters out of 5715800
+ 1306335 words of memory out of 5000000
  62299 multiletter control sequences out of 15000+600000
- 878088 words of font info for 740 fonts, out of 8000000 for 9000
+ 878928 words of font info for 744 fonts, out of 8000000 for 9000
  1302 hyphenation exceptions out of 8191
- 98i,13n,131p,1292b,1113s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 98i,13n,131p,1430b,1113s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2025/texm
 f-dist/fonts/type1/public/inconsolata/Inconsolata-zi4b.pfb></usr/local/texlive/
 2025/texmf-dist/fonts/type1/public/inconsolata/Inconsolata-zi4r.pfb></usr/local
@@ -1853,10 +1859,10 @@ nLibertineTI.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/newtx/N
 ewTXMI.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/newtx/txmiaX.
 pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/newtx/txsym.pfb></us
 r/local/texlive/2025/texmf-dist/fonts/type1/public/newtx/txsys.pfb>
-Output written on main.pdf (12 pages, 939837 bytes).
+Output written on main.pdf (13 pages, 941302 bytes).
 PDF statistics:
- 473 PDF objects out of 1000 (max. 8388607)
- 391 compressed objects within 4 object streams
+ 477 PDF objects out of 1000 (max. 8388607)
+ 394 compressed objects within 4 object streams
  117 named destinations out of 1000 (max. 500000)
  167796 words of extra memory for PDF output out of 184870 (max. 10000000)
 

@@ -62,8 +62,8 @@
 \author{Anonymous Author(s)}
 
 \begin{abstract}
-Executable mathematical reasoning may run successfully while solving an underconstrained or mistranslated problem.  Execution checks expose syntax, runtime, and arithmetic failures but do not establish that the encoded constraints determine the requested quantity.  We introduce \emph{DeGro}, a neuro-symbolic framework for \emph{target determinacy diagnosis}.  DeGro asks a solver for two feasible assignments that disagree on the target; when they exist, a repair policy requests source support and accepts a constraint only if it passes provenance and formal checks that restore determinacy; otherwise, it abstains.  On a fixed paired evaluation that varies source support while holding the formalization constant, DeGro improves repair-or-abstain accuracy for GPT-OSS 20B and 120B.  Human-verified natural-error studies show that DeGro improves accuracy on the supported MATH-500 cohort, while higher-coverage ALG514 reveals answer-compatible formalization errors.  Detection is much easier than repair, and concrete witnesses add no measurable benefit beyond the verdict.  Target determinacy is therefore an auditable intermediate guardrail, not a proof of source-to-formal faithfulness.
-An additional 350-pair DRAW-Paired experiment uses natural algebra sources with injected omissions: DeGro improves FDA over grounded self-review by 6.3 points for GPT-OSS 120B and 7.3 for Nano, while the 20B difference is inconclusive and verdict-only repair performs best for 120B. This cumulative experiment is post-hoc and provisional: 300 pairs are author-reviewed after initial inference and a 50-pair extension awaits review.
+Executable mathematical reasoning may run successfully while solving an underconstrained or mistranslated problem.  Execution checks expose syntax, runtime, and arithmetic failures but do not establish that the encoded constraints determine the requested quantity.  We introduce \emph{DeGro}, a neuro-symbolic framework for \emph{target determinacy diagnosis}.  DeGro asks a solver for two feasible assignments that disagree on the target; when they exist, a repair policy requests source support and accepts a constraint only if it passes provenance and formal checks that restore determinacy; otherwise, it abstains.  On an exploratory 360-pair MIRA-Math evaluation that varies source support while holding the formalization constant, DeGro improves repair-or-abstain accuracy over grounded self-review for GPT-OSS 20B, GPT-OSS 120B, and Nemotron Nano 30B.  The added 60-pair geometry family was incorporated after inspection of the original 300-pair outcomes and is therefore reported as a post-hoc extension.  Human-verified natural-error studies show that DeGro improves accuracy on the supported MATH-500 cohort, while higher-coverage ALG514 reveals answer-compatible formalization errors.  Detection is much easier than repair, and concrete witnesses add no measurable benefit beyond the verdict.  Target determinacy is therefore an auditable intermediate guardrail, not a proof of source-to-formal faithfulness.
+An additional 300-pair, author-reviewed DRAW-Paired experiment uses natural algebra sources with injected omissions: DeGro improves FDA over grounded self-review by 8.8 points for GPT-OSS 120B and 10.2 for Nano, and 5.8 for 20B; DeGro ties verdict-only repair for the highest 120B FDA. This subset analysis is post-hoc: review and the subsequent 50-pair exclusion followed inference, and the extension was selected after initial outcomes.
 \end{abstract}
 \ccsdesc[500]{Computing methodologies~Knowledge representation and reasoning}
 \ccsdesc[500]{Computing methodologies~Intelligent agents}
@@ -116,7 +116,7 @@ We evaluate this framework at two complementary levels.  A controlled paired ben
 
 \noindent\textbf{(1) A target-determinacy-guided repair-or-abstain framework.} We introduce DeGro, which combines two-copy target-determinacy diagnosis with source-grounded repair, deterministic acceptance gates, and explicit abstention (RQ1).
 
-\noindent\textbf{(2) Controlled and natural-source paired benchmarks.} We construct matched cases that hold the formalization fixed while varying whether the source supports the missing constraint. Alongside MIRA-Math, DRAW-Paired contributes 350 pairs derived from natural algebra word problems (300 author-reviewed and 50 pending review), isolating supported repair from unsupported completion (RQ2).
+\noindent\textbf{(2) Controlled and natural-source paired benchmarks.} We construct matched cases that hold the formalization fixed while varying whether the source supports the missing constraint. Alongside MIRA-Math, DRAW-Paired contributes 300 retained author-reviewed pairs derived from natural algebra word problems, isolating supported repair from unsupported completion (RQ2).
 
 \noindent\textbf{(3) A multi-stage empirical audit of executable reasoning.} We combine controlled and human-verified natural-error evaluations to separate representation coverage, ambiguity detection, and grounded repair; we additionally test whether concrete witnesses improve decisions (RQ3).
 
@@ -253,23 +253,23 @@ To answer RQ1, we compare \textsc{self-review}, \textsc{grounded self-review}, \
 
 Self-review asks the model to revise the formalization without an explicit diagnostic signal or grounding requirement. Grounded self-review adds the same exact-span grounding rule used by DeGro, requiring every introduced constraint to be supported by the source, but receives neither the solver verdict nor witness information. Determinacy-guided repair receives the typed \textsc{ambiguous} verdict without the grounding requirement, isolating the effect of determinacy feedback. DeGro combines the ambiguity verdict with exact-span grounding and applies the same deterministic acceptance gate used during evaluation. In the main comparison, witness values are not exposed to the repair model.
 
-We evaluate these methods with GPT-OSS 20B and GPT-OSS 120B~\cite{openai2025gptoss}, and Nemotron 3 Nano 30B~\cite{nvidia2025nemotronnano}, using the same cases, methods, frozen prompts, temperature 1.0, and matched medium-reasoning API settings, yielding $120\times2\times4=960$ complete records per model. Because identical API settings do not necessarily correspond to identical internal reasoning budgets across model families, cross-model comparisons are interpreted as robustness checks rather than strictly compute-matched comparisons.
+We evaluate these methods with GPT-OSS 20B and GPT-OSS 120B~\cite{openai2025gptoss}, and Nemotron 3 Nano 30B~\cite{nvidia2025nemotronnano}, using the same cases, methods, frozen prompt, and temperature 1.0, yielding $360\times2\times4=2{,}880$ complete records per model. GPT-OSS uses medium reasoning throughout. Nano's original 300-pair records use the literal API request \texttt{think=medium}, whereas its 60 geometry pairs use \texttt{think=true}; both invoke the public thinking-on renderer but need not imply identical internal budgets. Cross-model comparisons are therefore robustness checks rather than strictly compute-matched comparisons.
 
 For RQ2, the paired construction evaluates whether repair behavior is sensitive to evidence in the source. For the controlled component of RQ3, we use a separate exploratory development set of 100 pairs to test whether the repair model benefits from seeing two concrete assignments that both satisfy the current formalization but yield different target values, rather than receiving only the typed \textsc{ambiguous} verdict.
 
 \subsection{Data}
 \paragraph{Controlled paired benchmark (RQ2).}
-For each gold specification $F^*=\{c_1,\ldots,c_k,c^*\}$, we form $F^-=F^*\setminus\{c^*\}$ and retain it only if $F^*$ determines the target while $F^-$ is satisfiable and target-ambiguous.  Each pair shares this same underconstrained formalization $F^-$.  In the \textsc{omission} case, the source still states the fact represented by $c^*$, so the formalization has omitted source information and repair is correct.  In the \textsc{underspecified} case, that fact is absent from the source itself, so no source-supported constraint can restore it and abstention is correct.  The two cases therefore have the same constraints and solver verdict but require opposite actions; the source is the only label-revealing input.  After excluding an 80-pair pilot and 100-pair development set, we froze 120 confirmatory MIRA-Math pairs (240 cases, five families)~\cite{albateh2026mira}; the combined 300-pair analysis is secondary.
+For each gold specification $F^*=\{c_1,\ldots,c_k,c^*\}$, we form $F^-=F^*\setminus\{c^*\}$ and retain it only if $F^*$ determines the target while $F^-$ is satisfiable and target-ambiguous.  Each pair shares this same underconstrained formalization $F^-$.  In the \textsc{omission} case, the source still states the fact represented by $c^*$, so the formalization has omitted source information and repair is correct.  In the \textsc{underspecified} case, that fact is absent from the source itself, so no source-supported constraint can restore it and abstention is correct.  The two cases therefore have the same constraints and solver verdict but require opposite actions; the source is the only label-revealing input.  Our original cohort contains 300 MIRA-Math pairs (600 cases, five families)~\cite{albateh2026mira}: 80 pilot, 100 development, and 120 held-out pairs. We add all 60 compatible coordinate-geometry instances from the same frozen release, producing the 360-pair result in Table~\ref{tab:main}. The extension was designed and run after the original outcomes were available, so the combined estimate is exploratory rather than an independent confirmatory evaluation. The supplement preserves the 120-pair held-out result and reports the extension separately.
 
 \paragraph{Integrity checks.}
-The builder imports the typed missing fact from MIRA-Math rather than asking an LLM to corrupt the problem, then applies all three solver checks.  The final set exhausts compatible unseen identifiers; its manifest records source revision \texttt{72ff918}, license, selection seed, family counts, and prompt/output hashes.  The five families cover linear separation, rank-deficient systems, path sums, Chinese-remainder reconstruction, and moment constraints.
+The builder imports the typed missing fact from MIRA-Math rather than asking an LLM to corrupt the problem, then applies all three solver checks.  The original manifest records source revision \texttt{72ff918}, license, selection seed, family counts, and prompt/output hashes.  The first five families cover linear separation, rank-deficient systems, path sums, Chinese-remainder reconstruction, and moment constraints. Geometry60 contains every compatible coordinate-geometry instance in the release, without outcome-based filtering; its formal target is squared Euclidean distance, which is uniqueness-equivalent to nonnegative Euclidean distance under the adapter's domain assumptions.
 
 The families exercise distinct structures.  Linear separation removes a relation that distinguishes otherwise compatible solutions; rank-deficient systems preserve several degrees of freedom.  Graph path sums and Chinese-remainder reconstruction combine discrete equalities with domain restrictions, while moment problems couple polynomial summaries within the supported degree bound.  Family-stratified results check that one easy template does not dominate the aggregate.  Because every retained deletion is mechanically verified as target-critical, the benchmark does not mislabel an irrelevant omission as a repair opportunity.
 
 \paragraph{Main natural-source paired benchmark (DRAW-Paired).}
-DRAW-Paired uses DRAW-1K's 600 training and 200 development problems~\cite{upadhyay2017derivations}; its 200 test problems remain untouched. Excluding one duplicate identifier and 200 single-equation problems leaves 599 solver-eligible systems: deleting a gold equation preserves satisfiability but makes a real-valued target ambiguous, while the full-system target matches a published gold solution. Gold coefficient alignments propose supporting sentences. The initial seeded cohort has 300 pairs (223 training-derived, 77 development-derived). A source-disjoint, split-proportional extension selects 50 of 67 remaining unflagged proposals (37 training-derived, 13 development-derived), giving 350 pairs and 700 cases. Pair members share retained equations, target, and domains; only the supporting span is deleted in the underspecified member. These are injected omissions on natural sources, not naturally occurring model errors.
+DRAW-Paired uses DRAW-1K's 600 training and 200 development problems~\cite{upadhyay2017derivations}; its 200 test problems remain untouched. Excluding one duplicate identifier and 200 single-equation problems leaves 599 solver-eligible systems: deleting a gold equation preserves satisfiability but makes a real-valued target ambiguous, while the full-system target matches a published gold solution. Gold coefficient alignments propose supporting sentences. The initial seeded cohort has 300 pairs (223 training-derived, 77 development-derived). A source-disjoint, split-proportional extension selects 50 of 67 remaining unflagged proposals (37 training-derived, 13 development-derived), giving an initial cumulative pool of 350 pairs and 700 cases. A subsequent author re-review excludes 50 pairs (44 initial, six extension), leaving 300 pairs and 600 cases from 221 training and 79 development sources. Exclusions followed inference and access to model outcomes; the released exclusion list records all removed identifiers. Pair members share retained equations, target, and domains; only the supporting span is deleted in the underspecified member. These are injected omissions on natural sources, not naturally occurring model errors.
 
-The author reviewed the initial 300 spans and deletions after provisional inference. Two title-abbreviation segmentation errors were corrected and both affected pairs rerun across all models and policies; other responses were retained and rescored. The extension was selected after initial outcomes, locked before its own inference, and awaits human span/deletion review. Solver checks do not establish semantic validity: the cumulative estimate is provisional and post-hoc, not preregistered or fully human-verified. Each model has 2,800 complete records under the same four policies and decoding settings; original 300-pair outputs remain archived. Retries retain the first valid response, without score-based resampling. The primary FDA comparison is DeGro minus grounded self-review, with 10,000 pair-cluster bootstrap resamples and Holm correction across three models. The supplement details provenance.
+All retained spans and deletions were author-reviewed after inference; the subsequent 50-pair exclusion was also post-hoc. Two initial title-abbreviation errors were corrected and affected pairs rerun; other responses were retained and rescored. The extension was selected after initial outcomes, locked before its inference, then approved without input changes. Thus this human-reviewed analysis is post-hoc, not preregistered or human-frozen before inference. Each model has 2,400 retained records with shared policies and decoding settings; excluded responses are removed from released raw and complete outputs. Retries retain the first valid response without score-based resampling. DeGro-minus-grounded-self-review FDA intervals use 10,000 pair-cluster bootstrap resamples; Holm correction covers three models. The supplement details provenance.
 
 \paragraph{Natural-error study.}
 For ecological validity, GPT-OSS 20B generated one Structured SymCode specification per MATH-500 problem without injected errors.  We froze all parsed, solver-supported, conclusive cases before annotation or outcome inspection and reused each initial specification across methods.  Model-proposed labels and evidence were hidden from verifier outputs, then fully checked by two reviewers: all 292 MATH-500 and 503 ALG514 cases.  Because separate pre-discussion human labels were not retained, we claim human verification, not independent annotation or inter-annotator agreement.  Labels distinguish correct, missing/wrong/extra constraint, wrong domain, wrong target, computational error, and other; only source-supported target-critical omissions enter the primary subset.
@@ -284,7 +284,7 @@ MATH-500 contributes 292 of 500 conclusive, solver-supported formalizations; ALG
 
 \begin{table*}[t]
 \centering
-\caption{Main paired experiments on MIRA-Math (120 fixed pairs, 240 cases) and DRAW-Paired (350 pairs, 700 cases; 300 author-reviewed and 50 pending review). Values are percentages. FDA is primary; RSR and CAR decompose repair and abstention, and UR measures unsupported additions among proposed additions. Blue rows denote DeGro; bold FDA marks the best policy within each model and dataset. Only the MIRA GPT-OSS 20B comparison was preregistered; other comparisons are post-hoc. The cumulative DRAW-Paired estimate is provisional pending review of its extension.}
+\caption{Main paired experiments on exploratory MIRA-360 (360 pairs, 720 cases) and DRAW-Paired (300 retained author-reviewed pairs, 600 cases). Values are percentages. FDA is primary; RSR and CAR decompose repair and abstention, and UR measures unsupported additions among proposed additions. Blue rows denote DeGro; bold FDA marks the best policy within each model and dataset. MIRA-360 combines the original five-family 300-pair cohort with a post-hoc 60-pair geometry extension; it is not an independent confirmatory evaluation. DRAW-Paired review followed inference, and its extension was selected after initial outcomes.}
 \label{tab:main}
 \label{tab:draw_paired}
 \fontsize{8.5}{10}\selectfont
@@ -296,30 +296,30 @@ MATH-500 contributes 292 of 500 conclusive, solver-supported formalizations; ALG
 \cmidrule(lr){3-6}\cmidrule(lr){7-10}
 \textbf{Model} & \textbf{Method} & FDA$\uparrow$ & RSR$\uparrow$ & CAR$\uparrow$ & UR$\downarrow$ & FDA$\uparrow$ & RSR$\uparrow$ & CAR$\uparrow$ & UR$\downarrow$\\
 \midrule
-GPT-OSS & Self-review & 90.4 & 93.3 & 87.5 & 15.2 & 74.4 & 68.3 & 80.6 & 42.3\\
-20B & Grounded self-review & 90.0 & 100.0 & 80.0 & 16.7 & 73.1 & 62.6 & 83.7 & 43.8\\
- & Determinacy-guided & 92.9 & 86.7 & 99.2 & 6.3 & 75.3 & 59.7 & 90.9 & 43.5\\
+GPT-OSS & Self-review & 90.6 & 93.1 & 88.1 & 14.5 & 73.8 & 66.7 & 81.0 & 43.3\\
+20B & Grounded self-review & 91.7 & 94.7 & 88.6 & 11.2 & 73.3 & 62.3 & 84.3 & 43.8\\
+ & Determinacy-guided & 92.6 & 88.1 & 97.2 & 7.9 & 73.7 & 57.0 & 90.3 & 46.1\\
 \rowcolor{degroblue!12}
- & \textbf{DeGro (ours)} & \textbf{95.0} & 92.5 & 97.5 & 4.3 & \textbf{75.6} & 60.3 & 90.9 & 42.8\\
+ & \textbf{DeGro (ours)} & \textbf{96.3} & 93.3 & 99.2 & 2.9 & \textbf{79.2} & 66.7 & 91.7 & 36.3\\
 \midrule
-GPT-OSS & Self-review & 77.5 & 100.0 & 55.0 & 31.0 & 72.4 & 68.9 & 76.0 & 43.4\\
-120B & Grounded self-review & 87.5 & 95.8 & 79.2 & 17.9 & 69.3 & 54.3 & 84.3 & 50.0\\
- & Determinacy-guided & 91.3 & 98.3 & 84.2 & 15.1 & \textbf{78.6} & 70.9 & 86.3 & 36.1\\
+GPT-OSS & Self-review & 78.6 & 99.4 & 57.8 & 29.9 & 72.0 & 68.3 & 75.7 & 44.1\\
+120B & Grounded self-review & 89.6 & 96.7 & 82.5 & 15.5 & 69.0 & 54.0 & 84.0 & 51.1\\
+ & Determinacy-guided & 92.4 & 98.6 & 86.1 & 13.4 & \textbf{77.8} & 69.3 & 86.3 & 37.5\\
 \rowcolor{degroblue!12}
- & \textbf{DeGro (ours)} & \textbf{93.8} & 97.5 & 90.0 & 10.7 & 75.6 & 59.1 & 92.0 & 42.7\\
+ & \textbf{DeGro (ours)} & \textbf{96.1} & 97.8 & 94.4 & 6.4 & \textbf{77.8} & 63.7 & 92.0 & 38.8\\
 \midrule
-Nemotron & Self-review & 84.6 & 76.7 & 92.5 & 25.8 & 65.0 & 46.3 & 83.7 & 56.8\\
-Nano 30B & Grounded self-review & 89.6 & 80.8 & 98.3 & 3.0 & 60.0 & 34.0 & 86.0 & 63.9\\
- & Determinacy-guided & 73.8 & 50.8 & 96.7 & 24.7 & 63.9 & 36.0 & 91.7 & 54.8\\
+Nemotron & Self-review & 83.9 & 76.1 & 91.7 & 25.5 & 63.5 & 44.7 & 82.3 & 59.0\\
+Nano 30B & Grounded self-review & 86.7 & 75.0 & 98.3 & 4.6 & 60.7 & 35.7 & 85.7 & 61.9\\
+ & Determinacy-guided & 72.9 & 53.9 & 91.9 & 27.3 & 63.3 & 34.7 & 92.0 & 55.4\\
 \rowcolor{degroblue!12}
- & \textbf{DeGro (ours)} & \textbf{90.8} & 81.7 & 100.0 & 1.0 & \textbf{67.3} & 42.0 & 92.6 & 51.2\\
+ & \textbf{DeGro (ours)} & \textbf{89.6} & 79.4 & 99.7 & 1.0 & \textbf{70.8} & 48.3 & 93.3 & 44.4\\
 \bottomrule
 \end{tabularx}
 \end{table*}
 
-\subsection{Main Experiment}
+\subsection{Main Paired Experiment on MIRA-Math}
 \paragraph{Primary comparison.}
-The preregistered 20B comparison tests whether DeGro improves FDA over grounded self-review.  We apply the same exact paired McNemar test to the post-hoc GPT-OSS 120B replacement and report Holm correction across the two model-size results.  Paired percentage-point differences use pair-cluster bootstrap 95\% intervals.  Official model documentation describes configurable reasoning effort and structured output support for GPT-OSS~\cite{openai2025gptoss}.
+We compare DeGro with grounded self-review on FDA using exact paired McNemar tests and Holm correction across three models. Percentage-point differences use 10,000 pair-cluster bootstrap resamples. The 360-pair comparison includes method-development observations and the post-hoc geometry extension; the supplement retains the 120-pair held-out results and original analysis protocol. GPT-OSS supports configurable reasoning effort and structured outputs~\cite{openai2025gptoss}.
 
 \paragraph{Metrics and analysis.}
 For RQ1, the primary metric is final decision accuracy (FDA): a case is correct only when the method makes a grounded, functionally correct repair on an omission case or abstains on an underspecified case.  Because every controlled pair contains one case of each type, $\mathrm{FDA}=(\mathrm{RSR}+\mathrm{CAR})/2$.  Repair success rate (RSR) is the proportion of omission cases repaired correctly, and correct abstention rate (CAR) is the proportion of underspecified cases on which the method abstains.  Unsupported repair (UR) is the share of proposed additions that lack source support; it must be interpreted alongside RSR because always abstaining would trivially produce no unsupported additions.  Over-repair rate equals $1-\mathrm{CAR}$ and is omitted from the main table as redundant.  Pair-cluster confidence intervals preserve within-pair dependence; semantic, functional, and grounded outcomes remain separate.
@@ -328,7 +328,7 @@ For RQ1, the primary metric is final decision accuracy (FDA): a case is correct 
 
 
 \paragraph{RQ1: repair-or-abstain decisions.}
-Table~\ref{tab:main} reports the fixed 120-pair analysis.  For GPT-OSS 20B, DeGro raises FDA from 90.0\% to 95.0\% relative to grounded self-review, a $+5.0$-point effect (95\% CI $[0.4,9.6]$; discordant counts 22 versus 10; exact McNemar $p=.050$).  For GPT-OSS 120B, FDA rises from 87.5\% to 93.8\%, a $+6.25$-point effect (95\% CI $[1.7,10.8]$; 24 versus 9; $p=.0135$).  Holm correction across these two GPT-OSS comparisons gives $p=.0501$ and $p=.0271$, respectively.  The 20B result follows the preregistered analysis; the 120B replacement is post-hoc but uses the same untouched cases, prompts, and scoring.
+Table~\ref{tab:main} reports the exploratory 360-pair MIRA-Math aggregate. DeGro raises FDA from 91.7\% to 96.3\% for GPT-OSS 20B ($+4.58$ points, 95\% CI $[2.08,7.08]$; 56 versus 23 discordances; exact $p=.000264$) and from 89.6\% to 96.1\% for 120B ($+6.53$ points, CI $[4.31,8.75]$; 61 versus 14; $p=3.81\times10^{-8}$). Nano changes from 86.7\% to 89.6\% ($+2.92$ points, CI $[0.42,5.42]$; 54 versus 33; $p=.0314$). Holm-adjusted $p$-values are $.000527$, $1.14\times10^{-7}$, and $.0314$. DeGro has the highest FDA among the four policies for each model, but the all-model result is exploratory because Geometry60 was added after inspection of the original cohort.
 
 
 \begin{figure*}[t]
@@ -342,20 +342,20 @@ Table~\ref{tab:main} reports the fixed 120-pair analysis.  For GPT-OSS 20B, DeGr
 \draw[black!12] (0,75) -- (3.05,75); \node[anchor=east,font=\fontsize{6.5}{7.5}\selectfont,text=black!65] at (-.08,75) {75};
 \draw[black!12] (0,100) -- (3.05,100); \node[anchor=east,font=\fontsize{6.5}{7.5}\selectfont,text=black!65] at (-.08,100) {100};
 \node[anchor=west,font=\fontsize{6.5}{7.5}\selectfont,text=black!65] at (0,112) {FDA (\%) $\uparrow$};
-\fill[degroorange!85] (0.22999999999999998,0) rectangle (0.46,90);
-\fill[degroblue] (0.54,0) rectangle (0.77,95);
-\node[above,font=\fontsize{6.5}{7.5}\selectfont,text=degroorange!80!black,rotate=65,anchor=west] at (0.33999999999999997,91) {90.0};
-\node[above,font=\fontsize{6.5}{7.5}\selectfont,text=degroblue,rotate=65,anchor=west] at (0.66,96) {95.0};
+\fill[degroorange!85] (0.22999999999999998,0) rectangle (0.46,91.7);
+\fill[degroblue] (0.54,0) rectangle (0.77,96.3);
+\node[above,font=\fontsize{6.5}{7.5}\selectfont,text=degroorange!80!black,rotate=65,anchor=west] at (0.33999999999999997,92.7) {91.7};
+\node[above,font=\fontsize{6.5}{7.5}\selectfont,text=degroblue,rotate=65,anchor=west] at (0.66,97.3) {96.3};
 \node[align=center,font=\fontsize{6.5}{7.5}\selectfont,anchor=north] at (0.5,-4) {GPT-OSS\\20B};
-\fill[degroorange!85] (1.23,0) rectangle (1.46,87.5);
-\fill[degroblue] (1.54,0) rectangle (1.77,93.8);
-\node[above,font=\fontsize{6.5}{7.5}\selectfont,text=degroorange!80!black,rotate=65,anchor=west] at (1.34,88.5) {87.5};
-\node[above,font=\fontsize{6.5}{7.5}\selectfont,text=degroblue,rotate=65,anchor=west] at (1.66,94.8) {93.8};
+\fill[degroorange!85] (1.23,0) rectangle (1.46,89.6);
+\fill[degroblue] (1.54,0) rectangle (1.77,96.1);
+\node[above,font=\fontsize{6.5}{7.5}\selectfont,text=degroorange!80!black,rotate=65,anchor=west] at (1.34,90.6) {89.6};
+\node[above,font=\fontsize{6.5}{7.5}\selectfont,text=degroblue,rotate=65,anchor=west] at (1.66,97.1) {96.1};
 \node[align=center,font=\fontsize{6.5}{7.5}\selectfont,anchor=north] at (1.5,-4) {GPT-OSS\\120B};
-\fill[degroorange!85] (2.23,0) rectangle (2.46,89.6);
-\fill[degroblue] (2.54,0) rectangle (2.77,90.8);
-\node[above,font=\fontsize{6.5}{7.5}\selectfont,text=degroorange!80!black,rotate=65,anchor=west] at (2.34,90.6) {89.6};
-\node[above,font=\fontsize{6.5}{7.5}\selectfont,text=degroblue,rotate=65,anchor=west] at (2.66,91.8) {90.8};
+\fill[degroorange!85] (2.23,0) rectangle (2.46,86.7);
+\fill[degroblue] (2.54,0) rectangle (2.77,89.6);
+\node[above,font=\fontsize{6.5}{7.5}\selectfont,text=degroorange!80!black,rotate=65,anchor=west] at (2.34,87.7) {86.7};
+\node[above,font=\fontsize{6.5}{7.5}\selectfont,text=degroblue,rotate=65,anchor=west] at (2.66,90.6) {89.6};
 \node[align=center,font=\fontsize{6.5}{7.5}\selectfont,anchor=north] at (2.5,-4) {Nano\\30B};
 \draw[black!50] (0,0) -- (3.05,0);
 \end{tikzpicture}\end{minipage}\hfill
@@ -368,20 +368,20 @@ Table~\ref{tab:main} reports the fixed 120-pair analysis.  For GPT-OSS 20B, DeGr
 \draw[black!12] (0,75) -- (3.05,75); \node[anchor=east,font=\fontsize{6.5}{7.5}\selectfont,text=black!65] at (-.08,75) {75};
 \draw[black!12] (0,100) -- (3.05,100); \node[anchor=east,font=\fontsize{6.5}{7.5}\selectfont,text=black!65] at (-.08,100) {100};
 \node[anchor=west,font=\fontsize{6.5}{7.5}\selectfont,text=black!65] at (0,112) {RSR (\%) $\uparrow$};
-\fill[degroorange!85] (0.22999999999999998,0) rectangle (0.46,100);
-\fill[degroblue] (0.54,0) rectangle (0.77,92.5);
-\node[above,font=\fontsize{6.5}{7.5}\selectfont,text=degroorange!80!black,rotate=65,anchor=west] at (0.33999999999999997,101) {100.0};
-\node[above,font=\fontsize{6.5}{7.5}\selectfont,text=degroblue,rotate=65,anchor=west] at (0.66,93.5) {92.5};
+\fill[degroorange!85] (0.22999999999999998,0) rectangle (0.46,94.7);
+\fill[degroblue] (0.54,0) rectangle (0.77,93.3);
+\node[above,font=\fontsize{6.5}{7.5}\selectfont,text=degroorange!80!black,rotate=65,anchor=west] at (0.33999999999999997,95.7) {94.7};
+\node[above,font=\fontsize{6.5}{7.5}\selectfont,text=degroblue,rotate=65,anchor=west] at (0.66,94.3) {93.3};
 \node[align=center,font=\fontsize{6.5}{7.5}\selectfont,anchor=north] at (0.5,-4) {GPT-OSS\\20B};
-\fill[degroorange!85] (1.23,0) rectangle (1.46,95.8);
-\fill[degroblue] (1.54,0) rectangle (1.77,97.5);
-\node[above,font=\fontsize{6.5}{7.5}\selectfont,text=degroorange!80!black,rotate=65,anchor=west] at (1.34,96.8) {95.8};
-\node[above,font=\fontsize{6.5}{7.5}\selectfont,text=degroblue,rotate=65,anchor=west] at (1.66,98.5) {97.5};
+\fill[degroorange!85] (1.23,0) rectangle (1.46,96.7);
+\fill[degroblue] (1.54,0) rectangle (1.77,97.8);
+\node[above,font=\fontsize{6.5}{7.5}\selectfont,text=degroorange!80!black,rotate=65,anchor=west] at (1.34,97.7) {96.7};
+\node[above,font=\fontsize{6.5}{7.5}\selectfont,text=degroblue,rotate=65,anchor=west] at (1.66,98.8) {97.8};
 \node[align=center,font=\fontsize{6.5}{7.5}\selectfont,anchor=north] at (1.5,-4) {GPT-OSS\\120B};
-\fill[degroorange!85] (2.23,0) rectangle (2.46,80.8);
-\fill[degroblue] (2.54,0) rectangle (2.77,81.7);
-\node[above,font=\fontsize{6.5}{7.5}\selectfont,text=degroorange!80!black,rotate=65,anchor=west] at (2.34,81.8) {80.8};
-\node[above,font=\fontsize{6.5}{7.5}\selectfont,text=degroblue,rotate=65,anchor=west] at (2.66,82.7) {81.7};
+\fill[degroorange!85] (2.23,0) rectangle (2.46,75.0);
+\fill[degroblue] (2.54,0) rectangle (2.77,79.4);
+\node[above,font=\fontsize{6.5}{7.5}\selectfont,text=degroorange!80!black,rotate=65,anchor=west] at (2.34,76.0) {75.0};
+\node[above,font=\fontsize{6.5}{7.5}\selectfont,text=degroblue,rotate=65,anchor=west] at (2.66,80.4) {79.4};
 \node[align=center,font=\fontsize{6.5}{7.5}\selectfont,anchor=north] at (2.5,-4) {Nano\\30B};
 \draw[black!50] (0,0) -- (3.05,0);
 \end{tikzpicture}\end{minipage}\hfill
@@ -394,33 +394,33 @@ Table~\ref{tab:main} reports the fixed 120-pair analysis.  For GPT-OSS 20B, DeGr
 \draw[black!12] (0,75) -- (3.05,75); \node[anchor=east,font=\fontsize{6.5}{7.5}\selectfont,text=black!65] at (-.08,75) {75};
 \draw[black!12] (0,100) -- (3.05,100); \node[anchor=east,font=\fontsize{6.5}{7.5}\selectfont,text=black!65] at (-.08,100) {100};
 \node[anchor=west,font=\fontsize{6.5}{7.5}\selectfont,text=black!65] at (0,112) {CAR (\%) $\uparrow$};
-\fill[degroorange!85] (0.22999999999999998,0) rectangle (0.46,80);
-\fill[degroblue] (0.54,0) rectangle (0.77,97.5);
-\node[above,font=\fontsize{6.5}{7.5}\selectfont,text=degroorange!80!black,rotate=65,anchor=west] at (0.33999999999999997,81) {80.0};
-\node[above,font=\fontsize{6.5}{7.5}\selectfont,text=degroblue,rotate=65,anchor=west] at (0.66,98.5) {97.5};
+\fill[degroorange!85] (0.22999999999999998,0) rectangle (0.46,88.6);
+\fill[degroblue] (0.54,0) rectangle (0.77,99.2);
+\node[above,font=\fontsize{6.5}{7.5}\selectfont,text=degroorange!80!black,rotate=65,anchor=west] at (0.33999999999999997,89.6) {88.6};
+\node[above,font=\fontsize{6.5}{7.5}\selectfont,text=degroblue,rotate=65,anchor=west] at (0.66,100.2) {99.2};
 \node[align=center,font=\fontsize{6.5}{7.5}\selectfont,anchor=north] at (0.5,-4) {GPT-OSS\\20B};
-\fill[degroorange!85] (1.23,0) rectangle (1.46,79.2);
-\fill[degroblue] (1.54,0) rectangle (1.77,90);
-\node[above,font=\fontsize{6.5}{7.5}\selectfont,text=degroorange!80!black,rotate=65,anchor=west] at (1.34,80.2) {79.2};
-\node[above,font=\fontsize{6.5}{7.5}\selectfont,text=degroblue,rotate=65,anchor=west] at (1.66,91) {90.0};
+\fill[degroorange!85] (1.23,0) rectangle (1.46,82.5);
+\fill[degroblue] (1.54,0) rectangle (1.77,94.4);
+\node[above,font=\fontsize{6.5}{7.5}\selectfont,text=degroorange!80!black,rotate=65,anchor=west] at (1.34,83.5) {82.5};
+\node[above,font=\fontsize{6.5}{7.5}\selectfont,text=degroblue,rotate=65,anchor=west] at (1.66,95.4) {94.4};
 \node[align=center,font=\fontsize{6.5}{7.5}\selectfont,anchor=north] at (1.5,-4) {GPT-OSS\\120B};
 \fill[degroorange!85] (2.23,0) rectangle (2.46,98.3);
-\fill[degroblue] (2.54,0) rectangle (2.77,100);
+\fill[degroblue] (2.54,0) rectangle (2.77,99.7);
 \node[above,font=\fontsize{6.5}{7.5}\selectfont,text=degroorange!80!black,rotate=65,anchor=west] at (2.34,99.3) {98.3};
-\node[above,font=\fontsize{6.5}{7.5}\selectfont,text=degroblue,rotate=65,anchor=west] at (2.66,101) {100.0};
+\node[above,font=\fontsize{6.5}{7.5}\selectfont,text=degroblue,rotate=65,anchor=west] at (2.66,100.7) {99.7};
 \node[align=center,font=\fontsize{6.5}{7.5}\selectfont,anchor=north] at (2.5,-4) {Nano\\30B};
 \draw[black!50] (0,0) -- (3.05,0);
 \end{tikzpicture}\end{minipage}
 \par\smallskip
 {\small\textcolor{degroorange!85}{\rule{9pt}{5pt}}\ Grounded self-review\qquad\textcolor{degroblue}{\rule{9pt}{5pt}}\ DeGro}
-\caption{MIRA-Math comparison on the same fixed 120 pairs. DeGro has higher FDA than grounded self-review for all three models, while RSR and CAR expose model-specific tradeoffs. The GPT-OSS 20B comparison is preregistered; the GPT-OSS 120B and Nemotron Nano comparisons are post-hoc, and the Nano FDA difference is statistically inconclusive. All axes start at zero.}
+\caption{Exploratory MIRA-360 results. DeGro has higher FDA than grounded self-review for all three models after Holm correction. RSR and CAR expose model-specific tradeoffs. All axes start at zero; the aggregate includes pilot and development observations plus the post-hoc Geometry60 extension.}
 \Description{Three grouped bar charts compare grounded self-review in orange and DeGro in blue for GPT-OSS 20B, GPT-OSS 120B, and Nemotron Nano 30B. Panels show final decision accuracy, grounded repair success, and correct abstention, with numerical labels and zero-based percentage axes.}
 \label{fig:result_summary}
 \end{figure*}
 
 
 \paragraph{RQ1: source-grounded acceptance.}
-On the same confirmatory pairs, 20B DeGro lowers UR from 16.7\% to 4.3\% and raises CAR from 80.0\% to 97.5\%, while RSR falls from 100.0\% to 92.5\%.  For GPT-OSS 120B, DeGro lowers UR from 17.9\% to 10.7\%, raises CAR from 79.2\% to 90.0\%, and raises RSR from 95.8\% to 97.5\%.  Thus the conservative action boundary improves for both sizes, although 20B trades some supported repairs for fewer unsupported additions.  Figure~\ref{fig:qualitative_case} illustrates how the combined signal rejects a superficially grounded but non-resolving edit.
+On MIRA-360, 20B DeGro reduces UR from 11.2\% to 2.9\% and raises CAR from 88.6\% to 99.2\%, while RSR falls from 94.7\% to 93.3\%. For 120B, UR falls from 15.5\% to 6.4\%, CAR rises from 82.5\% to 94.4\%, and RSR from 96.7\% to 97.8\%. Nano reaches 99.7\% CAR and 1.0\% UR, versus 98.3\% and 4.6\%, while RSR rises from 75.0\% to 79.4\%. These metrics expose model-specific repair--abstention tradeoffs. Figure~\ref{fig:qualitative_case} illustrates rejection of a superficially grounded but non-resolving edit.
 
 \begin{figure*}[t]
 \centering
@@ -515,25 +515,22 @@ On the same confirmatory pairs, 20B DeGro lowers UR from 16.7\% to 4.3\% and rai
 {\Large\bfseries\textcolor{degrogreen!80!black}{$\checkmark$}}
 \end{tcolorbox}
 \end{minipage}
-\caption{Illustrative GPT-OSS 120B output on confirmatory case \texttt{lin-000271}.  The source supplies two equations for three integer variables, so the target is not uniquely determined.  All three baselines add an integrality condition that is already enforced and does not resolve ambiguity; DeGro is the only method to abstain.  This selected example explains the mechanism and is not a substitute for the aggregate comparison in Table~\ref{tab:main}.}
+\caption{Illustrative GPT-OSS 120B output on MIRA-Math case \texttt{lin-000271}.  The source supplies two equations for three integer variables, so the target is not uniquely determined.  All three baselines add an integrality condition that is already enforced and does not resolve ambiguity; DeGro is the only method to abstain.  This selected example explains the mechanism and is not a substitute for the aggregate comparison in Table~\ref{tab:main}.}
 \Description{A source problem and its ambiguous two-equation formalization appear above four output cards. Self-review and grounded self-review add a redundant integer declaration, while determinacy-guided repair adds an equivalent modulo condition; all three are marked incorrect. DeGro abstains because no missing relation is supported by the source and is marked correct.}
 \label{fig:qualitative_case}
 \end{figure*}
 
 \subsection{Main Natural-Source Experiment: DRAW-Paired}
-The right-hand block of Table~\ref{tab:main} reports the provisional cumulative DRAW-Paired results alongside the controlled MIRA results. Relative to grounded self-review, DeGro improves FDA by 2.4 points for 20B, 6.3 for 120B, and 7.3 for Nano. All three increase correct abstention; 20B trades away supported repairs (62.6\% to 60.3\% RSR), whereas 120B and Nano improve both components. DeGro is not uniformly best: verdict-only repair reaches 78.6\% FDA for 120B versus DeGro's 75.6\%, driven by higher repair success. This limits any claim that the grounding instruction invariably improves decision accuracy. Moreover, exact-span provenance does not establish semantic entailment, and the relatively high UR requires reporting repair utility alongside abstention. The pending extension review limits semantic validity of the cumulative estimate.
+Table~\ref{tab:main}'s right-hand block reports the retained DRAW-Paired results after the author's post-inference exclusion of 50 pairs. Relative to grounded self-review, DeGro improves FDA by 5.8 points for 20B, 8.8 for 120B, and 10.2 for Nano. All three improve abstention and supported repair; 20B RSR rises from 62.3\% to 66.7\%. DeGro and verdict-only repair tie at 77.8\% FDA for 120B: verdict-only repair has higher RSR, while DeGro has higher CAR. Exact-span provenance does not establish semantic entailment, and high UR requires reporting repair utility alongside abstention. Because exclusions followed access to outcomes, these estimates describe the retained subset and do not establish an independent replication.
 
 \input{draw_paired_statistics.tex}
 
 \section{Analysis}
-\subsection{Cumulative and Natural-Error Analysis}
-\paragraph{Additional model comparisons.} For Nemotron 3 Nano 30B, DeGro raises FDA from 89.6\% to 90.8\% over grounded self-review ($+1.25$ points, pair-cluster 95\% CI $[-2.5,5.0]$; 12 versus 9 discordances; exploratory exact $p=.664$).  This does not establish an incremental accuracy benefit for this model.  Grounded self-review already reaches 98.3\% CAR; DeGro reaches 100.0\% CAR and reduces UR from 3.0\% to 1.0\%, while RSR remains similar (80.8\% versus 81.7\%).  The verdict-only method reaches only 73.8\% FDA, reinforcing the need to report model-specific repair losses.
+\subsection{Additional and Natural-Error Analysis}
+\paragraph{Held-out comparison.} The supplement retains the 120-pair results separately: DeGro minus grounded self-review is $+5.0$ FDA points for 20B (CI $[0.4,9.6]$), $+6.25$ for 120B (CI $[1.7,10.8]$), and $+1.25$ for Nano (CI $[-2.5,5.0]$). The direction agrees with the 300-pair results, but neither Nano estimate establishes an incremental FDA benefit. The main comparison does not replace an independent held-out evaluation.
 
-The two-test Holm family above covers GPT-OSS; the later Nemotron Nano result is exploratory and reported separately without family-wise adjustment.
+\paragraph{Exploratory source-coverage prompt.} Error analysis on the 80-pair development set motivated one frozen prompt refinement: explicitly compare every source condition with $F$, distinguish ambiguity of $F$ from missing information in the source, and expose already enforced variable domains.  The 300 solver-compatible MIRA pairs were already exhausted, so we tested this refinement on a new 100-pair synthetic stress set spanning four algebraic families; this is neither an external benchmark nor an additional MIRA test set.  We concurrently reran the original DeGro prompt.  For Nano 30B, FDA rises from 75.5\% to 95.0\% ($+19.5$ points, pair-cluster 95\% CI $[13.5,25.5]$; exact $p<.001$), with RSR rising from 52.0\% to 90.0\% and CAR from 99.0\% to 100.0\%.  This increased repair activity also raises UR from 1/53 (1.9\%) to 8/98 (8.2\%).  For GPT-OSS 120B, FDA changes from 98.5\% to 99.5\% ($+1.0$ point, CI $[-1.0,3.0]$; $p=.625$), while UR falls from 3/102 (2.9\%) to 1/101 (1.0\%).  Holm adjustment over these two exploratory tests gives $p<.001$ and $p=.625$.  The supplement reports the full protocol and table; these results motivate a future frozen external evaluation and do not revise the main comparisons above.
 
-\paragraph{Secondary cumulative analysis.} Across all 300 pairs, DeGro versus grounded self-review changes FDA from 91.2\% to 96.2\% for 20B (difference $+5.0$ points, 95\% CI $[2.3,7.8]$; McNemar $p<.001$) and from 88.3\% to 95.7\% for 120B (difference $+7.3$ points, 95\% CI $[4.7,10.0]$; $p<.001$).  For Nemotron Nano, the cumulative FDA difference is $+0.83$ points (89.5\% versus 90.3\%; 95\% CI $[-1.5,3.3]$; $p=.590$).  These cumulative estimates include development data and do not replace the fixed 120-pair analysis.
-
-\paragraph{Exploratory source-coverage prompt.} Error analysis on the 80-pair development set motivated one frozen prompt refinement: explicitly compare every source condition with $F$, distinguish ambiguity of $F$ from missing information in the source, and expose already enforced variable domains.  The 300 solver-compatible MIRA pairs were already exhausted, so we tested this refinement on a new 100-pair synthetic stress set spanning four algebraic families; this is neither an external benchmark nor an additional MIRA test set.  We concurrently reran the original DeGro prompt.  For Nano 30B, FDA rises from 75.5\% to 95.0\% ($+19.5$ points, pair-cluster 95\% CI $[13.5,25.5]$; exact $p<.001$), with RSR rising from 52.0\% to 90.0\% and CAR from 99.0\% to 100.0\%.  This increased repair activity also raises UR from 1/53 (1.9\%) to 8/98 (8.2\%).  For GPT-OSS 120B, FDA changes from 98.5\% to 99.5\% ($+1.0$ point, CI $[-1.0,3.0]$; $p=.625$), while UR falls from 3/102 (2.9\%) to 1/101 (1.0\%).  Holm adjustment over these two exploratory tests gives $p<.001$ and $p=.625$.  The supplement reports the full protocol and table; these results motivate a future frozen external evaluation and do not revise the confirmatory claims above.
 
 \paragraph{RQ3: human-verified natural errors.}
 On the supported MATH-500 cohort, 158 of 292 formalizations are correct; the remaining labels are 69 wrong-target, 32 wrong-constraint, 24 target-critical missing-constraint, eight extra-constraint, and one wrong-domain.  The detector identifies 21 of 24 target-critical omissions (87.5\% recall, 95\% Wilson CI $[69.0,95.7]$) but precision is 17.4\% ($21/121$), and only one omission is successfully repaired end to end ($1/24=4.2\%$).  DeGro nevertheless raises cohort answer accuracy from 49.3\% ($144/292$) to 53.8\% ($157/292$); 16 discordant cases favor DeGro and three favor the structured baseline (exact McNemar $p=.0044$).  This prevalence is conditional on 58.4\% solver-fragment coverage.
@@ -588,7 +585,7 @@ On the exploratory 100-pair set, DeGro scores 98.5 FDA versus 97.5 with witnesse
 This part of RQ3 is answered only on the exploratory controlled set.  Every instance contains one target-critical omission, so non-uniqueness already localizes the relevant defect; witness assignments add tokens but little new information.  Specifications with several missing facts or many nuisance dimensions may differ, but these data support determinacy-guided grounding, not a universal benefit from exposing concrete assignments.
 
 \paragraph{RQ1: unsupported additions and repair tradeoffs.}
-For 20B, a bare verdict raises CAR to 98.0\% while lowering RSR to 87.7\%; DeGro restores repairs, reaches 99.0\% CAR, and reduces unsupported additions from 12.5\% to 3.4\% relative to grounded self-review.  For GPT-OSS 120B, DeGro raises cumulative CAR from 79.7\% to 93.3\% and RSR from 97.0\% to 98.0\%, while reducing unsupported additions from 17.3\% to 7.0\%.  Family effects remain concentrated rather than uniform.
+For 20B, a bare verdict raises CAR to 98.0\% while lowering RSR to 87.7\%; DeGro restores repairs, reaches 99.0\% CAR, and reduces unsupported additions from 12.5\% to 3.4\% relative to grounded self-review.  For GPT-OSS 120B, DeGro raises CAR from 79.7\% to 93.3\% and RSR from 97.0\% to 98.0\%, while reducing unsupported additions from 17.3\% to 7.0\%.  Family effects remain concentrated rather than uniform.
 
 \begin{figure*}[t]
 \centering
@@ -620,8 +617,8 @@ For 20B, a bare verdict raises CAR to 98.0\% while lowering RSR to 87.7\%; DeGro
 \end{minipage}
 \par\smallskip
 {\small\textcolor{degroorange}{\rule{9pt}{5pt}}\ Grounded self-review\qquad\textcolor{degroblue}{\rule{9pt}{5pt}}\ DeGro\qquad FDA (\%); axes begin at 75}
-\caption{Cumulative FDA by family; each family contains 60 pairs. DeGro improves four of five families for GPT-OSS 20B and all five for GPT-OSS 120B. The 20B rank-deficient family is the sole adverse regime.}
-\Description{Two dumbbell charts compare cumulative final decision accuracy for grounded self-review and DeGro across five problem families. DeGro improves four families for GPT-OSS 20B and all five for GPT-OSS 120B.}
+\caption{FDA by family on the original five-family MIRA-300 cohort; each family contains 60 pairs. DeGro improves four of five families for GPT-OSS 20B and all five for GPT-OSS 120B. Geometry60 is reported separately in the supplement.}
+\Description{Two dumbbell charts compare final decision accuracy on the original 300 MIRA-Math pairs for grounded self-review and DeGro across five problem families. DeGro improves four families for GPT-OSS 20B and all five for GPT-OSS 120B.}
 \label{fig:family}
 \end{figure*}
 
@@ -668,7 +665,7 @@ This separation prevents a favorable post-hoc coverage slice.  Conditional accur
 
 \subsection{Discussion and Limitations}
 \paragraph{Interpretation and validity.}
-The paired design holds latent values, target, domains, retained constraints, and solver verdict fixed; only the source support for $c^*$ changes.  The repair policy never receives $c^*$, the gold target, or the gold action.  The 120 confirmatory pairs were frozen before inspection, with tests and Holm correction declared in the manifest.  The cumulative analysis remains secondary, and both the witness ablation and source-coverage refinement are exploratory.  The latter was designed from development errors and tested only on synthetic instances from the same task templates; its large Nano gain requires confirmation on an independently sourced frozen benchmark.  FDA equally weights repair and correct abstention; UR must be interpreted with RSR and CAR because always abstaining produces zero unsupported additions but no repair utility.
+The paired design holds latent values, target, domains, retained constraints, and solver verdict fixed; only the source support for $c^*$ changes.  The repair policy never receives $c^*$, the gold target, or the gold action.  The 120 held-out pairs were frozen before inspection. The original 300-pair evaluation includes pilot and development observations used during method development, and the 60-pair geometry extension was added after inspecting those outcomes; consequently, MIRA-360 is not an independent held-out test. The witness ablation and source-coverage refinement are also exploratory.  The latter was designed from development errors and tested only on synthetic instances from the same task templates; its large Nano gain requires confirmation on an independently sourced frozen benchmark.  FDA equally weights repair and correct abstention; UR must be interpreted with RSR and CAR because always abstaining produces zero unsupported additions but no repair utility.
 
 A conventional mixture of complete and incomplete questions admits shortcuts: families may differ in difficulty, wording may reveal that a fact is missing, and a policy may simply learn to repair every ambiguous solver state.  Our paired construction rules out these shortcuts because both members share the same formalization and diagnostic.  Correct behavior changes only with the natural-language support for the withheld constraint.  Exact McNemar tests then depend only on pairs for which the two policies disagree, while pair-cluster bootstrap intervals preserve the dependence between the two case types.
 
@@ -682,20 +679,20 @@ The distinction is important for agent design.  An execution monitor answers whe
 Grounding itself is also only a proxy.  A model can cite the correct sentence yet encode the wrong equation, while an implicit mathematical convention may justify an expression without a contiguous span.  We therefore keep semantic validity, functional validity, provenance, and solver determinacy as separate fields.  This decomposition makes disagreement auditable and prevents numerical answer correctness from silently absorbing translation errors.
 
 \paragraph{External validity.}
-MIRA cases are controlled but templated; MATH-500 is natural but only 58.4\% lies inside the present solver fragment, whereas ALG514 reaches 97.9\% coverage in a narrower domain.  Labels were human-verified after model proposals, not independently annotated, and dataset prevalence is therefore reported separately.  Natural errors contain only 24 MATH-500 and eight ALG514 target-critical omissions: detection is high but repair remains limited.  The two GPT-OSS sizes also differ materially in baseline abstention behavior, bounding any size-general claim.
+MIRA cases are controlled but templated; Geometry60 uses an adapter-specific squared-distance target, and the combined MIRA-360 analysis is post-hoc. MATH-500 is natural but only 58.4\% lies inside the present solver fragment, whereas ALG514 reaches 97.9\% coverage in a narrower domain.  Labels were human-verified after model proposals, not independently annotated, and dataset prevalence is therefore reported separately.  Natural errors contain only 24 MATH-500 and eight ALG514 target-critical omissions: detection is high but repair remains limited.  The two GPT-OSS sizes also differ materially in baseline abstention behavior, bounding any size-general claim.
 
 The controlled benchmark deliberately removes one known fact and therefore estimates a clean repair-versus-abstain decision under idealized representation control.  It underrepresents paraphrase, irrelevant prose, diagrams, implicit conventions, wrong constraints, and interacting translation errors.  The natural cohorts contain these phenomena but trade away causal control.  Their purposes are complementary: the paired benchmark identifies a policy effect, while the natural study estimates what the current pipeline actually encounters.  We do not merge them into one leaderboard number.
 
 The annotation protocol also avoids defining positives with DeGro's own verdict.  Detector outputs, repairs, method names, and downstream answer outcomes are hidden from the initial packet.  A target-critical omission must instead be established from the source and generated specification; correct, wrong-constraint, wrong-target, and wrong-domain cases remain in the denominator.  Because model proposals seeded review and no separate blinded pre-discussion labels were preserved, we claim human verification rather than independent annotation or inter-annotator reliability.
 
 \paragraph{Reproducibility and risk.}
-The artifact includes the compiler, two-copy query, gates, tests, builders, frozen manifests, prompts, raw records, and analysis, including both additional Nemotron runs.  The 20B and 120B confirmatory output hashes begin with \texttt{5616d0c6} and \texttt{38d18e69}; each model analysis consumes all 960 expected records, and the supplement records the complete hashes.  Determinacy remains relative to $F$: wrong or extra constraints may force a unique wrong target, non-target omissions are invisible, and the current SMT fragment excludes much nonlinear, transcendental, and diagrammatic reasoning.  Interfaces must expose this scope rather than imply truth.  The data contain no personal information; AI assistance requires venue-compliant disclosure and does not reduce author responsibility.
+The artifact includes the compiler, two-copy query, gates, tests, builders, frozen manifests, prompts, raw records, and analysis, including both additional Nemotron runs.  Each exploratory MIRA-360 analysis consumes 2,880 records per model; the supplement retains the 120-pair outputs and their complete hashes.  Determinacy remains relative to $F$: wrong or extra constraints may force a unique wrong target, non-target omissions are invisible, and the current SMT fragment excludes much nonlinear, transcendental, and diagrammatic reasoning.  Interfaces must expose this scope rather than imply truth.  The data contain no personal information; AI assistance requires venue-compliant disclosure and does not reduce author responsibility.
 
-The manifests record dataset revision and license, selection seed, family counts, exact model strings, decoding settings, prompt hashes, timestamps, and full output hashes.  Analysis scripts reconstruct every table from JSONL, reject incomplete expected pair counts, and preserve whether a row came from pilot, development, or confirmatory data.  Natural-error packets and verified labels are separately blinded and content-addressed.  These records allow the 120-pair headline to be reproduced without incorporating earlier observations.
+The manifests record dataset revision and license, selection seed, family counts, exact model strings, decoding settings, prompt hashes, timestamps, and full output hashes.  Analysis scripts reconstruct every table from JSONL, reject incomplete expected pair counts, and preserve whether a row came from pilot, development, held-out, or post-hoc extension data.  Natural-error packets and verified labels are separately blinded and content-addressed.  These records reproduce the MIRA-360 main table, its original 300-pair component, and the separate 120-pair held-out comparison.
 
 Several failure modes remain outside the certificate.  A wrong or extra constraint may force a unique but incorrect target; an omitted fact that does not affect $q$ is invisible; several interacting omissions may exceed the bounded repair budget; and witnesses may differ only on irrelevant variables.  The supported SMT fragment excludes much nonlinear, transcendental, and diagrammatic mathematics.  These are reasons to surface the encoded constraints, cited repair, and solver status in the interface, not to display an unqualified ``verified'' badge.
 
-Finally, the tested models exhibit different instruction-following and abstention behavior, and hosted checkpoints may change.  The additional Nano result shows that strong baseline abstention can leave little incremental FDA benefit for DeGro.  DeGro's advantage should therefore be treated as a property of a specified model--prompt--gate configuration.  The GPT-OSS 120B baseline over-repairs many underspecified cases despite its larger size.  Deterministic gates remain necessary, and deployment thresholds should reflect the relative cost of fabricated facts and missed repairs.
+Finally, the tested models exhibit different instruction-following and abstention behavior, and hosted checkpoints may change.  Nano's original 300-pair comparison was inconclusive; its significant MIRA-360 difference appears only after the post-hoc geometry extension and therefore requires independent replication. DeGro's advantage should be treated as a property of a specified model--prompt--gate configuration.  The GPT-OSS 120B baseline over-repairs many underspecified cases despite its larger size.  Deterministic gates remain necessary, and deployment thresholds should reflect the relative cost of fabricated facts and missed repairs.
 
 \paragraph{Deployment implications.}
 DeGro is best used as a routing signal rather than a universal correctness badge.  A determinate, supported specification can proceed to answer generation; an ambiguous specification with a grounded candidate can enter the bounded repair loop; and an ambiguous specification without support should trigger clarification or abstention.  Inconsistent, unknown, and unsupported cases require different fallbacks, as Table~\ref{tab:policy} makes explicit.  Keeping these states typed prevents an agent from treating lack of a solver certificate as permission to guess.
@@ -705,8 +702,8 @@ The results also suggest a conservative interface.  The system should expose the
 Deployment comparisons should report representation coverage, decision quality conditional on a conclusive verifier state, and end-to-end utility with unsupported, unknown, and call-error cases retained as failures.  Otherwise, a narrow symbolic verifier can appear reliable by declining difficult inputs before scoring.
 
 \section{Conclusion}
-DRAW-Paired extends the design to 350 natural algebra sources (300 author-reviewed, 50 pending review). DeGro improves FDA over grounded self-review across the three models, but verdict-only repair remains better for GPT-OSS 120B. Review followed initial inference, and the extension was selected after initial outcomes; these provisional, post-hoc results complement rather than replace the MIRA confirmatory evidence.
-For RQ1, DeGro raises FDA by 5.0 points for GPT-OSS 20B and 6.25 points for GPT-OSS 120B on the fixed 120-pair set while reducing unsupported additions for both sizes, though 20B sacrifices some supported repairs; the 120B substitution is post-hoc.  The post-hoc Nemotron Nano comparison gives a statistically inconclusive fixed-set difference of $+1.25$ points, limiting claims of model-general improvement.  For RQ2, the paired benchmark shows that correct behavior depends on source support even when the formalization and determinacy signal are identical.  For RQ3, conclusive-verifier coverage and detection substantially exceed end-to-end grounded repair on natural errors, while concrete witnesses add no measurable benefit on the exploratory single-omission set.  These answers support target determinacy as a representation-relative routing condition, with source grounding and coverage reported alongside decision accuracy.
+DRAW-Paired extends the design to 300 retained author-reviewed natural algebra sources. DeGro improves FDA over grounded self-review across the three models, and ties verdict-only repair for GPT-OSS 120B. Both cohorts were reviewed after inference, the extension was selected after initial outcomes, and 50 pairs were subsequently excluded after re-review; these post-hoc results complement the controlled MIRA-Math evaluation.
+On exploratory MIRA-360, DeGro raises FDA over grounded self-review by 4.58 points for GPT-OSS 20B, 6.53 for 120B, and 2.92 for Nano, with all three comparisons surviving Holm correction. The combined set includes pilot and development observations plus a post-hoc 60-pair geometry extension; Nano's original 300-pair difference was inconclusive, so the new model-general pattern is hypothesis-generating rather than confirmatory. Separate 120-pair held-out results remain in the supplement. For RQ2, decisions depend on source support even when formalization and determinacy signal are identical. For RQ3, coverage and detection substantially exceed end-to-end grounded repair on natural errors, while concrete witnesses add no measurable benefit on the exploratory single-omission set. Target determinacy is a representation-relative routing condition, with grounding and coverage reported alongside decision accuracy.
 
 \clearpage
 \balance

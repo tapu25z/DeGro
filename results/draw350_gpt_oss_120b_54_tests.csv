@@ -1,0 +1,55 @@
+Index,Pair_ID,Label,Baselines_Correct,Self_Review,Grounded_SR,Determinacy_Guided,DeGro_Decision,Problem_Snippet
+1,draw-paired/125689/1/x,OMISSION,3/3,CORRECT,CORRECT,CORRECT,ADD_CONSTRAINT,Sally bought three choclate bars and a pack of gum and paid $ 1.75 . Jake bought two choclate bars a
+2,draw-paired/219569/1/x,OMISSION,3/3,CORRECT,CORRECT,CORRECT,ADD_CONSTRAINT,The sum of two numbers is 55 . The greater number is seventeen times the smaller number plus one . F
+3,draw-paired/279590/1/x,OMISSION,3/3,CORRECT,CORRECT,CORRECT,ADD_CONSTRAINT,Clarence and Stephan went to the amusement park . Clarence rode the water slide 3 times and the roll
+4,draw-paired/301832/1/x,OMISSION,3/3,CORRECT,CORRECT,CORRECT,ADD_CONSTRAINT,"The ratio between two positive number is 6 to 5 . if the difference between the two numbers is 8 , w"
+5,draw-paired/329117/1/x,OMISSION,3/3,CORRECT,CORRECT,CORRECT,ADD_CONSTRAINT,Pat invested a total of $ 3000 . Part of the money yields 10 % interest per year and the rest yields
+6,draw-paired/357286/2/x,UNDERSPECIFIED,3/3,CORRECT,CORRECT,CORRECT,ADD_CONSTRAINT,They start at the same point and run in opposite direction for 40 minutes . The distance between the
+7,draw-paired/477799/1/x,OMISSION,3/3,CORRECT,CORRECT,CORRECT,ADD_CONSTRAINT,"a number is 3 less than 4 times another number . if their sum is equal to 117 , then the greater num"
+8,draw-paired/500877/1/plane,OMISSION,3/3,CORRECT,CORRECT,CORRECT,ABSTAIN,"On an algebra test , theh highest grade was 44 points more than the lowest grade . The sum of the tw"
+9,draw-paired/5160/2/x,OMISSION,3/3,CORRECT,CORRECT,CORRECT,ADD_CONSTRAINT,Robert inherited $ 4000 from his grandmother . Part was invested at 5 % while the rest was invested 
+10,draw-paired/57521/1/X,OMISSION,3/3,CORRECT,CORRECT,CORRECT,ADD_CONSTRAINT,Sally brought 3 chocolate bars and a pack of gum and paid $ 1.75 . Jake brought 2 chocolate bars and
+11,draw-paired/675092/1/x,OMISSION,3/3,CORRECT,CORRECT,CORRECT,ABSTAIN,The sum of two numbers is 9 . The greater number is 3 more than twice the lesser number . What are t
+12,draw-paired/71010/1/nickels,OMISSION,3/3,CORRECT,CORRECT,CORRECT,ADD_CONSTRAINT,"Jill has $ 3.50 in nickels and dimes . If she has 50 coins , how many of each type of coin does she "
+13,draw-paired/82514/1/x,OMISSION,3/3,CORRECT,CORRECT,CORRECT,ADD_CONSTRAINT,A two-digit counting number has a value that is 7 times the sum of its digits . If 5 times the units
+14,draw-paired/871121/1/x,OMISSION,3/3,CORRECT,CORRECT,CORRECT,ADD_CONSTRAINT,The greater of two numbers is 5 less than twice the smaller . And the sum of the numbers is 52
+15,draw-paired/932280/1/faster_car,OMISSION,3/3,CORRECT,CORRECT,CORRECT,ADD_CONSTRAINT,"Two cyclists leave a city at the same time , one going east and the other going west . The west-boun"
+16,draw-paired/96486/1/x,OMISSION,3/3,CORRECT,CORRECT,CORRECT,ADD_CONSTRAINT,"two cyclists leave the city at the same time , one going east and the other going west . The westbou"
+17,draw-paired/123895/1/y,OMISSION,2/3,CORRECT,CORRECT,WRONG,ADD_CONSTRAINT,"Edwin is 6 years older than his brother Alvin . In two years , Edwin will be 20 more than one-third "
+18,draw-paired/127900/1/x,OMISSION,2/3,WRONG,CORRECT,CORRECT,ADD_CONSTRAINT,Sherman 's age and his grandpa 's age together equal 72 . His grandpa 's age is 7 times greater than
+19,draw-paired/134766/1/x,UNDERSPECIFIED,2/3,CORRECT,CORRECT,WRONG,ADD_CONSTRAINT,A two digit number is 7 times its unit digit . Find the number .
+20,draw-paired/145494/1/x,OMISSION,2/3,WRONG,CORRECT,CORRECT,ABSTAIN,The sum of two numbers is 89 . Adding four times the first number to the second number gives 155 . W
+21,draw-paired/146922/1/x,OMISSION,2/3,CORRECT,WRONG,CORRECT,ABSTAIN,"The sum of the digits of a two-digit numeral is 8 . If the digits are reversed , the new number is 1"
+22,draw-paired/153873/2/x,UNDERSPECIFIED,2/3,WRONG,CORRECT,CORRECT,ADD_CONSTRAINT,Cody ordered game tickets that cost $ 7.50 for children and $ 12.00 for adults . Her total bill was 
+23,draw-paired/16062/1/plane,OMISSION,2/3,CORRECT,WRONG,CORRECT,ADD_CONSTRAINT,Two numbers have a sum of 39 . Their difference is 11 . What are the two numbers .
+24,draw-paired/165256/1/x,UNDERSPECIFIED,2/3,WRONG,CORRECT,CORRECT,ADD_CONSTRAINT,Two times the first number is 12 more than four times the second number .
+25,draw-paired/174433/1/x,OMISSION,2/3,CORRECT,WRONG,CORRECT,ADD_CONSTRAINT,A father is now four times as old as his son . If the sum of their ages ten years ago was sixty . fi
+26,draw-paired/257214/1/x,UNDERSPECIFIED,2/3,CORRECT,CORRECT,WRONG,ADD_CONSTRAINT,"because darren is older , he has agreed to paint 20 % more than darren . how much of the fence will "
+27,draw-paired/264997/1/y,OMISSION,2/3,CORRECT,WRONG,CORRECT,ADD_CONSTRAINT,Two numbers are in the ratio 3 to 7 . Two-fifths of their sum is 32 .
+28,draw-paired/283797/1/x,OMISSION,2/3,CORRECT,CORRECT,WRONG,ADD_CONSTRAINT,you have $ 2.58 in pennys and nickels . Number of pennys 36 less than two times the number of nickel
+29,draw-paired/296468/1/x,OMISSION,2/3,CORRECT,WRONG,CORRECT,ABSTAIN,THE DIFFERENCE OF TWO NUMBERS IS 88 . THE SECOND NUMBER IS 20 % OF THE FIRST NUMBER . WHAT ARE THE N
+30,draw-paired/316559/2/x,OMISSION,2/3,CORRECT,WRONG,CORRECT,ABSTAIN,"You invested a total of $ 5000.00 in 2 different banks . One bank pays 4 % interest , and the other "
+31,draw-paired/332591/1/x,OMISSION,2/3,CORRECT,WRONG,CORRECT,ADD_CONSTRAINT,A high school graduating class is made up of 345 students . There are 69 more girls than boys . How 
+32,draw-paired/343286/1/x,OMISSION,2/3,CORRECT,CORRECT,WRONG,ADD_CONSTRAINT,One number is 5 more than another number . If the smaller number is doubled and added to 3 times the
+33,draw-paired/349191/1/x,OMISSION,2/3,CORRECT,WRONG,CORRECT,ADD_CONSTRAINT,"A man bought 7 pounds of coffee and 10 pounds of butter for a total of $ 58.50 . A day later , the p"
+34,draw-paired/362344/2/x,OMISSION,2/3,CORRECT,WRONG,CORRECT,ADD_CONSTRAINT,Dheo paid his grocery bill of 285 pesos with 20-peso bills and 5-peso coins . If he paid 24 bills an
+35,draw-paired/364571/2/y,OMISSION,2/3,CORRECT,WRONG,CORRECT,ADD_CONSTRAINT,The sum of two positive integers is 80 . Find the integers if one number is 8 greater than the other
+36,draw-paired/376120/1/plane,OMISSION,2/3,CORRECT,WRONG,CORRECT,ABSTAIN,The difference between two numbers is 3.2 . The sum of the numbers is 46.4 . What are the two number
+37,draw-paired/381475/1/x,OMISSION,2/3,CORRECT,WRONG,CORRECT,ADD_CONSTRAINT,The difference between two numbers is 14 . The sum of the two numbers is 56 . What are the two numbe
+38,draw-paired/391073/1/x,OMISSION,2/3,WRONG,CORRECT,CORRECT,ABSTAIN,The denominator of a fraction exceeds twice the numerator by 10 . The value of the fraction is 5 to 
+39,draw-paired/413708/1/y,OMISSION,2/3,WRONG,CORRECT,CORRECT,ADD_CONSTRAINT,The sum of 2 numbers is 61 . The numbers are 5 apart . What are they ?
+40,draw-paired/482896/1/smaller,OMISSION,2/3,CORRECT,WRONG,CORRECT,ADD_CONSTRAINT,The larger of two numbers is one less than three times the smaller . if their sum is 63 .
+41,draw-paired/492783/1/x,OMISSION,2/3,CORRECT,WRONG,CORRECT,ADD_CONSTRAINT,One number is greater than thrice the other number by 2 . If 4 times the smaller number exceeds the 
+42,draw-paired/63558/1/x,UNDERSPECIFIED,2/3,CORRECT,WRONG,CORRECT,ADD_CONSTRAINT,the quotient of the larger number divided by the smaller is 1.5 . Find the numbers .
+43,draw-paired/637338/1/x,OMISSION,2/3,CORRECT,WRONG,CORRECT,ADD_CONSTRAINT,My father is 4 times my age . Then the sum of our age is 70 . what is our age .
+44,draw-paired/673170/2/y,OMISSION,2/3,CORRECT,WRONG,CORRECT,ADD_CONSTRAINT,"A larger number is 2 less than 5 times the smaller number . If the sum of these numbers is 94 , find"
+45,draw-paired/739546/1/x,OMISSION,2/3,CORRECT,WRONG,CORRECT,ADD_CONSTRAINT,U-Haul charges a daily fee plus a mileage charge to rent a truck . Jennifer rented a truck with U-Ha
+46,draw-paired/747692/1/student,OMISSION,2/3,CORRECT,CORRECT,WRONG,ADD_CONSTRAINT,Michael sold a total of 320 tickets at a fair . The money recived was $ 1255 . Each adult ticket was
+47,draw-paired/753430/1/x,OMISSION,2/3,CORRECT,WRONG,CORRECT,ADD_CONSTRAINT,A boy has a handful of dimes and quarters . He counted the number of coins and found there are 15 co
+48,draw-paired/766430/1/plane,UNDERSPECIFIED,2/3,CORRECT,WRONG,CORRECT,ADD_CONSTRAINT,They have a difference of 3 . Set up a system of equations and use it to find the two numbers .
+49,draw-paired/825583/1/y,OMISSION,2/3,CORRECT,WRONG,CORRECT,ADD_CONSTRAINT,Bill and Ben have combined ages of 91 . If bill is twice as old as Ben was when bill was as old as B
+50,draw-paired/82992/1/x,UNDERSPECIFIED,2/3,WRONG,CORRECT,CORRECT,ADD_CONSTRAINT,a coumputer online service charges one hourly price for regular use but a higher hourly rate for des
+51,draw-paired/846036/1/x,OMISSION,2/3,CORRECT,WRONG,CORRECT,ADD_CONSTRAINT,"If jake has 20,000 to invest in two accounts . With one account earns 1 % simple interest . And seco"
+52,draw-paired/871121/1/x,UNDERSPECIFIED,2/3,WRONG,CORRECT,CORRECT,ADD_CONSTRAINT,The greater of two numbers is 5 less than twice the smaller .
+53,draw-paired/899013/2/x,OMISSION,2/3,WRONG,CORRECT,CORRECT,ADD_CONSTRAINT,Marco is 1 year older than twice as old as Marie . How old is Marie if the sum of their ages is 37 ?
+54,draw-paired/914766/1/y,OMISSION,2/3,CORRECT,WRONG,CORRECT,ADD_CONSTRAINT,"Alex 's father is five more than twice as old as he is now . Six years ago , he was one-third as old"

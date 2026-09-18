@@ -1,0 +1,14 @@
+[8/20] lin-000274 UNDERSPECIFIED nonunique_grounding error
+[9/20] crt-000103 OMISSION nonunique_grounding ok
+[10/20] crt-000103 UNDERSPECIFIED nonunique_grounding ok
+[11/20] gra-000229 OMISSION nonunique_grounding ok
+[12/20] gra-000229 UNDERSPECIFIED nonunique_grounding ok
+[13/20] crt-000095 OMISSION nonunique_grounding ok
+[14/20] crt-000095 UNDERSPECIFIED nonunique_grounding ok
+[15/20] lin-000284 OMISSION nonunique_grounding ok
+[16/20] lin-000284 UNDERSPECIFIED nonunique_grounding ok
+[17/20] ran-000577 OMISSION nonunique_grounding ok
+[18/20] ran-000577 UNDERSPECIFIED nonunique_grounding ok
+[19/20] lin-000246 OMISSION nonunique_grounding ok
+[20/20] lin-000246 UNDERSPECIFIED nonunique_grounding ok
+[20/20] lin-000274 UNDERSPECIFIED nonunique_grounding ok

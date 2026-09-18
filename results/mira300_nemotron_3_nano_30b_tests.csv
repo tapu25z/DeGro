@@ -1,0 +1,21 @@
+Index,Pair_ID,Label,Baselines_Correct,Self_Review,Grounded_SR,Determinacy_Guided,DeGro_Decision,Problem_Snippet
+1,crt-000062,OMISSION,3/3,CORRECT,CORRECT,CORRECT,ABSTAIN,x ≡ 3 (mod 5). x ≡ 2 (mod 7). x ≡ 2 (mod 3). Find the integer value of x.
+2,crt-000067,OMISSION,3/3,CORRECT,CORRECT,CORRECT,ABSTAIN,x ≡ 15 (mod 17). x ≡ 5 (mod 11). x ≡ 11 (mod 13). Find the integer value of x.
+3,crt-000086,OMISSION,3/3,CORRECT,CORRECT,CORRECT,ABSTAIN,x ≡ 7 (mod 17). x ≡ 3 (mod 13). x ≡ 0 (mod 3). Find the integer value of x.
+4,crt-000095,OMISSION,3/3,CORRECT,CORRECT,CORRECT,ABSTAIN,x ≡ 14 (mod 19). x ≡ 15 (mod 17). x ≡ 2 (mod 13). Find the integer value of x.
+5,crt-000109,OMISSION,3/3,CORRECT,CORRECT,CORRECT,ABSTAIN,x ≡ 4 (mod 5). x ≡ 5 (mod 13). x ≡ 6 (mod 7). Find the integer value of x.
+6,gra-000190,OMISSION,3/3,CORRECT,CORRECT,CORRECT,ABSTAIN,e01 + e12 = 4. e12 + e20 = 6. e01 + e20 = 4. Find the integer value of e01.
+7,gra-000225,OMISSION,3/3,CORRECT,CORRECT,CORRECT,ABSTAIN,e01 + e12 = 6. e12 + e20 = 3. e01 + e20 = 5. Find the integer value of e01.
+8,lin-000243,OMISSION,3/3,CORRECT,CORRECT,CORRECT,ABSTAIN,c = 3. -3a + 4b + -4c = -35. 4a + -3b + 3c = 28. Find the integer value of b.
+9,lin-000282,OMISSION,3/3,CORRECT,CORRECT,CORRECT,ABSTAIN,6a + -b + -3c = -13. c = 5. -2a + -6b + -c = -31. Find the integer value of a.
+10,mom-000415,OMISSION,3/3,CORRECT,CORRECT,CORRECT,ABSTAIN,q1 + 4q2 = 23. q0 + q1 + q2 = 12. q1 + 2q2 = 13. Find the integer value of q0.
+11,crt-000090,OMISSION,2/3,CORRECT,CORRECT,WRONG,ABSTAIN,x ≡ 3 (mod 13). x ≡ 11 (mod 19). x ≡ 0 (mod 3). Find the integer value of x.
+12,gra-000189,OMISSION,2/3,CORRECT,CORRECT,WRONG,ABSTAIN,e01 + e12 = 5. e12 + e20 = 3. e01 + e20 = 4. Find the integer value of e01.
+13,gra-000227,OMISSION,2/3,CORRECT,CORRECT,WRONG,ABSTAIN,e01 + e12 = 7. e12 + e20 = 5. e01 + e20 = 8. Find the integer value of e01.
+14,lin-000284,OMISSION,2/3,CORRECT,CORRECT,WRONG,ABSTAIN,c = 1. -a + -2b + 5c = 4. 5a + 4b + -4c = -11. Find the integer value of a.
+15,ran-000548,OMISSION,2/3,CORRECT,WRONG,CORRECT,ABSTAIN,4x - y + z = -16. -x + 4y + 2z = 25. -2x - y - 4z = -3. Find the integer value of x.
+16,ran-000552,OMISSION,2/3,CORRECT,CORRECT,WRONG,ABSTAIN,2x + 3y - 2z = 10. -3x + 3y + 2z = 29. -2x + 2y - 4z = 14. Find the integer value of x.
+17,ran-000553,OMISSION,2/3,CORRECT,CORRECT,WRONG,ABSTAIN,3x - 3y - 4z = -30. x + 3y - 3z = -7. 3x + 3y - 4z = -18. Find the integer value of x.
+18,ran-000561,OMISSION,2/3,CORRECT,CORRECT,WRONG,ABSTAIN,-x + y + z = 0. 4x - y - 4z = -6. -2x - y - 5z = -8. Find the integer value of x.
+19,ran-000568,OMISSION,2/3,CORRECT,WRONG,CORRECT,ABSTAIN,4x + y + 4z = -22. x - 5y - z = 11. 5x - 3y + z = -7. Find the integer value of x.
+20,ran-000598,OMISSION,2/3,WRONG,CORRECT,CORRECT,ABSTAIN,-x + 4y - 5z = -15. -x + 2y + z = 1. 3x - 2y - 3z = 1. Find the integer value of x.

@@ -17,5 +17,9 @@
   "temperature": 1.0,
   "think": "medium",
   "prompt_hash": "eafed6be4973c21e1efbb5cc804112c9d50c95764e8f5066b58bdee58b92bdda",
-  "claim_scope": "exploratory/provisional until exact spans and deletions are human-approved"
+  "claim_scope": "exploratory/provisional until exact spans and deletions are human-approved",
+  "post_review_exclusion_audit": "data/paired/draw_paired/exclusion_audit.json",
+  "retained_pairs": 256,
+  "retained_data_sha256": "6efae66756d7e31c1d481ed9447aeb7665ee02c6e65107385af1fe0a109ccba3",
+  "historical_run_fields": "Original execution metadata; retained_* fields describe the pruned files."
 }

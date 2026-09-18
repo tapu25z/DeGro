@@ -20,8 +20,8 @@ for stem in ['gpt_oss_20b', 'gpt_oss_120b', 'nemotron_3_nano_30b']:
             key = (row['pair_id'],row['label'],row['method'])
             if row['status'] == 'ok':
                 records.setdefault(key,row)
-    if len(records) != 2400:
-        raise ValueError(f'{stem}: only {len(records)}/2400 corrected records')
+    if len(records) != len(lookup)*4:
+        raise ValueError(f'{stem}: only {len(records)}/{len(lookup)*4} corrected records')
     for key,row in records.items():
         row['score'] = score(lookup[key[:2]], row['output'])
         row['dataset_stage'] = 'HUMAN_REVIEWED_POST_INFERENCE'

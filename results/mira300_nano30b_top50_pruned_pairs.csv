@@ -1,0 +1,51 @@
+Index,Pair_ID,Group,Nano_DeGro,Nano_GSR,Nano_SR,Nano_NU,Problem_Snippet
+1,crt-000062,Nhóm 1 (25 test,1/2,2/2,2/2,2/2,x ≡ 3 (mod 5). x ≡ 2 (mod 7). x ≡ 2 (mod 3). Find the integer value of x.
+2,crt-000067,Nhóm 1 (25 test,1/2,2/2,2/2,2/2,x ≡ 15 (mod 17). x ≡ 5 (mod 11). x ≡ 11 (mod 13). Find the integer value of x.
+3,crt-000086,Nhóm 1 (25 test,1/2,2/2,2/2,2/2,x ≡ 7 (mod 17). x ≡ 3 (mod 13). x ≡ 0 (mod 3). Find the integer value of x.
+4,crt-000090,Nhóm 1 (25 test,1/2,2/2,2/2,1/2,x ≡ 3 (mod 13). x ≡ 11 (mod 19). x ≡ 0 (mod 3). Find the integer value of x.
+5,crt-000095,Nhóm 1 (25 test,1/2,2/2,2/2,1/2,x ≡ 14 (mod 19). x ≡ 15 (mod 17). x ≡ 2 (mod 13). Find the integer value of x.
+6,crt-000109,Nhóm 1 (25 test,1/2,2/2,1/2,2/2,x ≡ 4 (mod 5). x ≡ 5 (mod 13). x ≡ 6 (mod 7). Find the integer value of x.
+7,gra-000189,Nhóm 1 (25 test,1/2,2/2,2/2,1/2,e01 + e12 = 5. e12 + e20 = 3. e01 + e20 = 4. Find the integer value of e01.
+8,gra-000190,Nhóm 1 (25 test,1/2,2/2,2/2,2/2,e01 + e12 = 4. e12 + e20 = 6. e01 + e20 = 4. Find the integer value of e01.
+9,gra-000225,Nhóm 1 (25 test,1/2,2/2,2/2,2/2,e01 + e12 = 6. e12 + e20 = 3. e01 + e20 = 5. Find the integer value of e01.
+10,gra-000227,Nhóm 1 (25 test,1/2,2/2,2/2,1/2,e01 + e12 = 7. e12 + e20 = 5. e01 + e20 = 8. Find the integer value of e01.
+11,lin-000243,Nhóm 1 (25 test,1/2,2/2,2/2,2/2,c = 3. -3a + 4b + -4c = -35. 4a + -3b + 3c = 28. Find the integer value of b.
+12,lin-000282,Nhóm 1 (25 test,1/2,2/2,1/2,2/2,6a + -b + -3c = -13. c = 5. -2a + -6b + -c = -31. Find the integer value of a.
+13,lin-000284,Nhóm 1 (25 test,1/2,2/2,2/2,1/2,c = 1. -a + -2b + 5c = 4. 5a + 4b + -4c = -11. Find the integer value of a.
+14,mom-000415,Nhóm 1 (25 test,1/2,2/2,2/2,2/2,q1 + 4q2 = 23. q0 + q1 + q2 = 12. q1 + 2q2 = 13. Find the integer value of q0.
+15,ran-000543,Nhóm 1 (25 test,1/2,2/2,1/2,1/2,3x + 2y - 2z = -21. -4x - 3y + 3z = 31. -2x - 3y + 4z = 34. Find the integer value of y.
+16,ran-000545,Nhóm 1 (25 test,1/2,2/2,1/2,1/2,x + 3y + 3z = 6. -4x + 3y - 2z = -29. 3x + 4y + 3z = 17. Find the integer value of x.
+17,ran-000552,Nhóm 1 (25 test,1/2,2/2,2/2,1/2,2x + 3y - 2z = 10. -3x + 3y + 2z = 29. -2x + 2y - 4z = 14. Find the integer value of x.
+18,ran-000553,Nhóm 1 (25 test,1/2,2/2,2/2,1/2,3x - 3y - 4z = -30. x + 3y - 3z = -7. 3x + 3y - 4z = -18. Find the integer value of x.
+19,ran-000561,Nhóm 1 (25 test,1/2,2/2,2/2,1/2,-x + y + z = 0. 4x - y - 4z = -6. -2x - y - 5z = -8. Find the integer value of x.
+20,ran-000571,Nhóm 1 (25 test,1/2,2/2,1/2,1/2,5x + 3y - 2z = -16. 3x + y - 4z = -14. x + 2y - 5z = -5. Find the integer value of x.
+21,ran-000576,Nhóm 1 (25 test,1/2,2/2,1/2,1/2,4x + y + 5z = 11. -5x + 3y - 2z = 16. -5x - 5y + 2z = -4. Find the integer value of x.
+22,ran-000577,Nhóm 1 (25 test,1/2,2/2,1/2,1/2,3x - 2y + 4z = -1. 4x + 4y + 2z = -8. x + 5y + 4z = -6. Find the integer value of x.
+23,ran-000585,Nhóm 1 (25 test,1/2,2/2,1/2,1/2,4x - 5y + 4z = -48. 4x - y + 5z = -20. 3x + y - 2z = 22. Find the integer value of x.
+24,ran-000591,Nhóm 1 (25 test,1/2,2/2,1/2,1/2,-x - 6y - z = 21. -3x + 2y - 4z = -65. 6x + 6y + 4z = 38. Find the integer value of x.
+25,ran-000598,Nhóm 1 (25 test,1/2,2/2,1/2,2/2,-x + 4y - 5z = -15. -x + 2y + z = 1. 3x - 2y - 3z = 1. Find the integer value of x.
+26,ran-000568,Nhóm 2 (19 test,1/2,1/2,2/2,2/2,4x + y + 4z = -22. x - 5y - z = 11. 5x - 3y + z = -7. Find the integer value of x.
+27,ran-000548,Nhóm 2 (19 test,1/2,1/2,2/2,2/2,4x - y + z = -16. -x + 4y + 2z = 25. -2x - y - 4z = -3. Find the integer value of x.
+28,ran-000596,Nhóm 2 (19 test,1/2,1/2,2/2,1/2,-5x + 3y - z = 41. -3x + 6y - z = 33. -x - 2y + 4z = 3. Find the integer value of x.
+29,ran-000547,Nhóm 2 (19 test,1/2,1/2,2/2,1/2,-4x - y + 4z = 50. -3x + y + 3z = 34. -3x - 3y + 2z = 36. Find the integer value of x.
+30,ran-000578,Nhóm 2 (19 test,1/2,1/2,2/2,1/2,4x - 2y + z = -17. 4x - 4y + 2z = -6. x - 2y - 5z = 22. Find the integer value of y.
+31,ran-000583,Nhóm 2 (19 test,1/2,1/2,2/2,1/2,3x - 6y + 4z = 9. -x + 2y + 5z = -41. 3x + 5y + 3z = -40. Find the integer value of x.
+32,ran-000579,Nhóm 2 (19 test,1/2,1/2,1/2,2/2,-3x + 4y - 4z = -41. -3x - 2y - 4z = -11. 3x + y - 5z = -38. Find the integer value of x.
+33,ran-000562,Nhóm 2 (19 test,1/2,1/2,2/2,1/2,4x + 4y + 3z = 11. 5x - 3y + 2z = 44. -3x - y - z = -15. Find the integer value of x.
+34,ran-000554,Nhóm 2 (19 test,1/2,1/2,2/2,1/2,x - y + 4z = -8. -3x + 4y - z = 8. x + 4y + z = 28. Find the integer value of x.
+35,ran-000590,Nhóm 2 (19 test,1/2,1/2,1/2,2/2,-2x + 3y - 4z = -28. -4x - 5y - 6z = 0. -x + 5y + 5z = 14. Find the integer value of x.
+36,ran-000584,Nhóm 2 (19 test,1/2,1/2,1/2,2/2,2x + 2y - z = 7. 4x + 3y + 2z = -10. 2x - 3y + 4z = -38. Find the integer value of x.
+37,ran-000558,Nhóm 2 (19 test,1/2,1/2,2/2,1/2,x + 2y - 4z = 12. -3x + y - z = 22. -x + y + 4z = -15. Find the integer value of x.
+38,ran-000594,Nhóm 2 (19 test,1/2,1/2,2/2,1/2,5x + 6y - 6z = -12. 4x + 6y + 6z = -18. -x - 6y - z = 36. Find the integer value of x.
+39,ran-000563,Nhóm 2 (19 test,1/2,1/2,1/2,2/2,-2x + 2y - z = -6. -3x + 4y + z = -20. 3x + 2y + 4z = -6. Find the integer value of x.
+40,ran-000550,Nhóm 2 (19 test,1/2,1/2,2/2,1/2,-3x - 2y - z = -14. -4x + 2y + 2z = -20. x - y + 2z = -12. Find the integer value of x.
+41,ran-000587,Nhóm 2 (19 test,1/2,1/2,2/2,1/2,4x + 6y + 3z = -4. -6x + 4y + 3z = 66. -2x + 3y + 3z = 38. Find the integer value of x.
+42,ran-000593,Nhóm 2 (19 test,1/2,1/2,2/2,1/2,-2x - 3y - 2z = 6. -4x + 5y + 4z = -8. 6x - 2y + 3z = 17. Find the integer value of x.
+43,ran-000566,Nhóm 2 (19 test,1/2,1/2,2/2,1/2,2x + 2y + 3z = 41. -4x - 4y - 2z = -54. -4x + 3y + 2z = -5. Find the integer value of x.
+44,crt-000066,Nhóm 2 (19 test,1/2,1/2,2/2,0/2,x ≡ 2 (mod 3). x ≡ 0 (mod 13). x ≡ 1 (mod 7). Find the integer value of x.
+45,ran-000575,Nhóm 3 (6 test,1/2,1/2,1/2,1/2,-2x - 2y + 3z = -7. -3x + 5y + 3z = -54. -x - 3y + z = 10. Find the integer value of x.
+46,ran-000560,Nhóm 3 (6 test,1/2,1/2,1/2,1/2,3x - 3y + 3z = 18. -2x + 4y + 4z = -50. -3x + 5y - z = -40. Find the integer value of x.
+47,ran-000544,Nhóm 3 (6 test,1/2,1/2,1/2,1/2,4x - 2y + 3z = -31. -4x + 2y - 4z = 36. -2x - 2y - 2z = 0. Find the integer value of x.
+48,ran-000565,Nhóm 3 (6 test,1/2,1/2,1/2,1/2,-x - 2y - 4z = -11. x - y + 3z = 21. x + 3y - 2z = -24. Find the integer value of x.
+49,ran-000557,Nhóm 3 (6 test,1/2,1/2,1/2,1/2,-2x + 4y - 3z = 2. -2x + 4y - z = 10. 2x + y - 2z = -2. Find the integer value of x.
+50,ran-000549,Nhóm 3 (6 test,1/2,1/2,1/2,1/2,3x + y - 2z = 5. -2x - 4y - 2z = -30. -2x + 4y - 3z = 16. Find the integer value of x.

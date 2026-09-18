@@ -93,7 +93,7 @@ def _validate_oracle(case: dict[str, Any]) -> None:
 
 
 def materialize(candidates_path: Path, out_path: Path, pairs: int, seed: int) -> dict[str, Any]:
-    candidates = [row for row in read_jsonl(candidates_path) if not row["span_proposal"]["flags"]]
+    candidates = [row for row in read_jsonl(candidates_path) if not row["span_proposal"]["flags"] and not row.get("excluded_from_evaluation")]
     by_split: dict[str, list[dict[str, Any]]] = {}
     for candidate in candidates:
         by_split.setdefault(candidate["split"], []).append(candidate)

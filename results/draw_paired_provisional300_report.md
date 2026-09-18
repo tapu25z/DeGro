@@ -1,18 +1,18 @@
-# DRAW-Paired provisional 300
+# DRAW-Paired provisional cohort (256 retained pairs)
 
 > Provisional: exact source spans and deletions still require human approval.
 
 | Model | Method | RSR | CAR | FDA | Unsupported/additions |
 |---|---|---:|---:|---:|---:|
-| GPT-OSS 20B | Grounded self-review | 62.3 | 83.0 | 72.7 | 44.5 |
-| GPT-OSS 20B | DeGro | 59.7 | 89.7 | 74.7 | 44.1 |
-| GPT-OSS 120B | Grounded self-review | 53.0 | 84.3 | 68.7 | 50.9 |
-| GPT-OSS 120B | DeGro | 59.0 | 91.7 | 75.3 | 43.1 |
-| Nemotron Nano 30B | Grounded self-review | 33.0 | 86.3 | 59.7 | 64.6 |
-| Nemotron Nano 30B | DeGro | 40.7 | 92.0 | 66.3 | 52.5 |
+| GPT-OSS 20B | Grounded self-review | 62.5 | 83.6 | 73.0 | 44.3 |
+| GPT-OSS 20B | DeGro | 66.4 | 90.2 | 78.3 | 37.5 |
+| GPT-OSS 120B | Grounded self-review | 52.3 | 84.4 | 68.4 | 52.3 |
+| GPT-OSS 120B | DeGro | 64.1 | 91.8 | 77.9 | 38.8 |
+| Nemotron Nano 30B | Grounded self-review | 34.8 | 85.5 | 60.2 | 62.8 |
+| Nemotron Nano 30B | DeGro | 46.9 | 93.0 | 69.9 | 45.5 |
 
 ## Paired primary comparison
 
-- GPT-OSS 20B: +2.0 FDA points (95% CI [-1.5, +5.5]); McNemar p=0.30709, Holm p=0.30709.
-- GPT-OSS 120B: +6.7 FDA points (95% CI [+3.2, +10.2]); McNemar p=0.000198237, Holm p=0.000594711.
-- Nemotron Nano 30B: +6.7 FDA points (95% CI [+2.3, +11.0]); McNemar p=0.00195373, Holm p=0.00390746.
+- GPT-OSS 20B: +5.3 FDA points (95% CI [+2.0, +8.8]); McNemar p=0.00359635, Holm p=0.00359635.
+- GPT-OSS 120B: +9.6 FDA points (95% CI [+6.1, +13.3]); McNemar p=8.41232e-08, Holm p=2.52369e-07.
+- Nemotron Nano 30B: +9.8 FDA points (95% CI [+5.1, +14.5]); McNemar p=2.87757e-05, Holm p=5.75515e-05.

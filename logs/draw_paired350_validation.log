@@ -4,7 +4,7 @@
   "extension_pairs": 50,
   "new_records": 1200,
   "total_records": 8400,
-  "review_status": "300 author-reviewed; extension50 pending",
+  "review_status": "350 author-reviewed after inference",
   "selection_timing": "extension selected after original300 outcomes; cumulative analysis post-hoc",
   "primary_family": "FDA DeGro minus grounded self-review across three models",
   "primary_comparisons": [

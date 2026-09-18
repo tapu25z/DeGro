@@ -58,27 +58,32 @@ The finalizer re-runs the solver checks, validates the exact deletion, emits the
 `OMISSION` and `UNDERSPECIFIED` cases, and writes a frozen manifest. It refuses
 to freeze a packet with pending reviews by default.
 
-## Current 350-pair cumulative experiment
+## Current retained 300-pair experiment
 
-- `draw_paired.jsonl`: the original 300 pairs / 600 cases, author-reviewed
-  after provisional inference. Two title-abbreviation spans were corrected;
-  affected responses were rerun. This original cohort is preserved.
-- `draw_paired_extension50.jsonl`: 50 additional pairs / 100 cases, with
-  disjoint source indices. The extension is locked before its own inference,
-  but selected after the original outcomes. Human review is pending.
-- `draw_paired_extension50_review.jsonl`: review only these 50 new spans and
-  deletions. Solver checks do not establish that the deletion preserves meaning.
-- `draw_paired350.jsonl`: combined 350 pairs / 700 cases (260 train-derived,
-  90 dev-derived). `cohort` and `dataset_stage` preserve the different review
-  status; this is not a fully human-reviewed dataset yet.
-- `draw_paired350.manifest.json`: selection seed, hashes, counts and review status.
+The original cumulative pool contained 350 pairs (300 initial plus 50 extension).
+After the author's data re-review, 50 pairs were excluded: 44 initial and six
+extension pairs. The retained pool contains 300 pairs / 600 cases, from 221
+training and 79 development sources. DRAW-1K test sources remain unused.
 
-The extension uses seed 20260919 and proportional train/dev allocation from
-67 remaining unflagged proposals, selecting 37 train-derived and 13 dev-derived
-sources without inspecting their model outcomes. DRAW-1K test sources remain unused.
-The cumulative analysis is post-hoc, not a new confirmatory test.
+- `excluded_pair_ids.txt`: exact author-supplied exclusion list (case-sensitive).
+- `exclusion_audit.json`: timing, cohort counts and counts of removed records;
+  no excluded responses are retained in this audit.
+- `draw_paired.jsonl`: 256 retained initial pairs / 512 cases.
+- `draw_paired_extension50.jsonl` and `draw_paired_extension50_reviewed.jsonl`:
+  44 retained extension pairs / 88 cases; model inputs remain unchanged.
+- `draw_paired350.jsonl`: 300 retained pairs / 600 cases. Its legacy filename
+  identifies the original cumulative experiment, not its current size.
+- Review packets retain the exclusions as author `REJECT` decisions.
+- Manifests contain current counts, hashes and the exclusion audit reference.
 
-Complete results are kept separately under `results/*_draw_paired350_complete.jsonl`
-(2,800 records per model: 700 cases x four policies). Original
-`results/*_draw_paired300_complete.jsonl` files are not overwritten. Transport
-retries retain the first valid response, never the highest-scoring response.
+Each model's `results/*_draw_paired350_complete.jsonl` contains 2,400 retained
+records (600 cases x four policies). The 50 excluded pairs' records are removed
+from complete outputs, raw outputs and exported result CSVs. Initial and
+provisional cohort filenames likewise retain their historical names; their
+current counts are 256 pairs and 2,048 complete records per model.
+
+The extension used seed 20260919 and was selected after initial outcomes.
+Review and exclusions followed inference and access to model results; retained
+subset analyses are post-hoc. No item-specific exclusion rationale was supplied.
+Use `scripts/prune_draw_paired.py` to reapply the exclusion list and
+`scripts/report_draw_paired350.py` to validate retained provenance.

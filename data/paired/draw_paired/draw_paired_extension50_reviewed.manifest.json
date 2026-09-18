@@ -3,14 +3,17 @@
   "stage": "FROZEN",
   "created_at_utc": "2026-09-18T02:50:30.147109+00:00",
   "review_packet": "data/paired/draw_paired/draw_paired_extension50_review.jsonl",
-  "review_packet_sha256": "3d528b299e2fa893033d8b1fce25468a68f76a65cad26337a551734243835efd",
+  "review_packet_sha256": "e892dde685501a18eb513ecc5808538ec9daf4308413b02d6ab97119cf4e41d4",
   "review_status_counts": {
-    "APPROVE": 50
+    "APPROVE": 44,
+    "REJECT": 6
   },
   "allow_partial": false,
-  "pairs": 50,
-  "cases": 100,
-  "output_sha256": "327af42d4100ab004b4ae0ccf73353a2f352f3974672673b01d74172966d8679",
+  "pairs": 44,
+  "cases": 88,
+  "output_sha256": "2a28fb56a463e47a7c61e856b71bcefdf100c38067d75a4834b9a882fac9f9d1",
   "human_review_complete": true,
-  "frozen": true
+  "frozen": true,
+  "exclusion_audit": "data/paired/draw_paired/exclusion_audit.json",
+  "exclusion_ids_sha256": "5f850689221e721de3f4d7f7a2ba42c2f87275eb76fd873d1c8e724bcbe14a6d"
 }

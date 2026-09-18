@@ -12,10 +12,10 @@ def rows(name):
 def test_extension_is_disjoint_and_balanced():
     base = rows('draw_paired.jsonl')
     extension = rows('draw_paired_extension50.jsonl')
-    assert len(base) == 600 and len(extension) == 100
+    assert len(base) == 512 and len(extension) == 88
     assert not ({r['source_index'] for r in base} & {r['source_index'] for r in extension})
-    assert Counter(r['label'] for r in extension) == {'OMISSION':50,'UNDERSPECIFIED':50}
-    assert len({r['source_index'] for r in extension}) == 50
+    assert Counter(r['label'] for r in extension) == {'OMISSION':44,'UNDERSPECIFIED':44}
+    assert len({r['source_index'] for r in extension}) == 44
     by_pair = {}
     for r in extension:
         by_pair.setdefault(r['pair_id'], []).append(r)
@@ -26,13 +26,23 @@ def test_extension_is_disjoint_and_balanced():
 def test_combined_preserves_base_and_has_truthful_review_status():
     combined = rows('draw_paired350.jsonl')
     manifest = json.loads((ROOT/'draw_paired350.manifest.json').read_text())
-    assert len(combined) == 700
-    assert manifest['pairs'] == 350
+    assert len(combined) == 600
+    assert manifest['pairs'] == 300
     assert manifest['combined_sha256'] == hashlib.sha256((ROOT/'draw_paired350.jsonl').read_bytes()).hexdigest()
-    assert Counter(r['cohort'] for r in combined) == {'original300':600,'extension50':100}
-    original = [{k:v for k,v in r.items() if k not in {'cohort','dataset_stage'}} for r in combined[:600]]
+    assert Counter(r['cohort'] for r in combined) == {'original300':512,'extension50':88}
+    original = [{k:v for k,v in r.items() if k not in {'cohort','dataset_stage'}} for r in combined[:512]]
     base = [{k:v for k,v in r.items() if k not in {'cohort','dataset_stage'}} for r in rows('draw_paired.jsonl')]
     assert original == base
     packet = rows('draw_paired_extension50_review.jsonl')
     assert len(packet) == 50
-    assert manifest['human_review_complete'] == all(r['review']['status'] == 'APPROVE' for r in packet)
+    assert manifest['human_review_complete'] == all(r['review']['status'] in {'APPROVE','REJECT'} for r in packet)
+
+
+def test_author_exclusions_are_absent_from_all_saved_responses():
+    excluded = set((ROOT/'excluded_pair_ids.txt').read_text().splitlines())
+    assert len(excluded) == 50
+    for path in (ROOT.parents[2]/'results').rglob('*.jsonl'):
+        for line in path.read_text().splitlines():
+            assert json.loads(line).get('pair_id') not in excluded, str(path)
+    for name in ['draw_paired.jsonl','draw_paired350.jsonl','draw_paired_extension50.jsonl','draw_paired_extension50_reviewed.jsonl','draw_paired_provisional_300.jsonl']:
+        assert not ({r['pair_id'] for r in rows(name)} & excluded)

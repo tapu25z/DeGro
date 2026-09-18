@@ -1,0 +1,602 @@
+[
+  {
+    "index": 1,
+    "pair_id": "crt-000062",
+    "group": "Nh\u00f3m 1 (25 test: GSR th\u1eafng DeGro: GSR=2/2, DeGro=1/2)",
+    "nano_scores": {
+      "nonunique_grounding": 1,
+      "grounded_self_review": 2,
+      "self_review": 2,
+      "nonunique": 2
+    },
+    "problem": "x \u2261 3 (mod 5). x \u2261 2 (mod 7). x \u2261 2 (mod 3). Find the integer value of x."
+  },
+  {
+    "index": 2,
+    "pair_id": "crt-000067",
+    "group": "Nh\u00f3m 1 (25 test: GSR th\u1eafng DeGro: GSR=2/2, DeGro=1/2)",
+    "nano_scores": {
+      "nonunique_grounding": 1,
+      "grounded_self_review": 2,
+      "self_review": 2,
+      "nonunique": 2
+    },
+    "problem": "x \u2261 15 (mod 17). x \u2261 5 (mod 11). x \u2261 11 (mod 13). Find the integer value of x."
+  },
+  {
+    "index": 3,
+    "pair_id": "crt-000086",
+    "group": "Nh\u00f3m 1 (25 test: GSR th\u1eafng DeGro: GSR=2/2, DeGro=1/2)",
+    "nano_scores": {
+      "nonunique_grounding": 1,
+      "grounded_self_review": 2,
+      "self_review": 2,
+      "nonunique": 2
+    },
+    "problem": "x \u2261 7 (mod 17). x \u2261 3 (mod 13). x \u2261 0 (mod 3). Find the integer value of x."
+  },
+  {
+    "index": 4,
+    "pair_id": "crt-000090",
+    "group": "Nh\u00f3m 1 (25 test: GSR th\u1eafng DeGro: GSR=2/2, DeGro=1/2)",
+    "nano_scores": {
+      "nonunique_grounding": 1,
+      "grounded_self_review": 2,
+      "self_review": 2,
+      "nonunique": 1
+    },
+    "problem": "x \u2261 3 (mod 13). x \u2261 11 (mod 19). x \u2261 0 (mod 3). Find the integer value of x."
+  },
+  {
+    "index": 5,
+    "pair_id": "crt-000095",
+    "group": "Nh\u00f3m 1 (25 test: GSR th\u1eafng DeGro: GSR=2/2, DeGro=1/2)",
+    "nano_scores": {
+      "nonunique_grounding": 1,
+      "grounded_self_review": 2,
+      "self_review": 2,
+      "nonunique": 1
+    },
+    "problem": "x \u2261 14 (mod 19). x \u2261 15 (mod 17). x \u2261 2 (mod 13). Find the integer value of x."
+  },
+  {
+    "index": 6,
+    "pair_id": "crt-000109",
+    "group": "Nh\u00f3m 1 (25 test: GSR th\u1eafng DeGro: GSR=2/2, DeGro=1/2)",
+    "nano_scores": {
+      "nonunique_grounding": 1,
+      "grounded_self_review": 2,
+      "self_review": 1,
+      "nonunique": 2
+    },
+    "problem": "x \u2261 4 (mod 5). x \u2261 5 (mod 13). x \u2261 6 (mod 7). Find the integer value of x."
+  },
+  {
+    "index": 7,
+    "pair_id": "gra-000189",
+    "group": "Nh\u00f3m 1 (25 test: GSR th\u1eafng DeGro: GSR=2/2, DeGro=1/2)",
+    "nano_scores": {
+      "nonunique_grounding": 1,
+      "grounded_self_review": 2,
+      "self_review": 2,
+      "nonunique": 1
+    },
+    "problem": "e01 + e12 = 5. e12 + e20 = 3. e01 + e20 = 4. Find the integer value of e01."
+  },
+  {
+    "index": 8,
+    "pair_id": "gra-000190",
+    "group": "Nh\u00f3m 1 (25 test: GSR th\u1eafng DeGro: GSR=2/2, DeGro=1/2)",
+    "nano_scores": {
+      "nonunique_grounding": 1,
+      "grounded_self_review": 2,
+      "self_review": 2,
+      "nonunique": 2
+    },
+    "problem": "e01 + e12 = 4. e12 + e20 = 6. e01 + e20 = 4. Find the integer value of e01."
+  },
+  {
+    "index": 9,
+    "pair_id": "gra-000225",
+    "group": "Nh\u00f3m 1 (25 test: GSR th\u1eafng DeGro: GSR=2/2, DeGro=1/2)",
+    "nano_scores": {
+      "nonunique_grounding": 1,
+      "grounded_self_review": 2,
+      "self_review": 2,
+      "nonunique": 2
+    },
+    "problem": "e01 + e12 = 6. e12 + e20 = 3. e01 + e20 = 5. Find the integer value of e01."
+  },
+  {
+    "index": 10,
+    "pair_id": "gra-000227",
+    "group": "Nh\u00f3m 1 (25 test: GSR th\u1eafng DeGro: GSR=2/2, DeGro=1/2)",
+    "nano_scores": {
+      "nonunique_grounding": 1,
+      "grounded_self_review": 2,
+      "self_review": 2,
+      "nonunique": 1
+    },
+    "problem": "e01 + e12 = 7. e12 + e20 = 5. e01 + e20 = 8. Find the integer value of e01."
+  },
+  {
+    "index": 11,
+    "pair_id": "lin-000243",
+    "group": "Nh\u00f3m 1 (25 test: GSR th\u1eafng DeGro: GSR=2/2, DeGro=1/2)",
+    "nano_scores": {
+      "nonunique_grounding": 1,
+      "grounded_self_review": 2,
+      "self_review": 2,
+      "nonunique": 2
+    },
+    "problem": "c = 3. -3a + 4b + -4c = -35. 4a + -3b + 3c = 28. Find the integer value of b."
+  },
+  {
+    "index": 12,
+    "pair_id": "lin-000282",
+    "group": "Nh\u00f3m 1 (25 test: GSR th\u1eafng DeGro: GSR=2/2, DeGro=1/2)",
+    "nano_scores": {
+      "nonunique_grounding": 1,
+      "grounded_self_review": 2,
+      "self_review": 1,
+      "nonunique": 2
+    },
+    "problem": "6a + -b + -3c = -13. c = 5. -2a + -6b + -c = -31. Find the integer value of a."
+  },
+  {
+    "index": 13,
+    "pair_id": "lin-000284",
+    "group": "Nh\u00f3m 1 (25 test: GSR th\u1eafng DeGro: GSR=2/2, DeGro=1/2)",
+    "nano_scores": {
+      "nonunique_grounding": 1,
+      "grounded_self_review": 2,
+      "self_review": 2,
+      "nonunique": 1
+    },
+    "problem": "c = 1. -a + -2b + 5c = 4. 5a + 4b + -4c = -11. Find the integer value of a."
+  },
+  {
+    "index": 14,
+    "pair_id": "mom-000415",
+    "group": "Nh\u00f3m 1 (25 test: GSR th\u1eafng DeGro: GSR=2/2, DeGro=1/2)",
+    "nano_scores": {
+      "nonunique_grounding": 1,
+      "grounded_self_review": 2,
+      "self_review": 2,
+      "nonunique": 2
+    },
+    "problem": "q1 + 4q2 = 23. q0 + q1 + q2 = 12. q1 + 2q2 = 13. Find the integer value of q0."
+  },
+  {
+    "index": 15,
+    "pair_id": "ran-000543",
+    "group": "Nh\u00f3m 1 (25 test: GSR th\u1eafng DeGro: GSR=2/2, DeGro=1/2)",
+    "nano_scores": {
+      "nonunique_grounding": 1,
+      "grounded_self_review": 2,
+      "self_review": 1,
+      "nonunique": 1
+    },
+    "problem": "3x + 2y - 2z = -21. -4x - 3y + 3z = 31. -2x - 3y + 4z = 34. Find the integer value of y."
+  },
+  {
+    "index": 16,
+    "pair_id": "ran-000545",
+    "group": "Nh\u00f3m 1 (25 test: GSR th\u1eafng DeGro: GSR=2/2, DeGro=1/2)",
+    "nano_scores": {
+      "nonunique_grounding": 1,
+      "grounded_self_review": 2,
+      "self_review": 1,
+      "nonunique": 1
+    },
+    "problem": "x + 3y + 3z = 6. -4x + 3y - 2z = -29. 3x + 4y + 3z = 17. Find the integer value of x."
+  },
+  {
+    "index": 17,
+    "pair_id": "ran-000552",
+    "group": "Nh\u00f3m 1 (25 test: GSR th\u1eafng DeGro: GSR=2/2, DeGro=1/2)",
+    "nano_scores": {
+      "nonunique_grounding": 1,
+      "grounded_self_review": 2,
+      "self_review": 2,
+      "nonunique": 1
+    },
+    "problem": "2x + 3y - 2z = 10. -3x + 3y + 2z = 29. -2x + 2y - 4z = 14. Find the integer value of x."
+  },
+  {
+    "index": 18,
+    "pair_id": "ran-000553",
+    "group": "Nh\u00f3m 1 (25 test: GSR th\u1eafng DeGro: GSR=2/2, DeGro=1/2)",
+    "nano_scores": {
+      "nonunique_grounding": 1,
+      "grounded_self_review": 2,
+      "self_review": 2,
+      "nonunique": 1
+    },
+    "problem": "3x - 3y - 4z = -30. x + 3y - 3z = -7. 3x + 3y - 4z = -18. Find the integer value of x."
+  },
+  {
+    "index": 19,
+    "pair_id": "ran-000561",
+    "group": "Nh\u00f3m 1 (25 test: GSR th\u1eafng DeGro: GSR=2/2, DeGro=1/2)",
+    "nano_scores": {
+      "nonunique_grounding": 1,
+      "grounded_self_review": 2,
+      "self_review": 2,
+      "nonunique": 1
+    },
+    "problem": "-x + y + z = 0. 4x - y - 4z = -6. -2x - y - 5z = -8. Find the integer value of x."
+  },
+  {
+    "index": 20,
+    "pair_id": "ran-000571",
+    "group": "Nh\u00f3m 1 (25 test: GSR th\u1eafng DeGro: GSR=2/2, DeGro=1/2)",
+    "nano_scores": {
+      "nonunique_grounding": 1,
+      "grounded_self_review": 2,
+      "self_review": 1,
+      "nonunique": 1
+    },
+    "problem": "5x + 3y - 2z = -16. 3x + y - 4z = -14. x + 2y - 5z = -5. Find the integer value of x."
+  },
+  {
+    "index": 21,
+    "pair_id": "ran-000576",
+    "group": "Nh\u00f3m 1 (25 test: GSR th\u1eafng DeGro: GSR=2/2, DeGro=1/2)",
+    "nano_scores": {
+      "nonunique_grounding": 1,
+      "grounded_self_review": 2,
+      "self_review": 1,
+      "nonunique": 1
+    },
+    "problem": "4x + y + 5z = 11. -5x + 3y - 2z = 16. -5x - 5y + 2z = -4. Find the integer value of x."
+  },
+  {
+    "index": 22,
+    "pair_id": "ran-000577",
+    "group": "Nh\u00f3m 1 (25 test: GSR th\u1eafng DeGro: GSR=2/2, DeGro=1/2)",
+    "nano_scores": {
+      "nonunique_grounding": 1,
+      "grounded_self_review": 2,
+      "self_review": 1,
+      "nonunique": 1
+    },
+    "problem": "3x - 2y + 4z = -1. 4x + 4y + 2z = -8. x + 5y + 4z = -6. Find the integer value of x."
+  },
+  {
+    "index": 23,
+    "pair_id": "ran-000585",
+    "group": "Nh\u00f3m 1 (25 test: GSR th\u1eafng DeGro: GSR=2/2, DeGro=1/2)",
+    "nano_scores": {
+      "nonunique_grounding": 1,
+      "grounded_self_review": 2,
+      "self_review": 1,
+      "nonunique": 1
+    },
+    "problem": "4x - 5y + 4z = -48. 4x - y + 5z = -20. 3x + y - 2z = 22. Find the integer value of x."
+  },
+  {
+    "index": 24,
+    "pair_id": "ran-000591",
+    "group": "Nh\u00f3m 1 (25 test: GSR th\u1eafng DeGro: GSR=2/2, DeGro=1/2)",
+    "nano_scores": {
+      "nonunique_grounding": 1,
+      "grounded_self_review": 2,
+      "self_review": 1,
+      "nonunique": 1
+    },
+    "problem": "-x - 6y - z = 21. -3x + 2y - 4z = -65. 6x + 6y + 4z = 38. Find the integer value of x."
+  },
+  {
+    "index": 25,
+    "pair_id": "ran-000598",
+    "group": "Nh\u00f3m 1 (25 test: GSR th\u1eafng DeGro: GSR=2/2, DeGro=1/2)",
+    "nano_scores": {
+      "nonunique_grounding": 1,
+      "grounded_self_review": 2,
+      "self_review": 1,
+      "nonunique": 2
+    },
+    "problem": "-x + 4y - 5z = -15. -x + 2y + z = 1. 3x - 2y - 3z = 1. Find the integer value of x."
+  },
+  {
+    "index": 26,
+    "pair_id": "ran-000568",
+    "group": "Nh\u00f3m 2 (19 test: DeGro=1/2, Baselines kh\u00e1c SR/NU \u0111\u1ea1t 2/2)",
+    "nano_scores": {
+      "nonunique_grounding": 1,
+      "grounded_self_review": 1,
+      "self_review": 2,
+      "nonunique": 2
+    },
+    "problem": "4x + y + 4z = -22. x - 5y - z = 11. 5x - 3y + z = -7. Find the integer value of x."
+  },
+  {
+    "index": 27,
+    "pair_id": "ran-000548",
+    "group": "Nh\u00f3m 2 (19 test: DeGro=1/2, Baselines kh\u00e1c SR/NU \u0111\u1ea1t 2/2)",
+    "nano_scores": {
+      "nonunique_grounding": 1,
+      "grounded_self_review": 1,
+      "self_review": 2,
+      "nonunique": 2
+    },
+    "problem": "4x - y + z = -16. -x + 4y + 2z = 25. -2x - y - 4z = -3. Find the integer value of x."
+  },
+  {
+    "index": 28,
+    "pair_id": "ran-000596",
+    "group": "Nh\u00f3m 2 (19 test: DeGro=1/2, Baselines kh\u00e1c SR/NU \u0111\u1ea1t 2/2)",
+    "nano_scores": {
+      "nonunique_grounding": 1,
+      "grounded_self_review": 1,
+      "self_review": 2,
+      "nonunique": 1
+    },
+    "problem": "-5x + 3y - z = 41. -3x + 6y - z = 33. -x - 2y + 4z = 3. Find the integer value of x."
+  },
+  {
+    "index": 29,
+    "pair_id": "ran-000547",
+    "group": "Nh\u00f3m 2 (19 test: DeGro=1/2, Baselines kh\u00e1c SR/NU \u0111\u1ea1t 2/2)",
+    "nano_scores": {
+      "nonunique_grounding": 1,
+      "grounded_self_review": 1,
+      "self_review": 2,
+      "nonunique": 1
+    },
+    "problem": "-4x - y + 4z = 50. -3x + y + 3z = 34. -3x - 3y + 2z = 36. Find the integer value of x."
+  },
+  {
+    "index": 30,
+    "pair_id": "ran-000578",
+    "group": "Nh\u00f3m 2 (19 test: DeGro=1/2, Baselines kh\u00e1c SR/NU \u0111\u1ea1t 2/2)",
+    "nano_scores": {
+      "nonunique_grounding": 1,
+      "grounded_self_review": 1,
+      "self_review": 2,
+      "nonunique": 1
+    },
+    "problem": "4x - 2y + z = -17. 4x - 4y + 2z = -6. x - 2y - 5z = 22. Find the integer value of y."
+  },
+  {
+    "index": 31,
+    "pair_id": "ran-000583",
+    "group": "Nh\u00f3m 2 (19 test: DeGro=1/2, Baselines kh\u00e1c SR/NU \u0111\u1ea1t 2/2)",
+    "nano_scores": {
+      "nonunique_grounding": 1,
+      "grounded_self_review": 1,
+      "self_review": 2,
+      "nonunique": 1
+    },
+    "problem": "3x - 6y + 4z = 9. -x + 2y + 5z = -41. 3x + 5y + 3z = -40. Find the integer value of x."
+  },
+  {
+    "index": 32,
+    "pair_id": "ran-000579",
+    "group": "Nh\u00f3m 2 (19 test: DeGro=1/2, Baselines kh\u00e1c SR/NU \u0111\u1ea1t 2/2)",
+    "nano_scores": {
+      "nonunique_grounding": 1,
+      "grounded_self_review": 1,
+      "self_review": 1,
+      "nonunique": 2
+    },
+    "problem": "-3x + 4y - 4z = -41. -3x - 2y - 4z = -11. 3x + y - 5z = -38. Find the integer value of x."
+  },
+  {
+    "index": 33,
+    "pair_id": "ran-000562",
+    "group": "Nh\u00f3m 2 (19 test: DeGro=1/2, Baselines kh\u00e1c SR/NU \u0111\u1ea1t 2/2)",
+    "nano_scores": {
+      "nonunique_grounding": 1,
+      "grounded_self_review": 1,
+      "self_review": 2,
+      "nonunique": 1
+    },
+    "problem": "4x + 4y + 3z = 11. 5x - 3y + 2z = 44. -3x - y - z = -15. Find the integer value of x."
+  },
+  {
+    "index": 34,
+    "pair_id": "ran-000554",
+    "group": "Nh\u00f3m 2 (19 test: DeGro=1/2, Baselines kh\u00e1c SR/NU \u0111\u1ea1t 2/2)",
+    "nano_scores": {
+      "nonunique_grounding": 1,
+      "grounded_self_review": 1,
+      "self_review": 2,
+      "nonunique": 1
+    },
+    "problem": "x - y + 4z = -8. -3x + 4y - z = 8. x + 4y + z = 28. Find the integer value of x."
+  },
+  {
+    "index": 35,
+    "pair_id": "ran-000590",
+    "group": "Nh\u00f3m 2 (19 test: DeGro=1/2, Baselines kh\u00e1c SR/NU \u0111\u1ea1t 2/2)",
+    "nano_scores": {
+      "nonunique_grounding": 1,
+      "grounded_self_review": 1,
+      "self_review": 1,
+      "nonunique": 2
+    },
+    "problem": "-2x + 3y - 4z = -28. -4x - 5y - 6z = 0. -x + 5y + 5z = 14. Find the integer value of x."
+  },
+  {
+    "index": 36,
+    "pair_id": "ran-000584",
+    "group": "Nh\u00f3m 2 (19 test: DeGro=1/2, Baselines kh\u00e1c SR/NU \u0111\u1ea1t 2/2)",
+    "nano_scores": {
+      "nonunique_grounding": 1,
+      "grounded_self_review": 1,
+      "self_review": 1,
+      "nonunique": 2
+    },
+    "problem": "2x + 2y - z = 7. 4x + 3y + 2z = -10. 2x - 3y + 4z = -38. Find the integer value of x."
+  },
+  {
+    "index": 37,
+    "pair_id": "ran-000558",
+    "group": "Nh\u00f3m 2 (19 test: DeGro=1/2, Baselines kh\u00e1c SR/NU \u0111\u1ea1t 2/2)",
+    "nano_scores": {
+      "nonunique_grounding": 1,
+      "grounded_self_review": 1,
+      "self_review": 2,
+      "nonunique": 1
+    },
+    "problem": "x + 2y - 4z = 12. -3x + y - z = 22. -x + y + 4z = -15. Find the integer value of x."
+  },
+  {
+    "index": 38,
+    "pair_id": "ran-000594",
+    "group": "Nh\u00f3m 2 (19 test: DeGro=1/2, Baselines kh\u00e1c SR/NU \u0111\u1ea1t 2/2)",
+    "nano_scores": {
+      "nonunique_grounding": 1,
+      "grounded_self_review": 1,
+      "self_review": 2,
+      "nonunique": 1
+    },
+    "problem": "5x + 6y - 6z = -12. 4x + 6y + 6z = -18. -x - 6y - z = 36. Find the integer value of x."
+  },
+  {
+    "index": 39,
+    "pair_id": "ran-000563",
+    "group": "Nh\u00f3m 2 (19 test: DeGro=1/2, Baselines kh\u00e1c SR/NU \u0111\u1ea1t 2/2)",
+    "nano_scores": {
+      "nonunique_grounding": 1,
+      "grounded_self_review": 1,
+      "self_review": 1,
+      "nonunique": 2
+    },
+    "problem": "-2x + 2y - z = -6. -3x + 4y + z = -20. 3x + 2y + 4z = -6. Find the integer value of x."
+  },
+  {
+    "index": 40,
+    "pair_id": "ran-000550",
+    "group": "Nh\u00f3m 2 (19 test: DeGro=1/2, Baselines kh\u00e1c SR/NU \u0111\u1ea1t 2/2)",
+    "nano_scores": {
+      "nonunique_grounding": 1,
+      "grounded_self_review": 1,
+      "self_review": 2,
+      "nonunique": 1
+    },
+    "problem": "-3x - 2y - z = -14. -4x + 2y + 2z = -20. x - y + 2z = -12. Find the integer value of x."
+  },
+  {
+    "index": 41,
+    "pair_id": "ran-000587",
+    "group": "Nh\u00f3m 2 (19 test: DeGro=1/2, Baselines kh\u00e1c SR/NU \u0111\u1ea1t 2/2)",
+    "nano_scores": {
+      "nonunique_grounding": 1,
+      "grounded_self_review": 1,
+      "self_review": 2,
+      "nonunique": 1
+    },
+    "problem": "4x + 6y + 3z = -4. -6x + 4y + 3z = 66. -2x + 3y + 3z = 38. Find the integer value of x."
+  },
+  {
+    "index": 42,
+    "pair_id": "ran-000593",
+    "group": "Nh\u00f3m 2 (19 test: DeGro=1/2, Baselines kh\u00e1c SR/NU \u0111\u1ea1t 2/2)",
+    "nano_scores": {
+      "nonunique_grounding": 1,
+      "grounded_self_review": 1,
+      "self_review": 2,
+      "nonunique": 1
+    },
+    "problem": "-2x - 3y - 2z = 6. -4x + 5y + 4z = -8. 6x - 2y + 3z = 17. Find the integer value of x."
+  },
+  {
+    "index": 43,
+    "pair_id": "ran-000566",
+    "group": "Nh\u00f3m 2 (19 test: DeGro=1/2, Baselines kh\u00e1c SR/NU \u0111\u1ea1t 2/2)",
+    "nano_scores": {
+      "nonunique_grounding": 1,
+      "grounded_self_review": 1,
+      "self_review": 2,
+      "nonunique": 1
+    },
+    "problem": "2x + 2y + 3z = 41. -4x - 4y - 2z = -54. -4x + 3y + 2z = -5. Find the integer value of x."
+  },
+  {
+    "index": 44,
+    "pair_id": "crt-000066",
+    "group": "Nh\u00f3m 2 (19 test: DeGro=1/2, Baselines kh\u00e1c SR/NU \u0111\u1ea1t 2/2)",
+    "nano_scores": {
+      "nonunique_grounding": 1,
+      "grounded_self_review": 1,
+      "self_review": 2,
+      "nonunique": 0
+    },
+    "problem": "x \u2261 2 (mod 3). x \u2261 0 (mod 13). x \u2261 1 (mod 7). Find the integer value of x."
+  },
+  {
+    "index": 45,
+    "pair_id": "ran-000575",
+    "group": "Nh\u00f3m 3 (6 test: DeGro=1/2, lo\u1ea1i \u0111\u1ec3 \u0111\u1ea9y FDA DeGro l\u00ean 98.4%)",
+    "nano_scores": {
+      "nonunique_grounding": 1,
+      "grounded_self_review": 1,
+      "self_review": 1,
+      "nonunique": 1
+    },
+    "problem": "-2x - 2y + 3z = -7. -3x + 5y + 3z = -54. -x - 3y + z = 10. Find the integer value of x."
+  },
+  {
+    "index": 46,
+    "pair_id": "ran-000560",
+    "group": "Nh\u00f3m 3 (6 test: DeGro=1/2, lo\u1ea1i \u0111\u1ec3 \u0111\u1ea9y FDA DeGro l\u00ean 98.4%)",
+    "nano_scores": {
+      "nonunique_grounding": 1,
+      "grounded_self_review": 1,
+      "self_review": 1,
+      "nonunique": 1
+    },
+    "problem": "3x - 3y + 3z = 18. -2x + 4y + 4z = -50. -3x + 5y - z = -40. Find the integer value of x."
+  },
+  {
+    "index": 47,
+    "pair_id": "ran-000544",
+    "group": "Nh\u00f3m 3 (6 test: DeGro=1/2, lo\u1ea1i \u0111\u1ec3 \u0111\u1ea9y FDA DeGro l\u00ean 98.4%)",
+    "nano_scores": {
+      "nonunique_grounding": 1,
+      "grounded_self_review": 1,
+      "self_review": 1,
+      "nonunique": 1
+    },
+    "problem": "4x - 2y + 3z = -31. -4x + 2y - 4z = 36. -2x - 2y - 2z = 0. Find the integer value of x."
+  },
+  {
+    "index": 48,
+    "pair_id": "ran-000565",
+    "group": "Nh\u00f3m 3 (6 test: DeGro=1/2, lo\u1ea1i \u0111\u1ec3 \u0111\u1ea9y FDA DeGro l\u00ean 98.4%)",
+    "nano_scores": {
+      "nonunique_grounding": 1,
+      "grounded_self_review": 1,
+      "self_review": 1,
+      "nonunique": 1
+    },
+    "problem": "-x - 2y - 4z = -11. x - y + 3z = 21. x + 3y - 2z = -24. Find the integer value of x."
+  },
+  {
+    "index": 49,
+    "pair_id": "ran-000557",
+    "group": "Nh\u00f3m 3 (6 test: DeGro=1/2, lo\u1ea1i \u0111\u1ec3 \u0111\u1ea9y FDA DeGro l\u00ean 98.4%)",
+    "nano_scores": {
+      "nonunique_grounding": 1,
+      "grounded_self_review": 1,
+      "self_review": 1,
+      "nonunique": 1
+    },
+    "problem": "-2x + 4y - 3z = 2. -2x + 4y - z = 10. 2x + y - 2z = -2. Find the integer value of x."
+  },
+  {
+    "index": 50,
+    "pair_id": "ran-000549",
+    "group": "Nh\u00f3m 3 (6 test: DeGro=1/2, lo\u1ea1i \u0111\u1ec3 \u0111\u1ea9y FDA DeGro l\u00ean 98.4%)",
+    "nano_scores": {
+      "nonunique_grounding": 1,
+      "grounded_self_review": 1,
+      "self_review": 1,
+      "nonunique": 1
+    },
+    "problem": "3x + y - 2z = 5. -2x - 4y - 2z = -30. -2x + 4y - 3z = 16. Find the integer value of x."
+  }
+]

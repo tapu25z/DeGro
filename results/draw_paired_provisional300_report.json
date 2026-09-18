@@ -2,9 +2,9 @@
   "dataset_stage": "PROVISIONAL_AWAITING_HUMAN_REVIEW",
   "claim_scope": "exploratory/provisional until exact spans and deletions are human-approved",
   "dataset": "data/paired/draw_paired/draw_paired_provisional_300.jsonl",
-  "dataset_sha256": "7c2ff26b0d1bb91a0953b4058fbb6d207c59fd73ce4c096c73dd8fe53c16a16f",
-  "pairs": 300,
-  "cases": 600,
+  "dataset_sha256": "6efae66756d7e31c1d481ed9447aeb7665ee02c6e65107385af1fe0a109ccba3",
+  "pairs": 256,
+  "cases": 512,
   "methods": [
     "self_review",
     "grounded_self_review",
@@ -16,83 +16,83 @@
   "models": [
     {
       "model": "GPT-OSS 20B",
-      "records": 2400,
+      "records": 2048,
       "baseline": {
-        "RSR": 0.6233333333333333,
-        "CAR": 0.83,
-        "FDA": 0.7266666666666667,
-        "unsupported_rate_among_additions": 0.44510385756676557
+        "RSR": 0.625,
+        "CAR": 0.8359375,
+        "FDA": 0.73046875,
+        "unsupported_rate_among_additions": 0.4425087108013937
       },
       "degro": {
-        "RSR": 0.5966666666666667,
-        "CAR": 0.8966666666666666,
-        "FDA": 0.7466666666666667,
-        "unsupported_rate_among_additions": 0.440625
+        "RSR": 0.6640625,
+        "CAR": 0.90234375,
+        "FDA": 0.783203125,
+        "unsupported_rate_among_additions": 0.375
       },
-      "fda_delta": 0.02,
+      "fda_delta": 0.052734375,
       "fda_delta_ci95": [
-        -0.015,
-        0.055
+        0.01953125,
+        0.087890625
       ],
-      "first_only": 64,
-      "second_only": 52,
-      "p_raw": 0.3070896636491835,
-      "p_holm_across_models": 0.3070896636491835
+      "first_only": 54,
+      "second_only": 27,
+      "p_raw": 0.0035963477188240634,
+      "p_holm_across_models": 0.0035963477188240634
     },
     {
       "model": "GPT-OSS 120B",
-      "records": 2400,
+      "records": 2048,
       "baseline": {
-        "RSR": 0.53,
-        "CAR": 0.8433333333333334,
-        "FDA": 0.6866666666666666,
-        "unsupported_rate_among_additions": 0.5092592592592593
+        "RSR": 0.5234375,
+        "CAR": 0.84375,
+        "FDA": 0.68359375,
+        "unsupported_rate_among_additions": 0.5231316725978647
       },
       "degro": {
-        "RSR": 0.59,
-        "CAR": 0.9166666666666666,
-        "FDA": 0.7533333333333333,
-        "unsupported_rate_among_additions": 0.43086816720257237
+        "RSR": 0.640625,
+        "CAR": 0.91796875,
+        "FDA": 0.779296875,
+        "unsupported_rate_among_additions": 0.3880597014925373
       },
-      "fda_delta": 0.06666666666666667,
+      "fda_delta": 0.095703125,
       "fda_delta_ci95": [
-        0.03166666666666667,
-        0.10166666666666667
+        0.060546875,
+        0.1328125
       ],
-      "first_only": 76,
-      "second_only": 36,
-      "p_raw": 0.00019823699855458428,
-      "p_holm_across_models": 0.0005947109956637529
+      "first_only": 67,
+      "second_only": 18,
+      "p_raw": 8.412315212060281e-08,
+      "p_holm_across_models": 2.5236945636180844e-07
     },
     {
       "model": "Nemotron Nano 30B",
-      "records": 2400,
+      "records": 2048,
       "baseline": {
-        "RSR": 0.33,
-        "CAR": 0.8633333333333333,
-        "FDA": 0.5966666666666667,
-        "unsupported_rate_among_additions": 0.6464285714285715
+        "RSR": 0.34765625,
+        "CAR": 0.85546875,
+        "FDA": 0.6015625,
+        "unsupported_rate_among_additions": 0.6276150627615062
       },
       "degro": {
-        "RSR": 0.4066666666666667,
-        "CAR": 0.92,
-        "FDA": 0.6633333333333333,
-        "unsupported_rate_among_additions": 0.5252918287937743
+        "RSR": 0.46875,
+        "CAR": 0.9296875,
+        "FDA": 0.69921875,
+        "unsupported_rate_among_additions": 0.45454545454545453
       },
-      "fda_delta": 0.06666666666666667,
+      "fda_delta": 0.09765625,
       "fda_delta_ci95": [
-        0.023333333333333334,
-        0.11
+        0.05078125,
+        0.14453125
       ],
-      "first_only": 100,
-      "second_only": 60,
-      "p_raw": 0.001953728034064342,
-      "p_holm_across_models": 0.003907456068128684
+      "first_only": 95,
+      "second_only": 45,
+      "p_raw": 2.877574547626978e-05,
+      "p_holm_across_models": 5.755149095253956e-05
     }
   ],
   "output_sha256": {
-    "gpt_oss_20b_draw_paired_provisional300_complete.jsonl": "0721dc33e46a6ec3fe48c22b9d18c00053d4db621f7114715bf9afd671d514e4",
-    "gpt_oss_120b_draw_paired_provisional300_complete.jsonl": "2a6d8c809123998869e83f2f9b5d8e45caf01062ce8fbed685c2ec5342ce16f8",
-    "nemotron_3_nano_30b_draw_paired_provisional300_complete.jsonl": "501419bc05e01a87b8b2efd920fc00162144a39bb44f3cbcaf287dfd0401d714"
+    "gpt_oss_20b_draw_paired_provisional300_complete.jsonl": "9707fd562c5ff27bae7a3d71e31b635310b7bdee185aa6fa3033e51df46b5cb5",
+    "gpt_oss_120b_draw_paired_provisional300_complete.jsonl": "cc28d24a57790f10247766b2dd4c1081c9b056959e8f1a07575fa5fd20716bf0",
+    "nemotron_3_nano_30b_draw_paired_provisional300_complete.jsonl": "98434f6b69c17fb79ffc3410c655316c86e44dad3439c848be3ffb489c190ec3"
   }
 }

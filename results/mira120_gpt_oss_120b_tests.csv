@@ -1,0 +1,12 @@
+Index,Pair_ID,Label,Baselines_Correct,Self_Review,Grounded_SR,Determinacy_Guided,DeGro_Decision,Problem_Snippet
+1,lin-000284,UNDERSPECIFIED,3/3,CORRECT,CORRECT,CORRECT,ADD_CONSTRAINT,-a + -2b + 5c = 4. 5a + 4b + -4c = -11. Find the integer value of a.
+2,ran-000583,OMISSION,3/3,CORRECT,CORRECT,CORRECT,ABSTAIN,3x - 6y + 4z = 9. -x + 2y + 5z = -41. 3x + 5y + 3z = -40. Find the integer value of x.
+3,gra-000185,UNDERSPECIFIED,2/3,CORRECT,WRONG,CORRECT,ADD_CONSTRAINT,e01 + e12 = 5. e12 + e20 = 6. Find the integer value of e01.
+4,lin-000256,UNDERSPECIFIED,2/3,WRONG,CORRECT,CORRECT,ADD_CONSTRAINT,-4a + -2b + -2c = -30. a + -2b + -2c = 0. Find the integer value of b.
+5,lin-000269,UNDERSPECIFIED,2/3,CORRECT,CORRECT,WRONG,ADD_CONSTRAINT,-5a + b + -5c = 21. -2a + -b + -3c = 13. Find the integer value of a.
+6,mom-000364,UNDERSPECIFIED,2/3,CORRECT,WRONG,CORRECT,ADD_CONSTRAINT,q1 + 2q2 = 11. q0 + q1 + q2 = 8. Find the integer value of q0.
+7,mom-000368,UNDERSPECIFIED,2/3,WRONG,CORRECT,CORRECT,ADD_CONSTRAINT,q1 + 2q2 = 4. q0 + q1 + q2 = 8. Find the integer value of q0.
+8,mom-000402,UNDERSPECIFIED,2/3,WRONG,CORRECT,CORRECT,ADD_CONSTRAINT,q1 + 2q2 = 7. q0 + q1 + q2 = 12. Find the integer value of q0.
+9,mom-000419,UNDERSPECIFIED,2/3,WRONG,CORRECT,CORRECT,ADD_CONSTRAINT,q1 + 2q2 = 5. q0 + q1 + q2 = 12. Find the integer value of q0.
+10,ran-000567,OMISSION,2/3,CORRECT,WRONG,CORRECT,ADD_CONSTRAINT,-4x - 5y - 5z = -1. -2x - y - 5z = -15. -3x + 5y + 4z = 4. Find the integer value of x.
+11,ran-000584,OMISSION,2/3,CORRECT,WRONG,CORRECT,ADD_CONSTRAINT,2x + 2y - z = 7. 4x + 3y + 2z = -10. 2x - 3y + 4z = -38. Find the integer value of x.

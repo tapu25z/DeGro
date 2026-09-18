@@ -1,0 +1,11 @@
+[9/18] ran-000574 OMISSION self_review ok
+[10/18] ran-000574 UNDERSPECIFIED self_review ok
+[11/18] crt-000098 OMISSION self_review ok
+[12/18] crt-000098 UNDERSPECIFIED self_review ok
+[13/18] mom-000369 OMISSION self_review error
+[14/18] mom-000369 UNDERSPECIFIED self_review ok
+[15/18] ran-000556 OMISSION self_review ok
+[16/18] ran-000556 UNDERSPECIFIED self_review ok
+[17/18] gra-000222 OMISSION self_review ok
+[18/18] gra-000222 UNDERSPECIFIED self_review ok
+[18/18] mom-000369 OMISSION self_review ok

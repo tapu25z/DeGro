@@ -9,6 +9,9 @@ ROOT = Path('data/paired/draw_paired')
 SEED = 20260919
 
 def main():
+    if (ROOT/'exclusion_audit.json').exists():
+        print('Retained cohort already frozen after exclusions; no extension re-selection.')
+        return
     base = list(read_jsonl(ROOT/'draw_paired.jsonl'))
     excluded = {r['source_index'] for r in base}
     remaining = [r for r in read_jsonl(ROOT/'candidates.jsonl') if not r['span_proposal']['flags'] and r['source_index'] not in excluded]

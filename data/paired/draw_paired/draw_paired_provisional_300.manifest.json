@@ -3,21 +3,23 @@
   "stage": "PROVISIONAL_AWAITING_HUMAN_REVIEW",
   "created_at_utc": "2026-09-17T18:13:01.707313+00:00",
   "candidate_path": "data/paired/draw_paired/candidates.jsonl",
-  "candidate_sha256": "8e241c3a19d289e64f85c05ae2338b582428600e1c3939b550c37234e5da5f99",
+  "candidate_sha256": "f7a9f196b5ff98c3f93f79a469ede057f1b2e54028157ebae928352a1c94f5c1",
   "selection_seed": 20260918,
   "selection_rule": "unflagged span proposals; proportional source-split allocation; SHA-256 seeded rank",
   "available_unflagged_pairs": 367,
-  "pairs": 300,
-  "cases": 600,
+  "pairs": 256,
+  "cases": 512,
   "pairs_by_split": {
-    "dev": 77,
-    "train": 223
+    "train": 189,
+    "dev": 67
   },
-  "oracle_score_checks": 600,
-  "output_sha256": "2ff961ec38cb3b4380686ecacc7374aecefbfc0ccd11c897873cbd9c508cd709",
+  "oracle_score_checks": 512,
+  "output_sha256": "6efae66756d7e31c1d481ed9447aeb7665ee02c6e65107385af1fe0a109ccba3",
   "cohort_review_packet": "data/paired/draw_paired/draw_paired_provisional_300_review.jsonl",
-  "cohort_review_packet_sha256": "23e2ddb98489647783b6c55e8b3d76579220420fc493d3ec55922b431fd2ab04",
+  "cohort_review_packet_sha256": "7d07fd6aec90a940d12978aef2ee380f6631b0ec084ff3e0ba970ee512e6e352",
   "human_review_complete": false,
   "frozen": false,
-  "claim_scope": "exploratory/provisional only until exact spans and deletions are human-approved"
+  "claim_scope": "exploratory/provisional only until exact spans and deletions are human-approved",
+  "exclusion_audit": "data/paired/draw_paired/exclusion_audit.json",
+  "exclusion_ids_sha256": "5f850689221e721de3f4d7f7a2ba42c2f87275eb76fd873d1c8e724bcbe14a6d"
 }

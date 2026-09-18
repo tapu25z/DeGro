@@ -1,0 +1,12 @@
+{
+  "study": "Geometry60 extension to MIRA-300; separate until all-model analysis is complete",
+  "source_dataset": "data/paired/mira_near_fragment_174.jsonl",
+  "source_sha256": "7c478e5caa4e6bbd40d2f39ef9d5d03ebd5cbbe67ccd5711a2357b01579b9da6",
+  "mira_source_sha256": "78a021526f9457af6e3776ac470c4ef1202d18fd9a19539e7e289294997b2ad0",
+  "family": "geometry_coordinates",
+  "pairs": 60,
+  "cases": 120,
+  "selection": "all 60 geometry instances in the frozen MIRA-Math release; no outcome-based filtering",
+  "target_representation": "squared Euclidean distance; uniqueness-equivalent to nonnegative Euclidean distance",
+  "output_sha256": "dfbb83a551a4b39ad0d4abbee138ce7e8e581e5c6500cc6f914f598efaad5f51"
+}

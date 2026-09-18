@@ -11,13 +11,15 @@ from targetcheck.pilot import METHODS, OUTPUT_SCHEMA, build_prompt, parse_decisi
 from targetcheck.providers import OllamaCloudClient, load_api_keys
 
 
-def load_completed(path: Path) -> set[tuple[str, str, str]]:
+def load_completed(path: Path, config: dict | None = None) -> set[tuple[str, str, str]]:
     if not path.exists():
         return set()
     completed = set()
     for line in path.read_text().splitlines():
         row = json.loads(line)
         if row.get("status") == "ok":
+            if config is not None and any(row.get(field) != value for field, value in config.items()):
+                raise ValueError(f"checkpoint configuration differs from this run: {path}")
             completed.add((row["pair_id"], row["label"], row["method"]))
     return completed
 
@@ -28,6 +30,7 @@ def main() -> None:
     parser.add_argument("--out", type=Path, default=Path("results/raw/gpt_oss_20b_pilot.jsonl"))
     parser.add_argument("--keys", type=Path, default=Path("api.txt"))
     parser.add_argument("--model", default="gpt-oss:20b")
+    parser.add_argument("--think", choices=("low", "medium", "high", "true", "false"), default="medium")
     parser.add_argument("--methods", nargs="+", choices=METHODS, default=list(METHODS))
     parser.add_argument("--limit-pairs", type=int)
     parser.add_argument("--pair-id")
@@ -39,6 +42,7 @@ def main() -> None:
     parser.add_argument("--timeout", type=float, default=180.0)
     parser.add_argument("--resume-from", type=Path, nargs="*", default=[])
     args = parser.parse_args()
+    think = {"true": True, "false": False}.get(args.think, args.think)
     rows = [json.loads(line) for line in args.data.read_text().splitlines()]
     if args.pair_id:
         rows = [row for row in rows if row["pair_id"] == args.pair_id]
@@ -55,16 +59,16 @@ def main() -> None:
     shard_ids = {pair_id for index, pair_id in enumerate(all_ids) if index % args.num_shards == args.shard_index}
     rows = [row for row in rows if row["pair_id"] in shard_ids]
     args.out.parent.mkdir(parents=True, exist_ok=True)
-    completed = load_completed(args.out)
+    config = {"model": args.model, "temperature": 1.0, "think": think, "prompt_hash": prompt_hash()}
+    completed = load_completed(args.out, config)
     for checkpoint in args.resume_from:
-        completed.update(load_completed(checkpoint))
+        completed.update(load_completed(checkpoint, config))
     keys = load_api_keys(args.keys)
     offset = (args.account_offset if args.account_offset is not None else args.shard_index) % len(keys)
     keys = keys[offset:] + keys[:offset]
     if args.accounts_per_worker is not None:
         keys = keys[: max(1, min(args.accounts_per_worker, len(keys)))]
     client = OllamaCloudClient(keys, timeout_s=args.timeout)
-    config = {"model": args.model, "temperature": 1.0, "think": "medium", "prompt_hash": prompt_hash()}
     total = len(rows) * len(args.methods)
     relevant = {(row["pair_id"], row["label"], method) for row in rows for method in args.methods}
     completed.intersection_update(relevant)
@@ -84,11 +88,13 @@ def main() -> None:
                         [{"role": "user", "content": build_prompt(method, row)}],
                         format_schema=OUTPUT_SCHEMA,
                         options={"temperature": 1.0},
-                        think="medium",
+                        think=think,
                     )
                     content = response.get("message", {}).get("content", "")
                     output = parse_decision(content)
                     record.update({"status": "ok", "output": output, "score": score(row, output)})
+                    record["response_model"] = response.get("model")
+                    record["thinking_chars"] = len(response.get("message", {}).get("thinking", ""))
                     for field in ("prompt_eval_count", "eval_count", "total_duration", "load_duration"):
                         if field in response:
                             record[field] = response[field]

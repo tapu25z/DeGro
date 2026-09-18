@@ -1,0 +1,71 @@
+Index,Pair_ID,Label,Baselines_Correct,Self_Review,Grounded_SR,Determinacy_Guided,DeGro_Decision,Problem_Snippet
+1,draw-paired/103718/1/student,OMISSION,3/3,CORRECT,CORRECT,CORRECT,ABSTAIN,The sum of Two numbers is 39 . Twice the first number and plus 3 times the second number is 101 . Wh
+2,draw-paired/153326/2/x,OMISSION,3/3,CORRECT,CORRECT,CORRECT,ADD_CONSTRAINT,Walt made an extra $ 9000 last year from a part-time job . He invested part of the money at 9 % and 
+3,draw-paired/164823/1/x,OMISSION,3/3,CORRECT,CORRECT,CORRECT,ADD_CONSTRAINT,To be a lifeguard you must swim continuously for 500 yards doing either the front crawl or the breas
+4,draw-paired/225986/1/x,OMISSION,3/3,CORRECT,CORRECT,CORRECT,ADD_CONSTRAINT,the difference between two numbers is 22 . If the larger number is 4 more than twice the smaller . F
+5,draw-paired/265579/1/x,OMISSION,3/3,CORRECT,CORRECT,CORRECT,ADD_CONSTRAINT,"Five Years ago , Gemma was twice as old as Tony is now . In seven years , Gemma will be five times a"
+6,draw-paired/276154/1/x,OMISSION,3/3,CORRECT,CORRECT,CORRECT,ADD_CONSTRAINT,The sum of five times one number plus twice a second number is 2 . The sum of twice the first number
+7,draw-paired/279047/1/x,OMISSION,3/3,CORRECT,CORRECT,CORRECT,ADD_CONSTRAINT,Two cars leave Denver at the same time and travel in opposite directions . One car travels 10 mi/h f
+8,draw-paired/280654/1/x,UNDERSPECIFIED,3/3,CORRECT,CORRECT,CORRECT,ADD_CONSTRAINT,"if three times the smaller is one less than the larger , find the numbers ."
+9,draw-paired/29976/1/student,OMISSION,3/3,CORRECT,CORRECT,CORRECT,ADD_CONSTRAINT,A total of 1096 people attended the concert at the County Fair . Reserved seats cost $ 25.00 eac and
+10,draw-paired/385266/1/x,OMISSION,3/3,CORRECT,CORRECT,CORRECT,ADD_CONSTRAINT,One pan pizza and two cheesburgers provide 2860 calories . Two pan pizzas and one cheeseburger provi
+11,draw-paired/397250/1/x,OMISSION,3/3,CORRECT,CORRECT,CORRECT,ADD_CONSTRAINT,"the sum of the digits of a two-digit number is 17 . When the digits are reversed , the new number is"
+12,draw-paired/406012/1/f,OMISSION,3/3,CORRECT,CORRECT,CORRECT,ADD_CONSTRAINT,A father is now twice as old as his daughter . 10 years ago he was 3 times as old as her . How old a
+13,draw-paired/492783/1/x,UNDERSPECIFIED,3/3,CORRECT,CORRECT,CORRECT,ADD_CONSTRAINT,"If 4 times the smaller number exceeds the greater by 5 , find the numbers"
+14,draw-paired/502890/1/x,OMISSION,3/3,CORRECT,CORRECT,CORRECT,ADD_CONSTRAINT,A two digit number is 3 times the sum of it 's digits . The number is also 45 less than the number f
+15,draw-paired/514217/1/plane,OMISSION,3/3,CORRECT,CORRECT,CORRECT,ADD_CONSTRAINT,the sum of two integers is 5 . their difference is 13 . find the two integers
+16,draw-paired/525358/1/y,OMISSION,3/3,CORRECT,CORRECT,CORRECT,ADD_CONSTRAINT,"The length of a rectangle is 3m longer than its width . If the perimeter of the rectangle is 34m , f"
+17,draw-paired/52939/1/x,OMISSION,3/3,CORRECT,CORRECT,CORRECT,ADD_CONSTRAINT,One number is 7 less than another . If 4 times the smaller number plus 2 times the larger number is 
+18,draw-paired/569048/1/x,OMISSION,3/3,CORRECT,CORRECT,CORRECT,ADD_CONSTRAINT,"the sum of two digits of a natural number is 7 . when the digits are reversed , the number is increa"
+19,draw-paired/57740/1/x,OMISSION,3/3,CORRECT,CORRECT,CORRECT,ADD_CONSTRAINT,The sum of two numbers is 33 . Their differeence is 7 . What are the two numbers .
+20,draw-paired/630415/1/x,OMISSION,3/3,CORRECT,CORRECT,CORRECT,ADD_CONSTRAINT,adding together two numbers 1520 . three times the smaller is equal to two times the larger . find t
+21,draw-paired/631883/2/y,OMISSION,3/3,CORRECT,CORRECT,CORRECT,ADD_CONSTRAINT,Jane worked 3 times as many hours last week as Jim did . If they worked 28 hours between the two of 
+22,draw-paired/675092/1/x,UNDERSPECIFIED,3/3,CORRECT,CORRECT,CORRECT,ADD_CONSTRAINT,The greater number is 3 more than twice the lesser number . What are the numbers ?
+23,draw-paired/693217/1/x,UNDERSPECIFIED,3/3,CORRECT,CORRECT,CORRECT,ADD_CONSTRAINT,A mother 's age is three less than 3 times her daughters age . Find their ages
+24,draw-paired/71010/1/nickels,OMISSION,3/3,CORRECT,CORRECT,CORRECT,ADD_CONSTRAINT,"Jill has $ 3.50 in nickels and dimes . If she has 50 coins , how many of each type of coin does she "
+25,draw-paired/71823/1/y,OMISSION,3/3,CORRECT,CORRECT,CORRECT,ADD_CONSTRAINT,One number is 12 more than another . The sum of the smaller number and twice the larger number is 39
+26,draw-paired/739546/1/x,OMISSION,3/3,CORRECT,CORRECT,CORRECT,ADD_CONSTRAINT,U-Haul charges a daily fee plus a mileage charge to rent a truck . Jennifer rented a truck with U-Ha
+27,draw-paired/741165/1/x,OMISSION,3/3,CORRECT,CORRECT,CORRECT,ADD_CONSTRAINT,Phil is 24 years older than Will . Four years ago he was seven times as old as Will was then . Find 
+28,draw-paired/767604/1/y,OMISSION,3/3,CORRECT,CORRECT,CORRECT,ABSTAIN,A father is twice as old as his son . 12 years ago the father was 4 times as old as the son was then
+29,draw-paired/785225/1/x,OMISSION,3/3,CORRECT,CORRECT,CORRECT,ADD_CONSTRAINT,the larger of two numbers is 7 more than 5 times the other . their sum is 55 . find the two numbers
+30,draw-paired/918333/1/x,UNDERSPECIFIED,3/3,CORRECT,CORRECT,CORRECT,ADD_CONSTRAINT,The number of boys in a class is 5 less than twice the number of girls . How many boys are there ?
+31,draw-paired/925598/1/x,OMISSION,3/3,CORRECT,CORRECT,CORRECT,ADD_CONSTRAINT,"Ann is 5 years older than Kristine . In 10 years , Kristine 's age is 24 more than the difference of"
+32,draw-paired/101986/1/Y,OMISSION,2/3,CORRECT,WRONG,CORRECT,ADD_CONSTRAINT,Alice is 10 years less than twice as old as Bonnie . If the sum of the ages is 26 . Find the ages .
+33,draw-paired/108337/1/plane,OMISSION,2/3,CORRECT,WRONG,CORRECT,ABSTAIN,Two numbers have a sum of 22 . Their difference is 4 . what are the two numbers ?
+34,draw-paired/127015/1/x,OMISSION,2/3,WRONG,CORRECT,CORRECT,ADD_CONSTRAINT,"an investor is planning to invest $ 25,000 for one year . she plans to invest a portion of this mone"
+35,draw-paired/146922/1/x,OMISSION,2/3,CORRECT,CORRECT,WRONG,ADD_CONSTRAINT,"The sum of the digits of a two-digit numeral is 8 . If the digits are reversed , the new number is 1"
+36,draw-paired/148918/1/x,OMISSION,2/3,CORRECT,WRONG,CORRECT,ADD_CONSTRAINT,"For Monday mornings staff meeting , Jim bought 2 bags of bagels and 3 packages of cream cheese and p"
+37,draw-paired/156027/2/x,OMISSION,2/3,CORRECT,WRONG,CORRECT,ADD_CONSTRAINT,"One number is 9 more than 3 times another . If their sum is 53 , what is the smaller number ?"
+38,draw-paired/16062/1/plane,OMISSION,2/3,CORRECT,WRONG,CORRECT,ADD_CONSTRAINT,Two numbers have a sum of 39 . Their difference is 11 . What are the two numbers .
+39,draw-paired/164860/2/twenty_mix,OMISSION,2/3,CORRECT,WRONG,CORRECT,ADD_CONSTRAINT,"You are buying coffee beans for your new business , `` The Algebra Caf '' . You discover that low gr"
+40,draw-paired/180471/1/y,OMISSION,2/3,CORRECT,CORRECT,WRONG,ABSTAIN,The larger of two numbers is 2 more than the lesser . The sum of 25 times the greater number and 50 
+41,draw-paired/208614/1/x,OMISSION,2/3,CORRECT,CORRECT,WRONG,ADD_CONSTRAINT,Two planes left an airport at noon . One flew east at a certain speed and the other flew west at twi
+42,draw-paired/2107/1/x,OMISSION,2/3,CORRECT,WRONG,CORRECT,ADD_CONSTRAINT,"In 22 years , Alexis ' age will be two hundred ninety-seven less than four times the age of Alyssa ."
+43,draw-paired/235689/1/y,OMISSION,2/3,WRONG,CORRECT,CORRECT,ADD_CONSTRAINT,Peter delievers 110 newspapers on the weekend . He delivers 20 more papers on Sunday than on Saturda
+44,draw-paired/235689/1/y,UNDERSPECIFIED,2/3,WRONG,CORRECT,CORRECT,ADD_CONSTRAINT,Peter delievers 110 newspapers on the weekend . How many papers does he deliver each day ?
+45,draw-paired/250856/1/student,OMISSION,2/3,CORRECT,CORRECT,WRONG,ADD_CONSTRAINT,Grandma 's Bakery sells single-crust apple pies for $ 6.99 and double-crust cherry pies for $ 10.99 
+46,draw-paired/257214/1/x,OMISSION,2/3,CORRECT,WRONG,CORRECT,ADD_CONSTRAINT,darren and doug must paint the 792 foot fence that encircles their family home . because darren is o
+47,draw-paired/264997/1/y,OMISSION,2/3,CORRECT,WRONG,CORRECT,ADD_CONSTRAINT,Two numbers are in the ratio 3 to 7 . Two-fifths of their sum is 32 .
+48,draw-paired/311373/1/x,OMISSION,2/3,WRONG,CORRECT,CORRECT,ADD_CONSTRAINT,The units digit of a number is 4 more than the tens digit . If the digits are reversed the new numbe
+49,draw-paired/316179/2/x,OMISSION,2/3,CORRECT,WRONG,CORRECT,ADD_CONSTRAINT,two investments in companies total $ 2000 . If one investment earns 3 % annually and the other earns
+50,draw-paired/332850/2/x,UNDERSPECIFIED,2/3,CORRECT,CORRECT,WRONG,ADD_CONSTRAINT,One morning he walked part of the way and then ran the rest . If it took him 20 min or less to get t
+51,draw-paired/334401/1/x,UNDERSPECIFIED,2/3,WRONG,CORRECT,CORRECT,ADD_CONSTRAINT,On the way to work it travels at a speed of 58 mph and on the way back it travels at a speed of 52 m
+52,draw-paired/340824/1/x,OMISSION,2/3,CORRECT,CORRECT,WRONG,ABSTAIN,The digits of a certain two-digit number add up to 6 . Form a second number by reversing these digit
+53,draw-paired/343286/1/x,UNDERSPECIFIED,2/3,CORRECT,WRONG,CORRECT,ADD_CONSTRAINT,"If the smaller number is doubled and added to 3 times the larger number , the sum is 80 . Find the t"
+54,draw-paired/394552/1/x,OMISSION,2/3,CORRECT,CORRECT,WRONG,ADD_CONSTRAINT,the sum of two numbers is 36 . one number is two more than the other find the numbers
+55,draw-paired/429522/1/y,OMISSION,2/3,CORRECT,WRONG,CORRECT,ADD_CONSTRAINT,"One number is ten more than six times another number . If each number were multiplied by five , thei"
+56,draw-paired/482896/1/smaller,OMISSION,2/3,CORRECT,WRONG,CORRECT,ADD_CONSTRAINT,The larger of two numbers is one less than three times the smaller . if their sum is 63 .
+57,draw-paired/499968/1/y,UNDERSPECIFIED,2/3,WRONG,CORRECT,CORRECT,ADD_CONSTRAINT,the larger number is 24 more than 3 times the smaller . find the numbers
+58,draw-paired/502890/1/x,UNDERSPECIFIED,2/3,WRONG,CORRECT,CORRECT,ADD_CONSTRAINT,The number is also 45 less than the number formed by reversing the digits and the original number . 
+59,draw-paired/568337/2/x,OMISSION,2/3,CORRECT,CORRECT,WRONG,ADD_CONSTRAINT,"Six years ago , Josie was 5 times as old as her niece , Dianne . How old is Dianne now if her age is"
+60,draw-paired/631391/1/s,OMISSION,2/3,CORRECT,CORRECT,WRONG,ADD_CONSTRAINT,"The metal used to make a coin is a mixture of steel and copper . The ratio , mass of steel to mass o"
+61,draw-paired/641139/1/plane,OMISSION,2/3,CORRECT,WRONG,CORRECT,ABSTAIN,the sum of a certain number and a second number is -42 . the first number minus the second is 52 . f
+62,draw-paired/644732/2/six_percent,OMISSION,2/3,CORRECT,CORRECT,WRONG,ADD_CONSTRAINT,"An investor invested a total of 1,900.00 in two mutual funds . One fund earned a 9 % profit while th"
+63,draw-paired/71823/1/y,UNDERSPECIFIED,2/3,WRONG,CORRECT,CORRECT,ADD_CONSTRAINT,One number is 12 more than another . Find the larger number .
+64,draw-paired/753430/1/x,OMISSION,2/3,CORRECT,WRONG,CORRECT,ADD_CONSTRAINT,A boy has a handful of dimes and quarters . He counted the number of coins and found there are 15 co
+65,draw-paired/774524/1/x,OMISSION,2/3,CORRECT,WRONG,CORRECT,ABSTAIN,"The ages of A and B are in the ratio 5 to 3 . After 6 years , their will be in the ratio 7 to 5 . Th"
+66,draw-paired/846036/1/x,OMISSION,2/3,CORRECT,WRONG,CORRECT,ADD_CONSTRAINT,"If jake has 20,000 to invest in two accounts . With one account earns 1 % simple interest . And seco"
+67,draw-paired/871121/1/x,OMISSION,2/3,WRONG,CORRECT,CORRECT,ADD_CONSTRAINT,The greater of two numbers is 5 less than twice the smaller . And the sum of the numbers is 52
+68,draw-paired/87984/1/y,OMISSION,2/3,CORRECT,WRONG,CORRECT,ADD_CONSTRAINT,There are 850 Douglas fir and ponderosa pine trees in a section of forest bought by Sawz Logging Co.
+69,draw-paired/88433/1/x,OMISSION,2/3,CORRECT,WRONG,CORRECT,ADD_CONSTRAINT,A girl buys three apples and seven oranges for $ 4.56 . If an orange costs $ 0.28 more than an apple
+70,draw-paired/936304/1/x,OMISSION,2/3,CORRECT,WRONG,CORRECT,ADD_CONSTRAINT,Mark has 45 cents in dimes and nickels . He has 3 more nickels than dimes . How many of each type of

@@ -19,5 +19,9 @@
   "extension_pairs": 50,
   "combined_pairs": 350,
   "review": "extension pending; original300 author-reviewed",
-  "selection_timing": "extension selected after original300 outcomes; cumulative analysis is post-hoc"
+  "selection_timing": "extension selected after original300 outcomes; cumulative analysis is post-hoc",
+  "post_review_exclusion_audit": "data/paired/draw_paired/exclusion_audit.json",
+  "retained_pairs": 44,
+  "retained_data_sha256": "a1e5984ce7415df9a1fa4a6f2fcb35f9ca9745d5e8a5522c26e75a246513be45",
+  "historical_run_fields": "Original execution metadata; retained_* fields describe the pruned files."
 }

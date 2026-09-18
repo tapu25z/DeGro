@@ -385,12 +385,12 @@
 \bibfield{author}{\bibinfo{person}{{OpenAI}}.} \bibinfo{year}{2025}\natexlab{}.
 \newblock \bibinfo{title}{gpt-oss-120b \& gpt-oss-20b Model Card}.
 \newblock
+\shownote{Accessed 2026-09-09}.
+\newblock
 \urldef\tempurl%
 \url{https://openai.com/index/gpt-oss-model-card/}
 \showURL{%
 \tempurl}
-\newblock
-\shownote{Accessed 2026-09-09}.
 
 
 \bibitem[Reiter(1987)]%

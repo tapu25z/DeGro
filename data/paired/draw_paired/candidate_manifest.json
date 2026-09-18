@@ -33,8 +33,10 @@
     "eligible": 599,
     "fewer_than_two_equations": 200
   },
-  "candidate_sha256": "8e241c3a19d289e64f85c05ae2338b582428600e1c3939b550c37234e5da5f99",
-  "review_packet_sha256": "d4e3c1fb7ef889240ba2558fe3f5b8786bd23f69bc49988c7cd5305f1e41a705",
+  "candidate_sha256": "f7a9f196b5ff98c3f93f79a469ede057f1b2e54028157ebae928352a1c94f5c1",
+  "review_packet_sha256": "9b5173bff83eb3700d64c1219a3e493318d1ba56cf896dad6fcfe90f6f90bd47",
   "human_review_complete": false,
-  "frozen": false
+  "frozen": false,
+  "excluded_pairs": 50,
+  "exclusion_audit": "data/paired/draw_paired/exclusion_audit.json"
 }

@@ -3,14 +3,17 @@
   "stage": "FROZEN",
   "created_at_utc": "2026-09-17T18:18:05.923801+00:00",
   "review_packet": "data/paired/draw_paired/draw_paired_provisional_300_review.jsonl",
-  "review_packet_sha256": "b3b2baa968fefb27dd705aa4feb41fda4ec0ebbdbb16ac76a6b32a3005ca2465",
+  "review_packet_sha256": "7d07fd6aec90a940d12978aef2ee380f6631b0ec084ff3e0ba970ee512e6e352",
   "review_status_counts": {
-    "APPROVE": 300
+    "REJECT": 44,
+    "APPROVE": 256
   },
   "allow_partial": false,
-  "pairs": 300,
-  "cases": 600,
-  "output_sha256": "5920469f580e4603a41f6bcbba18f529f4cb5aa4b9de72903c527d3385c790ed",
+  "pairs": 256,
+  "cases": 512,
+  "output_sha256": "eac4753b7fbf9276bd102de96134a370cafaa24d6851414cd096c1cccf974ca3",
   "human_review_complete": true,
-  "frozen": true
+  "frozen": true,
+  "exclusion_audit": "data/paired/draw_paired/exclusion_audit.json",
+  "exclusion_ids_sha256": "5f850689221e721de3f4d7f7a2ba42c2f87275eb76fd873d1c8e724bcbe14a6d"
 }

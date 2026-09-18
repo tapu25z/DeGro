@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.10.9)  18 SEP 2026 09:43
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.10.9)  18 SEP 2026 13:19
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -978,28 +978,34 @@ LaTeX Font Info:    Font shape `U/ntxexa/m/n' will be
 
 [3]
 
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+
 [4] (./supplementary_appendix.bbl
 LaTeX Font Info:    Font shape `T1/ntxtlf/m/it' will be
 (Font)              scaled to size 10.0pt on input line 7.
-)
 
-[5] (./supplementary_appendix.aux)
+
+[5])
+
+[6] (./supplementary_appendix.aux)
  ***********
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2020/03/25>
  ***********
 Package rerunfilecheck Info: File `supplementary_appendix.out' has not changed.
 
-(rerunfilecheck)             Checksum: 65F8EF915350B7AA9F954DADAE3F36DB;1786.
+(rerunfilecheck)             Checksum: 302C8B847B57BD5F933F134B75F7CACB;1972.
  ) 
 Here is how much of TeX's memory you used:
- 17770 strings out of 473190
- 273437 string characters out of 5715800
- 708518 words of memory out of 5000000
- 40625 multiletter control sequences out of 15000+600000
- 633753 words of font info for 183 fonts, out of 8000000 for 9000
+ 17786 strings out of 473190
+ 273722 string characters out of 5715800
+ 708520 words of memory out of 5000000
+ 40626 multiletter control sequences out of 15000+600000
+ 634305 words of font info for 189 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 80i,13n,93p,1271b,588s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 80i,13n,93p,1344b,623s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2025/texmf-dist/fonts/type1/public/newtx/NewTXMI.pfb></us
 r/local/texlive/2025/texmf-dist/fonts/type1/public/newtx/NewTXMI7.pfb></usr/loc
 al/texlive/2025/texmf-dist/fonts/type1/public/tex-gyre/qtmr.pfb></usr/local/tex
@@ -1009,10 +1015,10 @@ mf-dist/fonts/type1/public/newtx/txsys.pfb></usr/local/texlive/2025/texmf-dist/
 fonts/type1/public/newtx/ztmb.pfb></usr/local/texlive/2025/texmf-dist/fonts/typ
 e1/public/newtx/ztmr.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public
 /newtx/ztmri.pfb>
-Output written on supplementary_appendix.pdf (5 pages, 180942 bytes).
+Output written on supplementary_appendix.pdf (6 pages, 185987 bytes).
 PDF statistics:
- 148 PDF objects out of 1000 (max. 8388607)
- 119 compressed objects within 2 object streams
- 31 named destinations out of 1000 (max. 500000)
- 29257 words of extra memory for PDF output out of 29859 (max. 10000000)
+ 157 PDF objects out of 1000 (max. 8388607)
+ 127 compressed objects within 2 object streams
+ 34 named destinations out of 1000 (max. 500000)
+ 29265 words of extra memory for PDF output out of 29859 (max. 10000000)
 

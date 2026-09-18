@@ -142,3 +142,30 @@ User requested improvement for Nemotron3Nano30B and GPT-OSS120B. Designed one ca
 ### 2026-09-17: DeGro source-coverage audit completed
 
 The previously rate-limited Nano 30B/GPT-OSS 120B experiment resumed and completed. Verified 320/320 development responses and 800/800 synthetic-test responses; every score was independently recomputed and every finalized row is the first valid response for its key. On the frozen synthetic 100-pair stress set, Nano FDA changed from 75.5% to 95.0% (+19.5 points, pair-cluster 95% CI [13.5,25.5], exact p=1.83e-8, two-model Holm p=3.66e-8). Nano UR increased from 1/53 (1.9%) to 8/98 (8.2%), an explicit repair-risk tradeoff. GPT-OSS 120B changed from 98.5% to 99.5% (+1.0, CI [-1.0,3.0], p=.625), with UR 3/102 to 1/101. The data are generated from the same algebraic templates because the original compatible MIRA pool is exhausted; they are not an external benchmark and do not replace confirmatory results. Main paper and supplement label this analysis exploratory.
+
+## 2026-09-18: author-requested DRAW-Paired exclusions
+
+Author data re-review removed 50 explicitly listed pairs (44 initial, six extension).
+Retained: 300 pairs / 600 cases, 221 train and 79 dev sources, 2,400 records per
+model. Excluded raw and complete responses and CSV rows were deleted. All
+retained cohort analyses, bootstrap intervals, McNemar tests and cross-model
+Holm correction were recomputed. The paper reports post-inference exclusion
+timing and the 120B FDA tie rather than its earlier verdict-only advantage.
+
+## 2026-09-18: post-hoc MIRA Geometry60 extension
+
+- Added all 60 compatible `geometry_coordinates` instances from the frozen
+  MIRA-Math release, without outcome-based item filtering. The adapter uses
+  squared Euclidean distance, which preserves uniqueness for nonnegative
+  Euclidean distance but remains an adapter-specific representation.
+- Completed 480/480 records for GPT-OSS 20B and 480/480 for GPT-OSS 120B;
+  reused the completed 480-record Nano geometry run. Independent rescoring
+  changed zero of the 960 new GPT-OSS scores.
+- Mechanical combination with MIRA-300 yields 360 pairs, 720 cases, and 2,880
+  unique records per model. DeGro-minus-grounded FDA is +4.58 points for 20B
+  (Holm p=.000527), +6.53 for 120B (Holm p=1.14e-7), and +2.92 for Nano
+  (Holm p=.0314).
+- The paper main table now reports MIRA-360, while the text and supplement
+  explicitly label Geometry60 and the combined analysis post-hoc/exploratory.
+  The original 120-pair held-out and 300-pair results remain available for
+  provenance and comparison.

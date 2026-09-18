@@ -1,0 +1,69 @@
+Index,Pair_ID,Label,Baselines_Correct,Self_Review,Grounded_SR,Determinacy_Guided,DeGro_Decision,Problem_Snippet
+1,draw-paired/123895/1/y,UNDERSPECIFIED,3/3,CORRECT,CORRECT,CORRECT,ADD_CONSTRAINT,"In two years , Edwin will be 20 more than one-third of Alvin 's age . How old are the brothers now ?"
+2,draw-paired/134766/1/x,OMISSION,3/3,CORRECT,CORRECT,CORRECT,ADD_CONSTRAINT,"A two digit number is 7 times its unit digit . If 18 is added to the number , its digits are reverse"
+3,draw-paired/146922/1/x,OMISSION,3/3,CORRECT,CORRECT,CORRECT,ABSTAIN,"The sum of the digits of a two-digit numeral is 8 . If the digits are reversed , the new number is 1"
+4,draw-paired/156027/2/x,OMISSION,3/3,CORRECT,CORRECT,CORRECT,ADD_CONSTRAINT,"One number is 9 more than 3 times another . If their sum is 53 , what is the smaller number ?"
+5,draw-paired/16062/1/plane,UNDERSPECIFIED,3/3,CORRECT,CORRECT,CORRECT,ADD_CONSTRAINT,Their difference is 11 . What are the two numbers .
+6,draw-paired/234098/1/student,OMISSION,3/3,CORRECT,CORRECT,CORRECT,ABSTAIN,The sum of two numbers equals eighteen . The total of three times the smaller and two times the larg
+7,draw-paired/267386/1/x,OMISSION,3/3,CORRECT,CORRECT,CORRECT,ADD_CONSTRAINT,The difference of two numbers is 37 . The larger number is three less than six times the smaller num
+8,draw-paired/378386/1/x,OMISSION,3/3,CORRECT,CORRECT,CORRECT,ADD_CONSTRAINT,The first of two numbers is 9 more than the second . Three times the first number is equal to 7 more
+9,draw-paired/381475/1/x,OMISSION,3/3,CORRECT,CORRECT,CORRECT,ABSTAIN,The difference between two numbers is 14 . The sum of the two numbers is 56 . What are the two numbe
+10,draw-paired/394667/1/x,UNDERSPECIFIED,3/3,CORRECT,CORRECT,CORRECT,ADD_CONSTRAINT,The sum of two numbers is 28 . What is the smaller number ?
+11,draw-paired/408092/1/x,OMISSION,3/3,CORRECT,CORRECT,CORRECT,ABSTAIN,"i think of a pair of numbers . if i add 7 to the first , i obtain a number which is twice the second"
+12,draw-paired/468522/1/y,OMISSION,3/3,CORRECT,CORRECT,CORRECT,ABSTAIN,Two number differ by 10 . The larger number is 6 less than twice the smaller number . Find the numbe
+13,draw-paired/514217/1/plane,UNDERSPECIFIED,3/3,CORRECT,CORRECT,CORRECT,ADD_CONSTRAINT,their difference is 13 . find the two integers
+14,draw-paired/553127/1/plane,UNDERSPECIFIED,3/3,CORRECT,CORRECT,CORRECT,ADD_CONSTRAINT,"I the smaller number is subtracted from the large , the difference is 12 . Find the number ?"
+15,draw-paired/554064/1/x,UNDERSPECIFIED,3/3,CORRECT,CORRECT,CORRECT,ADD_CONSTRAINT,The greater number is 4 more then twice the lesser number . Find the two numbers
+16,draw-paired/562118/1/a,OMISSION,3/3,CORRECT,CORRECT,CORRECT,ABSTAIN,Kay spends 250 min per week exercising . Her ratio of time spent on aerobics to time spent on weight
+17,draw-paired/677790/2/y,UNDERSPECIFIED,3/3,CORRECT,CORRECT,CORRECT,ADD_CONSTRAINT,Bobbys treatment paint store sells a special shade of pink paint which is made from red and white pa
+18,draw-paired/852610/1/x,OMISSION,3/3,CORRECT,CORRECT,CORRECT,ABSTAIN,"Christopher is 2 times as old as Gabriela . Nine years ago , Christopher was 5 times as old as Gabri"
+19,draw-paired/853841/1/student,OMISSION,3/3,CORRECT,CORRECT,CORRECT,ABSTAIN,The sum of two positive integers is 9 . Twice the first integer plus thrice the second integer is 22
+20,draw-paired/878521/1/x,OMISSION,3/3,CORRECT,CORRECT,CORRECT,ADD_CONSTRAINT,"Three years ago , X 's age was double of Y 's . Seven year hence the sum of their ages will be 83 ye"
+21,draw-paired/918333/1/x,OMISSION,3/3,CORRECT,CORRECT,CORRECT,ABSTAIN,The number of boys in a class is 5 less than twice the number of girls . The class size is 28 . How 
+22,draw-paired/918333/1/x,UNDERSPECIFIED,3/3,CORRECT,CORRECT,CORRECT,ADD_CONSTRAINT,The number of boys in a class is 5 less than twice the number of girls . How many boys are there ?
+23,draw-paired/919697/1/y,OMISSION,3/3,CORRECT,CORRECT,CORRECT,ABSTAIN,The difference of two positive integers is 34 . The larger of the numbers is three times the smaller
+24,draw-paired/101986/1/Y,OMISSION,2/3,CORRECT,WRONG,CORRECT,ADD_CONSTRAINT,Alice is 10 years less than twice as old as Bonnie . If the sum of the ages is 26 . Find the ages .
+25,draw-paired/125689/1/x,OMISSION,2/3,WRONG,CORRECT,CORRECT,ABSTAIN,Sally bought three choclate bars and a pack of gum and paid $ 1.75 . Jake bought two choclate bars a
+26,draw-paired/127900/1/x,OMISSION,2/3,CORRECT,CORRECT,WRONG,ABSTAIN,Sherman 's age and his grandpa 's age together equal 72 . His grandpa 's age is 7 times greater than
+27,draw-paired/136036/1/x,OMISSION,2/3,CORRECT,WRONG,CORRECT,ADD_CONSTRAINT,a number is 8 times the sum of its digits . the tens digits is 5 greater than the units digit . find
+28,draw-paired/177527/2/x,OMISSION,2/3,WRONG,CORRECT,CORRECT,ADD_CONSTRAINT,bret started on a 70 mile bicycle ride at 20 miles per hour . After a time he became a little tired 
+29,draw-paired/189170/1/student,UNDERSPECIFIED,2/3,WRONG,CORRECT,CORRECT,ADD_CONSTRAINT,"Mr. Wise bought $ 1950 worth of stock , some at $ 3.00 per share and some at $ 4.50 per share ."
+30,draw-paired/2314/1/x,OMISSION,2/3,CORRECT,CORRECT,WRONG,ADD_CONSTRAINT,One number is 16 more than another . If the smaller number is subtracted from 0.66666 of the larger 
+31,draw-paired/253559/2/x,OMISSION,2/3,CORRECT,CORRECT,WRONG,ABSTAIN,There are 24 questions on a test . Each question is worth either 4 points or 5 points . The total is
+32,draw-paired/26869/1/y,OMISSION,2/3,CORRECT,CORRECT,WRONG,ABSTAIN,"One number is 9 more than 3 times another . If their sum is 53 , what is the smaller number ?"
+33,draw-paired/268774/1/piece,UNDERSPECIFIED,2/3,WRONG,CORRECT,CORRECT,ADD_CONSTRAINT,"if the team won 14 more than three times as many games as they lost , how many wins and losses did t"
+34,draw-paired/271141/1/x,UNDERSPECIFIED,2/3,CORRECT,CORRECT,WRONG,ADD_CONSTRAINT,"When you reverse the number , the new number is 9 less than the original number . The difference bet"
+35,draw-paired/278344/1/x,OMISSION,2/3,WRONG,CORRECT,CORRECT,ADD_CONSTRAINT,Cary is 9 years older than Dan . In 7 years their ages 93 . Find the ages of each man now .
+36,draw-paired/279047/1/x,OMISSION,2/3,CORRECT,WRONG,CORRECT,ABSTAIN,Two cars leave Denver at the same time and travel in opposite directions . One car travels 10 mi/h f
+37,draw-paired/311373/1/x,OMISSION,2/3,WRONG,CORRECT,CORRECT,ADD_CONSTRAINT,The units digit of a number is 4 more than the tens digit . If the digits are reversed the new numbe
+38,draw-paired/315071/1/x,OMISSION,2/3,CORRECT,CORRECT,WRONG,ABSTAIN,Jesse collects stamps . He now has 444 stamps . He has three times as many stamps form European coun
+39,draw-paired/340824/1/x,OMISSION,2/3,CORRECT,WRONG,CORRECT,ADD_CONSTRAINT,The digits of a certain two-digit number add up to 6 . Form a second number by reversing these digit
+40,draw-paired/362485/1/x,OMISSION,2/3,WRONG,CORRECT,CORRECT,ADD_CONSTRAINT,The difference of two positive numbers is 264 . The larger is three times the smaller number . Find 
+41,draw-paired/377429/1/y,OMISSION,2/3,WRONG,CORRECT,CORRECT,ADD_CONSTRAINT,"The music teacher is three times as old as Walt . In 12 years , she will be twice as old as Walt . H"
+42,draw-paired/39411/1/x,OMISSION,2/3,WRONG,CORRECT,CORRECT,ADD_CONSTRAINT,"Mr. Granger is 10 years more than twice as old as his son . However , last year he was 4 years less "
+43,draw-paired/394552/1/x,UNDERSPECIFIED,2/3,CORRECT,CORRECT,WRONG,ADD_CONSTRAINT,one number is two more than the other find the numbers
+44,draw-paired/403622/1/x,OMISSION,2/3,CORRECT,CORRECT,WRONG,ABSTAIN,the sum of two numbers is 50 . one number is 1 less than 2 times the other number .
+45,draw-paired/477799/1/x,OMISSION,2/3,CORRECT,WRONG,CORRECT,ADD_CONSTRAINT,"a number is 3 less than 4 times another number . if their sum is equal to 117 , then the greater num"
+46,draw-paired/482896/1/smaller,OMISSION,2/3,CORRECT,WRONG,CORRECT,ADD_CONSTRAINT,The larger of two numbers is one less than three times the smaller . if their sum is 63 .
+47,draw-paired/492783/1/x,OMISSION,2/3,CORRECT,WRONG,CORRECT,ABSTAIN,One number is greater than thrice the other number by 2 . If 4 times the smaller number exceeds the 
+48,draw-paired/505066/1/smaller,UNDERSPECIFIED,2/3,WRONG,CORRECT,CORRECT,ADD_CONSTRAINT,one number is five more than four times another . Find the two numbers .
+49,draw-paired/511333/1/smaller,OMISSION,2/3,WRONG,CORRECT,CORRECT,ADD_CONSTRAINT,: One number is nine less than another . Their sum is twenty-seven .
+50,draw-paired/52939/1/x,OMISSION,2/3,CORRECT,CORRECT,WRONG,ABSTAIN,One number is 7 less than another . If 4 times the smaller number plus 2 times the larger number is 
+51,draw-paired/557820/1/x,OMISSION,2/3,WRONG,CORRECT,CORRECT,ADD_CONSTRAINT,"One number is twice as large as a second number . If the sum of the two numbers is 114 , what are th"
+52,draw-paired/569048/1/x,OMISSION,2/3,CORRECT,CORRECT,WRONG,ADD_CONSTRAINT,"the sum of two digits of a natural number is 7 . when the digits are reversed , the number is increa"
+53,draw-paired/57583/1/X,OMISSION,2/3,CORRECT,WRONG,CORRECT,ADD_CONSTRAINT,"Nina received an inheritance of $ 12,000 from her grandmother . She invested part of it at 6 % inter"
+54,draw-paired/581891/1/plane,UNDERSPECIFIED,2/3,WRONG,CORRECT,CORRECT,ADD_CONSTRAINT,Bella 's brother is 9 years older than Bella . How old is Bella ?
+55,draw-paired/630415/1/x,OMISSION,2/3,CORRECT,CORRECT,WRONG,ABSTAIN,adding together two numbers 1520 . three times the smaller is equal to two times the larger . find t
+56,draw-paired/644732/2/six_percent,UNDERSPECIFIED,2/3,CORRECT,CORRECT,WRONG,ADD_CONSTRAINT,One fund earned a 9 % profit while the other earned a 2 % profit . If the investor 's total profit w
+57,draw-paired/666554/1/x,UNDERSPECIFIED,2/3,WRONG,CORRECT,CORRECT,ADD_CONSTRAINT,"If the larger is divided by the smaller , the quotient is 2 and the remainder is 3 . Find the number"
+58,draw-paired/684020/1/smaller,UNDERSPECIFIED,2/3,WRONG,CORRECT,CORRECT,ADD_CONSTRAINT,the number with the digits interchanged is 6 times the sum of the digits . find the original number
+59,draw-paired/693217/1/x,OMISSION,2/3,CORRECT,CORRECT,WRONG,ABSTAIN,A mother 's age is three less than 3 times her daughters age . The sum of there ages is 45 . Find th
+60,draw-paired/709493/1/y,OMISSION,2/3,CORRECT,CORRECT,WRONG,ABSTAIN,Mary is 9 years older than Seth . In a year she will be 3 times as old as he is . How old are they ?
+61,draw-paired/71823/1/y,UNDERSPECIFIED,2/3,WRONG,CORRECT,CORRECT,ADD_CONSTRAINT,One number is 12 more than another . Find the larger number .
+62,draw-paired/769390/1/x,OMISSION,2/3,CORRECT,WRONG,CORRECT,ADD_CONSTRAINT,"Eight years ago , Hold was 7 times older than her son . Today , she is exactly 3 times as old as her"
+63,draw-paired/804723/1/y,OMISSION,2/3,CORRECT,CORRECT,WRONG,ADD_CONSTRAINT,The larger of two numbers is 2 more than 4 times the smaller . Their sum is 67 . FIND THE numbers
+64,draw-paired/841003/1/y,UNDERSPECIFIED,2/3,CORRECT,WRONG,CORRECT,ADD_CONSTRAINT,Twice the smaller added to the larger is -20 . Find the smaller number .
+65,draw-paired/880809/1/x,OMISSION,2/3,CORRECT,CORRECT,WRONG,ABSTAIN,Tom and Tim ages add up to 21 years . In 3 years Tom will be twice tim 's age . How old are they now
+66,draw-paired/88929/1/x,OMISSION,2/3,WRONG,CORRECT,CORRECT,ABSTAIN,"seven years ago , mary was 6 times as old as cora . in one year , she will be only twice as old as c"
+67,draw-paired/922336/1/x,OMISSION,2/3,CORRECT,CORRECT,WRONG,ADD_CONSTRAINT,"The sum of the ages of dorothy and dorilyn is 41 . In 5 years , dorothy will be twice as old as dori"
+68,draw-paired/948538/1/y,OMISSION,2/3,WRONG,CORRECT,CORRECT,ABSTAIN,"Lorna is twice as older as peter . if their ages add up to 9 years old , how old is peter"

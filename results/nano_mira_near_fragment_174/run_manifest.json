@@ -1,0 +1,17 @@
+{
+  "model": "nemotron-3-nano:30b",
+  "temperature": 1.0,
+  "think": true,
+  "methods": [
+    "self_review",
+    "grounded_self_review",
+    "nonunique",
+    "nonunique_grounding"
+  ],
+  "pairs": 174,
+  "expected_records": 1392,
+  "prompt_hash": "eafed6be4973c21e1efbb5cc804112c9d50c95764e8f5066b58bdee58b92bdda",
+  "data_sha256": "7c478e5caa4e6bbd40d2f39ef9d5d03ebd5cbbe67ccd5711a2357b01579b9da6",
+  "selection": "first valid response; never select by score",
+  "max_retry_waves": 4
+}

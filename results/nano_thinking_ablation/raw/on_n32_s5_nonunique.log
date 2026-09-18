@@ -1,0 +1,9 @@
+[13/20] crt-000095 OMISSION nonunique error
+[14/20] crt-000095 UNDERSPECIFIED nonunique ok
+[15/20] lin-000284 OMISSION nonunique ok
+[16/20] lin-000284 UNDERSPECIFIED nonunique ok
+[17/20] ran-000577 OMISSION nonunique ok
+[18/20] ran-000577 UNDERSPECIFIED nonunique ok
+[19/20] lin-000246 OMISSION nonunique ok
+[20/20] lin-000246 UNDERSPECIFIED nonunique ok
+[20/20] crt-000095 OMISSION nonunique ok

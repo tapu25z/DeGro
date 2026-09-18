@@ -1,0 +1,25 @@
+Index,Pair_ID,Label,Model_Count,Models,Problem_Snippet
+1,draw-paired/146922/1/x,OMISSION,3,"gpt_oss_20b, gpt_oss_120b, nemotron_3_nano_30b","The sum of the digits of a two-digit numeral is 8 . If the digits are reversed , the new number is 1"
+2,draw-paired/482896/1/smaller,OMISSION,3,"gpt_oss_20b, gpt_oss_120b, nemotron_3_nano_30b",The larger of two numbers is one less than three times the smaller . if their sum is 63 .
+3,draw-paired/101986/1/Y,OMISSION,2,"gpt_oss_20b, nemotron_3_nano_30b",Alice is 10 years less than twice as old as Bonnie . If the sum of the ages is 26 . Find the ages .
+4,draw-paired/125689/1/x,OMISSION,2,"gpt_oss_120b, nemotron_3_nano_30b",Sally bought three choclate bars and a pack of gum and paid $ 1.75 . Jake bought two choclate bars a
+5,draw-paired/127900/1/x,OMISSION,2,"gpt_oss_120b, nemotron_3_nano_30b",Sherman 's age and his grandpa 's age together equal 72 . His grandpa 's age is 7 times greater than
+6,draw-paired/156027/2/x,OMISSION,2,"gpt_oss_20b, nemotron_3_nano_30b","One number is 9 more than 3 times another . If their sum is 53 , what is the smaller number ?"
+7,draw-paired/16062/1/plane,OMISSION,2,"gpt_oss_20b, gpt_oss_120b",Two numbers have a sum of 39 . Their difference is 11 . What are the two numbers .
+8,draw-paired/264997/1/y,OMISSION,2,"gpt_oss_20b, gpt_oss_120b",Two numbers are in the ratio 3 to 7 . Two-fifths of their sum is 32 .
+9,draw-paired/279047/1/x,OMISSION,2,"gpt_oss_20b, nemotron_3_nano_30b",Two cars leave Denver at the same time and travel in opposite directions . One car travels 10 mi/h f
+10,draw-paired/311373/1/x,OMISSION,2,"gpt_oss_20b, nemotron_3_nano_30b",The units digit of a number is 4 more than the tens digit . If the digits are reversed the new numbe
+11,draw-paired/340824/1/x,OMISSION,2,"gpt_oss_20b, nemotron_3_nano_30b",The digits of a certain two-digit number add up to 6 . Form a second number by reversing these digit
+12,draw-paired/381475/1/x,OMISSION,2,"gpt_oss_120b, nemotron_3_nano_30b",The difference between two numbers is 14 . The sum of the two numbers is 56 . What are the two numbe
+13,draw-paired/477799/1/x,OMISSION,2,"gpt_oss_120b, nemotron_3_nano_30b","a number is 3 less than 4 times another number . if their sum is equal to 117 , then the greater num"
+14,draw-paired/492783/1/x,OMISSION,2,"gpt_oss_120b, nemotron_3_nano_30b",One number is greater than thrice the other number by 2 . If 4 times the smaller number exceeds the 
+15,draw-paired/52939/1/x,OMISSION,2,"gpt_oss_20b, nemotron_3_nano_30b",One number is 7 less than another . If 4 times the smaller number plus 2 times the larger number is 
+16,draw-paired/569048/1/x,OMISSION,2,"gpt_oss_20b, nemotron_3_nano_30b","the sum of two digits of a natural number is 7 . when the digits are reversed , the number is increa"
+17,draw-paired/630415/1/x,OMISSION,2,"gpt_oss_20b, nemotron_3_nano_30b",adding together two numbers 1520 . three times the smaller is equal to two times the larger . find t
+18,draw-paired/71010/1/nickels,OMISSION,2,"gpt_oss_20b, gpt_oss_120b","Jill has $ 3.50 in nickels and dimes . If she has 50 coins , how many of each type of coin does she "
+19,draw-paired/71823/1/y,UNDERSPECIFIED,2,"gpt_oss_20b, nemotron_3_nano_30b",One number is 12 more than another . Find the larger number .
+20,draw-paired/739546/1/x,OMISSION,2,"gpt_oss_20b, gpt_oss_120b",U-Haul charges a daily fee plus a mileage charge to rent a truck . Jennifer rented a truck with U-Ha
+21,draw-paired/753430/1/x,OMISSION,2,"gpt_oss_20b, gpt_oss_120b",A boy has a handful of dimes and quarters . He counted the number of coins and found there are 15 co
+22,draw-paired/846036/1/x,OMISSION,2,"gpt_oss_20b, gpt_oss_120b","If jake has 20,000 to invest in two accounts . With one account earns 1 % simple interest . And seco"
+23,draw-paired/871121/1/x,OMISSION,2,"gpt_oss_20b, gpt_oss_120b",The greater of two numbers is 5 less than twice the smaller . And the sum of the numbers is 52
+24,draw-paired/918333/1/x,UNDERSPECIFIED,2,"gpt_oss_20b, nemotron_3_nano_30b",The number of boys in a class is 5 less than twice the number of girls . How many boys are there ?

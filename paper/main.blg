@@ -7,11 +7,11 @@ Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
 Database file #1: refs.bib
 Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated wiz_functions (elt_size=4) to 9000 items from 6000.
 Reallocated glb_str_ptr (elt_size=4) to 20 items from 10.
 Reallocated global_strs (elt_size=200001) to 20 items from 10.
 Reallocated glb_str_end (elt_size=4) to 20 items from 10.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
-Reallocated wiz_functions (elt_size=4) to 9000 items from 6000.
 Warning--no number and no volume in albateh2026mira
 Warning--page numbers missing in both pages and numpages fields in albateh2026mira
 Warning--no number and no volume in alhanahnah2024alloyrepair
@@ -84,35 +84,35 @@ Warning--empty publisher in wu2022autoformalization
 Warning--empty address in wu2022autoformalization
 Warning--page numbers missing in both pages and numpages fields in wu2022autoformalization
 You've used 36 entries,
-            6056 wiz_defined-function locations,
-            1677 strings with 26187 characters,
-and the built_in function-call counts, 42813 in all, are:
-= -- 5056
+            6273 wiz_defined-function locations,
+            1711 strings with 26463 characters,
+and the built_in function-call counts, 42831 in all, are:
+= -- 5058
 > -- 1795
 < -- 0
 + -- 624
 - -- 627
-* -- 3320
+* -- 3322
 := -- 4298
 add.period$ -- 169
 call.type$ -- 36
 change.case$ -- 329
 chr.to.int$ -- 35
 cite$ -- 107
-duplicate$ -- 3669
-empty$ -- 2598
+duplicate$ -- 3671
+empty$ -- 2600
 format.name$ -- 754
-if$ -- 10295
+if$ -- 10301
 int.to.chr$ -- 3
 int.to.str$ -- 1
 missing$ -- 156
 newline$ -- 327
 num.names$ -- 251
-pop$ -- 1735
+pop$ -- 1737
 preamble$ -- 1
 purify$ -- 615
 quote$ -- 0
-skip$ -- 1277
+skip$ -- 1279
 stack$ -- 0
 substring$ -- 2602
 swap$ -- 270

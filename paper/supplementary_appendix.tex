@@ -91,6 +91,7 @@ The solver state is identical within each pair, so ambiguity alone cannot reveal
 All four policies receive the same source, $F^-$, target, schema, and two-attempt budget. Self-review receives neither verdict nor grounding rule; grounded self-review adds the exact-span grounding rule but receives neither a solver verdict nor witnesses; determinacy-guided adds the typed ambiguity verdict without grounding; \method{} receives both the verdict and grounding rule. The main comparison does not expose witness values to the repair model. GPT-OSS 20B and 120B use medium reasoning effort and temperature 1.0, giving 960 complete records per model. The post-hoc Nemotron 3 Nano 30B addition uses the same frozen data, prompts, methods, temperature, and API \code{think=medium} request, yielding 960 complete records; this does not establish equal internal reasoning budgets. FDA is the primary outcome; RSR measures correct repair on omission cases, CAR measures correct abstention on underspecified cases, and $\mathrm{FDA}=(\mathrm{RSR}+\mathrm{CAR})/2$. Confidence intervals resample pairs; paired tests use exact two-sided McNemar tests with Holm correction across the two GPT-OSS tests. The later Nemotron test is exploratory and reported separately.
 
 \section{Extended Controlled Results}
+The main paper reports an exploratory 360-pair MIRA-Math aggregate with 2,880 unique case--policy records per model. It combines the original 300 pairs (80 pilot, 100 development, 120 held-out) with a post-hoc 60-pair coordinate-geometry extension. Pilot and development outcomes informed method development, and Geometry60 was added after the original outcomes were inspected, so MIRA-360 is not an independent held-out test. The table below preserves the separate 120-pair results and their original analysis protocol for comparison.
 \begin{table}[h]
 \centering
 \caption{Results on the fixed 120-pair set (percent). The 20B comparison was preregistered; the GPT-OSS 120B replacement and Nemotron Nano addition are post-hoc.}
@@ -119,14 +120,38 @@ For GPT-OSS 20B, DeGro minus grounded self-review is $+5.0$ FDA points with pair
 
 For Nemotron 3 Nano 30B, DeGro changes FDA from 89.6\% to 90.8\% ($+1.25$ points, pair-cluster 95\% CI $[-2.5,5.0]$, 12 versus 9 discordances, exploratory exact $p=.664$). This is statistically inconclusive. DeGro reaches 100.0\% CAR versus 98.3\% for grounded self-review, while UR falls from 3/100 proposed additions (3.0\%) to 1/99 (1.0\%). RSR is 98/120 versus 97/120. Verdict-only repair scores only 73.8\% FDA.
 
-Across all 300 pairs, GPT-OSS 20B changes from 91.2\% to 96.2\% FDA ($+5.0$, CI $[2.3,7.8]$, $p<.001$), while GPT-OSS 120B changes from 88.3\% to 95.7\% ($+7.3$, CI $[4.7,10.0]$, $p<.001$). This cumulative analysis is secondary because it includes development observations. In a 100-pair exploratory ablation, exposing target-divergent witnesses to the repair model did not improve DeGro (98.5\% versus 97.5\% FDA; adjusted $p=.727$); witnesses remain valuable as audit evidence.
+Across the original 300 pairs, GPT-OSS 20B changes from 91.2\% to 96.2\% FDA ($+5.0$, CI $[2.3,7.8]$, $p<.001$), while GPT-OSS 120B changes from 88.3\% to 95.7\% ($+7.3$, CI $[4.7,10.0]$, $p<.001$). These legacy full-cohort estimates are not independent held-out tests because development observations are included. Holm adjustment across the three model-specific FDA comparisons gives $p=.000716$, $p=3.09\times10^{-7}$, and $p=.590$ for 20B, 120B, and Nano. In a 100-pair exploratory ablation, exposing target-divergent witnesses to the repair model did not improve DeGro (98.5\% versus 97.5\% FDA; adjusted $p=.727$); witnesses remain valuable as audit evidence.
 
 Across all 300 pairs, Nemotron Nano changes FDA from 89.5\% to 90.3\% ($+0.83$ points, pair-cluster 95\% CI $[-1.5,3.3]$; 30 versus 25 discordances; exact $p=.590$). The cumulative run has all 2,400 expected records: 640 pilot, 800 development, and 960 fixed-set records. DeGro reaches 100.0\% CAR and 80.7\% RSR, versus 99.0\% and 80.0\% for grounded self-review; UR is 2/244 versus 7/247 additions. The cumulative result remains statistically inconclusive. Transport retries retained the first valid response, without score-based resampling.
+
+\section{Post-hoc Geometry Extension}
+Geometry60 contains every compatible coordinate-geometry instance in the frozen MIRA-Math release; no model outcome was used to filter examples. The adapter represents the target as squared Euclidean distance. For a nonnegative Euclidean distance, this transformation preserves target uniqueness, but it remains an adapter-specific modeling choice. The extension was constructed after the original MIRA-300 outcomes were available and is therefore exploratory.
+
+\begin{table}[h]
+\centering
+\caption{Geometry60 results (60 pairs, 120 cases per policy; percent).}
+\begin{tabular}{@{}llrrrr@{}}
+\toprule
+Model & Method & FDA & RSR & CAR & UR\\
+\midrule
+GPT-OSS 20B & Grounded self-review & 94.2 & 90.0 & 98.3 & 3.6\\
+ & DeGro & \textbf{96.7} & 93.3 & 100.0 & 0.0\\
+\midrule
+GPT-OSS 120B & Grounded self-review & 95.8 & 95.0 & 96.7 & 5.0\\
+ & DeGro & \textbf{98.3} & 96.7 & 100.0 & 3.3\\
+\midrule
+Nemotron Nano 30B & Grounded self-review & 72.5 & 50.0 & 95.0 & 16.7\\
+ & DeGro & \textbf{85.8} & 73.3 & 98.3 & 2.2\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+On Geometry60 alone, DeGro exceeds grounded self-review by 2.5 FDA points for each GPT-OSS model and by 13.33 points for Nano. The corresponding exact tests are not significant for 20B ($p=.549$) or 120B ($p=.375$), but are significant for Nano ($p=.0070$); these are descriptive post-hoc comparisons. After mechanical combination with the original records, MIRA-360 yields FDA gains of $+4.58$ points for 20B (95\% CI $[2.08,7.08]$, exact $p=.000264$), $+6.53$ for 120B (CI $[4.31,8.75]$, $p=3.81\times10^{-8}$), and $+2.92$ for Nano (CI $[0.42,5.42]$, $p=.0314$). Holm-adjusted values across the three combined comparisons are $.000527$, $1.14\times10^{-7}$, and $.0314$, respectively. These adjusted results do not remove the post-hoc status of the extension.
 
 \section{Exploratory Source-Coverage Refinement}
 We inspected only the 80-pair development outputs before defining one candidate prompt. The refinement instructs the model to compare every stated condition algebraically against the current formalization, consider indirect relations among non-target variables, distinguish ambiguity of the current formalization from adequacy of the source, and treat listed domains as already enforced. Labels, gold targets, missing constraints, and pair identifiers are absent from the prompt. The candidate was frozen before any new-test inference.
 
-The original 300 records exhaust the solver-compatible MIRA pool used by this study. We therefore generated a separate 100-pair synthetic stress set, with 25 pairs each for linear separation, graph path sums, Chinese-remainder reconstruction, and rank-deficient linear systems. All 200 gold actions pass the released scorer; all source strings are unique, and none exactly matches the original 300-pair source strings. Template similarity remains, so this set is not an external benchmark or an additional MIRA test. Both prompts were run concurrently with temperature 1.0 and API \code{think=medium}; inference retained the first valid response and never retried by score.
+The original five-family adapters exhaust their solver-compatible MIRA pool. Geometry required a new target adapter and was not used for prompt refinement. For the separate source-coverage refinement, we generated a 100-pair synthetic stress set with 25 pairs each for linear separation, graph path sums, Chinese-remainder reconstruction, and rank-deficient linear systems. All 200 gold actions pass the released scorer; all source strings are unique, and none exactly matches the original 300-pair source strings. Template similarity remains, so this set is not an external benchmark or an additional MIRA test. Both prompts were run concurrently with temperature 1.0 and API \code{think=medium}; inference retained the first valid response and never retried by score.
 
 \begin{table}[H]
 \centering
@@ -183,11 +208,15 @@ Artifact & Frozen value\\
 \midrule
 MIRA source revision & \code{72ff918901584d1d1e835a9f86d41e3d51a915a2}\\
 MIRA source SHA-256 & \code{78a021526f9457af6e3776ac470c4ef1202d18fd9a19539e7e289294997b2ad0}\\
+Geometry60 paired data SHA-256 & \code{dfbb83a551a4b39ad0d4abbee138ce7e8e581e5c6500cc6f914f598efaad5f51}\\
 Selection seed & \code{20270911}\\
 Confirmatory prompt SHA-256 & \code{eafed6be4973c21e1efbb5cc804112c9d50c95764e8f5066b58bdee58b92bdda}\\
 GPT-OSS 20B confirmatory SHA-256 & \code{5616d0c6203f762560439ee193f1148133d06baf034d6c34c7250a0a44ce3f0b}\\
 GPT-OSS 120B confirmatory SHA-256 & \code{38d18e6905fb3acafb236f9e6a4b0aa3aed2cfb2dd8ece75f236074dbbf01067}\\
 Nemotron Nano 30B confirmatory SHA-256 & \code{59eaaa1b86fb26b333c0340448c833e7485e708e7f0b4442d04e8e91cb9ff595}\\
+GPT-OSS 20B MIRA-360 SHA-256 & \code{6492e2b2cb1283d27c71d78ca63b4fec4a78d3f6396c97108f5946e64e65189d}\\
+GPT-OSS 120B MIRA-360 SHA-256 & \code{bedac5f00335acdf77211bf748f634d6fd6006f9146bea1f8fb8b65ec0c64745}\\
+Nano 30B MIRA-360 SHA-256 & \code{2139896315766b84c0447e9fbe14e3346cf95c517c83a86bb986d8df9660425c}\\
 Source-coverage synthetic set SHA-256 & \code{8ba85d5370803b2084dbf03cd2c8bcb438d5497a2efc47597320fda382837a7e}\\
 Source-coverage complete outputs SHA-256 & \code{b500c5b710a360f22a8697425439798ef66d95f4dabe89718fd4f2fcf9ae3131}\\
 MATH-500 verified labels & \code{4e1bbe0b9eaefdefe4569ec10fdd42daf8f1131d17dfbc410d0faed0b430ad38}\\
@@ -195,18 +224,18 @@ ALG514 verified labels & \code{72217047ff8d41b4a3766e504325821bd07230d7b6dc76364
 \bottomrule
 \end{tabularx}
 \end{table}
-The released scripts reconstruct tables from JSONL records, preserve cohort provenance, and fail on missing expected counts. Statistical code implements pair-cluster bootstrap intervals, exact McNemar tests, Holm adjustment, and Wilson intervals. All 49 repository tests pass in an isolated environment. Exact prompts, schemas, and per-record logs accompany the code release rather than being reproduced here.
+The released scripts reconstruct tables from JSONL records, preserve cohort provenance, and fail on missing expected counts. Statistical code implements pair-cluster bootstrap intervals, exact McNemar tests, Holm adjustment, and Wilson intervals. All 59 repository tests pass in an isolated environment. Exact prompts, schemas, and per-record logs accompany the code release rather than being reproduced here.
 
 \section{AI-Assisted Technology Disclosure}
 \enlargethispage{2\baselineskip}
 OpenAI Codex (GPT-5 model family) assisted with prototype code, experimental scaffolding, language polishing, restructuring, and formatting. It is not an author; the human authors remain responsible for the methodology, implementation, experiments, analyses, citations, and claims. The pipeline image was supplied by the author, who should retain its provenance for venue disclosure if required.
 
 \section{DRAW-Paired: Natural-Source Paired Evaluation}
-DRAW-Paired uses only the 600 training and 200 development problems of DRAW-1K~\cite{upadhyay2017derivations}. Its 200 test problems are not used. One duplicate source identifier and 200 single-equation problems are excluded; the remaining 599 systems have a target-critical deletion verified by the solver. The initial seeded 300-pair cohort contains 223 training-derived and 77 development-derived sources. A source-disjoint, seeded extension selects 50 of the remaining 67 unflagged proposals (37 training-derived and 13 development-derived), yielding 350 pairs and 700 cases. Each source contributes an omission case and an underspecified case with identical retained equations and target. Variables are real-valued and full-system target values are checked against published gold solutions. These are injected gold-equation omissions, not a natural model-error cohort.
+DRAW-Paired uses only the 600 training and 200 development problems of DRAW-1K~\cite{upadhyay2017derivations}. Its 200 test problems are not used. One duplicate source identifier and 200 single-equation problems are excluded; the remaining 599 systems have a target-critical deletion verified by the solver. The initial seeded 300-pair cohort contains 223 training-derived and 77 development-derived sources. A source-disjoint, seeded extension selects 50 of the remaining 67 unflagged proposals (37 training-derived and 13 development-derived), yielding an initial pool of 350 pairs and 700 cases. After a subsequent data re-review, the author requested exclusion of 50 pairs: 44 from the initial cohort and six from the extension. The retained benchmark has 300 pairs and 600 cases (221 training-derived, 79 development-derived), with 256 initial and 44 extension pairs. The exact identifiers are released in \code{excluded\_pair\_ids.txt}; no item-specific exclusion rationale was supplied. Each source contributes an omission case and an underspecified case with identical retained equations and target. Variables are real-valued and full-system target values are checked against published gold solutions. These are injected gold-equation omissions, not a natural model-error cohort.
 
-The author confirmed manual review of the initial 300 proposed spans and deletions after provisional inference. Final validation detected two incorrectly segmented title abbreviations; both supporting sentences were corrected and all 16 case--policy records per model for those two pairs were rerun. Other responses were retained and rescored. The extension was selected after the initial outcomes and locked before its own inference, but its 50 span/deletion reviews are still pending. Thus the combined main result is provisional, not fully human-verified or preregistered. No independent annotation or agreement statistic is claimed. All original 300-pair outputs remain archived; merging adds 400 extension records per model without replacing those outputs. The main paper reports all four policies, not only the favorable comparison.
+The author confirmed manual review of the initial 300 proposed spans and deletions after provisional inference. Final validation detected two incorrectly segmented title abbreviations; both supporting sentences were corrected and all 16 case--policy records per model for those two pairs were rerun. Other responses were retained and rescored. The extension was selected after the initial outcomes and locked before its own inference. The author subsequently approved all 50 extension spans and deletions without changes; exact model-input equality was verified, so no additional inference was needed. The 300 retained pairs are author-reviewed and frozen. Both review and subsequent exclusions followed inference and access to outcomes; this subset analysis is post-hoc, not preregistered. No independent annotation or agreement statistic is claimed. Excluded outputs were deleted from released raw and complete result files. The retained initial cohort contributes 2,048 records and the retained extension contributes 352 per model; legacy filenames retain the original cohort sizes, while manifests report current counts. The main paper reports all four policies, not only the favorable comparison.
 
-Each model has 2,800 complete unique records under temperature 1.0 and API \code{think=medium}. Primary tests compare DeGro with grounded self-review on FDA using exact McNemar, 10,000 pair-cluster bootstrap resamples, and Holm adjustment across three models. The reviewed initial dataset, extension review packet, mixed-review combined dataset, corrected raw responses, complete outputs, and analysis JSON retain separate provenance.
+Each model has 2,400 complete unique records under temperature 1.0 and API \code{think=medium}. Primary tests compare DeGro with grounded self-review on FDA using exact McNemar, 10,000 pair-cluster bootstrap resamples, and Holm adjustment across three models. The reviewed initial dataset, approved extension packet, frozen retained 300-pair dataset, corrected raw responses, complete outputs, and analysis JSON retain separate provenance.
 \bibliographystyle{plain}
 \bibliography{refs}
 \end{document}

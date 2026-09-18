@@ -1,0 +1,12 @@
+[8/18] gra-000206 UNDERSPECIFIED nonunique_grounding ok
+[9/18] mom-000388 OMISSION nonunique_grounding ok
+[10/18] mom-000388 UNDERSPECIFIED nonunique_grounding ok
+[11/18] mom-000381 OMISSION nonunique_grounding ok
+[12/18] mom-000381 UNDERSPECIFIED nonunique_grounding ok
+[13/18] crt-000076 OMISSION nonunique_grounding error
+[14/18] crt-000076 UNDERSPECIFIED nonunique_grounding ok
+[15/18] mom-000379 OMISSION nonunique_grounding ok
+[16/18] mom-000379 UNDERSPECIFIED nonunique_grounding ok
+[17/18] ran-000578 OMISSION nonunique_grounding ok
+[18/18] ran-000578 UNDERSPECIFIED nonunique_grounding ok
+[18/18] crt-000076 OMISSION nonunique_grounding ok
