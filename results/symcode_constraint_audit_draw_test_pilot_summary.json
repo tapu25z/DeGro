@@ -1,0 +1,57 @@
+{
+  "dataset": "DRAW-1K test",
+  "sample_size_problems": 20,
+  "generator_models": [
+    "gpt-oss:20b",
+    "gpt-oss:120b",
+    "gemma4:31b"
+  ],
+  "judge_model": "gpt-oss:120b",
+  "seed": 20260919,
+  "selected_ids": [
+    "draw1k/117490",
+    "draw1k/119770",
+    "draw1k/151179",
+    "draw1k/159809",
+    "draw1k/190263",
+    "draw1k/193747",
+    "draw1k/231243",
+    "draw1k/354897",
+    "draw1k/379721",
+    "draw1k/38538",
+    "draw1k/394530",
+    "draw1k/432431",
+    "draw1k/437713",
+    "draw1k/509134",
+    "draw1k/757971",
+    "draw1k/77641",
+    "draw1k/840960",
+    "draw1k/911314",
+    "draw1k/933584",
+    "draw1k/95395"
+  ],
+  "prompt_sha256": "fa823e675b3f45d189d28082fafb1400e2ceffd836de5259d375c781865536ca",
+  "labels_by_model": {
+    "gpt-oss:20b": {
+      "CORRECT_FORMALIZATION": 20
+    },
+    "gpt-oss:120b": {
+      "CORRECT_FORMALIZATION": 20
+    },
+    "gemma4:31b": {
+      "CORRECT_FORMALIZATION": 20
+    }
+  },
+  "confidence_by_model": {
+    "gpt-oss:20b": {
+      "LOW": 20
+    },
+    "gpt-oss:120b": {
+      "LOW": 20
+    },
+    "gemma4:31b": {
+      "LOW": 20
+    }
+  },
+  "errors": {}
+}
