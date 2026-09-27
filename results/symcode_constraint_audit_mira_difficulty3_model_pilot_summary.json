@@ -1,0 +1,53 @@
+{
+  "dataset": "MATH-500 executed-wrong diagnostic",
+  "sample_size_problems": 20,
+  "generator_models": [
+    "gpt-oss:20b",
+    "nemotron-3-nano:30b"
+  ],
+  "judge_model": "gpt-oss:120b",
+  "seed": 20260919,
+  "selected_ids": [
+    "gra-000220",
+    "gra-000222",
+    "gra-000226",
+    "gra-000230",
+    "gra-000235",
+    "gra-000238",
+    "lin-000284",
+    "lin-000295",
+    "lin-000297",
+    "lin-000298",
+    "mom-000402",
+    "mom-000403",
+    "mom-000408",
+    "mom-000412",
+    "mom-000415",
+    "mom-000419",
+    "ran-000580",
+    "ran-000581",
+    "ran-000594",
+    "ran-000598"
+  ],
+  "prompt_sha256": "fa823e675b3f45d189d28082fafb1400e2ceffd836de5259d375c781865536ca",
+  "labels_by_model": {
+    "gpt-oss:20b": {
+      "COMPUTATION_OR_SELECTION_ERROR": 4,
+      "CORRECT_FORMALIZATION": 11,
+      "WRONG_CONSTRAINT": 1
+    },
+    "nemotron-3-nano:30b": {
+      "CORRECT_FORMALIZATION": 18,
+      "EXTRA_UNSUPPORTED_CONSTRAINT": 2
+    }
+  },
+  "confidence_by_model": {
+    "gpt-oss:20b": {
+      "LOW": 16
+    },
+    "nemotron-3-nano:30b": {
+      "LOW": 20
+    }
+  },
+  "errors": {}
+}

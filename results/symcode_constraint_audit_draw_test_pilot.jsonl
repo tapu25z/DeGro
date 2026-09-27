@@ -1,0 +1,60 @@
+{"id":"draw1k/117490","generator_model":"gpt-oss:20b","executed_answer":"\\boxed{7000.0}","gold_solutions":[7000.0,15000.0],"status":"ok","audit":{"defect":"CORRECT_FORMALIZATION"}}
+{"id":"draw1k/151179","generator_model":"gpt-oss:20b","executed_answer":"\\boxed{\\frac{525}{2}}","gold_solutions":[262.5,37.5],"status":"ok","audit":{"classification":"CORRECT_FORMALIZATION"}}
+{"id":"draw1k/151179","generator_model":"gpt-oss:120b","executed_answer":"\\boxed{\\frac{525}{2}}","gold_solutions":[262.5,37.5],"status":"ok","audit":{"result":"CORRECT_FORMALIZATION"}}
+{"id":"draw1k/117490","generator_model":"gpt-oss:120b","executed_answer":"\\boxed{7000}","gold_solutions":[7000.0,15000.0],"status":"ok","audit":{"classification":"CORRECT_FORMALIZATION"}}
+{"id":"draw1k/119770","generator_model":"gemma4:31b","executed_answer":"\\boxed{4000}","gold_solutions":[1000.0,4000.0],"status":"ok","audit":{"label":"CORRECT_FORMALIZATION"}}
+{"id":"draw1k/117490","generator_model":"gemma4:31b","executed_answer":"\\boxed{7000}","gold_solutions":[7000.0,15000.0],"status":"ok","audit":{"classification":"CORRECT_FORMALIZATION"}}
+{"id":"draw1k/159809","generator_model":"gpt-oss:120b","executed_answer":"\\boxed{30}","gold_solutions":[30.0],"status":"ok","audit":{"classification":"CORRECT_FORMALIZATION"}}
+{"id":"draw1k/119770","generator_model":"gpt-oss:20b","executed_answer":"\\boxed{4000.0}","gold_solutions":[1000.0,4000.0],"status":"ok","audit":{"defect":"CORRECT_FORMALIZATION"}}
+{"id":"draw1k/119770","generator_model":"gpt-oss:120b","executed_answer":"\\boxed{4000}","gold_solutions":[1000.0,4000.0],"status":"ok","audit":{"defect":"CORRECT_FORMALIZATION"}}
+{"id":"draw1k/190263","generator_model":"gpt-oss:20b","executed_answer":"\\boxed{(49, 15)}","gold_solutions":[49.0,15.0],"status":"ok","audit":{"classification":"CORRECT_FORMALIZATION","explanation":"The program correctly encodes both given equations (sum equals 64 and 2+2x = 7y-5), solves them, enforces that x is the larger number, and returns the unique valid solution (49, 15). No missing, wrong, extra constraints, target errors, or computation errors are present."}}
+{"id":"draw1k/190263","generator_model":"gemma4:31b","executed_answer":"\\boxed{49, 15}","gold_solutions":[49.0,15.0],"status":"ok","audit":{"defect_type":"CORRECT_FORMALIZATION"}}
+{"id":"draw1k/193747","generator_model":"gemma4:31b","executed_answer":"\\boxed{18}","gold_solutions":[18.0],"status":"ok","audit":{"classification":"CORRECT_FORMALIZATION"}}
+{"id":"draw1k/151179","generator_model":"gemma4:31b","executed_answer":"\\boxed{262.5}","gold_solutions":[262.5,37.5],"status":"ok","audit":{"classification":"CORRECT_FORMALIZATION"}}
+{"id":"draw1k/231243","generator_model":"gpt-oss:20b","executed_answer":"\\boxed{3.0}","gold_solutions":[3.0],"status":"ok","audit":{"classification":"CORRECT_FORMALIZATION"}}
+{"id":"draw1k/231243","generator_model":"gpt-oss:120b","executed_answer":"\\boxed{3.0}","gold_solutions":[3.0],"status":"ok","audit":{"classification":"CORRECT_FORMALIZATION"}}
+{"id":"draw1k/159809","generator_model":"gpt-oss:20b","executed_answer":"\\boxed{30}","gold_solutions":[30.0],"status":"ok","audit":{"defect":"CORRECT_FORMALIZATION"}}
+{"id":"draw1k/354897","generator_model":"gpt-oss:20b","executed_answer":"\\boxed{Michael is 24 years old and Maggie is 12 years old.}","gold_solutions":[12.0,24.0],"status":"ok","audit":{"classification":"CORRECT_FORMALIZATION"}}
+{"id":"draw1k/354897","generator_model":"gpt-oss:120b","executed_answer":"\\boxed{Michael = 24,\\; Maggie = 12}","gold_solutions":[12.0,24.0],"status":"ok","audit":{"classification":"CORRECT_FORMALIZATION"}}
+{"id":"draw1k/159809","generator_model":"gemma4:31b","executed_answer":"\\boxed{30}","gold_solutions":[30.0],"status":"ok","audit":{"defect_type":"CORRECT_FORMALIZATION"}}
+{"id":"draw1k/379721","generator_model":"gpt-oss:20b","executed_answer":"\\boxed{x = 30,\\; y = 20}","gold_solutions":[30.0,20.0],"status":"ok","audit":{"label":"CORRECT_FORMALIZATION"}}
+{"id":"draw1k/190263","generator_model":"gpt-oss:120b","executed_answer":"\\boxed{\\left[\\begin{matrix}49\\\\15\\end{matrix}\\right]}","gold_solutions":[49.0,15.0],"status":"ok","audit":{"classification":"CORRECT_FORMALIZATION"}}
+{"id":"draw1k/379721","generator_model":"gpt-oss:120b","executed_answer":"\\boxed{(30, 20)}","gold_solutions":[30.0,20.0],"status":"ok","audit":{"classification":"CORRECT_FORMALIZATION"}}
+{"id":"draw1k/193747","generator_model":"gpt-oss:20b","executed_answer":"\\boxed{18}","gold_solutions":[18.0],"status":"ok","audit":{"result":"CORRECT_FORMALIZATION"}}
+{"id":"draw1k/38538","generator_model":"gpt-oss:20b","executed_answer":"\\boxed{-53 and -52}","gold_solutions":[-53.0],"status":"ok","audit":{"defect":"CORRECT_FORMALIZATION"}}
+{"id":"draw1k/193747","generator_model":"gpt-oss:120b","executed_answer":"\\boxed{18}","gold_solutions":[18.0],"status":"ok","audit":{"classification":"CORRECT_FORMALIZATION"}}
+{"id":"draw1k/38538","generator_model":"gemma4:31b","executed_answer":"\\boxed{-53, -52}","gold_solutions":[-53.0],"status":"ok","audit":{"defect":"CORRECT_FORMALIZATION"}}
+{"id":"draw1k/231243","generator_model":"gemma4:31b","executed_answer":"\\boxed{3.0}","gold_solutions":[3.0],"status":"ok","audit":{"classification":"CORRECT_FORMALIZATION"}}
+{"id":"draw1k/394530","generator_model":"gpt-oss:120b","executed_answer":"\\boxed{\\left( 40.0, \\  20.0\\right)}","gold_solutions":[20.0,40.0],"status":"ok","audit":{"label":"CORRECT_FORMALIZATION"}}
+{"id":"draw1k/354897","generator_model":"gemma4:31b","executed_answer":"\\boxed{Michael is 24 and Maggie is 12}","gold_solutions":[12.0,24.0],"status":"ok","audit":{"classification":"CORRECT_FORMALIZATION"}}
+{"id":"draw1k/432431","generator_model":"gpt-oss:20b","executed_answer":"\\boxed{70 cows and 130 chickens}","gold_solutions":[130.0,70.0],"status":"ok","audit":{"defect":"CORRECT_FORMALIZATION"}}
+{"id":"draw1k/379721","generator_model":"gemma4:31b","executed_answer":"\\boxed{30, 20}","gold_solutions":[30.0,20.0],"status":"ok","audit":{"defect":"CORRECT_FORMALIZATION"}}
+{"id":"draw1k/432431","generator_model":"gemma4:31b","executed_answer":"\\boxed{70 cows and 130 chickens}","gold_solutions":[130.0,70.0],"status":"ok","audit":{"defect_type":"CORRECT_FORMALIZATION"}}
+{"id":"draw1k/38538","generator_model":"gpt-oss:120b","executed_answer":"\\boxed{-53, -52}","gold_solutions":[-53.0],"status":"ok","audit":{"defect_type":"CORRECT_FORMALIZATION"}}
+{"id":"draw1k/437713","generator_model":"gpt-oss:120b","executed_answer":"\\boxed{29}","gold_solutions":[23.0],"status":"ok","audit":{"defect_type":"CORRECT_FORMALIZATION"}}
+{"id":"draw1k/394530","generator_model":"gpt-oss:20b","executed_answer":"\\boxed{x = 40 \\text{ fluid ounces of 20\\% solution},\\; y = 20 \\text{ fluid ounces of 35\\% solution}}","gold_solutions":[20.0,40.0],"status":"ok","audit":{"defect_category":"CORRECT_FORMALIZATION"}}
+{"id":"draw1k/509134","generator_model":"gpt-oss:20b","executed_answer":"\\boxed{12/5}","gold_solutions":[2.4],"status":"ok","audit":{"defect":"CORRECT_FORMALIZATION"}}
+{"id":"draw1k/509134","generator_model":"gemma4:31b","executed_answer":"\\boxed{\\frac{12}{5}}","gold_solutions":[2.4],"status":"ok","audit":{"classification":"CORRECT_FORMALIZATION"}}
+{"id":"draw1k/394530","generator_model":"gemma4:31b","executed_answer":"\\boxed{40 fluid ounces of 20% solution and 20 fluid ounces of 35% solution}","gold_solutions":[20.0,40.0],"status":"ok","audit":{"defect_type":"CORRECT_FORMALIZATION"}}
+{"id":"draw1k/757971","generator_model":"gemma4:31b","executed_answer":"\\boxed{3, 5}","gold_solutions":[3.0,5.0],"status":"ok","audit":{"classification":"CORRECT_FORMALIZATION"}}
+{"id":"draw1k/432431","generator_model":"gpt-oss:120b","executed_answer":"\\boxed{\\text{cows} = 70,\\ \\text{chickens} = 130}","gold_solutions":[130.0,70.0],"status":"ok","audit":{"defect":"CORRECT_FORMALIZATION"}}
+{"id":"draw1k/757971","generator_model":"gpt-oss:120b","executed_answer":"\\boxed{\\left( 3, \\  5\\right)}","gold_solutions":[3.0,5.0],"status":"ok","audit":{"defect":"CORRECT_FORMALIZATION"}}
+{"id":"draw1k/77641","generator_model":"gpt-oss:120b","executed_answer":"\\boxed{x = 15\\text{ oz of 20% solution},\\; y = 35\\text{ oz of 40% solution}}","gold_solutions":[15.0,35.0],"status":"ok","audit":{"defect":"CORRECT_FORMALIZATION"}}
+{"id":"draw1k/437713","generator_model":"gpt-oss:20b","executed_answer":"\\boxed{29}","gold_solutions":[23.0],"status":"ok","audit":{"defect":"CORRECT_FORMALIZATION"}}
+{"id":"draw1k/840960","generator_model":"gpt-oss:20b","executed_answer":"\\boxed{44, 23}","gold_solutions":[44.0,23.0],"status":"ok","audit":{"defect":"CORRECT_FORMALIZATION"}}
+{"id":"draw1k/437713","generator_model":"gemma4:31b","executed_answer":"\\boxed{29}","gold_solutions":[23.0],"status":"ok","audit":{"defect":"CORRECT_FORMALIZATION"}}
+{"id":"draw1k/840960","generator_model":"gpt-oss:120b","executed_answer":"\\boxed{(44, 23)}","gold_solutions":[44.0,23.0],"status":"ok","audit":{"label":"CORRECT_FORMALIZATION"}}
+{"id":"draw1k/509134","generator_model":"gpt-oss:120b","executed_answer":"\\boxed{\\frac{12}{5}}","gold_solutions":[2.4],"status":"ok","audit":{"defect":"CORRECT_FORMALIZATION"}}
+{"id":"draw1k/911314","generator_model":"gpt-oss:20b","executed_answer":"\\boxed{Second group: 12, First group: 60}","gold_solutions":[12.0,60.0],"status":"ok","audit":{"label":"CORRECT_FORMALIZATION"}}
+{"id":"draw1k/911314","generator_model":"gemma4:31b","executed_answer":"\\boxed{First group: 60, Second group: 12}","gold_solutions":[12.0,60.0],"status":"ok","audit":{"result":"CORRECT_FORMALIZATION"}}
+{"id":"draw1k/933584","generator_model":"gpt-oss:120b","executed_answer":"\\boxed{36}","gold_solutions":[32.0,36.0],"status":"ok","audit":{"defect":"CORRECT_FORMALIZATION"}}
+{"id":"draw1k/757971","generator_model":"gpt-oss:20b","executed_answer":"\\boxed{\\left[\\begin{matrix}3\\\\5\\end{matrix}\\right]}","gold_solutions":[3.0,5.0],"status":"ok","audit":{"category":"CORRECT_FORMALIZATION"}}
+{"id":"draw1k/933584","generator_model":"gemma4:31b","executed_answer":"\\boxed{36}","gold_solutions":[32.0,36.0],"status":"ok","audit":{"label":"CORRECT_FORMALIZATION"}}
+{"id":"draw1k/77641","generator_model":"gpt-oss:20b","executed_answer":"\\boxed{\\left[\\begin{matrix}15.0 & 35.0\\end{matrix}\\right]}","gold_solutions":[15.0,35.0],"status":"ok","audit":{"result":"CORRECT_FORMALIZATION"}}
+{"id":"draw1k/95395","generator_model":"gpt-oss:20b","executed_answer":"\\boxed{g = 50,\\; s = 35}","gold_solutions":[35.0,50.0],"status":"ok","audit":{"label":"CORRECT_FORMALIZATION"}}
+{"id":"draw1k/77641","generator_model":"gemma4:31b","executed_answer":"\\boxed{15 ounces of 20% solution and 35 ounces of 40% solution}","gold_solutions":[15.0,35.0],"status":"ok","audit":{"defect":"CORRECT_FORMALIZATION"}}
+{"id":"draw1k/95395","generator_model":"gemma4:31b","executed_answer":"\\boxed{Graphing calculators: 50, Scientific calculators: 35}","gold_solutions":[35.0,50.0],"status":"ok","audit":{"defect":"CORRECT_FORMALIZATION"}}
+{"id":"draw1k/840960","generator_model":"gemma4:31b","executed_answer":"\\boxed{23, 44}","gold_solutions":[44.0,23.0],"status":"ok","audit":{"defect":"CORRECT_FORMALIZATION"}}
+{"id":"draw1k/911314","generator_model":"gpt-oss:120b","executed_answer":"\\boxed{First group: 60,\\; Second group: 12}","gold_solutions":[12.0,60.0],"status":"ok","audit":{"defect_type":"CORRECT_FORMALIZATION"}}
+{"id":"draw1k/933584","generator_model":"gpt-oss:20b","executed_answer":"\\boxed{36}","gold_solutions":[32.0,36.0],"status":"ok","audit":{"classification":"CORRECT_FORMALIZATION"}}
+{"id":"draw1k/95395","generator_model":"gpt-oss:120b","executed_answer":"\\boxed{\\text{Graphing calculators} = 50,\\; \\text{Scientific calculators} = 35}","gold_solutions":[35.0,50.0],"status":"ok","audit":{"defect":"CORRECT_FORMALIZATION"}}

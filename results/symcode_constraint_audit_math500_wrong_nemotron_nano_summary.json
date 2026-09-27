@@ -1,0 +1,31 @@
+{
+  "dataset": "MATH-500 executed-wrong diagnostic",
+  "sample_size_problems": 5,
+  "generator_models": [
+    "nemotron-3-nano:30b"
+  ],
+  "judge_model": "gpt-oss:120b",
+  "seed": 20260919,
+  "selected_ids": [
+    "test/intermediate_algebra/1063.json",
+    "test/intermediate_algebra/362.json",
+    "test/intermediate_algebra/960.json",
+    "test/prealgebra/1865.json",
+    "test/prealgebra/874.json"
+  ],
+  "prompt_sha256": "fa823e675b3f45d189d28082fafb1400e2ceffd836de5259d375c781865536ca",
+  "labels_by_model": {
+    "nemotron-3-nano:30b": {
+      "COMPUTATION_OR_SELECTION_ERROR": 1,
+      "CORRECT_FORMALIZATION": 2,
+      "MISSING_CONSTRAINT": 1,
+      "WRONG_CONSTRAINT": 1
+    }
+  },
+  "confidence_by_model": {
+    "nemotron-3-nano:30b": {
+      "LOW": 5
+    }
+  },
+  "errors": {}
+}

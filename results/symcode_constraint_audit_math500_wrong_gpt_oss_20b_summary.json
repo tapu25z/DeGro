@@ -1,0 +1,78 @@
+{
+  "dataset": "MATH-500 executed-wrong diagnostic",
+  "sample_size_problems": 49,
+  "generator_models": [
+    "gpt-oss:20b"
+  ],
+  "judge_model": "gpt-oss:120b",
+  "seed": 20260919,
+  "selected_ids": [
+    "test/algebra/1098.json",
+    "test/algebra/1787.json",
+    "test/algebra/1837.json",
+    "test/algebra/2043.json",
+    "test/algebra/2159.json",
+    "test/algebra/2264.json",
+    "test/algebra/2427.json",
+    "test/algebra/972.json",
+    "test/counting_and_probability/188.json",
+    "test/counting_and_probability/230.json",
+    "test/counting_and_probability/731.json",
+    "test/geometry/1108.json",
+    "test/geometry/353.json",
+    "test/geometry/434.json",
+    "test/geometry/465.json",
+    "test/geometry/477.json",
+    "test/geometry/483.json",
+    "test/geometry/547.json",
+    "test/geometry/561.json",
+    "test/geometry/627.json",
+    "test/geometry/65.json",
+    "test/geometry/711.json",
+    "test/geometry/817.json",
+    "test/geometry/846.json",
+    "test/geometry/880.json",
+    "test/intermediate_algebra/1063.json",
+    "test/intermediate_algebra/1544.json",
+    "test/intermediate_algebra/183.json",
+    "test/intermediate_algebra/1992.json",
+    "test/intermediate_algebra/1994.json",
+    "test/intermediate_algebra/2015.json",
+    "test/intermediate_algebra/362.json",
+    "test/intermediate_algebra/662.json",
+    "test/intermediate_algebra/960.json",
+    "test/number_theory/847.json",
+    "test/prealgebra/1003.json",
+    "test/prealgebra/105.json",
+    "test/prealgebra/1187.json",
+    "test/prealgebra/1865.json",
+    "test/prealgebra/1991.json",
+    "test/prealgebra/874.json",
+    "test/prealgebra/914.json",
+    "test/precalculus/1056.json",
+    "test/precalculus/1291.json",
+    "test/precalculus/499.json",
+    "test/precalculus/779.json",
+    "test/precalculus/807.json",
+    "test/precalculus/989.json",
+    "test/precalculus/990.json"
+  ],
+  "prompt_sha256": "fa823e675b3f45d189d28082fafb1400e2ceffd836de5259d375c781865536ca",
+  "labels_by_model": {
+    "gpt-oss:20b": {
+      "CORRECT_FORMALIZATION": 19,
+      "MISSING_CONSTRAINT": 2,
+      "COMPUTATION_OR_SELECTION_ERROR": 9,
+      "WRONG_CONSTRAINT": 10,
+      "WRONG_TARGET": 4,
+      "EXTRA_UNSUPPORTED_CONSTRAINT": 4,
+      "UNSUPPORTED_TO_AUDIT": 1
+    }
+  },
+  "confidence_by_model": {
+    "gpt-oss:20b": {
+      "LOW": 49
+    }
+  },
+  "errors": {}
+}

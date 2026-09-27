@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="app.diagrams.net" modified="2026-09-27T03:15:00.000Z" agent="Codex" version="24.7.17" type="device" compressed="false">
+  <diagram id="figure1-editable" name="Figure 1 — Editable">
+    <mxGraphModel dx="1240" dy="1268" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1240" pageHeight="1268" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+
+        <!-- Panel 1: natural-language problem -->
+        <mxCell id="p1" value="" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#eef4f9;gradientColor=#ffffff;gradientDirection=east;strokeColor=#7f90a2;strokeWidth=2;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="30" y="12" width="1180" height="264" as="geometry"/>
+        </mxCell>
+        <mxCell id="p1card" value="" style="rounded=1;arcSize=10;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=none;opacity=94;" vertex="1" parent="1">
+          <mxGeometry x="48" y="95" width="1144" height="164" as="geometry"/>
+        </mxCell>
+        <mxCell id="docIcon" value="▤" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontColor=#132438;fontSize=53;fontStyle=1;fontFamily=Arial;" vertex="1" parent="1">
+          <mxGeometry x="60" y="22" width="64" height="62" as="geometry"/>
+        </mxCell>
+        <mxCell id="p1title" value="Natural-language problem" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;strokeColor=none;fillColor=none;fontColor=#050914;fontSize=43;fontStyle=1;fontFamily=Georgia;" vertex="1" parent="1">
+          <mxGeometry x="155" y="24" width="760" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="hl1" value="" style="rounded=1;arcSize=14;fillColor=#dceeff;strokeColor=none;opacity=72;" vertex="1" parent="1"><mxGeometry x="378" y="104" width="327" height="46" as="geometry"/></mxCell>
+        <mxCell id="hl2" value="" style="rounded=1;arcSize=14;fillColor=#ffdcdc;strokeColor=none;opacity=76;" vertex="1" parent="1"><mxGeometry x="927" y="104" width="195" height="46" as="geometry"/></mxCell>
+        <mxCell id="hl3" value="" style="rounded=1;arcSize=14;fillColor=#ffdcdc;strokeColor=none;opacity=76;" vertex="1" parent="1"><mxGeometry x="112" y="150" width="166" height="46" as="geometry"/></mxCell>
+        <mxCell id="hl4" value="" style="rounded=1;arcSize=14;fillColor=#ffdcdc;strokeColor=none;opacity=76;" vertex="1" parent="1"><mxGeometry x="377" y="150" width="324" height="46" as="geometry"/></mxCell>
+        <mxCell id="hl5" value="" style="rounded=1;arcSize=14;fillColor=#ffdcdc;strokeColor=none;opacity=76;" vertex="1" parent="1"><mxGeometry x="828" y="150" width="214" height="46" as="geometry"/></mxCell>
+        <mxCell id="hl6" value="" style="rounded=1;arcSize=14;fillColor=#ffdcdc;strokeColor=none;opacity=76;" vertex="1" parent="1"><mxGeometry x="370" y="196" width="130" height="45" as="geometry"/></mxCell>
+        <mxCell id="problemText" value="At a school fair, a total of 120 tickets were sold. An adult ticket&lt;br&gt;costs $15 and a student ticket costs $9. The total revenue from&lt;br&gt;ticket sales was $1,440. How many adult tickets were sold?" style="text;html=1;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;strokeColor=none;fillColor=none;fontColor=#050505;fontSize=36;fontFamily=Georgia;spacing=0;" vertex="1" parent="1">
+          <mxGeometry x="112" y="101" width="1050" height="148" as="geometry"/>
+        </mxCell>
+
+        <!-- Connector 1 -->
+        <mxCell id="arrow1" style="edgeStyle=none;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#536476;strokeWidth=7;" edge="1" parent="1"><mxGeometry relative="1" as="geometry"><mxPoint x="620" y="276" as="sourcePoint"/><mxPoint x="620" y="312" as="targetPoint"/></mxGeometry></mxCell>
+
+        <!-- Panel 2: executable formalization -->
+        <mxCell id="p2" value="" style="rounded=1;arcSize=5;whiteSpace=wrap;html=1;fillColor=#e8f4ff;gradientColor=#ffffff;gradientDirection=east;strokeColor=#61aef8;strokeWidth=2;shadow=1;" vertex="1" parent="1"><mxGeometry x="30" y="312" width="1180" height="384" as="geometry"/></mxCell>
+        <mxCell id="robotIcon" value="🤖" style="text;html=1;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontSize=47;fontFamily=Arial;" vertex="1" parent="1"><mxGeometry x="54" y="324" width="78" height="60" as="geometry"/></mxCell>
+        <mxCell id="p2title" value="&lt;b&gt;Executable formalization&lt;/b&gt; &lt;font color=&quot;#b31217&quot;&gt;&lt;i&gt;(missing constraint)&lt;/i&gt;&lt;/font&gt;" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;strokeColor=none;fillColor=none;fontColor=#050914;fontSize=39;fontFamily=Georgia;" vertex="1" parent="1"><mxGeometry x="155" y="326" width="900" height="54" as="geometry"/></mxCell>
+        <mxCell id="p2card" value="" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=none;opacity=96;" vertex="1" parent="1"><mxGeometry x="49" y="394" width="1142" height="284" as="geometry"/></mxCell>
+        <mxCell id="codeVars" value="# variables" style="text;html=1;align=left;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#718092;fontSize=28;fontFamily=Courier New;" vertex="1" parent="1"><mxGeometry x="82" y="405" width="300" height="38" as="geometry"/></mxCell>
+        <mxCell id="codeVars2" value="&lt;i&gt;a&lt;/i&gt;: adult tickets, &lt;i&gt;s&lt;/i&gt;: student tickets" style="text;html=1;align=left;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#090909;fontSize=30;fontFamily=Courier New;" vertex="1" parent="1"><mxGeometry x="83" y="442" width="630" height="43" as="geometry"/></mxCell>
+        <mxCell id="codeCon" value="# constraints  &lt;font color=&quot;#df1118&quot;&gt;(incomplete)&lt;/font&gt;" style="text;html=1;align=left;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#718092;fontSize=28;fontFamily=Courier New;" vertex="1" parent="1"><mxGeometry x="82" y="487" width="600" height="40" as="geometry"/></mxCell>
+        <mxCell id="eqHighlight" value="" style="rounded=1;arcSize=10;fillColor=#d9edff;gradientColor=#eef8ff;strokeColor=none;" vertex="1" parent="1"><mxGeometry x="73" y="530" width="610" height="49" as="geometry"/></mxCell>
+        <mxCell id="eqOne" value="&lt;i&gt;a&lt;/i&gt; + &lt;i&gt;s&lt;/i&gt; = 120" style="text;html=1;align=left;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#111111;fontSize=32;fontFamily=Georgia;" vertex="1" parent="1"><mxGeometry x="92" y="530" width="330" height="49" as="geometry"/></mxCell>
+        <mxCell id="codeTarget" value="# target" style="text;html=1;align=left;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#718092;fontSize=28;fontFamily=Courier New;" vertex="1" parent="1"><mxGeometry x="82" y="589" width="300" height="38" as="geometry"/></mxCell>
+        <mxCell id="codeTarget2" value="target: &lt;i&gt;a&lt;/i&gt;" style="text;html=1;align=left;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#090909;fontSize=30;fontFamily=Courier New;" vertex="1" parent="1"><mxGeometry x="84" y="627" width="300" height="39" as="geometry"/></mxCell>
+        <mxCell id="missingBox" value="" style="rounded=1;arcSize=10;whiteSpace=wrap;html=1;fillColor=#fff6f6;gradientColor=#ffffff;strokeColor=#ef555b;strokeWidth=2;dashed=1;dashPattern=8 5;shadow=1;" vertex="1" parent="1"><mxGeometry x="754" y="454" width="412" height="150" as="geometry"/></mxCell>
+        <mxCell id="missingText" value="Missing from formalization:" style="text;html=1;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#901010;fontSize=27;fontFamily=Georgia;" vertex="1" parent="1"><mxGeometry x="770" y="472" width="380" height="44" as="geometry"/></mxCell>
+        <mxCell id="missingEq" value="15&lt;i&gt;a&lt;/i&gt; + 9&lt;i&gt;s&lt;/i&gt; = 1440" style="text;html=1;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#111111;fontSize=39;fontFamily=Georgia;" vertex="1" parent="1"><mxGeometry x="775" y="522" width="370" height="61" as="geometry"/></mxCell>
+
+        <!-- Connector 2 -->
+        <mxCell id="arrow2" style="edgeStyle=none;html=1;endArrow=block;endFill=1;strokeColor=#536476;strokeWidth=7;" edge="1" parent="1"><mxGeometry relative="1" as="geometry"><mxPoint x="620" y="696" as="sourcePoint"/><mxPoint x="620" y="730" as="targetPoint"/></mxGeometry></mxCell>
+
+        <!-- Green success banner -->
+        <mxCell id="success" value="" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#e9f8ea;gradientColor=#ffffff;gradientDirection=east;strokeColor=#2caa53;strokeWidth=2;shadow=1;" vertex="1" parent="1"><mxGeometry x="30" y="730" width="1180" height="83" as="geometry"/></mxCell>
+        <mxCell id="gear" value="⚙" style="text;html=1;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#08762c;fontSize=58;fontFamily=Arial;" vertex="1" parent="1"><mxGeometry x="260" y="738" width="90" height="68" as="geometry"/></mxCell>
+        <mxCell id="successText" value="Program executes successfully" style="text;html=1;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#08762c;fontSize=37;fontStyle=1;fontFamily=Georgia;" vertex="1" parent="1"><mxGeometry x="348" y="741" width="550" height="61" as="geometry"/></mxCell>
+        <mxCell id="successCheck" value="✓" style="text;html=1;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#07832d;fontSize=58;fontStyle=1;fontFamily=Arial;" vertex="1" parent="1"><mxGeometry x="890" y="739" width="80" height="66" as="geometry"/></mxCell>
+
+        <!-- Connector 3 -->
+        <mxCell id="arrow3" style="edgeStyle=none;html=1;endArrow=block;endFill=1;strokeColor=#536476;strokeWidth=7;" edge="1" parent="1"><mxGeometry relative="1" as="geometry"><mxPoint x="620" y="813" as="sourcePoint"/><mxPoint x="620" y="843" as="targetPoint"/></mxGeometry></mxCell>
+
+        <!-- Orange multiple-executions panel -->
+        <mxCell id="p3" value="" style="rounded=1;arcSize=5;whiteSpace=wrap;html=1;fillColor=#fff5e8;gradientColor=#ffffff;gradientDirection=east;strokeColor=#ffae48;strokeWidth=2;shadow=1;" vertex="1" parent="1"><mxGeometry x="30" y="843" width="1180" height="272" as="geometry"/></mxCell>
+        <mxCell id="branchIcon" value="⌘" style="text;html=1;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#713800;fontSize=53;fontFamily=Arial;rotation=180;" vertex="1" parent="1"><mxGeometry x="55" y="853" width="75" height="66" as="geometry"/></mxCell>
+        <mxCell id="p3title" value="Multiple valid executions, different answers" style="text;html=1;align=left;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#080808;fontSize=37;fontStyle=1;fontFamily=Georgia;" vertex="1" parent="1"><mxGeometry x="156" y="853" width="930" height="57" as="geometry"/></mxCell>
+        <mxCell id="leftRun" value="" style="rounded=1;arcSize=7;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=none;opacity=96;" vertex="1" parent="1"><mxGeometry x="53" y="922" width="513" height="174" as="geometry"/></mxCell>
+        <mxCell id="rightRun" value="" style="rounded=1;arcSize=7;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=none;opacity=96;" vertex="1" parent="1"><mxGeometry x="674" y="922" width="513" height="174" as="geometry"/></mxCell>
+        <mxCell id="leftTuple" value="(&lt;i&gt;a&lt;/i&gt;, &lt;i&gt;s&lt;/i&gt;) = (60, 60)" style="text;html=1;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#111111;fontSize=35;fontFamily=Georgia;" vertex="1" parent="1"><mxGeometry x="150" y="929" width="350" height="52" as="geometry"/></mxCell>
+        <mxCell id="leftCheck" value="✓" style="text;html=1;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#078c3e;fontSize=50;fontStyle=1;fontFamily=Arial;" vertex="1" parent="1"><mxGeometry x="117" y="977" width="70" height="58" as="geometry"/></mxCell>
+        <mxCell id="leftConstraint" value="&lt;i&gt;a&lt;/i&gt; + &lt;i&gt;s&lt;/i&gt; = 120" style="text;html=1;align=left;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#111111;fontSize=34;fontFamily=Georgia;" vertex="1" parent="1"><mxGeometry x="200" y="979" width="310" height="55" as="geometry"/></mxCell>
+        <mxCell id="leftTarget" value="target: &lt;i&gt;a&lt;/i&gt; =" style="text;html=1;align=left;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#111111;fontSize=35;fontStyle=1;fontFamily=Georgia;" vertex="1" parent="1"><mxGeometry x="202" y="1035" width="220" height="51" as="geometry"/></mxCell>
+        <mxCell id="leftAnswerBox" value="60" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fillColor=#fff1a6;gradientColor=#fff9d8;strokeColor=none;fontColor=#111111;fontSize=34;fontFamily=Georgia;" vertex="1" parent="1"><mxGeometry x="406" y="1036" width="71" height="48" as="geometry"/></mxCell>
+        <mxCell id="neq" value="≠" style="text;html=1;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#970000;fontSize=62;fontStyle=1;fontFamily=Georgia;" vertex="1" parent="1"><mxGeometry x="577" y="966" width="86" height="87" as="geometry"/></mxCell>
+        <mxCell id="rightTuple" value="(&lt;i&gt;a&lt;/i&gt;, &lt;i&gt;s&lt;/i&gt;) = (100, 20)" style="text;html=1;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#111111;fontSize=35;fontFamily=Georgia;" vertex="1" parent="1"><mxGeometry x="770" y="929" width="350" height="52" as="geometry"/></mxCell>
+        <mxCell id="rightCheck" value="✓" style="text;html=1;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#078c3e;fontSize=50;fontStyle=1;fontFamily=Arial;" vertex="1" parent="1"><mxGeometry x="718" y="977" width="70" height="58" as="geometry"/></mxCell>
+        <mxCell id="rightConstraint" value="&lt;i&gt;a&lt;/i&gt; + &lt;i&gt;s&lt;/i&gt; = 120" style="text;html=1;align=left;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#111111;fontSize=34;fontFamily=Georgia;" vertex="1" parent="1"><mxGeometry x="800" y="979" width="310" height="55" as="geometry"/></mxCell>
+        <mxCell id="rightTarget" value="target: &lt;i&gt;a&lt;/i&gt; =" style="text;html=1;align=left;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#111111;fontSize=35;fontStyle=1;fontFamily=Georgia;" vertex="1" parent="1"><mxGeometry x="800" y="1035" width="225" height="51" as="geometry"/></mxCell>
+        <mxCell id="rightAnswerBox" value="100" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fillColor=#fff1a6;gradientColor=#fff9d8;strokeColor=none;fontColor=#111111;fontSize=34;fontFamily=Georgia;" vertex="1" parent="1"><mxGeometry x="1004" y="1036" width="86" height="48" as="geometry"/></mxCell>
+
+        <!-- Connector 4 -->
+        <mxCell id="arrow4" style="edgeStyle=none;html=1;endArrow=block;endFill=1;strokeColor=#536476;strokeWidth=7;" edge="1" parent="1"><mxGeometry relative="1" as="geometry"><mxPoint x="620" y="1115" as="sourcePoint"/><mxPoint x="620" y="1147" as="targetPoint"/></mxGeometry></mxCell>
+
+        <!-- Final warning banner -->
+        <mxCell id="warning" value="" style="rounded=1;arcSize=7;whiteSpace=wrap;html=1;fillColor=#ffe7e9;gradientColor=#ffffff;gradientDirection=east;strokeColor=#f04d5a;strokeWidth=2;shadow=1;" vertex="1" parent="1"><mxGeometry x="30" y="1147" width="1180" height="98" as="geometry"/></mxCell>
+        <mxCell id="warningIcon" value="⚠" style="text;html=1;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#950b0b;fontSize=67;fontFamily=Arial;" vertex="1" parent="1"><mxGeometry x="187" y="1157" width="95" height="78" as="geometry"/></mxCell>
+        <mxCell id="warningText" value="Executable does not mean determinate" style="text;html=1;align=left;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#8f0d0d;fontSize=40;fontStyle=1;fontFamily=Georgia;" vertex="1" parent="1"><mxGeometry x="300" y="1161" width="780" height="68" as="geometry"/></mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
