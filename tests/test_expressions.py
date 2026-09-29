@@ -1,6 +1,6 @@
 import pytest
 
-from targetcheck import Constraint, ModelSpec, Variable, normalize_expression
+from targetcheck import Constraint, ModelSpec, Variable, check_target_determinacy, normalize_expression
 from targetcheck.compiler_z3 import UnsupportedExpression, compile_spec
 from targetcheck.determinacy import CheckStatus
 from targetcheck.grounding import validate_repair
@@ -35,6 +35,28 @@ def test_common_generated_boolean_and_power_syntax():
     assert "**" in normalized
 
 
+def test_fractional_powers_and_root_functions_reach_z3():
+    variables = (
+        Variable("square_root", "Real"),
+        Variable("cube_root", "Real"),
+    )
+    for square_expression, cube_expression in (
+        ("64**0.5", "64**(1/3)"),
+        ("sqrt(64)", "cbrt(64)"),
+    ):
+        spec = ModelSpec(
+            variables,
+            (
+                Constraint("c1", f"square_root == {square_expression}"),
+                Constraint("c2", f"cube_root == {cube_expression}"),
+            ),
+            "square_root - cube_root",
+        )
+        result = check_target_determinacy(spec)
+        assert result.status == CheckStatus.DETERMINATE
+        assert result.target_value == 4
+
+
 def test_grounded_repair_accepts_human_style_linear_equation():
     problem = "x + y = 10. -2x - y = -4. Find x."
     spec = ModelSpec(
@@ -50,3 +72,44 @@ def test_grounded_repair_accepts_human_style_linear_equation():
     assert result.determinacy is not None
     assert result.determinacy.status == CheckStatus.DETERMINATE
     assert result.determinacy.target_value == -6
+
+
+def test_literal_integer_power_keeps_int_sort_for_modulo():
+    spec = ModelSpec(
+        variables=(Variable("u", "Int", lower=0, upper=9),),
+        constraints=(Constraint("c1", "(18**6) % 10 == u"),),
+        target="u",
+    )
+
+    result = check_target_determinacy(spec)
+
+    assert result.status == CheckStatus.DETERMINATE
+    assert result.target_value == 4
+
+
+def test_finite_domain_combinators_for_logic_games():
+    spec = ModelSpec(
+        variables=(
+            Variable("a", "Int", lower=1, upper=3),
+            Variable("b", "Int", lower=1, upper=3),
+            Variable("c", "Int", lower=1, upper=3),
+            Variable("x", "Bool"),
+            Variable("y", "Bool"),
+            Variable("z", "Bool"),
+        ),
+        constraints=(
+            Constraint("c1", "Distinct(a, b, c)"),
+            Constraint("c2", "a < b"),
+            Constraint("c3", "ExactlyOne(x, y, z)"),
+            Constraint("c4", "AtMost(2, x, y, z)"),
+            Constraint("c5", "AtLeast(1, x, y, z)"),
+            Constraint("c6", "Sum([If(x, 1, 0), If(y, 1, 0), If(z, 1, 0)]) == 1"),
+            Constraint("c7", "Count(x, y, z) == 1"),
+        ),
+        target="a < b",
+    )
+
+    result = check_target_determinacy(spec)
+
+    assert result.status == CheckStatus.DETERMINATE
+    assert result.target_value is True

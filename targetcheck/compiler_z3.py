@@ -30,6 +30,7 @@ class ExpressionCompiler(ast.NodeVisitor):
 
     def __init__(self, symbols: dict[str, z3.ExprRef]):
         self.symbols = symbols
+        self.division_denominators: list[z3.ExprRef] = []
 
     def compile(self, expression: str) -> z3.ExprRef:
         try:
@@ -43,6 +44,8 @@ class ExpressionCompiler(ast.NodeVisitor):
         raise UnsupportedExpression(f"unsupported syntax: {type(node).__name__}")
 
     def visit_Name(self, node: ast.Name) -> z3.ExprRef:
+        if node.id in {"true", "false"}:
+            return z3.BoolVal(node.id == "true")
         if node.id not in self.symbols:
             raise UnsupportedExpression(f"unknown variable: {node.id}")
         return self.symbols[node.id]
@@ -82,13 +85,105 @@ class ExpressionCompiler(ast.NodeVisitor):
                 left = z3.ToReal(left)
             if z3.is_int(right):
                 right = z3.ToReal(right)
+            self.division_denominators.append(right)
             return left / right
         if isinstance(node.op, ast.Mod):
+            self.division_denominators.append(right)
             return left % right
-        if isinstance(node.op, ast.Pow) and isinstance(node.right, ast.Constant):
-            if isinstance(node.right.value, int) and 0 <= node.right.value <= 4:
-                return left**node.right.value
+        if isinstance(node.op, ast.Pow):
+            # Z3's generic power operator coerces even IntVal(18)**IntVal(6)
+            # to a Real expression. Expand nonnegative literal integer powers
+            # so integer modular arithmetic keeps its Int sort.
+            if isinstance(node.right, ast.Constant) and isinstance(node.right.value, int):
+                exponent = node.right.value
+                if exponent >= 0:
+                    result = z3.IntVal(1) if z3.is_int(left) else z3.RealVal(1)
+                    factor = left
+                    # Exponentiation by squaring preserves the Int sort without
+                    # constructing a linear-size term for large literals.
+                    while exponent:
+                        if exponent & 1:
+                            result = result * factor
+                        exponent >>= 1
+                        if exponent:
+                            factor = factor * factor
+                    return result
+            # Let Z3 interpret powers, including exact rational exponents such
+            # as 1/2 and 1/3. The division visitor keeps those exact.
+            try:
+                return left**right
+            except (TypeError, z3.Z3Exception) as exc:
+                raise UnsupportedExpression(f"invalid power: {exc}") from exc
         raise UnsupportedExpression(f"unsupported binary operator: {type(node.op).__name__}")
+
+    def visit_Call(self, node: ast.Call) -> z3.ExprRef:
+        if not isinstance(node.func, ast.Name) or node.keywords:
+            raise UnsupportedExpression("unsupported function call")
+        name = node.func.id
+        if name in {"And", "Or"} and node.args:
+            values = [self.visit(argument) for argument in node.args]
+            return z3.And(*values) if name == "And" else z3.Or(*values)
+        if name == "Xor" and len(node.args) >= 2:
+            return z3.Xor(*(self.visit(argument) for argument in node.args))
+        if name == "Distinct" and len(node.args) >= 2:
+            return z3.Distinct(*(self.visit(argument) for argument in node.args))
+        if name == "Sum" and node.args:
+            values: list[z3.ExprRef] = []
+            for argument in node.args:
+                value = self.visit(argument)
+                values.extend(value if isinstance(value, list) else [value])
+            return z3.Sum(*values)
+        if name == "Count" and node.args:
+            values = [self.visit(argument) for argument in node.args]
+            return z3.Sum(*(z3.If(value, 1, 0) for value in values))
+        if name == "ExactlyOne" and node.args:
+            values = [self.visit(argument) for argument in node.args]
+            return z3.PbEq([(value, 1) for value in values], 1)
+        if name in {"AtMost", "AtLeast", "Exactly"} and len(node.args) >= 2:
+            bound_node, *value_nodes = node.args
+            if not isinstance(bound_node, ast.Constant) or not isinstance(bound_node.value, int):
+                raise UnsupportedExpression(f"{name} requires a literal integer bound")
+            values = [self.visit(argument) for argument in value_nodes]
+            bound = bound_node.value
+            if name == "AtMost":
+                return z3.PbLe([(value, 1) for value in values], bound)
+            if name == "AtLeast":
+                return z3.PbGe([(value, 1) for value in values], bound)
+            return z3.PbEq([(value, 1) for value in values], bound)
+        if name == "Not" and len(node.args) == 1:
+            return z3.Not(self.visit(node.args[0]))
+        if name == "Implies" and len(node.args) == 2:
+            return z3.Implies(self.visit(node.args[0]), self.visit(node.args[1]))
+        if name == "If" and len(node.args) == 3:
+            return z3.If(*(self.visit(argument) for argument in node.args))
+        if name in {"Mod", "mod"} and len(node.args) == 2:
+            left, right = (self.visit(argument) for argument in node.args)
+            self.division_denominators.append(right)
+            return left % right
+        if len(node.args) != 1:
+            raise UnsupportedExpression("unsupported function call")
+        value = self.visit(node.args[0])
+        if name in {"ToReal", "to_real"}:
+            return z3.ToReal(value) if z3.is_int(value) else value
+        if name in {"ToInt", "to_int"}:
+            return value if z3.is_int(value) else z3.ToInt(value)
+        if name == "sqrt":
+            return value ** z3.RealVal("1/2")
+        if name == "cbrt":
+            return value ** z3.RealVal("1/3")
+        if name in {"ceil", "ceiling"}:
+            return value if z3.is_int(value) else -z3.ToInt(-value)
+        if name == "floor":
+            return value if z3.is_int(value) else z3.ToInt(value)
+        if name in {"abs", "Abs"}:
+            return z3.Abs(value)
+        raise UnsupportedExpression(f"unsupported function: {name}")
+
+    def visit_List(self, node: ast.List) -> list[z3.ExprRef]:
+        return [self.visit(element) for element in node.elts]
+
+    def visit_Tuple(self, node: ast.Tuple) -> list[z3.ExprRef]:
+        return [self.visit(element) for element in node.elts]
 
     def visit_Compare(self, node: ast.Compare) -> z3.ExprRef:
         if len(node.ops) != len(node.comparators):
@@ -134,21 +229,28 @@ def compile_spec(spec: ModelSpec, suffix: str = "") -> CompiledSpec:
             raise UnsupportedExpression(f"unsupported sort: {variable.sort}")
 
     compiler = ExpressionCompiler(symbols)
-    assertions: list[z3.BoolRef] = []
+    domain_assertions: list[z3.BoolRef] = []
     for variable in spec.variables:
         symbol = symbols[variable.name]
         if variable.lower is not None:
-            assertions.append(symbol >= variable.lower)
+            domain_assertions.append(symbol >= variable.lower)
         if variable.upper is not None:
-            assertions.append(symbol <= variable.upper)
+            domain_assertions.append(symbol <= variable.upper)
         if variable.values is not None:
-            assertions.append(z3.Or(*(symbol == value for value in variable.values)))
+            domain_assertions.append(z3.Or(*(symbol == value for value in variable.values)))
+    constraint_assertions: list[z3.BoolRef] = []
     for constraint in spec.constraints:
         compiled = compiler.compile(constraint.expression)
         if not z3.is_bool(compiled):
             raise UnsupportedExpression(f"constraint {constraint.id} is not Boolean")
-        assertions.append(compiled)
-    return CompiledSpec(symbols, tuple(assertions), compiler.compile(spec.target))
+        constraint_assertions.append(compiled)
+    target = compiler.compile(spec.target)
+    # Arithmetic division and modulo are defined only for nonzero divisors.
+    # Put guards before the explicit constraints so callers that inspect the
+    # final assertion still see the final user constraint.
+    denominator_guards = [denominator != 0 for denominator in compiler.division_denominators]
+    assertions = (*domain_assertions, *denominator_guards, *constraint_assertions)
+    return CompiledSpec(symbols, assertions, target)
 
 
 def model_value(model: z3.ModelRef, expression: z3.ExprRef) -> bool | int | str:

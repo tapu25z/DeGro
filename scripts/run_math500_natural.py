@@ -61,7 +61,11 @@ REPAIR_SCHEMA = {
         "decision": {"type": "string", "enum": ["ADD_CONSTRAINT", "ABSTAIN"]},
         "source_span": {"type": ["string", "null"]},
         "constraint": {"type": ["string", "null"]},
-        "provenance": {"type": ["string", "null"], "enum": ["EXPLICIT_TEXT", "DOMAIN_SEMANTICS", None]},
+        # Treat provenance as advisory model metadata. apply_repair derives the
+        # effective label from a valid source span when possible, so a useful
+        # mathematical repair is not lost because the model wrote an
+        # explanation instead of the expected enum literal.
+        "provenance": {"type": ["string", "null"]},
     },
     "required": ["decision", "source_span", "constraint", "provenance"],
     "additionalProperties": False,
@@ -208,13 +212,21 @@ def apply_repair(problem: str, spec: ModelSpec, output: dict[str, Any]) -> tuple
     span, expression = output.get("source_span"), output.get("constraint")
     if not isinstance(expression, str):
         return spec, False, "malformed"
-    provenance = output.get("provenance")
-    if provenance not in {"EXPLICIT_TEXT", "DOMAIN_SEMANTICS"}:
-        return spec, False, "missing provenance"
-    if provenance == "EXPLICIT_TEXT" and not isinstance(span, str):
-        return spec, False, "missing source span"
-    if provenance == "DOMAIN_SEMANTICS" and span is not None:
-        return spec, False, "domain semantic repair must not cite a source span"
+    raw_provenance = output.get("provenance")
+    # A real quote from the problem is sufficient grounding. Normalize common
+    # model outputs such as "original problem" or a prose explanation to the
+    # internal EXPLICIT_TEXT label instead of rejecting a correct constraint
+    # for metadata formatting alone.
+    if isinstance(span, str):
+        span = span.strip()
+        if not span or span not in problem:
+            return spec, False, "source span is not an exact substring of the problem"
+        provenance = "EXPLICIT_TEXT"
+    elif raw_provenance == "DOMAIN_SEMANTICS":
+        span = None
+        provenance = "DOMAIN_SEMANTICS"
+    else:
+        return spec, False, "repair needs a quoted source span or DOMAIN_SEMANTICS"
     candidate = Constraint("repair", expression, span, provenance)
     gate = validate_repair(problem, spec, candidate)
     if not gate.accepted or gate.repaired_spec is None:

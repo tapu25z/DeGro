@@ -48,6 +48,20 @@ def test_literal_division_uses_exact_mathematical_rationals():
     assert result.target_value == "5/3"
 
 
+def test_ratio_denominators_cannot_be_zero():
+    spec = ModelSpec(
+        variables=(Variable("blue", "Int"), Variable("yellow", "Int")),
+        constraints=(
+            Constraint("c1", "blue / yellow == 4/3"),
+            Constraint("c2", "(blue + 5) / (yellow - 3) == 7/3"),
+        ),
+        target="blue",
+    )
+    result = check_target_determinacy(spec)
+    assert result.status == CheckStatus.DETERMINATE
+    assert result.target_value == 16
+
+
 def test_inconsistent_is_not_reported_as_determinate():
     spec = task_spec(Constraint("c1", "a == 1"), Constraint("c2", "a == 2"))
     assert check_target_determinacy(spec).status == CheckStatus.INCONSISTENT
