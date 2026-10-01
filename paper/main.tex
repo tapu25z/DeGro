@@ -606,6 +606,28 @@ DeGro + witnesses        & 97 & 98  & 97.5\\
 
 Every development instance contains one target-critical omission, so the determinacy verdict already localizes the relevant defect. Witness assignments add tokens but little useful information on this set; they may still help with harder specifications containing several omissions or many nuisance variables.
 
+\subsection{Substituting LLM Judgments for Z3-Based Verification}
+We replace Z3's verdict and repair gate with LLM judgments on the same 720 MIRA-360 cases. Z3 is retained only for offline scoring.
+
+\begin{table}[t]
+\centering
+\caption{Accuracy on MIRA-360 (720 cases per model); errors count as incorrect.}
+\label{tab:llm_verifier}
+\setlength{\tabcolsep}{5pt}
+\renewcommand{\arraystretch}{1.05}
+\begin{tabular}{@{}lrrr@{}}
+\toprule
+\textbf{Model} & \textbf{DeGro} & \textbf{LLM} & \textbf{Errors}\\
+\midrule
+GPT-OSS 20B & 96.3\% & 92.1\% & 18\\
+GPT-OSS 120B & 96.1\% & 97.1\% & 0\\
+Nemotron 30B & 89.6\% & 80.7\% & 24\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The LLM variant is slightly better with GPT-OSS 120B but worse with the other models. Some errors contain a correct \textsc{ambiguous} verdict in invalid JSON; counting those verdicts gives 94.6\% for 20B and 82.6\% for Nemotron, but no final repair decision was produced. Since all initial MIRA-360 specifications are ambiguous, this test does not cover other verifier states.
+
 \subsection{Coverage Analysis}\label{sec:coverage}
 To measure the representation bottleneck preceding verification, GPT-OSS 20B directly generated one shared candidate \textsc{ModelSpec} for each MATH-500 problem~\cite{hendrycks2021math}.  No executable program or code-to-specification adapter was used.  Of 500 specifications, 292 (58.4\%) parsed, reached the solver, and produced a conclusive verdict; Table~\ref{tab:coverage} accounts for every exclusion.
 
@@ -646,4 +668,3 @@ On MIRA-360, DeGro improves accuracy over grounded self-review across all three 
 \bibliographystyle{ACM-Reference-Format}
 \bibliography{refs}
 \end{document}
-
