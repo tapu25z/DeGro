@@ -222,7 +222,7 @@ These checks require that the candidate compile, cite a source span occurring in
 Provenance is an auditable check, not a proof that the constraint correctly expresses the cited text. Passing the gate therefore establishes valid provenance and determinacy under the repaired specification, rather than semantic correctness with respect to $P$. Semantic source support and functional correctness are evaluated separately for repair credit; an incorrect translation or unsupported target pin does not earn credit merely by passing the gate.
 
 \paragraph{Bounded repair.}
-DeGro allows at most two proposal attempts. The first accepted constraint is committed and terminates the loop. If the first proposal is rejected, the second attempt receives the rejection reason and operates on the unchanged $F$. Rejected constraints are not accumulated: each candidate must restore determinacy on its own, and a supported but insufficient addition is rejected. If the model abstains or neither candidate passes, the outcome is \textsc{no-admissible-repair-found}, and $F$ is preserved.
+For an ambiguous case, DeGro asks the model to propose a repair or abstain. An accepted constraint is committed, completing the repair process. If the model abstains or the proposal is rejected, the process ends with \textsc{no-admissible-repair-found}, and $F$ is preserved. The proposed constraint must restore target determinacy; supported but insufficient additions are rejected.
 
 Failure to find an admissible repair does not prove that the source is underspecified: the model may have missed a relation already present in the source.
 
@@ -256,7 +256,7 @@ No repair found & no accepted candidate & ask or abstain\\
 We evaluate repair policies along three complementary dimensions: (i) \emph{diagnostic guidance}, whether a solver-produced target-ambiguity verdict improves revision; (ii) \emph{source grounding}, whether exact source evidence prevents unsupported additions; and (iii) \emph{repair-or-abstain behavior}, whether a policy repairs a supported omission while withholding an edit when the source is genuinely underspecified. The first two dimensions address RQ1, whereas repair-or-abstain behavior on matched sources directly addresses RQ2.
 
 \subsubsection{Baselines}
-To evaluate the effectiveness of \method{}, we compare it against representative repair policies that use weaker diagnostic or grounding signals. All methods receive the same source, current constraints, and target; begin from the same initial formalization; and use a two-attempt repair budget. Differences therefore reflect the feedback and repair policy rather than initial-generation quality. We consider the following baselines:
+To evaluate the effectiveness of \method{}, we compare it against representative repair policies that use weaker diagnostic or grounding signals. All methods receive the same source, current constraints, and target; begin from the same initial formalization; and use the same repair budget. Differences therefore reflect the feedback and repair policy rather than initial-generation quality. We consider the following baselines:
 \begin{itemize}
     \item \textbf{Self-review.} The model revises the formalization using the source and current artifact, but receives no explicit solver diagnosis and is not required to ground an added constraint in the source.
     \item \textbf{Grounded self-review.} The model follows the same exact-span grounding rule used by \method{}, so every introduced constraint must cite supporting source text. It receives no solver feedback, isolating grounding without determinacy guidance.
@@ -607,26 +607,26 @@ DeGro + witnesses        & 97 & 98  & 97.5\\
 Every development instance contains one target-critical omission, so the determinacy verdict already localizes the relevant defect. Witness assignments add tokens but little useful information on this set; they may still help with harder specifications containing several omissions or many nuisance variables.
 
 \subsection{Substituting LLM Judgments for Z3-Based Verification}
-We replace Z3's verdict and repair gate with LLM judgments on the same 720 MIRA-360 cases. Z3 is retained only for offline scoring.
+To test whether an LLM can provide more effective verification than Z3, we replace Z3's ambiguity verdict and repair gate with LLM judgments on the same 720 MIRA-360 cases.
 
 \begin{table}[t]
 \centering
-\caption{Accuracy on MIRA-360 (720 cases per model); errors count as incorrect.}
+\caption{DeGro final-decision accuracy and LLM semantic-credit score on MIRA-360 (720 cases per model).}
 \label{tab:llm_verifier}
 \setlength{\tabcolsep}{5pt}
 \renewcommand{\arraystretch}{1.05}
-\begin{tabular}{@{}lrrr@{}}
+\begin{tabular}{@{}lrr@{}}
 \toprule
-\textbf{Model} & \textbf{DeGro} & \textbf{LLM} & \textbf{Errors}\\
+\textbf{Model} & \textbf{DeGro Acc.} & \textbf{LLM Score}\\
 \midrule
-GPT-OSS 20B & 96.3\% & 92.1\% & 18\\
-GPT-OSS 120B & 96.1\% & 97.1\% & 0\\
-Nemotron 30B & 89.6\% & 80.7\% & 24\\
+GPT-OSS 20B & 96.3\% & 94.6\%\\
+GPT-OSS 120B & 96.1\% & 97.1\%\\
+Nemotron 30B & 89.6\% & 82.6\%\\
 \bottomrule
 \end{tabular}
 \end{table}
 
-The LLM variant is slightly better with GPT-OSS 120B but worse with the other models. Some errors contain a correct \textsc{ambiguous} verdict in invalid JSON; counting those verdicts gives 94.6\% for 20B and 82.6\% for Nemotron, but no final repair decision was produced. Since all initial MIRA-360 specifications are ambiguous, this test does not cover other verifier states.
+GPT-OSS 20B drops from 96.3\% with DeGro to 94.6\% with the LLM ($-1.7$ points), while GPT-OSS 120B rises from 96.1\% to 97.1\% ($+1.0$ point). Nemotron 30B drops from 89.6\% to 82.6\% (about $-7.0$ points). LLM-based verification helps GPT-OSS 120B on this benchmark, whereas Z3-based verification remains more effective for GPT-OSS 20B and Nemotron 30B.
 
 \subsection{Coverage Analysis}\label{sec:coverage}
 To measure the representation bottleneck preceding verification, GPT-OSS 20B directly generated one shared candidate \textsc{ModelSpec} for each MATH-500 problem~\cite{hendrycks2021math}.  No executable program or code-to-specification adapter was used.  Of 500 specifications, 292 (58.4\%) parsed, reached the solver, and produced a conclusive verdict; Table~\ref{tab:coverage} accounts for every exclusion.
@@ -668,3 +668,6 @@ On MIRA-360, DeGro improves accuracy over grounded self-review across all three 
 \bibliographystyle{ACM-Reference-Format}
 \bibliography{refs}
 \end{document}
+
+
+
