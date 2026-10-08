@@ -1,0 +1,2223 @@
+{
+  "summary": {
+    "source": "results/alg514_30b_retry_20261003_205530.jsonl",
+    "cases": 499,
+    "direct_correct": 494,
+    "modelspec_correct": 481,
+    "both_correct": 479,
+    "direct_only_correct": 15,
+    "modelspec_only_correct": 2,
+    "both_wrong": 3,
+    "error_categories": {
+      "schema": 8,
+      "domain": 1,
+      "source_relation": 1,
+      "gold_units": 1,
+      "source_inconsistency": 1,
+      "wrong_target": 1,
+      "permutation": 3,
+      "target_interpretation": 1,
+      "discrete_gold": 1
+    },
+    "repair_cases": 7,
+    "repair_attempts": 8,
+    "accepted_repairs": 4,
+    "offline_schema_and_permutation_fixed": 11,
+    "offline_hypothetical_score_schema_permutation": "492/499 (98.60%)",
+    "offline_all_14_fixes_hypothetical_score": "495/499 (99.20%)",
+    "caveat": "Offline manual patches of saved ModelSpecs, not a new LLM evaluation. Gold used only to score results; original run and script unchanged."
+  },
+  "errors": [
+    {
+      "id": "alg514/222",
+      "problem": "Wal-Mart sells thermometers for 2 dollars and hot-water bottles for 6 dollars . In December , Wal-Mart 's total sales for these two items was 1200 dollars . Customers bought 7 times as many thermometers as hot-water bottles . How many thermometers did Wal-Mart sell ? How many hot-water bottles ?",
+      "category": "schema",
+      "reason": "Tên biến hot-water bottles chứa dấu gạch nối và khoảng trắng; Python AST không parse được. Đổi thống nhất thành hot_water_bottles.",
+      "direct": {
+        "model": "nemotron-3-nano:30b",
+        "flow": "direct",
+        "id": "alg514/222",
+        "protocol": "ff4313cff4431a173bcf4ab95930bb2f187f99ee4a2e8637505b16ccf581629d",
+        "temperature": 0,
+        "think": true,
+        "gold": [
+          420.0,
+          60.0
+        ],
+        "scoring": "alg514_compatible",
+        "answers": [
+          "420",
+          "60"
+        ],
+        "correct": true,
+        "scored": true,
+        "raw": "{\"answers\":[\"420\",\"60\"]}",
+        "output": {
+          "answers": [
+            "420",
+            "60"
+          ]
+        },
+        "status": "OK"
+      },
+      "modelspec_z3": {
+        "model": "nemotron-3-nano:30b",
+        "flow": "modelspec_z3",
+        "id": "alg514/222",
+        "protocol": "ff4313cff4431a173bcf4ab95930bb2f187f99ee4a2e8637505b16ccf581629d",
+        "temperature": 0,
+        "think": true,
+        "gold": [
+          420.0,
+          60.0
+        ],
+        "scoring": "alg514_compatible",
+        "answers": [],
+        "correct": false,
+        "scored": true,
+        "raw": "{\n  \"status\": \"SUPPORTED\",\n  \"variables\": {\n    \"thermometers\": \"Int\",\n    \"hot-water bottles\": \"Int\"\n  },\n  \"constraints\": [\n    \"2*thermometers + 6*hot-water bottles == 1200\",\n    \"thermometers == 7*hot-water bottles\"\n  ],\n  \"targets\": [\n    \"thermometers\",\n    \"hot-water bottles\"\n  ],\n  \"unordered_targets\": false\n}",
+        "output": {
+          "status": "SUPPORTED",
+          "variables": {
+            "thermometers": "Int",
+            "hot-water bottles": "Int"
+          },
+          "constraints": [
+            "2*thermometers + 6*hot-water bottles == 1200",
+            "thermometers == 7*hot-water bottles"
+          ],
+          "targets": [
+            "thermometers",
+            "hot-water bottles"
+          ],
+          "unordered_targets": false
+        },
+        "status": "ERROR",
+        "error": "SyntaxError: invalid syntax (<unknown>, line 1)"
+      },
+      "offline_patch": {
+        "spec": {
+          "status": "SUPPORTED",
+          "variables": {
+            "thermometers": "Int",
+            "hot_water_bottles": "Int"
+          },
+          "constraints": [
+            "2*thermometers + 6*hot_water_bottles == 1200",
+            "thermometers == 7*hot_water_bottles"
+          ],
+          "targets": [
+            "thermometers",
+            "hot_water_bottles"
+          ],
+          "unordered_targets": false
+        },
+        "status": "DETERMINATE",
+        "answers": [
+          "420",
+          "60"
+        ],
+        "correct": true
+      }
+    },
+    {
+      "id": "alg514/580",
+      "problem": "For his long distance phone calls , John pays a 5 dollars monthly fee plus 25 cents per minute . Last month , John 's long distance bill was 12.02 dollars . For how many minutes was John billed ?",
+      "category": "domain",
+      "reason": "minutes được khai báo Int, nhưng 5 + 0.25*minutes = 12.02 cho minutes = 28.08. Phải dùng Real cho thời gian.",
+      "direct": {
+        "model": "nemotron-3-nano:30b",
+        "flow": "direct",
+        "id": "alg514/580",
+        "protocol": "ff4313cff4431a173bcf4ab95930bb2f187f99ee4a2e8637505b16ccf581629d",
+        "temperature": 0,
+        "think": true,
+        "gold": [
+          28.08
+        ],
+        "scoring": "alg514_compatible",
+        "answers": [
+          "702/25"
+        ],
+        "correct": true,
+        "scored": true,
+        "raw": "{\"answers\":[\"702/25\"]}",
+        "output": {
+          "answers": [
+            "702/25"
+          ]
+        },
+        "status": "OK"
+      },
+      "modelspec_z3": {
+        "model": "nemotron-3-nano:30b",
+        "flow": "modelspec_z3",
+        "id": "alg514/580",
+        "protocol": "ff4313cff4431a173bcf4ab95930bb2f187f99ee4a2e8637505b16ccf581629d",
+        "temperature": 0,
+        "think": true,
+        "gold": [
+          28.08
+        ],
+        "scoring": "alg514_compatible",
+        "answers": [],
+        "correct": false,
+        "scored": true,
+        "raw": "{\n  \"status\": \"SUPPORTED\",\n  \"variables\": {\n    \"minutes\": \"Int\"\n  },\n  \"constraints\": [\n    \"5 + 0.25*minutes == 12.02\"\n  ],\n  \"targets\": [\n    \"minutes\"\n  ],\n  \"unordered_targets\": false\n}",
+        "output": {
+          "status": "SUPPORTED",
+          "variables": {
+            "minutes": "Int"
+          },
+          "constraints": [
+            "5 + 0.25*minutes == 12.02"
+          ],
+          "targets": [
+            "minutes"
+          ],
+          "unordered_targets": false
+        },
+        "initial_status": "INCONSISTENT",
+        "status": "INCONSISTENT",
+        "targets": [
+          "minutes"
+        ],
+        "unordered_targets": false
+      },
+      "offline_patch": {
+        "spec": {
+          "status": "SUPPORTED",
+          "variables": {
+            "minutes": "Real"
+          },
+          "constraints": [
+            "5 + 0.25*minutes == 12.02"
+          ],
+          "targets": [
+            "minutes"
+          ],
+          "unordered_targets": false
+        },
+        "status": "DETERMINATE",
+        "answers": [
+          "702/25"
+        ],
+        "correct": true
+      }
+    },
+    {
+      "id": "alg514/658",
+      "problem": "Manuel opened a savings account with an initial deposit of 177 dollars . If he wants to save 500 dollars during the next 19 weeks , how much must he save each week , in dollars ?",
+      "category": "source_relation",
+      "reason": "Đã bind initial = 177 nhưng không cộng vào tổng tiết kiệm: 19*w = 500 thay vì 177 + 19*w = 500. Kết quả 500/19 thay vì 17.",
+      "direct": {
+        "model": "nemotron-3-nano:30b",
+        "flow": "direct",
+        "id": "alg514/658",
+        "protocol": "ff4313cff4431a173bcf4ab95930bb2f187f99ee4a2e8637505b16ccf581629d",
+        "temperature": 0,
+        "think": true,
+        "gold": [
+          17.0
+        ],
+        "scoring": "alg514_compatible",
+        "answers": [
+          "17"
+        ],
+        "correct": true,
+        "scored": true,
+        "raw": "{\"answers\":[\"17\"]}",
+        "output": {
+          "answers": [
+            "17"
+          ]
+        },
+        "status": "OK"
+      },
+      "modelspec_z3": {
+        "model": "nemotron-3-nano:30b",
+        "flow": "modelspec_z3",
+        "id": "alg514/658",
+        "protocol": "ff4313cff4431a173bcf4ab95930bb2f187f99ee4a2e8637505b16ccf581629d",
+        "temperature": 0,
+        "think": true,
+        "gold": [
+          17.0
+        ],
+        "scoring": "alg514_compatible",
+        "answers": [
+          "500/19"
+        ],
+        "correct": false,
+        "scored": true,
+        "raw": "{\n  \"status\":\"SUPPORTED\",\n  \"variables\":{\"w\":\"Real\",\"initial\":\"Real\"},\n  \"constraints\":[\"19 * w == 500\",\"initial == 177\"],\n  \"targets\":[\"w\"],\n  \"unordered_targets\":false\n}",
+        "output": {
+          "status": "SUPPORTED",
+          "variables": {
+            "w": "Real",
+            "initial": "Real"
+          },
+          "constraints": [
+            "19 * w == 500",
+            "initial == 177"
+          ],
+          "targets": [
+            "w"
+          ],
+          "unordered_targets": false
+        },
+        "initial_status": "DETERMINATE",
+        "status": "DETERMINATE",
+        "targets": [
+          "w"
+        ],
+        "unordered_targets": false
+      },
+      "offline_patch": {
+        "spec": {
+          "status": "SUPPORTED",
+          "variables": {
+            "w": "Real",
+            "initial": "Real"
+          },
+          "constraints": [
+            "initial + 19*w == 500",
+            "initial == 177"
+          ],
+          "targets": [
+            "w"
+          ],
+          "unordered_targets": false
+        },
+        "status": "DETERMINATE",
+        "answers": [
+          "17"
+        ],
+        "correct": true
+      }
+    },
+    {
+      "id": "alg514/1315",
+      "problem": "The sum of 2 numbers is 27 . 0.5 of the first number plus 0.3333333 of the second number is 11 . Find the smaller and the larger number .",
+      "category": "schema",
+      "reason": "Khai báo a,b nhưng targets lại là smaller,larger chưa khai báo. Phải biểu diễn và liên kết hai target theo thứ tự đề yêu cầu.",
+      "direct": {
+        "model": "nemotron-3-nano:30b",
+        "flow": "direct",
+        "id": "alg514/1315",
+        "protocol": "ff4313cff4431a173bcf4ab95930bb2f187f99ee4a2e8637505b16ccf581629d",
+        "temperature": 0,
+        "think": true,
+        "gold": [
+          12.0,
+          15.0
+        ],
+        "scoring": "alg514_compatible",
+        "answers": [
+          "12",
+          "15"
+        ],
+        "correct": true,
+        "scored": true,
+        "raw": "{\"answers\":[\"12\",\"15\"]}",
+        "output": {
+          "answers": [
+            "12",
+            "15"
+          ]
+        },
+        "status": "OK"
+      },
+      "modelspec_z3": {
+        "model": "nemotron-3-nano:30b",
+        "flow": "modelspec_z3",
+        "id": "alg514/1315",
+        "protocol": "ff4313cff4431a173bcf4ab95930bb2f187f99ee4a2e8637505b16ccf581629d",
+        "temperature": 0,
+        "think": true,
+        "gold": [
+          12.0,
+          15.0
+        ],
+        "scoring": "alg514_compatible",
+        "answers": [],
+        "correct": false,
+        "scored": true,
+        "raw": "{\n  \"status\": \"SUPPORTED\",\n  \"variables\": {\n    \"a\": \"Real\",\n    \"b\": \"Real\"\n  },\n  \"constraints\": [\n    \"a + b == 27\",\n    \"0.5*a + 0.3333333*b == 11\"\n  ],\n  \"targets\": [\n    \"smaller\",\n    \"larger\"\n  ],\n  \"unordered_targets\": false\n}",
+        "output": {
+          "status": "SUPPORTED",
+          "variables": {
+            "a": "Real",
+            "b": "Real"
+          },
+          "constraints": [
+            "a + b == 27",
+            "0.5*a + 0.3333333*b == 11"
+          ],
+          "targets": [
+            "smaller",
+            "larger"
+          ],
+          "unordered_targets": false
+        },
+        "status": "ERROR",
+        "error": "KeyError: 'smaller'"
+      },
+      "offline_patch": {
+        "spec": {
+          "status": "SUPPORTED",
+          "variables": {
+            "a": "Real",
+            "b": "Real",
+            "smaller": "Real",
+            "larger": "Real"
+          },
+          "constraints": [
+            "a + b == 27",
+            "0.5*a + 0.3333333*b == 11",
+            "(smaller == a and larger == b) or (smaller == b and larger == a)",
+            "smaller <= larger"
+          ],
+          "targets": [
+            "smaller",
+            "larger"
+          ],
+          "unordered_targets": false
+        },
+        "status": "DETERMINATE",
+        "answers": [
+          "20000009/1666667",
+          "25000000/1666667"
+        ],
+        "correct": true
+      }
+    },
+    {
+      "id": "alg514/2074",
+      "problem": "Find two numbers whose sum is 147 and one is 4 greather than 0.375 of the other .",
+      "category": "schema",
+      "reason": "Khai báo a,b nhưng targets là x,y chưa khai báo. Đổi targets về a,b; unordered_targets đã là true.",
+      "direct": {
+        "model": "nemotron-3-nano:30b",
+        "flow": "direct",
+        "id": "alg514/2074",
+        "protocol": "ff4313cff4431a173bcf4ab95930bb2f187f99ee4a2e8637505b16ccf581629d",
+        "temperature": 0,
+        "think": true,
+        "gold": [
+          43.0,
+          104.0
+        ],
+        "scoring": "alg514_compatible",
+        "answers": [
+          "43",
+          "104"
+        ],
+        "correct": true,
+        "scored": true,
+        "raw": "{\"answers\":[\"43\",\"104\"]}",
+        "output": {
+          "answers": [
+            "43",
+            "104"
+          ]
+        },
+        "status": "OK"
+      },
+      "modelspec_z3": {
+        "model": "nemotron-3-nano:30b",
+        "flow": "modelspec_z3",
+        "id": "alg514/2074",
+        "protocol": "ff4313cff4431a173bcf4ab95930bb2f187f99ee4a2e8637505b16ccf581629d",
+        "temperature": 0,
+        "think": true,
+        "gold": [
+          43.0,
+          104.0
+        ],
+        "scoring": "alg514_compatible",
+        "answers": [],
+        "correct": false,
+        "scored": true,
+        "raw": "{\n  \"status\": \"SUPPORTED\",\n  \"variables\": {\n    \"a\": \"Real\",\n    \"b\": \"Real\"\n  },\n  \"constraints\": [\n    \"a + b == 147\",\n    \"(a == 0.375*b + 4) or (b == 0.375*a + 4)\"\n  ],\n  \"targets\": [\n    \"x\",\n    \"y\"\n  ],\n  \"unordered_targets\": true\n}",
+        "output": {
+          "status": "SUPPORTED",
+          "variables": {
+            "a": "Real",
+            "b": "Real"
+          },
+          "constraints": [
+            "a + b == 147",
+            "(a == 0.375*b + 4) or (b == 0.375*a + 4)"
+          ],
+          "targets": [
+            "x",
+            "y"
+          ],
+          "unordered_targets": true
+        },
+        "status": "ERROR",
+        "error": "KeyError: 'x'"
+      },
+      "offline_patch": {
+        "spec": {
+          "status": "SUPPORTED",
+          "variables": {
+            "a": "Real",
+            "b": "Real"
+          },
+          "constraints": [
+            "a + b == 147",
+            "(a == 0.375*b + 4) or (b == 0.375*a + 4)"
+          ],
+          "targets": [
+            "a",
+            "b"
+          ],
+          "unordered_targets": true
+        },
+        "status": "DETERMINATE",
+        "answers": [
+          "43",
+          "104"
+        ],
+        "correct": true
+      }
+    },
+    {
+      "id": "alg514/2075",
+      "problem": "The sum of 2 numbers is 10 . 3 times one of them is more than 4 times the second by 2 . Find the smaller number . Find the larger number .",
+      "category": "schema",
+      "reason": "Khai báo a,b nhưng targets là smaller,larger chưa khai báo. Cần biến target có binding hoặc biểu diễn nhất quán vai trò nhỏ/lớn đã nêu trong đề.",
+      "direct": {
+        "model": "nemotron-3-nano:30b",
+        "flow": "direct",
+        "id": "alg514/2075",
+        "protocol": "ff4313cff4431a173bcf4ab95930bb2f187f99ee4a2e8637505b16ccf581629d",
+        "temperature": 0,
+        "think": true,
+        "gold": [
+          4.0,
+          6.0
+        ],
+        "scoring": "alg514_compatible",
+        "answers": [
+          "4",
+          "6"
+        ],
+        "correct": true,
+        "scored": true,
+        "raw": "{\"answers\":[\"4\",\"6\"]}",
+        "output": {
+          "answers": [
+            "4",
+            "6"
+          ]
+        },
+        "status": "OK"
+      },
+      "modelspec_z3": {
+        "model": "nemotron-3-nano:30b",
+        "flow": "modelspec_z3",
+        "id": "alg514/2075",
+        "protocol": "ff4313cff4431a173bcf4ab95930bb2f187f99ee4a2e8637505b16ccf581629d",
+        "temperature": 0,
+        "think": true,
+        "gold": [
+          4.0,
+          6.0
+        ],
+        "scoring": "alg514_compatible",
+        "answers": [],
+        "correct": false,
+        "scored": true,
+        "raw": "{\n  \"status\": \"SUPPORTED\",\n  \"variables\": {\n    \"a\": \"Real\",\n    \"b\": \"Real\"\n  },\n  \"constraints\": [\n    \"a+b == 10\",\n    \"3*a == 4*b + 2 or 3*b == 4*a + 2\"\n  ],\n  \"targets\": [\n    \"smaller\",\n    \"larger\"\n  ],\n  \"unordered_targets\": false\n}",
+        "output": {
+          "status": "SUPPORTED",
+          "variables": {
+            "a": "Real",
+            "b": "Real"
+          },
+          "constraints": [
+            "a+b == 10",
+            "3*a == 4*b + 2 or 3*b == 4*a + 2"
+          ],
+          "targets": [
+            "smaller",
+            "larger"
+          ],
+          "unordered_targets": false
+        },
+        "status": "ERROR",
+        "error": "KeyError: 'smaller'"
+      },
+      "offline_patch": {
+        "spec": {
+          "status": "SUPPORTED",
+          "variables": {
+            "a": "Real",
+            "b": "Real",
+            "smaller": "Real",
+            "larger": "Real"
+          },
+          "constraints": [
+            "a+b == 10",
+            "3*a == 4*b + 2 or 3*b == 4*a + 2",
+            "(smaller == a and larger == b) or (smaller == b and larger == a)",
+            "smaller <= larger"
+          ],
+          "targets": [
+            "smaller",
+            "larger"
+          ],
+          "unordered_targets": false
+        },
+        "status": "DETERMINATE",
+        "answers": [
+          "4",
+          "6"
+        ],
+        "correct": true
+      }
+    },
+    {
+      "id": "alg514/2196",
+      "problem": "A freight train and an express train leave towns 390 kilometers apart , traveling toward one another . The freight train travels 30 kilometers per hour slower than the express train . They pass one another 3 hours later . How fast is the freight train , in miles per hour ? How fast is the express train ?",
+      "category": "gold_units",
+      "reason": "Đề yêu cầu miles/hour nhưng gold là 50,80 km/hour. Hai flow đều chuyển đổi thành khoảng 31.06855,49.70968 mph; bị chấm sai dù đúng đơn vị đề.",
+      "direct": {
+        "model": "nemotron-3-nano:30b",
+        "flow": "direct",
+        "id": "alg514/2196",
+        "protocol": "ff4313cff4431a173bcf4ab95930bb2f187f99ee4a2e8637505b16ccf581629d",
+        "temperature": 0,
+        "think": true,
+        "gold": [
+          50.0,
+          80.0
+        ],
+        "scoring": "alg514_compatible",
+        "answers": [
+          "31.06855",
+          "49.70968"
+        ],
+        "correct": false,
+        "scored": true,
+        "raw": "{\"answers\":[\"31.06855\",\"49.70968\"]}",
+        "output": {
+          "answers": [
+            "31.06855",
+            "49.70968"
+          ]
+        },
+        "status": "OK"
+      },
+      "modelspec_z3": {
+        "model": "nemotron-3-nano:30b",
+        "flow": "modelspec_z3",
+        "id": "alg514/2196",
+        "protocol": "ff4313cff4431a173bcf4ab95930bb2f187f99ee4a2e8637505b16ccf581629d",
+        "temperature": 0,
+        "think": true,
+        "gold": [
+          50.0,
+          80.0
+        ],
+        "scoring": "alg514_compatible",
+        "answers": [
+          "621371/20000",
+          "621371/12500"
+        ],
+        "correct": false,
+        "scored": true,
+        "raw": "{\n  \"status\":\"SUPPORTED\",\n  \"variables\":{\"f_km\":\"Real\",\"e_km\":\"Real\",\"f_mph\":\"Real\",\"e_mph\":\"Real\"},\n  \"constraints\":[\"(f_km + e_km) * 3 == 390\",\"e_km - f_km == 30\",\"f_mph == f_km * 0.621371\",\"e_mph == e_km * 0.621371\"],\n  \"targets\":[\"f_mph\",\"e_mph\"],\n  \"unordered_targets\":false\n}",
+        "output": {
+          "status": "SUPPORTED",
+          "variables": {
+            "f_km": "Real",
+            "e_km": "Real",
+            "f_mph": "Real",
+            "e_mph": "Real"
+          },
+          "constraints": [
+            "(f_km + e_km) * 3 == 390",
+            "e_km - f_km == 30",
+            "f_mph == f_km * 0.621371",
+            "e_mph == e_km * 0.621371"
+          ],
+          "targets": [
+            "f_mph",
+            "e_mph"
+          ],
+          "unordered_targets": false
+        },
+        "initial_status": "DETERMINATE",
+        "status": "DETERMINATE",
+        "targets": [
+          "f_mph",
+          "e_mph"
+        ],
+        "unordered_targets": false
+      },
+      "offline_patch": null
+    },
+    {
+      "id": "alg514/2559",
+      "problem": "The total number of Democrats and Republicans in the House of Representatives was 434 . There were 30 more Republicans then Democrats . How many Democrats and Republicans were there in the Senate ?",
+      "category": "source_inconsistency",
+      "reason": "Dữ kiện nói House of Representatives nhưng câu hỏi nói Senate. Gold 202,232 là đáp án House; không xác định được Senate từ các dữ kiện này.",
+      "direct": {
+        "model": "nemotron-3-nano:30b",
+        "flow": "direct",
+        "id": "alg514/2559",
+        "protocol": "ff4313cff4431a173bcf4ab95930bb2f187f99ee4a2e8637505b16ccf581629d",
+        "temperature": 0,
+        "think": true,
+        "gold": [
+          202.0,
+          232.0
+        ],
+        "scoring": "alg514_compatible",
+        "answers": [
+          "",
+          ""
+        ],
+        "correct": false,
+        "scored": true,
+        "raw": "{\"answers\":[\"\",\"\"]}",
+        "output": {
+          "answers": [
+            "",
+            ""
+          ]
+        },
+        "status": "OK"
+      },
+      "modelspec_z3": {
+        "model": "nemotron-3-nano:30b",
+        "flow": "modelspec_z3",
+        "id": "alg514/2559",
+        "protocol": "ff4313cff4431a173bcf4ab95930bb2f187f99ee4a2e8637505b16ccf581629d",
+        "temperature": 0,
+        "think": true,
+        "gold": [
+          202.0,
+          232.0
+        ],
+        "scoring": "alg514_compatible",
+        "answers": [],
+        "correct": false,
+        "scored": true,
+        "raw": "{\"status\":\"NOT_SUPPORTED\",\"variables\":{},\"constraints\":[],\"targets\":[]}",
+        "output": {
+          "status": "NOT_SUPPORTED",
+          "variables": {},
+          "constraints": [],
+          "targets": []
+        },
+        "initial_status": "NOT_SUPPORTED",
+        "status": "NOT_SUPPORTED",
+        "targets": [],
+        "unordered_targets": false
+      },
+      "offline_patch": null
+    },
+    {
+      "id": "alg514/3125",
+      "problem": "The sum of 2 numbers is 64 and their difference is 18 . What is the first number ? What is the second number ?",
+      "category": "schema",
+      "reason": "Khai báo a,b nhưng targets là first_number,second_number chưa khai báo. Liên kết với a,b theo vai trò đang dùng.",
+      "direct": {
+        "model": "nemotron-3-nano:30b",
+        "flow": "direct",
+        "id": "alg514/3125",
+        "protocol": "ff4313cff4431a173bcf4ab95930bb2f187f99ee4a2e8637505b16ccf581629d",
+        "temperature": 0,
+        "think": true,
+        "gold": [
+          41.0,
+          23.0
+        ],
+        "scoring": "alg514_compatible",
+        "answers": [
+          "41",
+          "23"
+        ],
+        "correct": true,
+        "scored": true,
+        "raw": "{\"answers\":[\"41\",\"23\"]}",
+        "output": {
+          "answers": [
+            "41",
+            "23"
+          ]
+        },
+        "status": "OK"
+      },
+      "modelspec_z3": {
+        "model": "nemotron-3-nano:30b",
+        "flow": "modelspec_z3",
+        "id": "alg514/3125",
+        "protocol": "ff4313cff4431a173bcf4ab95930bb2f187f99ee4a2e8637505b16ccf581629d",
+        "temperature": 0,
+        "think": true,
+        "gold": [
+          41.0,
+          23.0
+        ],
+        "scoring": "alg514_compatible",
+        "answers": [],
+        "correct": false,
+        "scored": true,
+        "raw": "{\n  \"status\": \"SUPPORTED\",\n  \"variables\": {\n    \"a\": \"Real\",\n    \"b\": \"Real\"\n  },\n  \"constraints\": [\n    \"a+b == 64\",\n    \"a-b == 18\"\n  ],\n  \"targets\": [\n    \"first_number\",\n    \"second_number\"\n  ],\n  \"unordered_targets\": false\n}",
+        "output": {
+          "status": "SUPPORTED",
+          "variables": {
+            "a": "Real",
+            "b": "Real"
+          },
+          "constraints": [
+            "a+b == 64",
+            "a-b == 18"
+          ],
+          "targets": [
+            "first_number",
+            "second_number"
+          ],
+          "unordered_targets": false
+        },
+        "status": "ERROR",
+        "error": "KeyError: 'first_number'"
+      },
+      "offline_patch": {
+        "spec": {
+          "status": "SUPPORTED",
+          "variables": {
+            "a": "Real",
+            "b": "Real",
+            "first_number": "Real",
+            "second_number": "Real"
+          },
+          "constraints": [
+            "a+b == 64",
+            "a-b == 18",
+            "first_number == a",
+            "second_number == b"
+          ],
+          "targets": [
+            "first_number",
+            "second_number"
+          ],
+          "unordered_targets": false
+        },
+        "status": "DETERMINATE",
+        "answers": [
+          "41",
+          "23"
+        ],
+        "correct": true
+      }
+    },
+    {
+      "id": "alg514/3202",
+      "problem": "A small publishing company has a 1 time product cost for editing and printing of 56,430.00 dollars . Variable cost per book is 8.25 dollars . The publisher is selling the book to the store for 21.75 dollars . How many books must the publisher print and sell so that the production cost will equal the money obtained from sells ?",
+      "category": "schema",
+      "reason": "Chỉ khai báo books nhưng dùng fixed_cost, var_cost_per_book, sell_price_per_book trong constraints. Các giá trị đã có binding nhưng thiếu khai báo biến.",
+      "direct": {
+        "model": "nemotron-3-nano:30b",
+        "flow": "direct",
+        "id": "alg514/3202",
+        "protocol": "ff4313cff4431a173bcf4ab95930bb2f187f99ee4a2e8637505b16ccf581629d",
+        "temperature": 0,
+        "think": true,
+        "gold": [
+          4180.0
+        ],
+        "scoring": "alg514_compatible",
+        "answers": [
+          "4180"
+        ],
+        "correct": true,
+        "scored": true,
+        "raw": "{\"answers\":[\"4180\"]}",
+        "output": {
+          "answers": [
+            "4180"
+          ]
+        },
+        "status": "OK"
+      },
+      "modelspec_z3": {
+        "model": "nemotron-3-nano:30b",
+        "flow": "modelspec_z3",
+        "id": "alg514/3202",
+        "protocol": "ff4313cff4431a173bcf4ab95930bb2f187f99ee4a2e8637505b16ccf581629d",
+        "temperature": 0,
+        "think": true,
+        "gold": [
+          4180.0
+        ],
+        "scoring": "alg514_compatible",
+        "answers": [],
+        "correct": false,
+        "scored": true,
+        "raw": "{\n  \"status\": \"SUPPORTED\",\n  \"variables\": {\n    \"books\": \"Int\"\n  },\n  \"constraints\": [\n    \"fixed_cost == 56430.00\",\n    \"var_cost_per_book == 8.25\",\n    \"sell_price_per_book == 21.75\",\n    \"fixed_cost + var_cost_per_book * books == sell_price_per_book * books\"\n  ],\n  \"targets\": [\n    \"books\"\n  ],\n  \"unordered_targets\": false\n}",
+        "output": {
+          "status": "SUPPORTED",
+          "variables": {
+            "books": "Int"
+          },
+          "constraints": [
+            "fixed_cost == 56430.00",
+            "var_cost_per_book == 8.25",
+            "sell_price_per_book == 21.75",
+            "fixed_cost + var_cost_per_book * books == sell_price_per_book * books"
+          ],
+          "targets": [
+            "books"
+          ],
+          "unordered_targets": false
+        },
+        "status": "ERROR",
+        "error": "KeyError: 'fixed_cost'"
+      },
+      "offline_patch": {
+        "spec": {
+          "status": "SUPPORTED",
+          "variables": {
+            "books": "Int",
+            "fixed_cost": "Real",
+            "var_cost_per_book": "Real",
+            "sell_price_per_book": "Real"
+          },
+          "constraints": [
+            "fixed_cost == 56430.00",
+            "var_cost_per_book == 8.25",
+            "sell_price_per_book == 21.75",
+            "fixed_cost + var_cost_per_book * books == sell_price_per_book * books"
+          ],
+          "targets": [
+            "books"
+          ],
+          "unordered_targets": false
+        },
+        "status": "DETERMINATE",
+        "answers": [
+          "4180"
+        ],
+        "correct": true
+      }
+    },
+    {
+      "id": "alg514/3623",
+      "problem": "For Monday morning 's staff meeting , Jim bought 2 bags of bagels and 3 packages of cream cheese and paid 12.00 dollars . For Friday 's meeting , he bought 4 bags of bagels and 2 packages of cream cheese and paid 14.00 dollars . How much does a bag of bagels and a package of cream cheese cost , in dollars ?",
+      "category": "wrong_target",
+      "reason": "Hai hệ phương trình đúng, nhưng targets là x+y: trả 4.75 tổng giá. Gold chấm hai giá riêng 2.25 và 2.5.",
+      "direct": {
+        "model": "nemotron-3-nano:30b",
+        "flow": "direct",
+        "id": "alg514/3623",
+        "protocol": "ff4313cff4431a173bcf4ab95930bb2f187f99ee4a2e8637505b16ccf581629d",
+        "temperature": 0,
+        "think": true,
+        "gold": [
+          2.25,
+          2.5
+        ],
+        "scoring": "alg514_compatible",
+        "answers": [
+          "2.25",
+          "2.5"
+        ],
+        "correct": true,
+        "scored": true,
+        "raw": "{\"answers\":[\"2.25\",\"2.5\"]}",
+        "output": {
+          "answers": [
+            "2.25",
+            "2.5"
+          ]
+        },
+        "status": "OK"
+      },
+      "modelspec_z3": {
+        "model": "nemotron-3-nano:30b",
+        "flow": "modelspec_z3",
+        "id": "alg514/3623",
+        "protocol": "ff4313cff4431a173bcf4ab95930bb2f187f99ee4a2e8637505b16ccf581629d",
+        "temperature": 0,
+        "think": true,
+        "gold": [
+          2.25,
+          2.5
+        ],
+        "scoring": "alg514_compatible",
+        "answers": [
+          "19/4"
+        ],
+        "correct": false,
+        "scored": true,
+        "raw": "{\n  \"status\": \"SUPPORTED\",\n  \"variables\": {\n    \"x\": \"Real\",\n    \"y\": \"Real\"\n  },\n  \"constraints\": [\n    \"2*x + 3*y == 12.00\",\n    \"4*x + 2*y == 14.00\"\n  ],\n  \"targets\": [\n    \"x + y\"\n  ],\n  \"unordered_targets\": false\n}",
+        "output": {
+          "status": "SUPPORTED",
+          "variables": {
+            "x": "Real",
+            "y": "Real"
+          },
+          "constraints": [
+            "2*x + 3*y == 12.00",
+            "4*x + 2*y == 14.00"
+          ],
+          "targets": [
+            "x + y"
+          ],
+          "unordered_targets": false
+        },
+        "initial_status": "DETERMINATE",
+        "status": "DETERMINATE",
+        "targets": [
+          "x + y"
+        ],
+        "unordered_targets": false
+      },
+      "offline_patch": {
+        "spec": {
+          "status": "SUPPORTED",
+          "variables": {
+            "x": "Real",
+            "y": "Real"
+          },
+          "constraints": [
+            "2*x + 3*y == 12.00",
+            "4*x + 2*y == 14.00"
+          ],
+          "targets": [
+            "x",
+            "y"
+          ],
+          "unordered_targets": false
+        },
+        "status": "DETERMINATE",
+        "answers": [
+          "9/4",
+          "5/2"
+        ],
+        "correct": true
+      }
+    },
+    {
+      "id": "alg514/5102",
+      "problem": "The number of grocery items on two grocery lists differs by 7 . The total number of items is 33 . How many items are on each list ?",
+      "category": "permutation",
+      "reason": "Hai danh sách không có vai trò phân biệt, nghiệm là {13,20}. Giữ unordered_targets=false khiến (13,20) và (20,13) bị coi khác đáp án; repair abstain.",
+      "direct": {
+        "model": "nemotron-3-nano:30b",
+        "flow": "direct",
+        "id": "alg514/5102",
+        "protocol": "ff4313cff4431a173bcf4ab95930bb2f187f99ee4a2e8637505b16ccf581629d",
+        "temperature": 0,
+        "think": true,
+        "gold": [
+          13.0,
+          20.0
+        ],
+        "scoring": "alg514_compatible",
+        "answers": [
+          "20",
+          "13"
+        ],
+        "correct": true,
+        "scored": true,
+        "raw": "{\"answers\":[\"20\",\"13\"]}",
+        "output": {
+          "answers": [
+            "20",
+            "13"
+          ]
+        },
+        "status": "OK"
+      },
+      "modelspec_z3": {
+        "model": "nemotron-3-nano:30b",
+        "flow": "modelspec_z3",
+        "id": "alg514/5102",
+        "protocol": "ff4313cff4431a173bcf4ab95930bb2f187f99ee4a2e8637505b16ccf581629d",
+        "temperature": 0,
+        "think": true,
+        "gold": [
+          13.0,
+          20.0
+        ],
+        "scoring": "alg514_compatible",
+        "answers": [],
+        "correct": false,
+        "scored": true,
+        "raw": "{\n  \"status\": \"SUPPORTED\",\n  \"variables\": {\n    \"a\": \"Real\",\n    \"b\": \"Real\"\n  },\n  \"constraints\": [\n    \"(a - b == 7) or (b - a == 7)\",\n    \"a + b == 33\"\n  ],\n  \"targets\": [\n    \"a\",\n    \"b\"\n  ],\n  \"unordered_targets\": false\n}",
+        "output": {
+          "status": "SUPPORTED",
+          "variables": {
+            "a": "Real",
+            "b": "Real"
+          },
+          "constraints": [
+            "(a - b == 7) or (b - a == 7)",
+            "a + b == 33"
+          ],
+          "targets": [
+            "a",
+            "b"
+          ],
+          "unordered_targets": false
+        },
+        "initial_status": "AMBIGUOUS",
+        "repaired_spec": {
+          "status": "SUPPORTED",
+          "variables": {
+            "a": "Real",
+            "b": "Real"
+          },
+          "constraints": [
+            "(a - b == 7) or (b - a == 7)",
+            "a + b == 33"
+          ],
+          "targets": [
+            "a",
+            "b"
+          ],
+          "unordered_targets": false
+        },
+        "repair_trace": [
+          {
+            "attempt": 1,
+            "raw": "{\"decision\":\"abstain\",\"source_span\":\"\",\"constraint\":\"\"}",
+            "proposal": {
+              "decision": "abstain",
+              "source_span": "",
+              "constraint": ""
+            },
+            "result": "ABSTAIN"
+          }
+        ],
+        "status": "NO_ADMISSIBLE_REPAIR_FOUND",
+        "targets": [
+          "a",
+          "b"
+        ],
+        "unordered_targets": false
+      },
+      "offline_patch": {
+        "spec": {
+          "status": "SUPPORTED",
+          "variables": {
+            "a": "Real",
+            "b": "Real"
+          },
+          "constraints": [
+            "(a - b == 7) or (b - a == 7)",
+            "a + b == 33"
+          ],
+          "targets": [
+            "a",
+            "b"
+          ],
+          "unordered_targets": true
+        },
+        "status": "DETERMINATE",
+        "answers": [
+          "13",
+          "20"
+        ],
+        "correct": true
+      }
+    },
+    {
+      "id": "alg514/5783",
+      "problem": "The sum of 2 numbers is 15 . 3 times one of the numbers is 11 less than 5 times the other . What is the smaller number ? What is the larger number ?",
+      "category": "schema",
+      "reason": "Khai báo a,b nhưng targets là smaller,larger chưa khai báo. Hệ ràng buộc xác định hai số 7,8; lỗi ở binding target.",
+      "direct": {
+        "model": "nemotron-3-nano:30b",
+        "flow": "direct",
+        "id": "alg514/5783",
+        "protocol": "ff4313cff4431a173bcf4ab95930bb2f187f99ee4a2e8637505b16ccf581629d",
+        "temperature": 0,
+        "think": true,
+        "gold": [
+          7.0,
+          8.0
+        ],
+        "scoring": "alg514_compatible",
+        "answers": [
+          "7",
+          "8"
+        ],
+        "correct": true,
+        "scored": true,
+        "raw": "{\"answers\":[\"7\",\"8\"]}",
+        "output": {
+          "answers": [
+            "7",
+            "8"
+          ]
+        },
+        "status": "OK"
+      },
+      "modelspec_z3": {
+        "model": "nemotron-3-nano:30b",
+        "flow": "modelspec_z3",
+        "id": "alg514/5783",
+        "protocol": "ff4313cff4431a173bcf4ab95930bb2f187f99ee4a2e8637505b16ccf581629d",
+        "temperature": 0,
+        "think": true,
+        "gold": [
+          7.0,
+          8.0
+        ],
+        "scoring": "alg514_compatible",
+        "answers": [],
+        "correct": false,
+        "scored": true,
+        "raw": "{\n  \"status\": \"SUPPORTED\",\n  \"variables\": {\n    \"a\": \"Real\",\n    \"b\": \"Real\"\n  },\n  \"constraints\": [\n    \"a+b == 15\",\n    \"3*a == 5*b - 11\"\n  ],\n  \"targets\": [\n    \"smaller\",\n    \"larger\"\n  ],\n  \"unordered_targets\": false\n}",
+        "output": {
+          "status": "SUPPORTED",
+          "variables": {
+            "a": "Real",
+            "b": "Real"
+          },
+          "constraints": [
+            "a+b == 15",
+            "3*a == 5*b - 11"
+          ],
+          "targets": [
+            "smaller",
+            "larger"
+          ],
+          "unordered_targets": false
+        },
+        "status": "ERROR",
+        "error": "KeyError: 'smaller'"
+      },
+      "offline_patch": {
+        "spec": {
+          "status": "SUPPORTED",
+          "variables": {
+            "a": "Real",
+            "b": "Real",
+            "smaller": "Real",
+            "larger": "Real"
+          },
+          "constraints": [
+            "a+b == 15",
+            "3*a == 5*b - 11",
+            "(smaller == a and larger == b) or (smaller == b and larger == a)",
+            "smaller <= larger"
+          ],
+          "targets": [
+            "smaller",
+            "larger"
+          ],
+          "unordered_targets": false
+        },
+        "status": "DETERMINATE",
+        "answers": [
+          "7",
+          "8"
+        ],
+        "correct": true
+      }
+    },
+    {
+      "id": "alg514/6004",
+      "problem": "A textbook costs a bookstore 44 dollars , and the store sells it for 55 dollars . Find the amount of profit based on the selling price .",
+      "category": "target_interpretation",
+      "reason": "Hai flow đều chọn profit/selling_price = 1/5. Gold chấm số tiền lợi nhuận 55-44 = 11. Đây là khác cách hiểu target; câu có amount of profit và based on selling price.",
+      "direct": {
+        "model": "nemotron-3-nano:30b",
+        "flow": "direct",
+        "id": "alg514/6004",
+        "protocol": "ff4313cff4431a173bcf4ab95930bb2f187f99ee4a2e8637505b16ccf581629d",
+        "temperature": 0,
+        "think": true,
+        "gold": [
+          11.0
+        ],
+        "scoring": "alg514_compatible",
+        "answers": [
+          "1/5"
+        ],
+        "correct": false,
+        "scored": true,
+        "raw": "{\"answers\":[\"1/5\"]}",
+        "output": {
+          "answers": [
+            "1/5"
+          ]
+        },
+        "status": "OK"
+      },
+      "modelspec_z3": {
+        "model": "nemotron-3-nano:30b",
+        "flow": "modelspec_z3",
+        "id": "alg514/6004",
+        "protocol": "ff4313cff4431a173bcf4ab95930bb2f187f99ee4a2e8637505b16ccf581629d",
+        "temperature": 0,
+        "think": true,
+        "gold": [
+          11.0
+        ],
+        "scoring": "alg514_compatible",
+        "answers": [
+          "1/5"
+        ],
+        "correct": false,
+        "scored": true,
+        "raw": "{\n  \"status\": \"SUPPORTED\",\n  \"variables\": {\n    \"cost\": \"Real\",\n    \"selling_price\": \"Real\",\n    \"profit\": \"Real\",\n    \"profit_ratio\": \"Real\"\n  },\n  \"constraints\": [\n    \"cost == 44\",\n    \"selling_price == 55\",\n    \"profit == selling_price - cost\",\n    \"profit_ratio == profit / selling_price\"\n  ],\n  \"targets\": [\n    \"profit_ratio\"\n  ],\n  \"unordered_targets\": false\n}",
+        "output": {
+          "status": "SUPPORTED",
+          "variables": {
+            "cost": "Real",
+            "selling_price": "Real",
+            "profit": "Real",
+            "profit_ratio": "Real"
+          },
+          "constraints": [
+            "cost == 44",
+            "selling_price == 55",
+            "profit == selling_price - cost",
+            "profit_ratio == profit / selling_price"
+          ],
+          "targets": [
+            "profit_ratio"
+          ],
+          "unordered_targets": false
+        },
+        "initial_status": "DETERMINATE",
+        "status": "DETERMINATE",
+        "targets": [
+          "profit_ratio"
+        ],
+        "unordered_targets": false
+      },
+      "offline_patch": null
+    },
+    {
+      "id": "alg514/6072",
+      "problem": "Suppose you invest 1,500 dollars in equipment to put pictures on T-shirts . You buy each T-shirt for 3 dollars . After you have placed the pictures on a shirt , you sell it for 20 dollars . How many T-shirts must you sell to break even ?",
+      "category": "discrete_gold",
+      "reason": "n là số áo Int, nhưng điều kiện hòa vốn chính xác 17*n = 1500 không có nghiệm nguyên. Gold 1500/17 = 88.23529 là đáp án liên tục. Bán không lỗ cần 89 áo, nhưng đó là một target ngưỡng khác.",
+      "direct": {
+        "model": "nemotron-3-nano:30b",
+        "flow": "direct",
+        "id": "alg514/6072",
+        "protocol": "ff4313cff4431a173bcf4ab95930bb2f187f99ee4a2e8637505b16ccf581629d",
+        "temperature": 0,
+        "think": true,
+        "gold": [
+          88.23529
+        ],
+        "scoring": "alg514_compatible",
+        "answers": [
+          "1500/17"
+        ],
+        "correct": true,
+        "scored": true,
+        "raw": "{\n  \"answers\": [\"1500/17\"]\n}",
+        "output": {
+          "answers": [
+            "1500/17"
+          ]
+        },
+        "status": "OK"
+      },
+      "modelspec_z3": {
+        "model": "nemotron-3-nano:30b",
+        "flow": "modelspec_z3",
+        "id": "alg514/6072",
+        "protocol": "ff4313cff4431a173bcf4ab95930bb2f187f99ee4a2e8637505b16ccf581629d",
+        "temperature": 0,
+        "think": true,
+        "gold": [
+          88.23529
+        ],
+        "scoring": "alg514_compatible",
+        "answers": [],
+        "correct": false,
+        "scored": true,
+        "raw": "{\n  \"status\": \"SUPPORTED\",\n  \"variables\": {\n    \"n\": \"Int\"\n  },\n  \"constraints\": [\n    \"20*n == 1500 + 3*n\"\n  ],\n  \"targets\": [\n    \"n\"\n  ],\n  \"unordered_targets\": false\n}",
+        "output": {
+          "status": "SUPPORTED",
+          "variables": {
+            "n": "Int"
+          },
+          "constraints": [
+            "20*n == 1500 + 3*n"
+          ],
+          "targets": [
+            "n"
+          ],
+          "unordered_targets": false
+        },
+        "initial_status": "INCONSISTENT",
+        "status": "INCONSISTENT",
+        "targets": [
+          "n"
+        ],
+        "unordered_targets": false
+      },
+      "offline_patch": null
+    },
+    {
+      "id": "alg514/6688",
+      "problem": "2 snails are 264 centimeters apart . They craw toward each other at rates that differ by 6 centimeters per minute . After 22 minutes they meet . How fast is each snail crawling ?",
+      "category": "permutation",
+      "reason": "Hai con ốc không có vai trò phân biệt; nghiệm {3,9}. Quên unordered_targets=true nên chỉ hoán vị đã gây ambiguity. Repair lặp lại phương trình tổng, bị reject vì redundant.",
+      "direct": {
+        "model": "nemotron-3-nano:30b",
+        "flow": "direct",
+        "id": "alg514/6688",
+        "protocol": "ff4313cff4431a173bcf4ab95930bb2f187f99ee4a2e8637505b16ccf581629d",
+        "temperature": 0,
+        "think": true,
+        "gold": [
+          3.0,
+          9.0
+        ],
+        "scoring": "alg514_compatible",
+        "answers": [
+          "3",
+          "9"
+        ],
+        "correct": true,
+        "scored": true,
+        "raw": "{\"answers\":[\"3\",\"9\"]}",
+        "output": {
+          "answers": [
+            "3",
+            "9"
+          ]
+        },
+        "status": "OK"
+      },
+      "modelspec_z3": {
+        "model": "nemotron-3-nano:30b",
+        "flow": "modelspec_z3",
+        "id": "alg514/6688",
+        "protocol": "ff4313cff4431a173bcf4ab95930bb2f187f99ee4a2e8637505b16ccf581629d",
+        "temperature": 0,
+        "think": true,
+        "gold": [
+          3.0,
+          9.0
+        ],
+        "scoring": "alg514_compatible",
+        "answers": [],
+        "correct": false,
+        "scored": true,
+        "raw": "{\n  \"status\": \"SUPPORTED\",\n  \"variables\": {\n    \"s1\": \"Real\",\n    \"s2\": \"Real\"\n  },\n  \"constraints\": [\n    \"(s1 + s2 == 12)\",\n    \"(s1 - s2 == 6) or (s2 - s1 == 6)\"\n  ],\n  \"targets\": [\n    \"s1\",\n    \"s2\"\n  ],\n  \"unordered_targets\": false\n}",
+        "output": {
+          "status": "SUPPORTED",
+          "variables": {
+            "s1": "Real",
+            "s2": "Real"
+          },
+          "constraints": [
+            "(s1 + s2 == 12)",
+            "(s1 - s2 == 6) or (s2 - s1 == 6)"
+          ],
+          "targets": [
+            "s1",
+            "s2"
+          ],
+          "unordered_targets": false
+        },
+        "initial_status": "AMBIGUOUS",
+        "repaired_spec": {
+          "status": "SUPPORTED",
+          "variables": {
+            "s1": "Real",
+            "s2": "Real"
+          },
+          "constraints": [
+            "(s1 + s2 == 12)",
+            "(s1 - s2 == 6) or (s2 - s1 == 6)"
+          ],
+          "targets": [
+            "s1",
+            "s2"
+          ],
+          "unordered_targets": false
+        },
+        "repair_trace": [
+          {
+            "attempt": 1,
+            "raw": "{\n  \"decision\": \"add-constraint\",\n  \"source_span\": \"2 snails are 264 centimeters apart . They craw toward each other at rates that differ by 6 centimeters per minute . After 22 minutes they meet\",\n  \"constraint\": \"(s1 * 22 + s2 * 22 == 264)\"\n}",
+            "proposal": {
+              "decision": "add-constraint",
+              "source_span": "2 snails are 264 centimeters apart . They craw toward each other at rates that differ by 6 centimeters per minute . After 22 minutes they meet",
+              "constraint": "(s1 * 22 + s2 * 22 == 264)"
+            },
+            "result": "REJECTED",
+            "reason": "ValueError: Addition is redundant or novelty is inconclusive"
+          },
+          {
+            "attempt": 2,
+            "raw": "{\"decision\":\"abstain\",\"source_span\":\"\",\"constraint\":\"\"}",
+            "proposal": {
+              "decision": "abstain",
+              "source_span": "",
+              "constraint": ""
+            },
+            "result": "ABSTAIN"
+          }
+        ],
+        "status": "NO_ADMISSIBLE_REPAIR_FOUND",
+        "targets": [
+          "s1",
+          "s2"
+        ],
+        "unordered_targets": false
+      },
+      "offline_patch": {
+        "spec": {
+          "status": "SUPPORTED",
+          "variables": {
+            "s1": "Real",
+            "s2": "Real"
+          },
+          "constraints": [
+            "(s1 + s2 == 12)",
+            "(s1 - s2 == 6) or (s2 - s1 == 6)"
+          ],
+          "targets": [
+            "s1",
+            "s2"
+          ],
+          "unordered_targets": true
+        },
+        "status": "DETERMINATE",
+        "answers": [
+          "3",
+          "9"
+        ],
+        "correct": true
+      }
+    },
+    {
+      "id": "alg514/6878",
+      "problem": "The sum of two numbers is 62 . The greater number exceeds twice the smaller number by 5 . What are the two numbers ?",
+      "category": "schema",
+      "reason": "Khai báo a,b nhưng targets là x,y chưa khai báo. Ràng buộc đúng và unordered_targets=true; đổi targets sang a,b là đủ.",
+      "direct": {
+        "model": "nemotron-3-nano:30b",
+        "flow": "direct",
+        "id": "alg514/6878",
+        "protocol": "ff4313cff4431a173bcf4ab95930bb2f187f99ee4a2e8637505b16ccf581629d",
+        "temperature": 0,
+        "think": true,
+        "gold": [
+          19.0,
+          43.0
+        ],
+        "scoring": "alg514_compatible",
+        "answers": [
+          "43",
+          "19"
+        ],
+        "correct": true,
+        "scored": true,
+        "raw": "{\"answers\":[\"43\",\"19\"]}",
+        "output": {
+          "answers": [
+            "43",
+            "19"
+          ]
+        },
+        "status": "OK"
+      },
+      "modelspec_z3": {
+        "model": "nemotron-3-nano:30b",
+        "flow": "modelspec_z3",
+        "id": "alg514/6878",
+        "protocol": "ff4313cff4431a173bcf4ab95930bb2f187f99ee4a2e8637505b16ccf581629d",
+        "temperature": 0,
+        "think": true,
+        "gold": [
+          19.0,
+          43.0
+        ],
+        "scoring": "alg514_compatible",
+        "answers": [],
+        "correct": false,
+        "scored": true,
+        "raw": "{\n  \"status\": \"SUPPORTED\",\n  \"variables\": {\n    \"a\": \"Real\",\n    \"b\": \"Real\"\n  },\n  \"constraints\": [\n    \"a + b == 62\",\n    \"(a > b and a == 2*b + 5) or (b > a and b == 2*a + 5)\"\n  ],\n  \"targets\": [\n    \"x\",\n    \"y\"\n  ],\n  \"unordered_targets\": true\n}",
+        "output": {
+          "status": "SUPPORTED",
+          "variables": {
+            "a": "Real",
+            "b": "Real"
+          },
+          "constraints": [
+            "a + b == 62",
+            "(a > b and a == 2*b + 5) or (b > a and b == 2*a + 5)"
+          ],
+          "targets": [
+            "x",
+            "y"
+          ],
+          "unordered_targets": true
+        },
+        "status": "ERROR",
+        "error": "KeyError: 'x'"
+      },
+      "offline_patch": {
+        "spec": {
+          "status": "SUPPORTED",
+          "variables": {
+            "a": "Real",
+            "b": "Real"
+          },
+          "constraints": [
+            "a + b == 62",
+            "(a > b and a == 2*b + 5) or (b > a and b == 2*a + 5)"
+          ],
+          "targets": [
+            "a",
+            "b"
+          ],
+          "unordered_targets": true
+        },
+        "status": "DETERMINATE",
+        "answers": [
+          "19",
+          "43"
+        ],
+        "correct": true
+      }
+    },
+    {
+      "id": "alg514/7126",
+      "problem": "The sum of two numbers is 85 . The difference of twice of one of them and the other one is 5 . Find both numbers .",
+      "category": "permutation",
+      "reason": "Hai số không có thứ tự, nghiệm {30,55}. Quên unordered_targets=true nên hoán vị gây ambiguity; repair abstain.",
+      "direct": {
+        "model": "nemotron-3-nano:30b",
+        "flow": "direct",
+        "id": "alg514/7126",
+        "protocol": "ff4313cff4431a173bcf4ab95930bb2f187f99ee4a2e8637505b16ccf581629d",
+        "temperature": 0,
+        "think": true,
+        "gold": [
+          30.0,
+          55.0
+        ],
+        "scoring": "alg514_compatible",
+        "answers": [
+          "30",
+          "55"
+        ],
+        "correct": true,
+        "scored": true,
+        "raw": "{\"answers\":[\"30\",\"55\"]}",
+        "output": {
+          "answers": [
+            "30",
+            "55"
+          ]
+        },
+        "status": "OK"
+      },
+      "modelspec_z3": {
+        "model": "nemotron-3-nano:30b",
+        "flow": "modelspec_z3",
+        "id": "alg514/7126",
+        "protocol": "ff4313cff4431a173bcf4ab95930bb2f187f99ee4a2e8637505b16ccf581629d",
+        "temperature": 0,
+        "think": true,
+        "gold": [
+          30.0,
+          55.0
+        ],
+        "scoring": "alg514_compatible",
+        "answers": [],
+        "correct": false,
+        "scored": true,
+        "raw": "{\n  \"status\":\"SUPPORTED\",\n  \"variables\":{\"a\":\"Real\",\"b\":\"Real\"},\n  \"constraints\":[\"a+b == 85\",\"(2*a - b == 5) or (2*b - a == 5)\"],\n  \"targets\":[\"a\",\"b\"],\n  \"unordered_targets\":false\n}",
+        "output": {
+          "status": "SUPPORTED",
+          "variables": {
+            "a": "Real",
+            "b": "Real"
+          },
+          "constraints": [
+            "a+b == 85",
+            "(2*a - b == 5) or (2*b - a == 5)"
+          ],
+          "targets": [
+            "a",
+            "b"
+          ],
+          "unordered_targets": false
+        },
+        "initial_status": "AMBIGUOUS",
+        "repaired_spec": {
+          "status": "SUPPORTED",
+          "variables": {
+            "a": "Real",
+            "b": "Real"
+          },
+          "constraints": [
+            "a+b == 85",
+            "(2*a - b == 5) or (2*b - a == 5)"
+          ],
+          "targets": [
+            "a",
+            "b"
+          ],
+          "unordered_targets": false
+        },
+        "repair_trace": [
+          {
+            "attempt": 1,
+            "raw": "{\"decision\":\"abstain\",\"source_span\":\"\",\"constraint\":\"\"}",
+            "proposal": {
+              "decision": "abstain",
+              "source_span": "",
+              "constraint": ""
+            },
+            "result": "ABSTAIN"
+          }
+        ],
+        "status": "NO_ADMISSIBLE_REPAIR_FOUND",
+        "targets": [
+          "a",
+          "b"
+        ],
+        "unordered_targets": false
+      },
+      "offline_patch": {
+        "spec": {
+          "status": "SUPPORTED",
+          "variables": {
+            "a": "Real",
+            "b": "Real"
+          },
+          "constraints": [
+            "a+b == 85",
+            "(2*a - b == 5) or (2*b - a == 5)"
+          ],
+          "targets": [
+            "a",
+            "b"
+          ],
+          "unordered_targets": true
+        },
+        "status": "DETERMINATE",
+        "answers": [
+          "30",
+          "55"
+        ],
+        "correct": true
+      }
+    }
+  ],
+  "repairs": [
+    {
+      "model": "nemotron-3-nano:30b",
+      "flow": "modelspec_z3",
+      "id": "alg514/286",
+      "protocol": "ff4313cff4431a173bcf4ab95930bb2f187f99ee4a2e8637505b16ccf581629d",
+      "temperature": 0,
+      "think": true,
+      "gold": [
+        20.0
+      ],
+      "scoring": "alg514_compatible",
+      "answers": [
+        "20"
+      ],
+      "correct": true,
+      "scored": true,
+      "raw": "{\n  \"status\":\"SUPPORTED\",\n  \"variables\":{\n    \"rides\":\"Int\",\n    \"ticket_price\":\"Real\",\n    \"armband_price\":\"Real\"\n  },\n  \"constraints\":[\"ticket_price * rides == armband_price\"],\n  \"targets\":[\"rides\"],\n  \"unordered_targets\":false\n}",
+      "output": {
+        "status": "SUPPORTED",
+        "variables": {
+          "rides": "Int",
+          "ticket_price": "Real",
+          "armband_price": "Real"
+        },
+        "constraints": [
+          "ticket_price * rides == armband_price"
+        ],
+        "targets": [
+          "rides"
+        ],
+        "unordered_targets": false
+      },
+      "initial_status": "AMBIGUOUS",
+      "repaired_spec": {
+        "status": "SUPPORTED",
+        "variables": {
+          "rides": "Int",
+          "ticket_price": "Real",
+          "armband_price": "Real"
+        },
+        "constraints": [
+          "ticket_price * rides == armband_price",
+          "(ticket_price == 0.75) and (armband_price == 15)"
+        ],
+        "targets": [
+          "rides"
+        ],
+        "unordered_targets": false
+      },
+      "repair_trace": [
+        {
+          "attempt": 1,
+          "raw": "{\n  \"decision\": \"add-constraint\",\n  \"source_span\": \"0.75 dollars each , or you can buy an armband for 15 dollars\",\n  \"constraint\": \"(ticket_price == 0.75) and (armband_price == 15)\"\n}",
+          "proposal": {
+            "decision": "add-constraint",
+            "source_span": "0.75 dollars each , or you can buy an armband for 15 dollars",
+            "constraint": "(ticket_price == 0.75) and (armband_price == 15)"
+          },
+          "result": "ACCEPTED"
+        }
+      ],
+      "status": "DETERMINATE",
+      "targets": [
+        "rides"
+      ],
+      "unordered_targets": false
+    },
+    {
+      "model": "nemotron-3-nano:30b",
+      "flow": "modelspec_z3",
+      "id": "alg514/5102",
+      "protocol": "ff4313cff4431a173bcf4ab95930bb2f187f99ee4a2e8637505b16ccf581629d",
+      "temperature": 0,
+      "think": true,
+      "gold": [
+        13.0,
+        20.0
+      ],
+      "scoring": "alg514_compatible",
+      "answers": [],
+      "correct": false,
+      "scored": true,
+      "raw": "{\n  \"status\": \"SUPPORTED\",\n  \"variables\": {\n    \"a\": \"Real\",\n    \"b\": \"Real\"\n  },\n  \"constraints\": [\n    \"(a - b == 7) or (b - a == 7)\",\n    \"a + b == 33\"\n  ],\n  \"targets\": [\n    \"a\",\n    \"b\"\n  ],\n  \"unordered_targets\": false\n}",
+      "output": {
+        "status": "SUPPORTED",
+        "variables": {
+          "a": "Real",
+          "b": "Real"
+        },
+        "constraints": [
+          "(a - b == 7) or (b - a == 7)",
+          "a + b == 33"
+        ],
+        "targets": [
+          "a",
+          "b"
+        ],
+        "unordered_targets": false
+      },
+      "initial_status": "AMBIGUOUS",
+      "repaired_spec": {
+        "status": "SUPPORTED",
+        "variables": {
+          "a": "Real",
+          "b": "Real"
+        },
+        "constraints": [
+          "(a - b == 7) or (b - a == 7)",
+          "a + b == 33"
+        ],
+        "targets": [
+          "a",
+          "b"
+        ],
+        "unordered_targets": false
+      },
+      "repair_trace": [
+        {
+          "attempt": 1,
+          "raw": "{\"decision\":\"abstain\",\"source_span\":\"\",\"constraint\":\"\"}",
+          "proposal": {
+            "decision": "abstain",
+            "source_span": "",
+            "constraint": ""
+          },
+          "result": "ABSTAIN"
+        }
+      ],
+      "status": "NO_ADMISSIBLE_REPAIR_FOUND",
+      "targets": [
+        "a",
+        "b"
+      ],
+      "unordered_targets": false
+    },
+    {
+      "model": "nemotron-3-nano:30b",
+      "flow": "modelspec_z3",
+      "id": "alg514/5133",
+      "protocol": "ff4313cff4431a173bcf4ab95930bb2f187f99ee4a2e8637505b16ccf581629d",
+      "temperature": 0,
+      "think": true,
+      "gold": [
+        12.0,
+        6.0
+      ],
+      "scoring": "alg514_compatible",
+      "answers": [
+        "12",
+        "6"
+      ],
+      "correct": true,
+      "scored": true,
+      "raw": "{\n  \"status\": \"SUPPORTED\",\n  \"variables\": {\n    \"a\": \"Real\",\n    \"b\": \"Real\"\n  },\n  \"constraints\": [\n    \"(a - b == 6) or (b - a == 6)\",\n    \"2*a + 2*b == 36\"\n  ],\n  \"targets\": [\n    \"a\",\n    \"b\"\n  ],\n  \"unordered_targets\": false\n}",
+      "output": {
+        "status": "SUPPORTED",
+        "variables": {
+          "a": "Real",
+          "b": "Real"
+        },
+        "constraints": [
+          "(a - b == 6) or (b - a == 6)",
+          "2*a + 2*b == 36"
+        ],
+        "targets": [
+          "a",
+          "b"
+        ],
+        "unordered_targets": false
+      },
+      "initial_status": "AMBIGUOUS",
+      "repaired_spec": {
+        "status": "SUPPORTED",
+        "variables": {
+          "a": "Real",
+          "b": "Real"
+        },
+        "constraints": [
+          "(a - b == 6) or (b - a == 6)",
+          "2*a + 2*b == 36",
+          "a - b == 6"
+        ],
+        "targets": [
+          "a",
+          "b"
+        ],
+        "unordered_targets": false
+      },
+      "repair_trace": [
+        {
+          "attempt": 1,
+          "raw": "{\n  \"decision\": \"add-constraint\",\n  \"source_span\": \"The difference between two numbers is 6\",\n  \"constraint\": \"a - b == 6\"\n}",
+          "proposal": {
+            "decision": "add-constraint",
+            "source_span": "The difference between two numbers is 6",
+            "constraint": "a - b == 6"
+          },
+          "result": "ACCEPTED"
+        }
+      ],
+      "status": "DETERMINATE",
+      "targets": [
+        "a",
+        "b"
+      ],
+      "unordered_targets": false
+    },
+    {
+      "model": "nemotron-3-nano:30b",
+      "flow": "modelspec_z3",
+      "id": "alg514/6008",
+      "protocol": "ff4313cff4431a173bcf4ab95930bb2f187f99ee4a2e8637505b16ccf581629d",
+      "temperature": 0,
+      "think": true,
+      "gold": [
+        31.0,
+        93.0
+      ],
+      "scoring": "alg514_compatible",
+      "answers": [
+        "93",
+        "31"
+      ],
+      "correct": true,
+      "scored": true,
+      "raw": "{\n  \"status\": \"SUPPORTED\",\n  \"variables\": {\n    \"a\": \"Real\",\n    \"b\": \"Real\"\n  },\n  \"constraints\": [\n    \"a + b == 124\",\n    \"a == 3*b or b == 3*a\"\n  ],\n  \"targets\": [\n    \"a\",\n    \"b\"\n  ],\n  \"unordered_targets\": false\n}",
+      "output": {
+        "status": "SUPPORTED",
+        "variables": {
+          "a": "Real",
+          "b": "Real"
+        },
+        "constraints": [
+          "a + b == 124",
+          "a == 3*b or b == 3*a"
+        ],
+        "targets": [
+          "a",
+          "b"
+        ],
+        "unordered_targets": false
+      },
+      "initial_status": "AMBIGUOUS",
+      "repaired_spec": {
+        "status": "SUPPORTED",
+        "variables": {
+          "a": "Real",
+          "b": "Real"
+        },
+        "constraints": [
+          "a + b == 124",
+          "a == 3*b or b == 3*a",
+          "a == 3*b"
+        ],
+        "targets": [
+          "a",
+          "b"
+        ],
+        "unordered_targets": false
+      },
+      "repair_trace": [
+        {
+          "attempt": 1,
+          "raw": "{\n  \"decision\": \"add-constraint\",\n  \"source_span\": \"1 out of 2 numbers is thrice the other\",\n  \"constraint\": \"a == 3*b\"\n}",
+          "proposal": {
+            "decision": "add-constraint",
+            "source_span": "1 out of 2 numbers is thrice the other",
+            "constraint": "a == 3*b"
+          },
+          "result": "ACCEPTED"
+        }
+      ],
+      "status": "DETERMINATE",
+      "targets": [
+        "a",
+        "b"
+      ],
+      "unordered_targets": false
+    },
+    {
+      "model": "nemotron-3-nano:30b",
+      "flow": "modelspec_z3",
+      "id": "alg514/6688",
+      "protocol": "ff4313cff4431a173bcf4ab95930bb2f187f99ee4a2e8637505b16ccf581629d",
+      "temperature": 0,
+      "think": true,
+      "gold": [
+        3.0,
+        9.0
+      ],
+      "scoring": "alg514_compatible",
+      "answers": [],
+      "correct": false,
+      "scored": true,
+      "raw": "{\n  \"status\": \"SUPPORTED\",\n  \"variables\": {\n    \"s1\": \"Real\",\n    \"s2\": \"Real\"\n  },\n  \"constraints\": [\n    \"(s1 + s2 == 12)\",\n    \"(s1 - s2 == 6) or (s2 - s1 == 6)\"\n  ],\n  \"targets\": [\n    \"s1\",\n    \"s2\"\n  ],\n  \"unordered_targets\": false\n}",
+      "output": {
+        "status": "SUPPORTED",
+        "variables": {
+          "s1": "Real",
+          "s2": "Real"
+        },
+        "constraints": [
+          "(s1 + s2 == 12)",
+          "(s1 - s2 == 6) or (s2 - s1 == 6)"
+        ],
+        "targets": [
+          "s1",
+          "s2"
+        ],
+        "unordered_targets": false
+      },
+      "initial_status": "AMBIGUOUS",
+      "repaired_spec": {
+        "status": "SUPPORTED",
+        "variables": {
+          "s1": "Real",
+          "s2": "Real"
+        },
+        "constraints": [
+          "(s1 + s2 == 12)",
+          "(s1 - s2 == 6) or (s2 - s1 == 6)"
+        ],
+        "targets": [
+          "s1",
+          "s2"
+        ],
+        "unordered_targets": false
+      },
+      "repair_trace": [
+        {
+          "attempt": 1,
+          "raw": "{\n  \"decision\": \"add-constraint\",\n  \"source_span\": \"2 snails are 264 centimeters apart . They craw toward each other at rates that differ by 6 centimeters per minute . After 22 minutes they meet\",\n  \"constraint\": \"(s1 * 22 + s2 * 22 == 264)\"\n}",
+          "proposal": {
+            "decision": "add-constraint",
+            "source_span": "2 snails are 264 centimeters apart . They craw toward each other at rates that differ by 6 centimeters per minute . After 22 minutes they meet",
+            "constraint": "(s1 * 22 + s2 * 22 == 264)"
+          },
+          "result": "REJECTED",
+          "reason": "ValueError: Addition is redundant or novelty is inconclusive"
+        },
+        {
+          "attempt": 2,
+          "raw": "{\"decision\":\"abstain\",\"source_span\":\"\",\"constraint\":\"\"}",
+          "proposal": {
+            "decision": "abstain",
+            "source_span": "",
+            "constraint": ""
+          },
+          "result": "ABSTAIN"
+        }
+      ],
+      "status": "NO_ADMISSIBLE_REPAIR_FOUND",
+      "targets": [
+        "s1",
+        "s2"
+      ],
+      "unordered_targets": false
+    },
+    {
+      "model": "nemotron-3-nano:30b",
+      "flow": "modelspec_z3",
+      "id": "alg514/6945",
+      "protocol": "ff4313cff4431a173bcf4ab95930bb2f187f99ee4a2e8637505b16ccf581629d",
+      "temperature": 0,
+      "think": true,
+      "gold": [
+        18.0,
+        33.0
+      ],
+      "scoring": "alg514_compatible",
+      "answers": [
+        "33",
+        "18"
+      ],
+      "correct": true,
+      "scored": true,
+      "raw": "{\n  \"status\": \"SUPPORTED\",\n  \"variables\": {\n    \"a\": \"Real\",\n    \"b\": \"Real\"\n  },\n  \"constraints\": [\n    \"a + b == 51\",\n    \"(a == 2*b - 3) or (b == 2*a - 3)\"\n  ],\n  \"targets\": [\n    \"a\",\n    \"b\"\n  ],\n  \"unordered_targets\": false\n}",
+      "output": {
+        "status": "SUPPORTED",
+        "variables": {
+          "a": "Real",
+          "b": "Real"
+        },
+        "constraints": [
+          "a + b == 51",
+          "(a == 2*b - 3) or (b == 2*a - 3)"
+        ],
+        "targets": [
+          "a",
+          "b"
+        ],
+        "unordered_targets": false
+      },
+      "initial_status": "AMBIGUOUS",
+      "repaired_spec": {
+        "status": "SUPPORTED",
+        "variables": {
+          "a": "Real",
+          "b": "Real"
+        },
+        "constraints": [
+          "a + b == 51",
+          "(a == 2*b - 3) or (b == 2*a - 3)",
+          "a == 2*b - 3"
+        ],
+        "targets": [
+          "a",
+          "b"
+        ],
+        "unordered_targets": false
+      },
+      "repair_trace": [
+        {
+          "attempt": 1,
+          "raw": "{\n  \"decision\": \"add-constraint\",\n  \"source_span\": \"1 number is 3 less than twice another number\",\n  \"constraint\": \"a == 2*b - 3\"\n}",
+          "proposal": {
+            "decision": "add-constraint",
+            "source_span": "1 number is 3 less than twice another number",
+            "constraint": "a == 2*b - 3"
+          },
+          "result": "ACCEPTED"
+        }
+      ],
+      "status": "DETERMINATE",
+      "targets": [
+        "a",
+        "b"
+      ],
+      "unordered_targets": false
+    },
+    {
+      "model": "nemotron-3-nano:30b",
+      "flow": "modelspec_z3",
+      "id": "alg514/7126",
+      "protocol": "ff4313cff4431a173bcf4ab95930bb2f187f99ee4a2e8637505b16ccf581629d",
+      "temperature": 0,
+      "think": true,
+      "gold": [
+        30.0,
+        55.0
+      ],
+      "scoring": "alg514_compatible",
+      "answers": [],
+      "correct": false,
+      "scored": true,
+      "raw": "{\n  \"status\":\"SUPPORTED\",\n  \"variables\":{\"a\":\"Real\",\"b\":\"Real\"},\n  \"constraints\":[\"a+b == 85\",\"(2*a - b == 5) or (2*b - a == 5)\"],\n  \"targets\":[\"a\",\"b\"],\n  \"unordered_targets\":false\n}",
+      "output": {
+        "status": "SUPPORTED",
+        "variables": {
+          "a": "Real",
+          "b": "Real"
+        },
+        "constraints": [
+          "a+b == 85",
+          "(2*a - b == 5) or (2*b - a == 5)"
+        ],
+        "targets": [
+          "a",
+          "b"
+        ],
+        "unordered_targets": false
+      },
+      "initial_status": "AMBIGUOUS",
+      "repaired_spec": {
+        "status": "SUPPORTED",
+        "variables": {
+          "a": "Real",
+          "b": "Real"
+        },
+        "constraints": [
+          "a+b == 85",
+          "(2*a - b == 5) or (2*b - a == 5)"
+        ],
+        "targets": [
+          "a",
+          "b"
+        ],
+        "unordered_targets": false
+      },
+      "repair_trace": [
+        {
+          "attempt": 1,
+          "raw": "{\"decision\":\"abstain\",\"source_span\":\"\",\"constraint\":\"\"}",
+          "proposal": {
+            "decision": "abstain",
+            "source_span": "",
+            "constraint": ""
+          },
+          "result": "ABSTAIN"
+        }
+      ],
+      "status": "NO_ADMISSIBLE_REPAIR_FOUND",
+      "targets": [
+        "a",
+        "b"
+      ],
+      "unordered_targets": false
+    }
+  ]
+}

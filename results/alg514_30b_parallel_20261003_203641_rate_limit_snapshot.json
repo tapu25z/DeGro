@@ -1,0 +1,93 @@
+{
+  "source": "results/alg514_30b_parallel_20261003_203641.jsonl",
+  "processed": 773,
+  "expected": 998,
+  "progress_pct": 77.45490981963928,
+  "flows": {
+    "direct": {
+      "n": 386,
+      "correct": 263,
+      "raw_accuracy": 68.13471502590673,
+      "api429": 121,
+      "other_errors": {},
+      "excluding_api429_n": 265,
+      "excluding_api429_correct": 263,
+      "excluding_api429_accuracy": 99.24528301886792,
+      "nonerror_n": 265,
+      "nonerror_correct": 263,
+      "nonerror_accuracy": 99.24528301886792,
+      "failures_with_output": [
+        {
+          "id": "alg514/2596",
+          "answers": [
+            "1249/1000",
+            "2503/2000"
+          ],
+          "status": "OK",
+          "error": null
+        },
+        {
+          "id": "alg514/6072",
+          "answers": [
+            "89"
+          ],
+          "status": "OK",
+          "error": null
+        }
+      ]
+    },
+    "modelspec_z3": {
+      "n": 387,
+      "correct": 257,
+      "raw_accuracy": 66.40826873385014,
+      "api429": 125,
+      "other_errors": {
+        "KeyError: 'x'": 1,
+        "KeyError: 'smaller_number'": 1,
+        "TimeoutError: The read operation timed out": 1
+      },
+      "excluding_api429_n": 262,
+      "excluding_api429_correct": 257,
+      "excluding_api429_accuracy": 98.09160305343511,
+      "nonerror_n": 259,
+      "nonerror_correct": 257,
+      "nonerror_accuracy": 99.22779922779922,
+      "failures_with_output": [
+        {
+          "id": "alg514/1102",
+          "answers": [],
+          "status": "ERROR",
+          "error": "KeyError: 'x'"
+        },
+        {
+          "id": "alg514/1532",
+          "answers": [
+            "3"
+          ],
+          "status": "DETERMINATE",
+          "error": null
+        },
+        {
+          "id": "alg514/2196",
+          "answers": [
+            "621371/20000",
+            "621371/12500"
+          ],
+          "status": "DETERMINATE",
+          "error": null
+        },
+        {
+          "id": "alg514/3215",
+          "answers": [],
+          "status": "ERROR",
+          "error": "KeyError: 'smaller_number'"
+        }
+      ]
+    }
+  },
+  "both_without_api429": {
+    "n": 168,
+    "direct_correct": 167,
+    "z3_correct": 165
+  }
+}

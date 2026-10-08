@@ -1,0 +1,1162 @@
+{
+  "source": "results/alg514_degro_30b_20261003_173708.jsonl",
+  "n": 499,
+  "direct_correct": 493,
+  "z3_correct_before_repair": 490,
+  "z3_correct_after_repair": 491,
+  "paired": {
+    "both_correct": 489,
+    "direct_only_correct": 4,
+    "z3_only_correct": 2,
+    "both_incorrect": 4
+  },
+  "repair": {
+    "cases": 4,
+    "attempts": 6,
+    "accepted_cases": 1,
+    "accepted_correct": 1,
+    "results": {
+      "REJECTED": 4,
+      "ABSTAIN": 1,
+      "ACCEPTED": 1
+    },
+    "records": [
+      {
+        "model": "nemotron-3-nano:30b",
+        "flow": "modelspec_z3",
+        "id": "alg514/3202",
+        "protocol": "f63c2d28ac0b018bee85f067df2f5691b6da055ce5b0f49b2c4bcee111cf5297",
+        "temperature": 0,
+        "think": true,
+        "gold": [
+          4180.0
+        ],
+        "scoring": "alg514_compatible",
+        "answers": [],
+        "correct": false,
+        "raw": "{\n  \"status\": \"SUPPORTED\",\n  \"variables\": {\n    \"fixed_cost\": \"Real\",\n    \"variable_cost_per_book\": \"Real\",\n    \"selling_price_per_book\": \"Real\",\n    \"books\": \"Int\"\n  },\n  \"constraints\": [\n    \"fixed_cost + variable_cost_per_book * books == selling_price_per_book * books\"\n  ],\n  \"targets\": [\n    \"books\"\n  ]\n}",
+        "output": {
+          "status": "SUPPORTED",
+          "variables": {
+            "fixed_cost": "Real",
+            "variable_cost_per_book": "Real",
+            "selling_price_per_book": "Real",
+            "books": "Int"
+          },
+          "constraints": [
+            "fixed_cost + variable_cost_per_book * books == selling_price_per_book * books"
+          ],
+          "targets": [
+            "books"
+          ]
+        },
+        "initial_status": "AMBIGUOUS",
+        "repaired_spec": {
+          "status": "SUPPORTED",
+          "variables": {
+            "fixed_cost": "Real",
+            "variable_cost_per_book": "Real",
+            "selling_price_per_book": "Real",
+            "books": "Int"
+          },
+          "constraints": [
+            "fixed_cost + variable_cost_per_book * books == selling_price_per_book * books"
+          ],
+          "targets": [
+            "books"
+          ]
+        },
+        "repair_trace": [
+          {
+            "attempt": 1,
+            "raw": "{\n  \"decision\": \"add-constraint\",\n  \"source_span\": \"so that the production cost will equal the money obtained from sells\",\n  \"constraint\": \"books == fixed_cost / (selling_price_per_book - variable_cost_per_book)\"\n}",
+            "proposal": {
+              "decision": "add-constraint",
+              "source_span": "so that the production cost will equal the money obtained from sells",
+              "constraint": "books == fixed_cost / (selling_price_per_book - variable_cost_per_book)"
+            },
+            "result": "REJECTED",
+            "reason": "ValueError: Addition is redundant or novelty is inconclusive"
+          },
+          {
+            "attempt": 2,
+            "raw": "{\n  \"decision\": \"add-constraint\",\n  \"source_span\": \"so that the production cost will equal the money obtained from sells\",\n  \"constraint\": \"fixed_cost == (selling_price_per_book - variable_cost_per_book) * books\"\n}",
+            "proposal": {
+              "decision": "add-constraint",
+              "source_span": "so that the production cost will equal the money obtained from sells",
+              "constraint": "fixed_cost == (selling_price_per_book - variable_cost_per_book) * books"
+            },
+            "result": "REJECTED",
+            "reason": "ValueError: Addition is redundant or novelty is inconclusive"
+          }
+        ],
+        "status": "NO_ADMISSIBLE_REPAIR_FOUND",
+        "targets": [
+          "books"
+        ]
+      },
+      {
+        "model": "nemotron-3-nano:30b",
+        "flow": "modelspec_z3",
+        "id": "alg514/6008",
+        "protocol": "f63c2d28ac0b018bee85f067df2f5691b6da055ce5b0f49b2c4bcee111cf5297",
+        "temperature": 0,
+        "think": true,
+        "gold": [
+          31.0,
+          93.0
+        ],
+        "scoring": "alg514_compatible",
+        "answers": [],
+        "correct": false,
+        "raw": "{\n  \"status\": \"SUPPORTED\",\n  \"variables\": {\n    \"x\": \"Int\",\n    \"y\": \"Int\"\n  },\n  \"constraints\": [\n    \"x + y == 124\",\n    \"(x == 3*y) or (y == 3*x)\"\n  ],\n  \"targets\": [\n    \"x\",\n    \"y\"\n  ]\n}",
+        "output": {
+          "status": "SUPPORTED",
+          "variables": {
+            "x": "Int",
+            "y": "Int"
+          },
+          "constraints": [
+            "x + y == 124",
+            "(x == 3*y) or (y == 3*x)"
+          ],
+          "targets": [
+            "x",
+            "y"
+          ]
+        },
+        "initial_status": "AMBIGUOUS",
+        "repaired_spec": {
+          "status": "SUPPORTED",
+          "variables": {
+            "x": "Int",
+            "y": "Int"
+          },
+          "constraints": [
+            "x + y == 124",
+            "(x == 3*y) or (y == 3*x)"
+          ],
+          "targets": [
+            "x",
+            "y"
+          ]
+        },
+        "repair_trace": [
+          {
+            "attempt": 1,
+            "raw": "{\"decision\":\"abstain\",\"source_span\":\"\",\"constraint\":\"\"}",
+            "proposal": {
+              "decision": "abstain",
+              "source_span": "",
+              "constraint": ""
+            },
+            "result": "ABSTAIN"
+          }
+        ],
+        "status": "NO_ADMISSIBLE_REPAIR_FOUND",
+        "targets": [
+          "x",
+          "y"
+        ]
+      },
+      {
+        "model": "nemotron-3-nano:30b",
+        "flow": "modelspec_z3",
+        "id": "alg514/6226",
+        "protocol": "f63c2d28ac0b018bee85f067df2f5691b6da055ce5b0f49b2c4bcee111cf5297",
+        "temperature": 0,
+        "think": true,
+        "gold": [
+          20.0,
+          10.0
+        ],
+        "scoring": "alg514_compatible",
+        "answers": [
+          "20",
+          "10"
+        ],
+        "correct": true,
+        "raw": "{\n  \"status\": \"SUPPORTED\",\n  \"variables\": {\n    \"small\": \"Int\",\n    \"large\": \"Int\"\n  },\n  \"constraints\": [\n    \"20*small + 35*large == 750\"\n  ],\n  \"targets\": [\n    \"small\",\n    \"large\"\n  ]\n}",
+        "output": {
+          "status": "SUPPORTED",
+          "variables": {
+            "small": "Int",
+            "large": "Int"
+          },
+          "constraints": [
+            "20*small + 35*large == 750"
+          ],
+          "targets": [
+            "small",
+            "large"
+          ]
+        },
+        "initial_status": "AMBIGUOUS",
+        "repaired_spec": {
+          "status": "SUPPORTED",
+          "variables": {
+            "small": "Int",
+            "large": "Int"
+          },
+          "constraints": [
+            "20*small + 35*large == 750",
+            "small + large == 30"
+          ],
+          "targets": [
+            "small",
+            "large"
+          ]
+        },
+        "repair_trace": [
+          {
+            "attempt": 1,
+            "raw": "{\n  \"decision\": \"add-constraint\",\n  \"source_span\": \"Joe sold 30 peaches from his tree\",\n  \"constraint\": \"small + large == 30\"\n}",
+            "proposal": {
+              "decision": "add-constraint",
+              "source_span": "Joe sold 30 peaches from his tree",
+              "constraint": "small + large == 30"
+            },
+            "result": "ACCEPTED"
+          }
+        ],
+        "status": "DETERMINATE",
+        "targets": [
+          "small",
+          "large"
+        ]
+      },
+      {
+        "model": "nemotron-3-nano:30b",
+        "flow": "modelspec_z3",
+        "id": "alg514/6853",
+        "protocol": "f63c2d28ac0b018bee85f067df2f5691b6da055ce5b0f49b2c4bcee111cf5297",
+        "temperature": 0,
+        "think": true,
+        "gold": [
+          450.0,
+          50.0
+        ],
+        "scoring": "alg514_compatible",
+        "answers": [],
+        "correct": false,
+        "raw": "{\n  \"status\": \"SUPPORTED\",\n  \"variables\": {\n    \"plane_airspeed\": \"Real\",\n    \"wind_speed\": \"Real\",\n    \"distance\": \"Real\",\n    \"time_east\": \"Real\",\n    \"time_west\": \"Real\"\n  },\n  \"constraints\": [\n    \"plane_airspeed - wind_speed == distance / time_east\",\n    \"plane_airspeed + wind_speed == distance / time_west\"\n  ],\n  \"targets\": [\n    \"plane_airspeed\",\n    \"wind_speed\"\n  ]\n}",
+        "output": {
+          "status": "SUPPORTED",
+          "variables": {
+            "plane_airspeed": "Real",
+            "wind_speed": "Real",
+            "distance": "Real",
+            "time_east": "Real",
+            "time_west": "Real"
+          },
+          "constraints": [
+            "plane_airspeed - wind_speed == distance / time_east",
+            "plane_airspeed + wind_speed == distance / time_west"
+          ],
+          "targets": [
+            "plane_airspeed",
+            "wind_speed"
+          ]
+        },
+        "initial_status": "AMBIGUOUS",
+        "repaired_spec": {
+          "status": "SUPPORTED",
+          "variables": {
+            "plane_airspeed": "Real",
+            "wind_speed": "Real",
+            "distance": "Real",
+            "time_east": "Real",
+            "time_west": "Real"
+          },
+          "constraints": [
+            "plane_airspeed - wind_speed == distance / time_east",
+            "plane_airspeed + wind_speed == distance / time_west"
+          ],
+          "targets": [
+            "plane_airspeed",
+            "wind_speed"
+          ]
+        },
+        "repair_trace": [
+          {
+            "attempt": 1,
+            "raw": "{\n  \"decision\": \"add-constraint\",\n  \"source_span\": \"4000 miles\",\n  \"constraint\": \"distance == 4000\"\n}",
+            "proposal": {
+              "decision": "add-constraint",
+              "source_span": "4000 miles",
+              "constraint": "distance == 4000"
+            },
+            "result": "REJECTED",
+            "reason": "ValueError: Repair must restore determinacy; got AMBIGUOUS"
+          },
+          {
+            "attempt": 2,
+            "raw": "{\"decision\":\"add-constraint\",\"source_span\":\"4000 miles\",\"constraint\":\"distance == 4000\"}",
+            "proposal": {
+              "decision": "add-constraint",
+              "source_span": "4000 miles",
+              "constraint": "distance == 4000"
+            },
+            "result": "REJECTED",
+            "reason": "ValueError: Repair must restore determinacy; got AMBIGUOUS"
+          }
+        ],
+        "status": "NO_ADMISSIBLE_REPAIR_FOUND",
+        "targets": [
+          "plane_airspeed",
+          "wind_speed"
+        ]
+      }
+    ]
+  },
+  "offline_diagnostic_corrections": [
+    {
+      "id": "alg514/286",
+      "offline_source_based_correction": {
+        "status": "SUPPORTED",
+        "variables": {
+          "num_rides": "Int"
+        },
+        "constraints": [
+          "0.75 * num_rides == 15"
+        ],
+        "targets": [
+          "num_rides"
+        ]
+      },
+      "status": "DETERMINATE",
+      "answers": [
+        "20"
+      ],
+      "gold_match": true
+    },
+    {
+      "id": "alg514/3202",
+      "offline_source_based_correction": {
+        "status": "SUPPORTED",
+        "variables": {
+          "fixed_cost": "Real",
+          "variable_cost_per_book": "Real",
+          "selling_price_per_book": "Real",
+          "books": "Int"
+        },
+        "constraints": [
+          "fixed_cost + variable_cost_per_book * books == selling_price_per_book * books",
+          "fixed_cost == 56430",
+          "variable_cost_per_book == 8.25",
+          "selling_price_per_book == 21.75"
+        ],
+        "targets": [
+          "books"
+        ]
+      },
+      "status": "DETERMINATE",
+      "answers": [
+        "4180"
+      ],
+      "gold_match": true
+    },
+    {
+      "id": "alg514/6853",
+      "offline_source_based_correction": {
+        "status": "SUPPORTED",
+        "variables": {
+          "plane_airspeed": "Real",
+          "wind_speed": "Real",
+          "distance": "Real",
+          "time_east": "Real",
+          "time_west": "Real"
+        },
+        "constraints": [
+          "plane_airspeed - wind_speed == distance / time_east",
+          "plane_airspeed + wind_speed == distance / time_west",
+          "distance == 4000",
+          "time_east == 8",
+          "time_west == 10"
+        ],
+        "targets": [
+          "plane_airspeed",
+          "wind_speed"
+        ]
+      },
+      "status": "DETERMINATE",
+      "answers": [
+        "450",
+        "-50"
+      ],
+      "gold_match": false
+    }
+  ],
+  "failure_audit": [
+    {
+      "id": "alg514/286",
+      "problem": "At the carnival , tickets for the rides are 0.75 dollars each , or you can buy an armband for 15 dollars and ride unlimited for one night . At how many rides does the armband cost the same as buying individual tickets ?",
+      "assessment": "Compiler error: generated (0.75 : Real), not valid Python. Removing the type annotation gives 20. No timeout.",
+      "direct": {
+        "model": "nemotron-3-nano:30b",
+        "flow": "direct",
+        "id": "alg514/286",
+        "protocol": "f63c2d28ac0b018bee85f067df2f5691b6da055ce5b0f49b2c4bcee111cf5297",
+        "temperature": 0,
+        "think": true,
+        "gold": [
+          20.0
+        ],
+        "scoring": "alg514_compatible",
+        "answers": [
+          "20"
+        ],
+        "correct": true,
+        "raw": "{\"answers\":[\"20\"]}",
+        "output": {
+          "answers": [
+            "20"
+          ]
+        },
+        "status": "OK"
+      },
+      "modelspec_z3": {
+        "model": "nemotron-3-nano:30b",
+        "flow": "modelspec_z3",
+        "id": "alg514/286",
+        "protocol": "f63c2d28ac0b018bee85f067df2f5691b6da055ce5b0f49b2c4bcee111cf5297",
+        "temperature": 0,
+        "think": true,
+        "gold": [
+          20.0
+        ],
+        "scoring": "alg514_compatible",
+        "answers": [],
+        "correct": false,
+        "raw": "{\n  \"status\": \"SUPPORTED\",\n  \"variables\": {\n    \"num_rides\": \"Int\"\n  },\n  \"constraints\": [\n    \"(0.75 : Real) * num_rides == 15\"\n  ],\n  \"targets\": [\n    \"num_rides\"\n  ]\n}",
+        "output": {
+          "status": "SUPPORTED",
+          "variables": {
+            "num_rides": "Int"
+          },
+          "constraints": [
+            "(0.75 : Real) * num_rides == 15"
+          ],
+          "targets": [
+            "num_rides"
+          ]
+        },
+        "status": "ERROR",
+        "error": "SyntaxError: invalid syntax (<unknown>, line 1)"
+      }
+    },
+    {
+      "id": "alg514/2196",
+      "problem": "A freight train and an express train leave towns 390 kilometers apart , traveling toward one another . The freight train travels 30 kilometers per hour slower than the express train . They pass one another 3 hours later . How fast is the freight train , in miles per hour ? How fast is the express train ?",
+      "assessment": "Both convert km/h to requested mph, while gold remains km/h.",
+      "direct": {
+        "model": "nemotron-3-nano:30b",
+        "flow": "direct",
+        "id": "alg514/2196",
+        "protocol": "f63c2d28ac0b018bee85f067df2f5691b6da055ce5b0f49b2c4bcee111cf5297",
+        "temperature": 0,
+        "think": true,
+        "gold": [
+          50.0,
+          80.0
+        ],
+        "scoring": "alg514_compatible",
+        "answers": [
+          "31.06855",
+          "49.70968"
+        ],
+        "correct": false,
+        "raw": "{\"answers\":[\"31.06855\",\"49.70968\"]}",
+        "output": {
+          "answers": [
+            "31.06855",
+            "49.70968"
+          ]
+        },
+        "status": "OK"
+      },
+      "modelspec_z3": {
+        "model": "nemotron-3-nano:30b",
+        "flow": "modelspec_z3",
+        "id": "alg514/2196",
+        "protocol": "f63c2d28ac0b018bee85f067df2f5691b6da055ce5b0f49b2c4bcee111cf5297",
+        "temperature": 0,
+        "think": true,
+        "gold": [
+          50.0,
+          80.0
+        ],
+        "scoring": "alg514_compatible",
+        "answers": [
+          "621371/20000",
+          "621371/12500"
+        ],
+        "correct": false,
+        "raw": "{\n  \"status\": \"SUPPORTED\",\n  \"variables\": {\n    \"freight_kmh\": \"Real\",\n    \"express_kmh\": \"Real\",\n    \"freight_mph\": \"Real\",\n    \"express_mph\": \"Real\"\n  },\n  \"constraints\": [\n    \"freight_kmh + express_kmh == 130\",\n    \"freight_kmh == express_kmh - 30\",\n    \"freight_mph == freight_kmh * 0.621371\",\n    \"express_mph == express_kmh * 0.621371\"\n  ],\n  \"targets\": [\n    \"freight_mph\",\n    \"express_mph\"\n  ]\n}",
+        "output": {
+          "status": "SUPPORTED",
+          "variables": {
+            "freight_kmh": "Real",
+            "express_kmh": "Real",
+            "freight_mph": "Real",
+            "express_mph": "Real"
+          },
+          "constraints": [
+            "freight_kmh + express_kmh == 130",
+            "freight_kmh == express_kmh - 30",
+            "freight_mph == freight_kmh * 0.621371",
+            "express_mph == express_kmh * 0.621371"
+          ],
+          "targets": [
+            "freight_mph",
+            "express_mph"
+          ]
+        },
+        "initial_status": "DETERMINATE",
+        "status": "DETERMINATE",
+        "targets": [
+          "freight_mph",
+          "express_mph"
+        ]
+      }
+    },
+    {
+      "id": "alg514/2559",
+      "problem": "The total number of Democrats and Republicans in the House of Representatives was 434 . There were 30 more Republicans then Democrats . How many Democrats and Republicans were there in the Senate ?",
+      "assessment": "Source gives House data but asks Senate. ModelSpec abstains; Direct invents/assumes a total of 100 and answers 35,65. Gold solves House 202,232.",
+      "direct": {
+        "model": "nemotron-3-nano:30b",
+        "flow": "direct",
+        "id": "alg514/2559",
+        "protocol": "f63c2d28ac0b018bee85f067df2f5691b6da055ce5b0f49b2c4bcee111cf5297",
+        "temperature": 0,
+        "think": true,
+        "gold": [
+          202.0,
+          232.0
+        ],
+        "scoring": "alg514_compatible",
+        "answers": [
+          "35",
+          "65"
+        ],
+        "correct": false,
+        "raw": "{\"answers\":[\"35\",\"65\"]}",
+        "output": {
+          "answers": [
+            "35",
+            "65"
+          ]
+        },
+        "status": "OK"
+      },
+      "modelspec_z3": {
+        "model": "nemotron-3-nano:30b",
+        "flow": "modelspec_z3",
+        "id": "alg514/2559",
+        "protocol": "f63c2d28ac0b018bee85f067df2f5691b6da055ce5b0f49b2c4bcee111cf5297",
+        "temperature": 0,
+        "think": true,
+        "gold": [
+          202.0,
+          232.0
+        ],
+        "scoring": "alg514_compatible",
+        "answers": [],
+        "correct": false,
+        "raw": "{\"status\":\"NOT_SUPPORTED\",\"variables\":{},\"constraints\":[],\"targets\":[]}",
+        "output": {
+          "status": "NOT_SUPPORTED",
+          "variables": {},
+          "constraints": [],
+          "targets": []
+        },
+        "initial_status": "NOT_SUPPORTED",
+        "status": "NOT_SUPPORTED",
+        "targets": []
+      }
+    },
+    {
+      "id": "alg514/2596",
+      "problem": "David bought 3 hamburgers and 2 servings of french fries at Diane 's Drive Up for 6.25 dollars . If a serving of fries costs 0.25 cents more then a hamburger , what is the cost of a hamburger and what is the cost of a serving of french fries ?",
+      "assessment": "Source literally says 0.25 cents more, meaning 0.0025 dollars; Direct 1.249,1.2515 follows that. ModelSpec and gold use 0.25 dollars, producing 1.15,1.4. Source/gold unit mismatch.",
+      "direct": {
+        "model": "nemotron-3-nano:30b",
+        "flow": "direct",
+        "id": "alg514/2596",
+        "protocol": "f63c2d28ac0b018bee85f067df2f5691b6da055ce5b0f49b2c4bcee111cf5297",
+        "temperature": 0,
+        "think": true,
+        "gold": [
+          1.15,
+          1.4
+        ],
+        "scoring": "alg514_compatible",
+        "answers": [
+          "1249/1000",
+          "2503/2000"
+        ],
+        "correct": false,
+        "raw": "{\"answers\":[\"1249/1000\",\"2503/2000\"]}",
+        "output": {
+          "answers": [
+            "1249/1000",
+            "2503/2000"
+          ]
+        },
+        "status": "OK"
+      },
+      "modelspec_z3": {
+        "model": "nemotron-3-nano:30b",
+        "flow": "modelspec_z3",
+        "id": "alg514/2596",
+        "protocol": "f63c2d28ac0b018bee85f067df2f5691b6da055ce5b0f49b2c4bcee111cf5297",
+        "temperature": 0,
+        "think": true,
+        "gold": [
+          1.15,
+          1.4
+        ],
+        "scoring": "alg514_compatible",
+        "answers": [
+          "23/20",
+          "7/5"
+        ],
+        "correct": true,
+        "raw": "{\n  \"status\": \"SUPPORTED\",\n  \"variables\": {\n    \"hamburger_price\": \"Real\",\n    \"fries_price\": \"Real\"\n  },\n  \"constraints\": [\n    \"3*hamburger_price + 2*fries_price == 6.25\",\n    \"fries_price == hamburger_price + 0.25\"\n  ],\n  \"targets\": [\n    \"hamburger_price\",\n    \"fries_price\"\n  ]\n}",
+        "output": {
+          "status": "SUPPORTED",
+          "variables": {
+            "hamburger_price": "Real",
+            "fries_price": "Real"
+          },
+          "constraints": [
+            "3*hamburger_price + 2*fries_price == 6.25",
+            "fries_price == hamburger_price + 0.25"
+          ],
+          "targets": [
+            "hamburger_price",
+            "fries_price"
+          ]
+        },
+        "initial_status": "DETERMINATE",
+        "status": "DETERMINATE",
+        "targets": [
+          "hamburger_price",
+          "fries_price"
+        ]
+      }
+    },
+    {
+      "id": "alg514/3202",
+      "problem": "A small publishing company has a 1 time product cost for editing and printing of 56,430.00 dollars . Variable cost per book is 8.25 dollars . The publisher is selling the book to the store for 21.75 dollars . How many books must the publisher print and sell so that the production cost will equal the money obtained from sells ?",
+      "assessment": "Unbound input variables: fixed_cost, variable_cost_per_book, selling_price_per_book never set to 56430,8.25,21.75. Both repair proposals rewrite the existing relation and are rejected as redundant. Binding the inputs restores 4180.",
+      "direct": {
+        "model": "nemotron-3-nano:30b",
+        "flow": "direct",
+        "id": "alg514/3202",
+        "protocol": "f63c2d28ac0b018bee85f067df2f5691b6da055ce5b0f49b2c4bcee111cf5297",
+        "temperature": 0,
+        "think": true,
+        "gold": [
+          4180.0
+        ],
+        "scoring": "alg514_compatible",
+        "answers": [
+          "4180"
+        ],
+        "correct": true,
+        "raw": "{\"answers\":[\"4180\"]}",
+        "output": {
+          "answers": [
+            "4180"
+          ]
+        },
+        "status": "OK"
+      },
+      "modelspec_z3": {
+        "model": "nemotron-3-nano:30b",
+        "flow": "modelspec_z3",
+        "id": "alg514/3202",
+        "protocol": "f63c2d28ac0b018bee85f067df2f5691b6da055ce5b0f49b2c4bcee111cf5297",
+        "temperature": 0,
+        "think": true,
+        "gold": [
+          4180.0
+        ],
+        "scoring": "alg514_compatible",
+        "answers": [],
+        "correct": false,
+        "raw": "{\n  \"status\": \"SUPPORTED\",\n  \"variables\": {\n    \"fixed_cost\": \"Real\",\n    \"variable_cost_per_book\": \"Real\",\n    \"selling_price_per_book\": \"Real\",\n    \"books\": \"Int\"\n  },\n  \"constraints\": [\n    \"fixed_cost + variable_cost_per_book * books == selling_price_per_book * books\"\n  ],\n  \"targets\": [\n    \"books\"\n  ]\n}",
+        "output": {
+          "status": "SUPPORTED",
+          "variables": {
+            "fixed_cost": "Real",
+            "variable_cost_per_book": "Real",
+            "selling_price_per_book": "Real",
+            "books": "Int"
+          },
+          "constraints": [
+            "fixed_cost + variable_cost_per_book * books == selling_price_per_book * books"
+          ],
+          "targets": [
+            "books"
+          ]
+        },
+        "initial_status": "AMBIGUOUS",
+        "repaired_spec": {
+          "status": "SUPPORTED",
+          "variables": {
+            "fixed_cost": "Real",
+            "variable_cost_per_book": "Real",
+            "selling_price_per_book": "Real",
+            "books": "Int"
+          },
+          "constraints": [
+            "fixed_cost + variable_cost_per_book * books == selling_price_per_book * books"
+          ],
+          "targets": [
+            "books"
+          ]
+        },
+        "repair_trace": [
+          {
+            "attempt": 1,
+            "raw": "{\n  \"decision\": \"add-constraint\",\n  \"source_span\": \"so that the production cost will equal the money obtained from sells\",\n  \"constraint\": \"books == fixed_cost / (selling_price_per_book - variable_cost_per_book)\"\n}",
+            "proposal": {
+              "decision": "add-constraint",
+              "source_span": "so that the production cost will equal the money obtained from sells",
+              "constraint": "books == fixed_cost / (selling_price_per_book - variable_cost_per_book)"
+            },
+            "result": "REJECTED",
+            "reason": "ValueError: Addition is redundant or novelty is inconclusive"
+          },
+          {
+            "attempt": 2,
+            "raw": "{\n  \"decision\": \"add-constraint\",\n  \"source_span\": \"so that the production cost will equal the money obtained from sells\",\n  \"constraint\": \"fixed_cost == (selling_price_per_book - variable_cost_per_book) * books\"\n}",
+            "proposal": {
+              "decision": "add-constraint",
+              "source_span": "so that the production cost will equal the money obtained from sells",
+              "constraint": "fixed_cost == (selling_price_per_book - variable_cost_per_book) * books"
+            },
+            "result": "REJECTED",
+            "reason": "ValueError: Addition is redundant or novelty is inconclusive"
+          }
+        ],
+        "status": "NO_ADMISSIBLE_REPAIR_FOUND",
+        "targets": [
+          "books"
+        ]
+      }
+    },
+    {
+      "id": "alg514/6004",
+      "problem": "A textbook costs a bookstore 44 dollars , and the store sells it for 55 dollars . Find the amount of profit based on the selling price .",
+      "assessment": "Both select profit margin 20% instead of gold dollar profit 11; wording based on selling price may explain target interpretation.",
+      "direct": {
+        "model": "nemotron-3-nano:30b",
+        "flow": "direct",
+        "id": "alg514/6004",
+        "protocol": "f63c2d28ac0b018bee85f067df2f5691b6da055ce5b0f49b2c4bcee111cf5297",
+        "temperature": 0,
+        "think": true,
+        "gold": [
+          11.0
+        ],
+        "scoring": "alg514_compatible",
+        "answers": [
+          "1/5"
+        ],
+        "correct": false,
+        "raw": "{\n  \"answers\": [\n    \"1/5\"\n  ]\n}",
+        "output": {
+          "answers": [
+            "1/5"
+          ]
+        },
+        "status": "OK"
+      },
+      "modelspec_z3": {
+        "model": "nemotron-3-nano:30b",
+        "flow": "modelspec_z3",
+        "id": "alg514/6004",
+        "protocol": "f63c2d28ac0b018bee85f067df2f5691b6da055ce5b0f49b2c4bcee111cf5297",
+        "temperature": 0,
+        "think": true,
+        "gold": [
+          11.0
+        ],
+        "scoring": "alg514_compatible",
+        "answers": [
+          "1/5"
+        ],
+        "correct": false,
+        "raw": "{\n  \"status\": \"SUPPORTED\",\n  \"variables\": {\n    \"cost\": \"Real\",\n    \"selling_price\": \"Real\",\n    \"profit\": \"Real\",\n    \"profit_margin\": \"Real\"\n  },\n  \"constraints\": [\n    \"cost == 44\",\n    \"selling_price == 55\",\n    \"profit == selling_price - cost\",\n    \"profit_margin == profit / selling_price\"\n  ],\n  \"targets\": [\n    \"profit_margin\"\n  ]\n}",
+        "output": {
+          "status": "SUPPORTED",
+          "variables": {
+            "cost": "Real",
+            "selling_price": "Real",
+            "profit": "Real",
+            "profit_margin": "Real"
+          },
+          "constraints": [
+            "cost == 44",
+            "selling_price == 55",
+            "profit == selling_price - cost",
+            "profit_margin == profit / selling_price"
+          ],
+          "targets": [
+            "profit_margin"
+          ]
+        },
+        "initial_status": "DETERMINATE",
+        "status": "DETERMINATE",
+        "targets": [
+          "profit_margin"
+        ]
+      }
+    },
+    {
+      "id": "alg514/6008",
+      "problem": "1 out of 2 numbers is thrice the other . If their sum is 124 , find the numbers .",
+      "assessment": "Unnamed pair modeled symmetrically, producing ordered tuples (31,93) and (93,31). Needs canonical smaller/larger roles at formalization; repair abstains because the source has no further missing relation.",
+      "direct": {
+        "model": "nemotron-3-nano:30b",
+        "flow": "direct",
+        "id": "alg514/6008",
+        "protocol": "f63c2d28ac0b018bee85f067df2f5691b6da055ce5b0f49b2c4bcee111cf5297",
+        "temperature": 0,
+        "think": true,
+        "gold": [
+          31.0,
+          93.0
+        ],
+        "scoring": "alg514_compatible",
+        "answers": [
+          "31",
+          "93"
+        ],
+        "correct": true,
+        "raw": "{\"answers\":[\"31\",\"93\"]}",
+        "output": {
+          "answers": [
+            "31",
+            "93"
+          ]
+        },
+        "status": "OK"
+      },
+      "modelspec_z3": {
+        "model": "nemotron-3-nano:30b",
+        "flow": "modelspec_z3",
+        "id": "alg514/6008",
+        "protocol": "f63c2d28ac0b018bee85f067df2f5691b6da055ce5b0f49b2c4bcee111cf5297",
+        "temperature": 0,
+        "think": true,
+        "gold": [
+          31.0,
+          93.0
+        ],
+        "scoring": "alg514_compatible",
+        "answers": [],
+        "correct": false,
+        "raw": "{\n  \"status\": \"SUPPORTED\",\n  \"variables\": {\n    \"x\": \"Int\",\n    \"y\": \"Int\"\n  },\n  \"constraints\": [\n    \"x + y == 124\",\n    \"(x == 3*y) or (y == 3*x)\"\n  ],\n  \"targets\": [\n    \"x\",\n    \"y\"\n  ]\n}",
+        "output": {
+          "status": "SUPPORTED",
+          "variables": {
+            "x": "Int",
+            "y": "Int"
+          },
+          "constraints": [
+            "x + y == 124",
+            "(x == 3*y) or (y == 3*x)"
+          ],
+          "targets": [
+            "x",
+            "y"
+          ]
+        },
+        "initial_status": "AMBIGUOUS",
+        "repaired_spec": {
+          "status": "SUPPORTED",
+          "variables": {
+            "x": "Int",
+            "y": "Int"
+          },
+          "constraints": [
+            "x + y == 124",
+            "(x == 3*y) or (y == 3*x)"
+          ],
+          "targets": [
+            "x",
+            "y"
+          ]
+        },
+        "repair_trace": [
+          {
+            "attempt": 1,
+            "raw": "{\"decision\":\"abstain\",\"source_span\":\"\",\"constraint\":\"\"}",
+            "proposal": {
+              "decision": "abstain",
+              "source_span": "",
+              "constraint": ""
+            },
+            "result": "ABSTAIN"
+          }
+        ],
+        "status": "NO_ADMISSIBLE_REPAIR_FOUND",
+        "targets": [
+          "x",
+          "y"
+        ]
+      }
+    },
+    {
+      "id": "alg514/6072",
+      "problem": "Suppose you invest 1,500 dollars in equipment to put pictures on T-shirts . You buy each T-shirt for 3 dollars . After you have placed the pictures on a shirt , you sell it for 20 dollars . How many T-shirts must you sell to break even ?",
+      "assessment": "Integer shirts cannot satisfy exact break-even 17*n=1500. ModelSpec follows Int and reports inconsistency; Direct 89 is minimum integer non-loss. Gold uses continuous count 88.23529.",
+      "direct": {
+        "model": "nemotron-3-nano:30b",
+        "flow": "direct",
+        "id": "alg514/6072",
+        "protocol": "f63c2d28ac0b018bee85f067df2f5691b6da055ce5b0f49b2c4bcee111cf5297",
+        "temperature": 0,
+        "think": true,
+        "gold": [
+          88.23529
+        ],
+        "scoring": "alg514_compatible",
+        "answers": [
+          "89"
+        ],
+        "correct": false,
+        "raw": "{\"answers\":[\"89\"]}",
+        "output": {
+          "answers": [
+            "89"
+          ]
+        },
+        "status": "OK"
+      },
+      "modelspec_z3": {
+        "model": "nemotron-3-nano:30b",
+        "flow": "modelspec_z3",
+        "id": "alg514/6072",
+        "protocol": "f63c2d28ac0b018bee85f067df2f5691b6da055ce5b0f49b2c4bcee111cf5297",
+        "temperature": 0,
+        "think": true,
+        "gold": [
+          88.23529
+        ],
+        "scoring": "alg514_compatible",
+        "answers": [],
+        "correct": false,
+        "raw": "{\n  \"status\": \"SUPPORTED\",\n  \"variables\": {\n    \"num_shirts\": \"Int\"\n  },\n  \"constraints\": [\n    \"20*num_shirts == 1500 + 3*num_shirts\"\n  ],\n  \"targets\": [\n    \"num_shirts\"\n  ]\n}",
+        "output": {
+          "status": "SUPPORTED",
+          "variables": {
+            "num_shirts": "Int"
+          },
+          "constraints": [
+            "20*num_shirts == 1500 + 3*num_shirts"
+          ],
+          "targets": [
+            "num_shirts"
+          ]
+        },
+        "initial_status": "INCONSISTENT",
+        "status": "INCONSISTENT",
+        "targets": [
+          "num_shirts"
+        ]
+      }
+    },
+    {
+      "id": "alg514/6525",
+      "problem": "One unit of whole wheat flour has 13.6 grams of protein and 2.5 grams of fat . One unit of whole milk has 3.4 grams of protein and 3.7 grams of fat . To the nearest tenth , find the number of units of whole wheat flour and whole milk that must be mixed to make dough that has 75 grams of protein and 15 grams of fat .",
+      "assessment": "Direct follows requested one-decimal rounding 5.4,0.4; ModelSpec returns exact unrounded values favored by gold.",
+      "direct": {
+        "model": "nemotron-3-nano:30b",
+        "flow": "direct",
+        "id": "alg514/6525",
+        "protocol": "f63c2d28ac0b018bee85f067df2f5691b6da055ce5b0f49b2c4bcee111cf5297",
+        "temperature": 0,
+        "think": true,
+        "gold": [
+          5.416068866571019,
+          0.39454806312769
+        ],
+        "scoring": "alg514_compatible",
+        "answers": [
+          "5.4",
+          "0.4"
+        ],
+        "correct": false,
+        "raw": "{\"answers\":[\"5.4\",\"0.4\"]}",
+        "output": {
+          "answers": [
+            "5.4",
+            "0.4"
+          ]
+        },
+        "status": "OK"
+      },
+      "modelspec_z3": {
+        "model": "nemotron-3-nano:30b",
+        "flow": "modelspec_z3",
+        "id": "alg514/6525",
+        "protocol": "f63c2d28ac0b018bee85f067df2f5691b6da055ce5b0f49b2c4bcee111cf5297",
+        "temperature": 0,
+        "think": true,
+        "gold": [
+          5.416068866571019,
+          0.39454806312769
+        ],
+        "scoring": "alg514_compatible",
+        "answers": [
+          "3775/697",
+          "275/697"
+        ],
+        "correct": true,
+        "raw": "{\n  \"status\": \"SUPPORTED\",\n  \"variables\": {\n    \"wheat_flour_units\": \"Real\",\n    \"milk_units\": \"Real\"\n  },\n  \"constraints\": [\n    \"13.6*wheat_flour_units + 3.4*milk_units == 75\",\n    \"2.5*wheat_flour_units + 3.7*milk_units == 15\"\n  ],\n  \"targets\": [\n    \"wheat_flour_units\",\n    \"milk_units\"\n  ]\n}",
+        "output": {
+          "status": "SUPPORTED",
+          "variables": {
+            "wheat_flour_units": "Real",
+            "milk_units": "Real"
+          },
+          "constraints": [
+            "13.6*wheat_flour_units + 3.4*milk_units == 75",
+            "2.5*wheat_flour_units + 3.7*milk_units == 15"
+          ],
+          "targets": [
+            "wheat_flour_units",
+            "milk_units"
+          ]
+        },
+        "initial_status": "DETERMINATE",
+        "status": "DETERMINATE",
+        "targets": [
+          "wheat_flour_units",
+          "milk_units"
+        ]
+      }
+    },
+    {
+      "id": "alg514/6853",
+      "problem": "A direct flight on delta air lines from Atlanta to Paris is 4000 miles and takes approximately 8 hours going East and 10 hours going West . Although the plane averages the same airspeed , there is a headwind while traveling East , resulting in a different air speeds . What is the average air speed of the plane in miles per hour and the average wind speed ?",
+      "assessment": "Forgot distance/time bindings. Both repairs only bind distance and fail determinacy. Binding all source data gives wind=-50 because source headwind direction contradicts flight times; gold +50 reverses the direction.",
+      "direct": {
+        "model": "nemotron-3-nano:30b",
+        "flow": "direct",
+        "id": "alg514/6853",
+        "protocol": "f63c2d28ac0b018bee85f067df2f5691b6da055ce5b0f49b2c4bcee111cf5297",
+        "temperature": 0,
+        "think": true,
+        "gold": [
+          450.0,
+          50.0
+        ],
+        "scoring": "alg514_compatible",
+        "answers": [
+          "450",
+          "50"
+        ],
+        "correct": true,
+        "raw": "{\"answers\":[\"450\",\"50\"]}",
+        "output": {
+          "answers": [
+            "450",
+            "50"
+          ]
+        },
+        "status": "OK"
+      },
+      "modelspec_z3": {
+        "model": "nemotron-3-nano:30b",
+        "flow": "modelspec_z3",
+        "id": "alg514/6853",
+        "protocol": "f63c2d28ac0b018bee85f067df2f5691b6da055ce5b0f49b2c4bcee111cf5297",
+        "temperature": 0,
+        "think": true,
+        "gold": [
+          450.0,
+          50.0
+        ],
+        "scoring": "alg514_compatible",
+        "answers": [],
+        "correct": false,
+        "raw": "{\n  \"status\": \"SUPPORTED\",\n  \"variables\": {\n    \"plane_airspeed\": \"Real\",\n    \"wind_speed\": \"Real\",\n    \"distance\": \"Real\",\n    \"time_east\": \"Real\",\n    \"time_west\": \"Real\"\n  },\n  \"constraints\": [\n    \"plane_airspeed - wind_speed == distance / time_east\",\n    \"plane_airspeed + wind_speed == distance / time_west\"\n  ],\n  \"targets\": [\n    \"plane_airspeed\",\n    \"wind_speed\"\n  ]\n}",
+        "output": {
+          "status": "SUPPORTED",
+          "variables": {
+            "plane_airspeed": "Real",
+            "wind_speed": "Real",
+            "distance": "Real",
+            "time_east": "Real",
+            "time_west": "Real"
+          },
+          "constraints": [
+            "plane_airspeed - wind_speed == distance / time_east",
+            "plane_airspeed + wind_speed == distance / time_west"
+          ],
+          "targets": [
+            "plane_airspeed",
+            "wind_speed"
+          ]
+        },
+        "initial_status": "AMBIGUOUS",
+        "repaired_spec": {
+          "status": "SUPPORTED",
+          "variables": {
+            "plane_airspeed": "Real",
+            "wind_speed": "Real",
+            "distance": "Real",
+            "time_east": "Real",
+            "time_west": "Real"
+          },
+          "constraints": [
+            "plane_airspeed - wind_speed == distance / time_east",
+            "plane_airspeed + wind_speed == distance / time_west"
+          ],
+          "targets": [
+            "plane_airspeed",
+            "wind_speed"
+          ]
+        },
+        "repair_trace": [
+          {
+            "attempt": 1,
+            "raw": "{\n  \"decision\": \"add-constraint\",\n  \"source_span\": \"4000 miles\",\n  \"constraint\": \"distance == 4000\"\n}",
+            "proposal": {
+              "decision": "add-constraint",
+              "source_span": "4000 miles",
+              "constraint": "distance == 4000"
+            },
+            "result": "REJECTED",
+            "reason": "ValueError: Repair must restore determinacy; got AMBIGUOUS"
+          },
+          {
+            "attempt": 2,
+            "raw": "{\"decision\":\"add-constraint\",\"source_span\":\"4000 miles\",\"constraint\":\"distance == 4000\"}",
+            "proposal": {
+              "decision": "add-constraint",
+              "source_span": "4000 miles",
+              "constraint": "distance == 4000"
+            },
+            "result": "REJECTED",
+            "reason": "ValueError: Repair must restore determinacy; got AMBIGUOUS"
+          }
+        ],
+        "status": "NO_ADMISSIBLE_REPAIR_FOUND",
+        "targets": [
+          "plane_airspeed",
+          "wind_speed"
+        ]
+      }
+    }
+  ],
+  "original_results_unchanged": true,
+  "api_calls": 0
+}

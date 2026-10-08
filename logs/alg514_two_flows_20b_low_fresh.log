@@ -1,0 +1,5 @@
+Using 4 workers and 4 keys
+gpt-oss:20b modelspec_z3 alg514/7 DETERMINATE ['127'] True 
+gpt-oss:20b direct alg514/15 OK ['17', '4'] True 
+gpt-oss:20b modelspec_z3 alg514/17 DETERMINATE ['30', '10'] True 
+gpt-oss:20b direct alg514/20 OK ['241/76', '11'] False 

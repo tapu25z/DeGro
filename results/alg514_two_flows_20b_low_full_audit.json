@@ -1,0 +1,1446 @@
+{
+  "source": "results/alg514_two_flows_20b_low.jsonl",
+  "model": "gpt-oss:20b",
+  "protocols": [
+    "f72ad242ebc17b1edcdb146175d33f92f7161e7c8da4a9fd475b2d97c6ad7e45"
+  ],
+  "think": "low",
+  "inference_rerun": false,
+  "interpretation": "LLM -> ModelSpec -> Z3 baseline; no repair step. Existing run predates the current revised system prompt. Scoring is ALG514-compatible numeric subset matching, not ordered requested-answer evaluation.",
+  "comparisons": [
+    {
+      "scope": "all",
+      "n": 514,
+      "excluded_ids": [],
+      "direct": {
+        "correct": 500,
+        "accuracy": 97.27626459143968
+      },
+      "modelspec_z3": {
+        "correct": 477,
+        "accuracy": 92.80155642023347
+      }
+    },
+    {
+      "scope": "exclude_minmax_threshold",
+      "n": 502,
+      "excluded_ids": [
+        "alg514/657",
+        "alg514/1035",
+        "alg514/1119",
+        "alg514/2031",
+        "alg514/3285",
+        "alg514/3542",
+        "alg514/5298",
+        "alg514/5894",
+        "alg514/6348",
+        "alg514/6540",
+        "alg514/6759",
+        "alg514/6779"
+      ],
+      "direct": {
+        "correct": 489,
+        "accuracy": 97.41035856573706
+      },
+      "modelspec_z3": {
+        "correct": 475,
+        "accuracy": 94.62151394422311
+      }
+    },
+    {
+      "scope": "also_exclude_resource_limit",
+      "n": 498,
+      "excluded_ids": [
+        "alg514/15",
+        "alg514/657",
+        "alg514/1035",
+        "alg514/1119",
+        "alg514/2031",
+        "alg514/2120",
+        "alg514/3285",
+        "alg514/3542",
+        "alg514/5298",
+        "alg514/5894",
+        "alg514/6336",
+        "alg514/6348",
+        "alg514/6426",
+        "alg514/6540",
+        "alg514/6759",
+        "alg514/6779"
+      ],
+      "direct": {
+        "correct": 485,
+        "accuracy": 97.38955823293173
+      },
+      "modelspec_z3": {
+        "correct": 474,
+        "accuracy": 95.18072289156626
+      }
+    }
+  ],
+  "paired": {
+    "both_correct": 467,
+    "direct_only_correct": 33,
+    "z3_only_correct": 10,
+    "both_incorrect": 4
+  },
+  "failure_categories": {
+    "resource_limit": 3,
+    "syntax": 7,
+    "inconsistent": 5,
+    "minmax_threshold": 10,
+    "determinate_wrong": 5,
+    "unsupported": 2,
+    "missing_or_target": 5
+  },
+  "failures": [
+    {
+      "id": "alg514/15",
+      "category": "resource_limit",
+      "reason": "Giữ pages <= 21 và words <= 48000 theo giới hạn trong đề; gold giả định dùng hết cả hai. Chưa có điều kiện cố định nghiệm.",
+      "problem": "John is writing an article . The article is limited to 48,000 words . He decides to use two types of font . Large font is 1,800 words per page , small font is 2,400 words per page . He is allowed 21 pages for this article . How many pages are in small font ? How many pages are in large font ?",
+      "gold_equations": [
+        "small+large=21.0",
+        "(2400.0*small)+(1800.0*large)=48000.0"
+      ],
+      "gold_solutions": [
+        17.0,
+        4.0
+      ],
+      "modelspec": {
+        "status": "SUPPORTED",
+        "variables": {
+          "small": "Int",
+          "large": "Int"
+        },
+        "constraints": [
+          "small + large <= 21",
+          "2400 * small + 1800 * large <= 48000",
+          "small >= 0",
+          "large >= 0"
+        ],
+        "targets": [
+          "small",
+          "large"
+        ]
+      },
+      "z3_status": "AMBIGUOUS",
+      "z3_answers": [],
+      "error": null,
+      "direct_answers": [
+        "17",
+        "4"
+      ],
+      "direct_correct": true
+    },
+    {
+      "id": "alg514/155",
+      "category": "syntax",
+      "reason": "Dùng toán tử ngoài cú pháp Python được hỗ trợ. Chỉ sửa toán tử thì vẫn AMBIGUOUS do hoán đổi vai trò hai số.",
+      "problem": "A piece of rope 60 meters long is cut into two pieces so that the longest piece is twice as long as the shorter piece . How long are the two pieces ?",
+      "gold_equations": [
+        "2.0*shorter=longest",
+        "shorter+longest=60.0"
+      ],
+      "gold_solutions": [
+        20.0,
+        40.0
+      ],
+      "modelspec": {
+        "status": "SUPPORTED",
+        "variables": {
+          "x": "Real",
+          "y": "Real"
+        },
+        "constraints": [
+          "x + y == 60",
+          "(x >= y && x == 2*y) || (y >= x && y == 2*x)",
+          "x >= 0",
+          "y >= 0"
+        ],
+        "targets": [
+          "x",
+          "y"
+        ]
+      },
+      "z3_status": "ERROR",
+      "z3_answers": [],
+      "error": "SyntaxError: invalid syntax (<unknown>, line 1)",
+      "direct_answers": [
+        "20",
+        "40"
+      ],
+      "direct_correct": true
+    },
+    {
+      "id": "alg514/580",
+      "category": "inconsistent",
+      "reason": "Khai báo số phút là Int, nhưng 5 + 0.25*m == 12.02 đòi m = 28.08. Phải dùng Real cho thời gian.",
+      "problem": "For his long distance phone calls , John pays a 5 dollars monthly fee plus 25 cents per minute . Last month , John 's long distance bill was 12.02 dollars . For how many minutes was John billed ?",
+      "gold_equations": [
+        "5.0+((25.0*0.01)*minutes)=12.02"
+      ],
+      "gold_solutions": [
+        28.08
+      ],
+      "modelspec": {
+        "status": "SUPPORTED",
+        "variables": {
+          "m": "Int"
+        },
+        "constraints": [
+          "5 + 0.25 * m == 12.02",
+          "m >= 0"
+        ],
+        "targets": [
+          "m"
+        ]
+      },
+      "z3_status": "INCONSISTENT",
+      "z3_answers": [],
+      "error": null,
+      "direct_answers": [
+        "702/25"
+      ],
+      "direct_correct": true
+    },
+    {
+      "id": "alg514/657",
+      "category": "minmax_threshold",
+      "reason": "Giữ bất đẳng thức thời điểm mất liên lạc; cần tìm thời điểm đầu tiên, không phải giá trị duy nhất trên miền khả thi.",
+      "problem": "2 teams of scientists leave a university at the same time in special vans to search for tornadoes . the 1st team travel east at 20 miles per hour and the 2nd team travels west at 30 miles per hour . their radios have a range of 125 miles . How much time will pass before the scientists lose radio contact ?",
+      "gold_equations": [
+        "(20.0*hours)+(30.0*hours)=125.0"
+      ],
+      "gold_solutions": [
+        2.5
+      ],
+      "modelspec": {
+        "status": "SUPPORTED",
+        "variables": {
+          "t": "Real"
+        },
+        "constraints": [
+          "50 * t >= 125",
+          "t >= 0"
+        ],
+        "targets": [
+          "t"
+        ]
+      },
+      "z3_status": "AMBIGUOUS",
+      "z3_answers": [],
+      "error": null,
+      "direct_answers": [
+        "2.5"
+      ],
+      "direct_correct": true
+    },
+    {
+      "id": "alg514/1035",
+      "category": "minmax_threshold",
+      "reason": "Lương tối thiểu dẫn đến miền doanh số >= 5000; cần mục tiêu tối thiểu.",
+      "problem": "Jordan 's salary is 1250 dollars a month plus a 5 % commission on all of his sales . What must the amount of his sales be , in dollars , for him to earn at least 1500 dollars each month ?",
+      "gold_equations": [
+        "1250.0+(5*0.01*sales)=1500.0"
+      ],
+      "gold_solutions": [
+        5000.0
+      ],
+      "modelspec": {
+        "status": "SUPPORTED",
+        "variables": {
+          "s": "Real"
+        },
+        "constraints": [
+          "1250 + 0.05 * s >= 1500",
+          "s >= 0"
+        ],
+        "targets": [
+          "s"
+        ]
+      },
+      "z3_status": "AMBIGUOUS",
+      "z3_answers": [],
+      "error": null,
+      "direct_answers": [
+        "5000"
+      ],
+      "direct_correct": true
+    },
+    {
+      "id": "alg514/1089",
+      "category": "determinate_wrong",
+      "reason": "Dịch sai: cork + 2 == 2.10. Đúng là wine + cork == 2.10 và wine == cork + 2; cork = 0.05.",
+      "problem": "A bottle of wine with a cork cost 2.10 dollars . A bottle of wine without a cork costs 2.00 dollars more than the cork . What is the price of the cork ?",
+      "gold_equations": [
+        "wine+cork=2.1",
+        "wine=2.0+cork"
+      ],
+      "gold_solutions": [
+        0.05,
+        2.05
+      ],
+      "modelspec": {
+        "status": "SUPPORTED",
+        "variables": {
+          "x": "Real"
+        },
+        "constraints": [
+          "x + 2.00 == 2.10",
+          "x >= 0"
+        ],
+        "targets": [
+          "x"
+        ]
+      },
+      "z3_status": "DETERMINATE",
+      "z3_answers": [
+        "1/10"
+      ],
+      "error": null,
+      "direct_answers": [
+        "1/20"
+      ],
+      "direct_correct": true
+    },
+    {
+      "id": "alg514/1119",
+      "category": "minmax_threshold",
+      "reason": "Giới hạn ngân sách cho miles <= 200; cần tối đa hóa miles.",
+      "problem": "A car rents for 30 dollars per day plus 23 cents per mile . You are on a daily budget of 76 dollars . What mileage can you go and stay within your budget ?",
+      "gold_equations": [
+        "30.0+(23*0.01*miles)=76.0"
+      ],
+      "gold_solutions": [
+        200.0
+      ],
+      "modelspec": {
+        "status": "SUPPORTED",
+        "variables": {
+          "x": "Real"
+        },
+        "constraints": [
+          "30 + 0.23 * x <= 76",
+          "x >= 0"
+        ],
+        "targets": [
+          "x"
+        ]
+      },
+      "z3_status": "AMBIGUOUS",
+      "z3_answers": [],
+      "error": null,
+      "direct_answers": [
+        "200"
+      ],
+      "direct_correct": true
+    },
+    {
+      "id": "alg514/1532",
+      "category": "determinate_wrong",
+      "reason": "Dịch 36 less than twice theo 36 - 2*x; gold dùng 2*x - 36. Direct cũng trả 3; cần kiểm tra cách diễn đạt với gold.",
+      "problem": "The product of 10 and a number is the same as 36 less twice that same number . Find the number .",
+      "gold_equations": [
+        "10.0*number=(2.0*number)-36.0"
+      ],
+      "gold_solutions": [
+        -4.5
+      ],
+      "modelspec": {
+        "status": "SUPPORTED",
+        "variables": {
+          "x": "Real"
+        },
+        "constraints": [
+          "10 * x == 36 - 2 * x"
+        ],
+        "targets": [
+          "x"
+        ]
+      },
+      "z3_status": "DETERMINATE",
+      "z3_answers": [
+        "3"
+      ],
+      "error": null,
+      "direct_answers": [
+        "3"
+      ],
+      "direct_correct": false
+    },
+    {
+      "id": "alg514/2031",
+      "category": "minmax_threshold",
+      "reason": "Giới hạn ngân sách cho miles <= 250; cần tối đa hóa miles.",
+      "problem": "A car rents for 30 dollars per day plus 18 cents per mile . You are on a budget of 75 dollars . What mileage would allow you to stay within your budget ?",
+      "gold_equations": [
+        "30.0+(18*0.01*mile)=75.0"
+      ],
+      "gold_solutions": [
+        250.0
+      ],
+      "modelspec": {
+        "status": "SUPPORTED",
+        "variables": {
+          "x": "Real"
+        },
+        "constraints": [
+          "30 + 0.18 * x <= 75",
+          "x >= 0"
+        ],
+        "targets": [
+          "x"
+        ]
+      },
+      "z3_status": "AMBIGUOUS",
+      "z3_answers": [],
+      "error": null,
+      "direct_answers": [
+        "250"
+      ],
+      "direct_correct": true
+    },
+    {
+      "id": "alg514/2074",
+      "category": "inconsistent",
+      "reason": "Thêm cả x == 0.375*y + 4 và quan hệ đảo y == 0.375*x + 4. Đề chỉ cho một chiều.",
+      "problem": "Find two numbers whose sum is 147 and one is 4 greather than 0.375 of the other .",
+      "gold_equations": [
+        "second_number+first_number=147.0",
+        "first_number=(0.375*second_number)+4.0"
+      ],
+      "gold_solutions": [
+        43.0,
+        104.0
+      ],
+      "modelspec": {
+        "status": "SUPPORTED",
+        "variables": {
+          "x": "Real",
+          "y": "Real"
+        },
+        "constraints": [
+          "x + y == 147",
+          "x == 0.375 * y + 4",
+          "y == 0.375 * x + 4",
+          "x >= 0",
+          "y >= 0"
+        ],
+        "targets": [
+          "x",
+          "y"
+        ]
+      },
+      "z3_status": "INCONSISTENT",
+      "z3_answers": [],
+      "error": null,
+      "direct_answers": [
+        "43",
+        "104"
+      ],
+      "direct_correct": true
+    },
+    {
+      "id": "alg514/2075",
+      "category": "inconsistent",
+      "reason": "Các quan hệ cho x=6,y=4 nhưng thêm x<=y để ép thứ tự, làm hệ vô nghiệm. Cần đổi thứ tự targets theo vai trò.",
+      "problem": "The sum of 2 numbers is 10 . 3 times one of them is more than 4 times the second by 2 . Find the smaller number . Find the larger number .",
+      "gold_equations": [
+        "3.0*large=(4.0*small)+2.0",
+        "small+large=10.0"
+      ],
+      "gold_solutions": [
+        4.0,
+        6.0
+      ],
+      "modelspec": {
+        "status": "SUPPORTED",
+        "variables": {
+          "x": "Real",
+          "y": "Real"
+        },
+        "constraints": [
+          "x + y == 10",
+          "3 * x == 4 * y + 2",
+          "x >= 0",
+          "y >= 0",
+          "x <= y"
+        ],
+        "targets": [
+          "x",
+          "y"
+        ]
+      },
+      "z3_status": "INCONSISTENT",
+      "z3_answers": [],
+      "error": null,
+      "direct_answers": [
+        "4",
+        "6"
+      ],
+      "direct_correct": true
+    },
+    {
+      "id": "alg514/2120",
+      "category": "resource_limit",
+      "reason": "Mô hình giữ hours <= 5800 và cost <= 12600 theo nguồn; gold dùng hai đẳng thức tiêu hết tài nguyên.",
+      "problem": "A manufacturer produces two models of the same toy , Model A and Model B. Model A takes 4 hours to produce and costs 8 dollars each . Model B takes 3 hours to produce and costs 7 dollars each . If the manufacturer allots a total of 5800 hours and 12,600 dollars for production each week , how many of each model will be produced ?",
+      "gold_equations": [
+        "(4.0*model_a)+(3.0*model_b)=5800.0",
+        "(8.0*model_a)+(7.0*model_b)=12600.0"
+      ],
+      "gold_solutions": [
+        700.0,
+        1000.0
+      ],
+      "modelspec": {
+        "status": "SUPPORTED",
+        "variables": {
+          "x": "Int",
+          "y": "Int"
+        },
+        "constraints": [
+          "4 * x + 3 * y <= 5800",
+          "8 * x + 7 * y <= 12600",
+          "x >= 0",
+          "y >= 0"
+        ],
+        "targets": [
+          "x",
+          "y"
+        ]
+      },
+      "z3_status": "AMBIGUOUS",
+      "z3_answers": [],
+      "error": null,
+      "direct_answers": [
+        "700",
+        "1000"
+      ],
+      "direct_correct": true
+    },
+    {
+      "id": "alg514/2196",
+      "category": "determinate_wrong",
+      "reason": "Đề hỏi miles/hour, ModelSpec đổi từ km/hour ra mph; gold vẫn 50,80 km/hour. Direct cũng đổi đơn vị nên cả hai bị chấm sai.",
+      "problem": "A freight train and an express train leave towns 390 kilometers apart , traveling toward one another . The freight train travels 30 kilometers per hour slower than the express train . They pass one another 3 hours later . How fast is the freight train , in miles per hour ? How fast is the express train ?",
+      "gold_equations": [
+        "(3.0*freight)+(3.0*express)=390.0",
+        "freight=express-30.0"
+      ],
+      "gold_solutions": [
+        50.0,
+        80.0
+      ],
+      "modelspec": {
+        "status": "SUPPORTED",
+        "variables": {
+          "f": "Real",
+          "e": "Real",
+          "f_mph": "Real",
+          "e_mph": "Real"
+        },
+        "constraints": [
+          "f * 3 + e * 3 == 390",
+          "e == f + 30",
+          "f_mph == f * 0.621371",
+          "e_mph == e * 0.621371",
+          "f >= 0",
+          "e >= 0"
+        ],
+        "targets": [
+          "f_mph",
+          "e_mph"
+        ]
+      },
+      "z3_status": "DETERMINATE",
+      "z3_answers": [
+        "621371/20000",
+        "621371/12500"
+      ],
+      "error": null,
+      "direct_answers": [
+        "31.06855",
+        "49.70968"
+      ],
+      "direct_correct": false
+    },
+    {
+      "id": "alg514/2247",
+      "category": "determinate_wrong",
+      "reason": "Dịch tổng 30 nickels and dimes thành n == 30; đúng là n+d == 30, n=12.",
+      "problem": "Sam has 30 nickels and dimes worth 2.40 dollars . How many nickels does he have ?",
+      "gold_equations": [
+        "(0.05*nickels)+(0.1*dimes)=2.4",
+        "nickels+dimes=30.0"
+      ],
+      "gold_solutions": [
+        12.0,
+        18.0
+      ],
+      "modelspec": {
+        "status": "SUPPORTED",
+        "variables": {
+          "n": "Int",
+          "d": "Int"
+        },
+        "constraints": [
+          "n == 30",
+          "5 * n + 10 * d == 240",
+          "n >= 0",
+          "d >= 0"
+        ],
+        "targets": [
+          "n"
+        ]
+      },
+      "z3_status": "DETERMINATE",
+      "z3_answers": [
+        "30"
+      ],
+      "error": null,
+      "direct_answers": [
+        "12"
+      ],
+      "direct_correct": true
+    },
+    {
+      "id": "alg514/2559",
+      "category": "unsupported",
+      "reason": "Nguồn đưa dữ kiện House nhưng hỏi Senate; model từ chối, gold giải House. Có bất nhất nguồn/gold.",
+      "problem": "The total number of Democrats and Republicans in the House of Representatives was 434 . There were 30 more Republicans then Democrats . How many Democrats and Republicans were there in the Senate ?",
+      "gold_equations": [
+        "democrats+republicans=434.0",
+        "democrats=republicans-30.0"
+      ],
+      "gold_solutions": [
+        202.0,
+        232.0
+      ],
+      "modelspec": {
+        "status": "NOT_SUPPORTED",
+        "variables": {},
+        "constraints": [],
+        "targets": []
+      },
+      "z3_status": "NOT_SUPPORTED",
+      "z3_answers": [],
+      "error": null,
+      "direct_answers": [
+        "202",
+        "232"
+      ],
+      "direct_correct": true
+    },
+    {
+      "id": "alg514/3285",
+      "category": "minmax_threshold",
+      "reason": "Giới hạn ngân sách và hỏi số bạn tối đa; mô hình giữ bất đẳng thức nên target không duy nhất.",
+      "problem": "Mitch is buying candy bars for his friends . He wants to give 2 bars to each friend , and he wants to have 10 spare bars . He can afford to buy 24 candy bars . How many friends can he treat ?",
+      "gold_equations": [
+        "(2.0*friends)+10.0=24.0"
+      ],
+      "gold_solutions": [
+        7.0
+      ],
+      "modelspec": {
+        "status": "SUPPORTED",
+        "variables": {
+          "f": "Int",
+          "b": "Int"
+        },
+        "constraints": [
+          "2 * f + 10 == b",
+          "b <= 24",
+          "b >= 0",
+          "f >= 0"
+        ],
+        "targets": [
+          "f"
+        ]
+      },
+      "z3_status": "AMBIGUOUS",
+      "z3_answers": [],
+      "error": null,
+      "direct_answers": [
+        "7"
+      ],
+      "direct_correct": true
+    },
+    {
+      "id": "alg514/3790",
+      "category": "syntax",
+      "reason": "Dùng toán tử sai cú pháp. Chuẩn hóa riêng toán tử trong bản sao cho DETERMINATE [16,50], khớp gold.",
+      "problem": "Separate 66 into 2 parts so that 0.40 of one part exceeds 0.625 of the other part by 10 . What is the smaller part ? What is the larger part ?",
+      "gold_equations": [
+        "0.4*larger=(0.625*smaller)+10.0",
+        "smaller+larger=66.0"
+      ],
+      "gold_solutions": [
+        16.0,
+        50.0
+      ],
+      "modelspec": {
+        "status": "SUPPORTED",
+        "variables": {
+          "x": "Real",
+          "y": "Real"
+        },
+        "constraints": [
+          "x + y == 66",
+          "(0.4 * x == 0.625 * y + 10) || (0.4 * y == 0.625 * x + 10)",
+          "x >= 0",
+          "y >= 0",
+          "x <= y"
+        ],
+        "targets": [
+          "x",
+          "y"
+        ]
+      },
+      "z3_status": "ERROR",
+      "z3_answers": [],
+      "error": "SyntaxError: invalid syntax (<unknown>, line 1)",
+      "direct_answers": [
+        "16",
+        "50"
+      ],
+      "direct_correct": true
+    },
+    {
+      "id": "alg514/4035",
+      "category": "missing_or_target",
+      "reason": "Bỏ tổng số bộ chén x+y == 250, chỉ giữ tổng tiền. Thêm quan hệ có sẵn trong nguồn sẽ cố định nghiệm.",
+      "problem": "You had 6,800.00 dollars to spend and purchased 250 sets of dishes . If you spent everything , how many 20.00 dollars sets did you purchase ? How many 45.00 dollars sets did you purchase ?",
+      "gold_equations": [
+        "(20.0*twenty)+(45.0*forty_five)=6800.0",
+        "twenty+forty_five=250.0"
+      ],
+      "gold_solutions": [
+        178.0,
+        72.0
+      ],
+      "modelspec": {
+        "status": "SUPPORTED",
+        "variables": {
+          "x": "Int",
+          "y": "Int"
+        },
+        "constraints": [
+          "20 * x + 45 * y == 6800",
+          "x >= 0",
+          "y >= 0"
+        ],
+        "targets": [
+          "x",
+          "y"
+        ]
+      },
+      "z3_status": "AMBIGUOUS",
+      "z3_answers": [],
+      "error": null,
+      "direct_answers": [
+        "178",
+        "72"
+      ],
+      "direct_correct": true
+    },
+    {
+      "id": "alg514/5298",
+      "category": "minmax_threshold",
+      "reason": "Hỏi ngưỡng agency rẻ hơn; bất đẳng thức m>25 có nhiều nghiệm. Gold 25 là ranh giới hòa vốn.",
+      "problem": "The first agency charges 20.25 dollars per day and 0.14 dollars per mile . The second agency charges 18.25 dollars per day and 0.22 dollars per mile . How many miles would you have to drive before the first agency is less expensive than the second ?",
+      "gold_equations": [
+        "20.25+(0.14*miles)=18.25+(0.22*miles)"
+      ],
+      "gold_solutions": [
+        25.0
+      ],
+      "modelspec": {
+        "status": "SUPPORTED",
+        "variables": {
+          "m": "Real"
+        },
+        "constraints": [
+          "20.25 + 0.14 * m < 18.25 + 0.22 * m",
+          "m >= 0"
+        ],
+        "targets": [
+          "m"
+        ]
+      },
+      "z3_status": "AMBIGUOUS",
+      "z3_answers": [],
+      "error": null,
+      "direct_answers": [
+        "25"
+      ],
+      "direct_correct": true
+    },
+    {
+      "id": "alg514/5652",
+      "category": "missing_or_target",
+      "reason": "Thêm biến thuế chưa biết vào số tiền được nêu trước thuế, khiến mô hình thừa bậc tự do; cần dịch đúng subtotal plus tax.",
+      "problem": "You and a friend go to a Mexican restaurant . You order 2 tacos and 3 enchiladas , and your friend orders 3 tacos and 5 enchiladas . Your bill is 7.80 dollars plus tax , and your friend 's bill is 12.70 dollars plus tax . How much , in dollars , does each taco cost ? How much does each enchilada cost ?",
+      "gold_equations": [
+        "(2.0*tacos_cost)+(3.0*enhiladas_cost)=7.8",
+        "(3.0*tacos_cost)+(5.0*enhiladas_cost)=12.7"
+      ],
+      "gold_solutions": [
+        0.9,
+        2.0
+      ],
+      "modelspec": {
+        "status": "SUPPORTED",
+        "variables": {
+          "t": "Real",
+          "e": "Real",
+          "x": "Real"
+        },
+        "constraints": [
+          "2*t + 3*e + x == 7.80",
+          "3*t + 5*e + x == 12.70",
+          "t >= 0",
+          "e >= 0"
+        ],
+        "targets": [
+          "t",
+          "e"
+        ]
+      },
+      "z3_status": "AMBIGUOUS",
+      "z3_answers": [],
+      "error": null,
+      "direct_answers": [
+        "0.90",
+        "2.00"
+      ],
+      "direct_correct": true
+    },
+    {
+      "id": "alg514/5783",
+      "category": "syntax",
+      "reason": "Sai cú pháp toán tử; chỉ sửa toán tử vẫn INCONSISTENT vì ghép nhầm vai trò số nhỏ/số lớn.",
+      "problem": "The sum of 2 numbers is 15 . 3 times one of the numbers is 11 less than 5 times the other . What is the smaller number ? What is the larger number ?",
+      "gold_equations": [
+        "3.0*number_one=(5.0*number_two)-11.0",
+        "number_one+number_two=15.0"
+      ],
+      "gold_solutions": [
+        7.0,
+        8.0
+      ],
+      "modelspec": {
+        "status": "SUPPORTED",
+        "variables": {
+          "s": "Real",
+          "l": "Real"
+        },
+        "constraints": [
+          "s + l == 15",
+          "(s <= l && 3*s == 5*l - 11) || (l <= s && 3*l == 5*s - 11)",
+          "s >= 0",
+          "l >= 0"
+        ],
+        "targets": [
+          "s",
+          "l"
+        ]
+      },
+      "z3_status": "ERROR",
+      "z3_answers": [],
+      "error": "SyntaxError: invalid syntax (<unknown>, line 1)",
+      "direct_answers": [
+        "7",
+        "8"
+      ],
+      "direct_correct": true
+    },
+    {
+      "id": "alg514/5894",
+      "category": "minmax_threshold",
+      "reason": "Hỏi hai số chẵn liên tiếp lớn nhất, nhưng chỉ giữ miền sum<=30; cần mục tiêu tối ưu và mã hóa tính chẵn.",
+      "problem": "The sum of two consecutive even integers is at most 30 . What are the greatest possible consecutive even integers ?",
+      "gold_equations": [
+        "number_1+number_2=30.0",
+        "number_2-number_1=2.0"
+      ],
+      "gold_solutions": [
+        14.0,
+        16.0
+      ],
+      "modelspec": {
+        "status": "SUPPORTED",
+        "variables": {
+          "x": "Int",
+          "y": "Int"
+        },
+        "constraints": [
+          "y == x + 2",
+          "x + y <= 30",
+          "x >= 0",
+          "y >= 0"
+        ],
+        "targets": [
+          "x",
+          "y"
+        ]
+      },
+      "z3_status": "AMBIGUOUS",
+      "z3_answers": [],
+      "error": null,
+      "direct_answers": [
+        "14",
+        "16"
+      ],
+      "direct_correct": true
+    },
+    {
+      "id": "alg514/6008",
+      "category": "missing_or_target",
+      "reason": "Mã hóa x=3*y OR y=3*x với targets [x,y], tạo hai tuple hoán đổi. Nên đặt vai trò smaller/larger khi đề chỉ yêu cầu hai số vô danh.",
+      "problem": "1 out of 2 numbers is thrice the other . If their sum is 124 , find the numbers .",
+      "gold_equations": [
+        "number_one+number_two=124.0",
+        "number_one=3.0*number_two"
+      ],
+      "gold_solutions": [
+        31.0,
+        93.0
+      ],
+      "modelspec": {
+        "status": "SUPPORTED",
+        "variables": {
+          "x": "Real",
+          "y": "Real"
+        },
+        "constraints": [
+          "x + y == 124",
+          "(x == 3*y) or (y == 3*x)"
+        ],
+        "targets": [
+          "x",
+          "y"
+        ]
+      },
+      "z3_status": "AMBIGUOUS",
+      "z3_answers": [],
+      "error": null,
+      "direct_answers": [
+        "31",
+        "93"
+      ],
+      "direct_correct": true
+    },
+    {
+      "id": "alg514/6072",
+      "category": "inconsistent",
+      "reason": "Số áo Int nhưng phương trình hòa vốn 20*n == 1500+3*n cho n=88.23529. Gold dùng nghiệm liên tục; nếu cần số áo tối thiểu không lỗ thì là 89. Cần thống nhất miền và mục tiêu.",
+      "problem": "Suppose you invest 1,500 dollars in equipment to put pictures on T-shirts . You buy each T-shirt for 3 dollars . After you have placed the pictures on a shirt , you sell it for 20 dollars . How many T-shirts must you sell to break even ?",
+      "gold_equations": [
+        "1500.0+(3.0*shirts)=20.0*shirts"
+      ],
+      "gold_solutions": [
+        88.23529
+      ],
+      "modelspec": {
+        "status": "SUPPORTED",
+        "variables": {
+          "n": "Int"
+        },
+        "constraints": [
+          "20 * n == 1500 + 3 * n",
+          "n >= 0"
+        ],
+        "targets": [
+          "n"
+        ]
+      },
+      "z3_status": "INCONSISTENT",
+      "z3_answers": [],
+      "error": null,
+      "direct_answers": [
+        "1500/17"
+      ],
+      "direct_correct": true
+    },
+    {
+      "id": "alg514/6106",
+      "category": "unsupported",
+      "reason": "Từ chối quá mức: một lô vật liệu giá 20 đủ tới 20 nến; 15*n-20 == 85 cho n=7 nằm trong lô, có thể hỗ trợ.",
+      "problem": "You make candles and sell them for 15 dollars each . The material to make up to 20 candles costs 20 dollars . How many candles must you sell to have a profit of 85 dollars ?",
+      "gold_equations": [
+        "85.0=(15.0*number_of_candles)-20.0"
+      ],
+      "gold_solutions": [
+        7.0
+      ],
+      "modelspec": {
+        "status": "NOT_SUPPORTED",
+        "variables": {},
+        "constraints": [],
+        "targets": []
+      },
+      "z3_status": "NOT_SUPPORTED",
+      "z3_answers": [],
+      "error": null,
+      "direct_answers": [
+        "7"
+      ],
+      "direct_correct": true
+    },
+    {
+      "id": "alg514/6208",
+      "category": "syntax",
+      "reason": "Sai cú pháp toán tử; chỉ sửa toán tử vẫn AMBIGUOUS do vai trò hai số hoán đổi.",
+      "problem": "The carpenter saws a board that is 22 feet long into two pieces . One piece is to be 1 foot longer than twice the length of the shorter piece . Find the Length of each piece .",
+      "gold_equations": [
+        "piece_1+piece_2=22.0",
+        "piece_1=(2.0*piece_2)+1.0"
+      ],
+      "gold_solutions": [
+        7.0,
+        15.0
+      ],
+      "modelspec": {
+        "status": "SUPPORTED",
+        "variables": {
+          "x": "Real",
+          "y": "Real"
+        },
+        "constraints": [
+          "x + y == 22",
+          "(x >= y && x == 2*y + 1) || (y > x && y == 2*x + 1)",
+          "x >= 0",
+          "y >= 0"
+        ],
+        "targets": [
+          "x",
+          "y"
+        ]
+      },
+      "z3_status": "ERROR",
+      "z3_answers": [],
+      "error": "SyntaxError: invalid syntax (<unknown>, line 1)",
+      "direct_answers": [
+        "7",
+        "15"
+      ],
+      "direct_correct": true
+    },
+    {
+      "id": "alg514/6334",
+      "category": "missing_or_target",
+      "reason": "Bỏ tổng số lần ném x+y == 20; chỉ giữ 2*x+3*y == 43.",
+      "problem": "The Lakers scored 43 points on a combination of 20 two point baskets and three point baskets . How many shots of two point baskets and how many shots of three point baskets were made ?",
+      "gold_equations": [
+        "(2.0*two_point_baskets)+(3.0*three_point_baskets)=43.0",
+        "two_point_baskets+three_point_baskets=20.0"
+      ],
+      "gold_solutions": [
+        17.0,
+        3.0
+      ],
+      "modelspec": {
+        "status": "SUPPORTED",
+        "variables": {
+          "x": "Int",
+          "y": "Int"
+        },
+        "constraints": [
+          "2 * x + 3 * y == 43",
+          "x >= 0",
+          "y >= 0"
+        ],
+        "targets": [
+          "x",
+          "y"
+        ]
+      },
+      "z3_status": "AMBIGUOUS",
+      "z3_answers": [],
+      "error": null,
+      "direct_answers": [
+        "17",
+        "3"
+      ],
+      "direct_correct": true
+    },
+    {
+      "id": "alg514/6336",
+      "category": "resource_limit",
+      "reason": "Giữ giới hạn ngân sách <=165200; gold giả định tiêu hết ngân sách, trong khi tổng diện tích đã cố định.",
+      "problem": "The Willey Farm Collective , farmed by several branches of the Willeys , has 4500 acres of land available for raising corn and wheat . The cost of raising corn is 42 dollars an acre , while the cost of wheat is 35 dollars an acre . The Collective 's available capital is 165,200 dollars . How many acres of corn should the Collective plant ? How many acres of wheat should the collective plant ?",
+      "gold_equations": [
+        "(42.0*corn)+(35.0*soybeans)=165200.0",
+        "corn+soybeans=4500.0"
+      ],
+      "gold_solutions": [
+        1100.0,
+        3400.0
+      ],
+      "modelspec": {
+        "status": "SUPPORTED",
+        "variables": {
+          "corn": "Real",
+          "wheat": "Real"
+        },
+        "constraints": [
+          "corn + wheat == 4500",
+          "42 * corn + 35 * wheat <= 165200",
+          "corn >= 0",
+          "wheat >= 0"
+        ],
+        "targets": [
+          "corn",
+          "wheat"
+        ]
+      },
+      "z3_status": "AMBIGUOUS",
+      "z3_answers": [],
+      "error": null,
+      "direct_answers": [
+        "1100",
+        "3400"
+      ],
+      "direct_correct": true
+    },
+    {
+      "id": "alg514/6348",
+      "category": "minmax_threshold",
+      "reason": "Hỏi quãng đường tối đa dưới ngân sách; miền m<=190 không có một target duy nhất.",
+      "problem": "A car rents for 50 dollars a day plus 20 cents a mile . You are on a daily budget of 88 dollars . What maximum mileage will allow you to stay within your budget ?",
+      "gold_equations": [
+        "50.0+((20.0*0.01)*miles)=88.0"
+      ],
+      "gold_solutions": [
+        190.0
+      ],
+      "modelspec": {
+        "status": "SUPPORTED",
+        "variables": {
+          "x": "Real"
+        },
+        "constraints": [
+          "50 + 0.2 * x <= 88",
+          "x >= 0"
+        ],
+        "targets": [
+          "x"
+        ]
+      },
+      "z3_status": "AMBIGUOUS",
+      "z3_answers": [],
+      "error": null,
+      "direct_answers": [
+        "190"
+      ],
+      "direct_correct": true
+    },
+    {
+      "id": "alg514/6376",
+      "category": "syntax",
+      "reason": "Sai cú pháp toán tử; chỉ sửa toán tử vẫn AMBIGUOUS do hoán đổi vai trò hai số.",
+      "problem": "The larger of two numbers is 23 less than twice the smaller . The sum of the two numbers is 70 . Find the two numbers .",
+      "gold_equations": [
+        "(2.0*smaller)-23.0=larger",
+        "smaller+larger=70.0"
+      ],
+      "gold_solutions": [
+        31.0,
+        39.0
+      ],
+      "modelspec": {
+        "status": "SUPPORTED",
+        "variables": {
+          "x": "Real",
+          "y": "Real"
+        },
+        "constraints": [
+          "(x >= y) -> (x == 2*y - 23)",
+          "(y >= x) -> (y == 2*x - 23)",
+          "x + y == 70"
+        ],
+        "targets": [
+          "x",
+          "y"
+        ]
+      },
+      "z3_status": "ERROR",
+      "z3_answers": [],
+      "error": "SyntaxError: invalid syntax (<unknown>, line 1)",
+      "direct_answers": [
+        "31",
+        "39"
+      ],
+      "direct_correct": true
+    },
+    {
+      "id": "alg514/6759",
+      "category": "minmax_threshold",
+      "reason": "Hỏi số lần tối thiểu để mua giày hợp lý; n>=26 cần tìm min. Direct cũng sai (9).",
+      "problem": "An ice skating rink charges 5 dollars for admission and 2.50 dollars to rent skates . Jill can purchase a new pair of skates for 65 dollars . How many times would she need to go the rink to justify buying the skates rather than renting a pair ?",
+      "gold_equations": [
+        "65.0/2.5=times_at_rink"
+      ],
+      "gold_solutions": [
+        26.0
+      ],
+      "modelspec": {
+        "status": "SUPPORTED",
+        "variables": {
+          "n": "Int"
+        },
+        "constraints": [
+          "n >= 0",
+          "65 + 5 * n <= 7.5 * n"
+        ],
+        "targets": [
+          "n"
+        ]
+      },
+      "z3_status": "AMBIGUOUS",
+      "z3_answers": [],
+      "error": null,
+      "direct_answers": [
+        "9"
+      ],
+      "direct_correct": false
+    },
+    {
+      "id": "alg514/6779",
+      "category": "minmax_threshold",
+      "reason": "Mục tiêu thu nhập tạo sales>=7750; cần giá trị tối thiểu hoặc khoảng, không phải tất cả nghiệm cùng một giá trị.",
+      "problem": "Trenton sells electronic supplies . Each week he earns 190 dollars plus commission equal to 4 % of his sales . This week his goal is to earn no less than 500 dollars . Write and solve an inequality to find the amount of sales he must make to reach his goal .",
+      "gold_equations": [
+        "190.0+((4.0*0.01)*sales)=500.0"
+      ],
+      "gold_solutions": [
+        7750.0
+      ],
+      "modelspec": {
+        "status": "SUPPORTED",
+        "variables": {
+          "x": "Real"
+        },
+        "constraints": [
+          "190 + 0.04 * x >= 500"
+        ],
+        "targets": [
+          "x"
+        ]
+      },
+      "z3_status": "AMBIGUOUS",
+      "z3_answers": [],
+      "error": null,
+      "direct_answers": [
+        "7750"
+      ],
+      "direct_correct": true
+    },
+    {
+      "id": "alg514/6803",
+      "category": "syntax",
+      "reason": "Dùng & và | trong biểu thức không được compiler hỗ trợ; chuẩn hóa toán tử vẫn AMBIGUOUS do hoán đổi vai trò.",
+      "problem": "The greater of two numbers is 8 times the lesser and their sum is 180 . Find the numbers .",
+      "gold_equations": [
+        "greater_number+lesser_number=180.0",
+        "greater_number=8.0*lesser_number"
+      ],
+      "gold_solutions": [
+        20.0,
+        160.0
+      ],
+      "modelspec": {
+        "status": "SUPPORTED",
+        "variables": {
+          "x": "Real",
+          "y": "Real"
+        },
+        "constraints": [
+          "x + y == 180",
+          "(x >= y & x == 8 * y) | (y >= x & y == 8 * x)",
+          "x >= 0",
+          "y >= 0"
+        ],
+        "targets": [
+          "x",
+          "y"
+        ]
+      },
+      "z3_status": "ERROR",
+      "z3_answers": [],
+      "error": "ValueError: Unsupported expression: (x >= y & x == 8 * y) | (y >= x & y == 8 * x)",
+      "direct_answers": [
+        "20",
+        "160"
+      ],
+      "direct_correct": true
+    },
+    {
+      "id": "alg514/6831",
+      "category": "determinate_wrong",
+      "reason": "Bỏ half trong vận tốc gió ngược: dùng b-w=30 thay b-0.5*w=30. Gold w=80,b=70; Direct cũng bỏ half.",
+      "problem": "Flying with the wind , a bird was able to make 150 kilometers per hour . If the wind was 0.5 times as strong and the bird flies against it , it could make only 30 kilometers per hour . Find the velocity of the wind in kilometers per hour . Find the velocity of the bird .",
+      "gold_equations": [
+        "bird+wind=150.0",
+        "bird-(0.5*wind)=30.0"
+      ],
+      "gold_solutions": [
+        80.0,
+        70.0
+      ],
+      "modelspec": {
+        "status": "SUPPORTED",
+        "variables": {
+          "w": "Real",
+          "b": "Real"
+        },
+        "constraints": [
+          "b + w == 150",
+          "b - w == 30",
+          "b >= 0",
+          "w >= 0"
+        ],
+        "targets": [
+          "w",
+          "b"
+        ]
+      },
+      "z3_status": "DETERMINATE",
+      "z3_answers": [
+        "60",
+        "90"
+      ],
+      "error": null,
+      "direct_answers": [
+        "60",
+        "90"
+      ],
+      "direct_correct": false
+    },
+    {
+      "id": "alg514/6853",
+      "category": "inconsistent",
+      "reason": "Nguồn nói headwind khi đi East nhưng thời gian East ngắn hơn West. Dịch sát headwind cho w<0, xung đột w>=0; gold đảo dấu để ra 450,50.",
+      "problem": "A direct flight on delta air lines from Atlanta to Paris is 4000 miles and takes approximately 8 hours going East and 10 hours going West . Although the plane averages the same airspeed , there is a headwind while traveling East , resulting in a different air speeds . What is the average air speed of the plane in miles per hour and the average wind speed ?",
+      "gold_equations": [
+        "(plane+wind)*8.0=4000.0",
+        "(plane-wind)*10.0=4000.0"
+      ],
+      "gold_solutions": [
+        450.0,
+        50.0
+      ],
+      "modelspec": {
+        "status": "SUPPORTED",
+        "variables": {
+          "a": "Real",
+          "w": "Real"
+        },
+        "constraints": [
+          "(a - w) * 8 == 4000",
+          "(a + w) * 10 == 4000",
+          "a >= 0",
+          "w >= 0"
+        ],
+        "targets": [
+          "a",
+          "w"
+        ]
+      },
+      "z3_status": "INCONSISTENT",
+      "z3_answers": [],
+      "error": null,
+      "direct_answers": [
+        "450/1",
+        "50/1"
+      ],
+      "direct_correct": true
+    },
+    {
+      "id": "alg514/6878",
+      "category": "syntax",
+      "reason": "Dùng & và | ngoài compiler; sửa toán tử vẫn AMBIGUOUS do hoán đổi vai trò.",
+      "problem": "The sum of two numbers is 62 . The greater number exceeds twice the smaller number by 5 . What are the two numbers ?",
+      "gold_equations": [
+        "smaller+larger=62.0",
+        "larger=(2.0*smaller)+5.0"
+      ],
+      "gold_solutions": [
+        19.0,
+        43.0
+      ],
+      "modelspec": {
+        "status": "SUPPORTED",
+        "variables": {
+          "x": "Real",
+          "y": "Real"
+        },
+        "constraints": [
+          "x + y == 62",
+          "(x >= y & x == 2 * y + 5) | (y >= x & y == 2 * x + 5)"
+        ],
+        "targets": [
+          "x",
+          "y"
+        ]
+      },
+      "z3_status": "ERROR",
+      "z3_answers": [],
+      "error": "ValueError: Unsupported expression: (x >= y & x == 2 * y + 5) | (y >= x & y == 2 * x + 5)",
+      "direct_answers": [
+        "43",
+        "19"
+      ],
+      "direct_correct": true
+    },
+    {
+      "id": "alg514/6958",
+      "category": "missing_or_target",
+      "reason": "Bỏ tổng số xe cars+trucks == 32; chỉ giữ 4*cars+6*trucks == 148.",
+      "problem": "During a 4th of July weekend , 32 vehicles became trapped on the Sunshine Skyway Bridge while it was being repaved . A recent city ordinance decreed that only cars with 4 wheels and trucks with six wheels could be on the bridge at any given time . If there were 148 tires that needed to be replaced to due to damage , how many cars and trucks were involved in the incident ?",
+      "gold_equations": [
+        "(4.0*cars)+(6.0*trucks)=148.0",
+        "cars+trucks=32.0"
+      ],
+      "gold_solutions": [
+        22.0,
+        10.0
+      ],
+      "modelspec": {
+        "status": "SUPPORTED",
+        "variables": {
+          "x": "Int",
+          "y": "Int"
+        },
+        "constraints": [
+          "4 * x + 6 * y == 148",
+          "x >= 0",
+          "y >= 0"
+        ],
+        "targets": [
+          "x",
+          "y"
+        ]
+      },
+      "z3_status": "AMBIGUOUS",
+      "z3_answers": [],
+      "error": null,
+      "direct_answers": [
+        "22",
+        "10"
+      ],
+      "direct_correct": true
+    }
+  ],
+  "notes": [
+    "Post-hoc scope filters are descriptive, selected from problem meaning and applied identically to both flows, including correctly answered excluded cases.",
+    "No observed solver arithmetic failure in this audit. Solver results refer to encoded constraints, not semantic faithfulness.",
+    "All 7 ModelSpec ERROR records are syntax/compiler failures, not API timeouts.",
+    "Offline operator-only normalization fixes final answer credit for 1 of 7 syntax cases; 5 remain ambiguous and 1 inconsistent.",
+    "Direct failures include 4 two-answer strings wrongly joined by slash (920,1309,3246,5281).",
+    "Gold mismatches include units (2196), conflicting direction (6853), House vs Senate (2559), and continuous count at break-even (6072). Direct 6525 follows requested rounding but is scored against unrounded gold."
+  ]
+}

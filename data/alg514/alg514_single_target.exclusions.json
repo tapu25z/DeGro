@@ -1,0 +1,1618 @@
+{
+  "source": "data/alg514/alg514_supported.jsonl",
+  "source_sha256": "ab2fd453c8be8eef0efc43dc5af99315c55ad0d0bc78e35be35ca78285b4b0d6",
+  "retained": 179,
+  "removed": 320,
+  "criterion": "Source question requests exactly one identifiable numerical quantity. Prior supported-scope exclusions remain applied.",
+  "review_method": "Existing output/target counts used only to identify review groups; source question text reviewed to decide cardinality. Model correctness, answer values, and solver verdicts were not selection criteria.",
+  "single_target_review_overrides": [
+    "alg514/1444",
+    "alg514/2113",
+    "alg514/2523",
+    "alg514/5018",
+    "alg514/6716"
+  ],
+  "gold_note": "ALG514 gold_solutions may still contain values for unrequested variables; its length is not the number of requested answers. Gold and scoring are preserved.",
+  "removed_cases": [
+    {
+      "id": "alg514/17",
+      "problem": "Your teacher is giving you a test worth 100 points containing 40 questions . There are 2-point and 4-point questions on the test . How many questions are worth two points ? How many questions are worth four points ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/20",
+      "problem": "A hotel purchased 38 bath towels and 61 washcloths for a total cost of 791.50 dollars . A second purchase of 54 bath towels and 50 washcloths , at the same prices , cost 923 dollars . Find the individual prices of the bath towels and washcloths .",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/27",
+      "problem": "Suppose you invested 10,000 dollars , part at 6 % annual interest and the rest at 9 % annual interest . If you received 684 dollars in interest after one year , how much did you invest at 6 % annual interest and at 9 % annual interest ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/32",
+      "problem": "You have exactly 537 dollars to spend on party gifts for your rich uncle 's birthday party . You decide to get watches for the ladies at 27.98 dollars each , and beepers for the men at 23.46 dollars each . You know that the number of watches required will be 3 times as much as the number of beepers . How many watches do you buy ? How many beepers do you buy ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/38",
+      "problem": "There are 41 animals on a farm , each of which is either a pig or a chicken . There are 100 legs altogether . How many pigs are there ? How many chickens ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/44",
+      "problem": "A theater sells children 's tickets for 4 dollars and adult tickets for 7 dollars . One night 575 tickets worth 3575 dollars were sold . How many adult tickets were sold ? How many children 's tickets ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/82",
+      "problem": "The Rhapsody Theater sold 800 total tickets . An advanced ticket costs 14.50 dollars and a ticket at the door costs 22.00 dollars . In all , 16,640 dollars was taken in . How many tickets were sold at the door ? How many advanced tickets were sold ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/107",
+      "problem": "Two investments earn an annual income of 575 dollars . One investment earns an annual simple interest rate of 8.5 % , and the other investment earns an annual simple interest rate of 6.4 % . The amount invested is 8000 dollars . How much money is invested in the first investment and second investment respectively ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/116",
+      "problem": "On Monday , Harold picked up three doughnuts and four large coffees for the office staff . He paid 4.91 dollars . On Tuesday Melinda picked up five doughnuts and six large coffees for the office staff . She paid 7.59 dollars . What is the cost of one doughnut ? What is the cost of one large coffee ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/135",
+      "problem": "Tennis rackets can be packaged in cartons holding 2 rackets each or in cartons holding 3 rackets each . Yesterday 's packing slip showed that 38 cartons were used to pack a total of 100 rackets . How many cartons of 2 rackets size were used yesterday ? How many cartons of 3 rackets size were used yesterday ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/139",
+      "problem": "A chemist has a solution that is 18 % alcohol and one that is 50 % alcohol . He wants to make 80 liters of a 30 % solution . How many liters of the 18 % solution should he add ? How many liters of the 50 % solution should he add ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/155",
+      "problem": "A piece of rope 60 meters long is cut into two pieces so that the longest piece is twice as long as the shorter piece . How long are the two pieces ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/158",
+      "problem": "The Kings won two less than three times as many games as they lost . They played 82 games . How many wins and losses did the team have ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/171",
+      "problem": "Tickets for a play at the community theater cost 12 dollars for an adult and 4 dollars for a child . If 130 tickets were sold and the total receipts were 840 dollars , how many adult tickets and child tickets were sold ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/179",
+      "problem": "The second of two numbers is 4 more than the first . The sum is 56 . Find the first and second numbers .",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/222",
+      "problem": "Wal-Mart sells thermometers for 2 dollars and hot-water bottles for 6 dollars . In December , Wal-Mart 's total sales for these two items was 1200 dollars . Customers bought 7 times as many thermometers as hot-water bottles . How many thermometers did Wal-Mart sell ? How many hot-water bottles ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/230",
+      "problem": "The sum of 2 numbers is 138 . If three times the smaller number is subtracted from the larger number , the result is 22 . Find the two numbers .",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/266",
+      "problem": "The total attendance at a rally was 750 people . Tickets bought before the rally were 2 dollars each , and tickets bought at the door were 2.75 dollars each . How many tickets were bought at the door if the total receipts were 1706.25 dollars ? How many tickets were bought before the rally ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/267",
+      "problem": "Your teacher is giving you a test worth 100 points and containing 40 questions . There are 2 point and 4 point questions on the test . How many two point questions are there ? How many 4 point questions ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/271",
+      "problem": "Student tickets cost 4 dollars and general admission tickets cost 6 dollars . You sell 525 tickets and collect 2876 dollars . How many student tickets did you sell ? How many general admission tickets did you sell ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/289",
+      "problem": "Norbert sold 23 books on Thursday for a certain price . On Friday , he sold 35 of the same books , but he charged 0.50 dollars less per book . He made 490.00 dollars in total . How much did the book sell for on Thursday ? How much did the book sell for on Friday ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/313",
+      "problem": "A boat travels 45 miles upstream in 5 hours . The boat travels the same distance downstream in 3 hours . What is the speed of the boat in still water in miles per hour ? What is the speed of the current in miles per hour ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/315",
+      "problem": "In a given week , the first car gets an average of 30 miles per gallon , and the second car gets 25 miles per gallon . The two cars combined drive a total of 1700 miles in that week , for a total gas consumption of 60 gallons . How many gallons were consumed by the first car that week ? How many gallons were consumed by the second car that week ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/343",
+      "problem": "The grocer has peanuts for 3.75 dollars a pound and walnuts for 2.75 dollars a pound . How many pounds of peanuts and walnuts must we mix to get 40 pounds of mixture to sell for 3.00 dollars per pound .",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/376",
+      "problem": "Jack collects baseball and football cards . He has 125 cards total . The number of baseball cards he has is five more than three times the number of football cards . How many baseball and football cards does he have ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/396",
+      "problem": "A cashier at Apex Parts received a check for 2380 dollars for 59 parts . Some parts cost 20 dollars per part and other parts cost 50 dollars per part . How many 20-dollar parts are in the order ? How many 50-dollar parts are in the order ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/397",
+      "problem": "A company 's profit for the first half of the year is 2,750,000 dollars greater than the profit for the second half . If the total annual profit is 3,635,000 dollars , find the profit for the first half-year and the second half-year .",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/425",
+      "problem": "Six apples and three oranges cost 1.77 dollars . Two apples and five oranges cost 1.27 dollars . Find the cost of each apple and the cost of an orange .",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/428",
+      "problem": "The Booster Club voted on where they would go for their annual trip . A majority of the club voted to go to a baseball game . They bought 29 tickets . Some of the tickets cost 7 dollars per ticket and some cost 9 dollars per ticket . All of the tickets cost 225 dollars . How many 7-dollar tickets did they buy ? How many 9-dollar tickets did they buy ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/430",
+      "problem": "Marco has 150 coins , all nickels and dimes . He has 12 more dimes than nickels . How many nickels and how many dimes does he have ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/438",
+      "problem": "A dealer has some hard candy worth 2.00 dollars a pound and some worth 3.00 dollars a pound . He wishes to make a mixture of 80 pounds that he can sell for 2.20 dollars a pound . How many pounds of 2-dollar candy does he need ? How many pounds of 3-dollar candy does he need ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/443",
+      "problem": "A grocer bought 12 bushels of Baldwin and McInotosh apples . Baldwins costs 95 cents a bushel , but McIntosh cost only 90 cents a bushel . If he paid 11.00 dollars for the lot , how many bushels of Baldwins did he get ? How many bushels of McIntosh ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/460",
+      "problem": "You are selling tickets to your school musical . Adult tickets cost 5 dollars and children 's tickets cost 3 dollars . You sell 1510 tickets and collect 6138 dollars . Determine How many adult tickets were sold ? How many children 's tickets were sold ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/474",
+      "problem": "Two rainstorms occurred in one week in a certain area . The first storm lasted 20 hours , and the second storm lasted 40 hours , for a total 1800 milliliters of rain . What was the rate of rainfall in milliliters per hour for the first and second storms if the sum of the two rates was 55 milliliters per hour ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/542",
+      "problem": "Angus invested 18,000 dollars , part at 3 % and part at 5 % . If the total interest at the end of the year is 660 dollars , how much did he invest at 3 % ? At 5 % ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/586",
+      "problem": "A 40 % acid solution and a 55 % acid solution must be mixed to produce 60 liters of a 45 % acid solution . How many liters of 40 % acid solution should be used ? How many liters of 55 % acid solution should be used ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/704",
+      "problem": "Yuri has a board that 98 inches long . He wishes to cut the board into 2 pieces so that one piece will be 10 inches longer than the other . What should the length of the shorter piece be , in inches ? What will the length of the longer piece be ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/767",
+      "problem": "The sum of two numbers is 18 . If twice the smaller number is 6 more than the larger , find the smaller number and the larger number .",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/817",
+      "problem": "Jill has 3.50 dollars in nickels and dimes . If she has 50 coins , how many nickels does she have ? How many dimes ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/823",
+      "problem": "An amusement park sells 2 kinds of tickets . Tickets for children cost 1.50 dollars . Adult tickets cost 4 dollars . On a certain day , 278 people entered the park . On that same day the admission fees collected totaled 792 dollars . How many children were admitted on that day ? How many adults were admitted ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/878",
+      "problem": "A grain-storage warehouse has a total of 30 bins . Some hold 20 tons of grain each . The rest hold 15 tons each . How many of each type of bin are there if the capacity of the warehouse is 510 tons ? How many 20 ton bins ? How many 15 ton bins ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/881",
+      "problem": "A grain storage warehouse has a total of 30 bins . Some hold 20 tons of grain each . The rest hold 15 tons each . The capacity of the warehouse is 510 tons . How many 20 ton bins are there ? How many 15 ton bins ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/920",
+      "problem": "In the 2000-2001 baseball season , the Seattle Mariners tied a league record set by the 1906 Chicago Cubs for most wins in a season . The Mainers won 24 more than twice as many games as they lost . They played 162 regular season games . How many wins and losses did the mariners have ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/922",
+      "problem": "Jackie has coffee that sells for 9 dollars per pound and coffee that sells for 4 dollars per pound . How many pounds of 9 dollars coffee and how many pounds of 4 dollars coffee must be mixed to get 20 pounds of coffee that sells for 8.25 dollars per pound ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/1075",
+      "problem": "Bob invested 6100 dollars in 2 funds , which pay 7 % and 6 % simple interest respectively . The combined interest he earned for both funds was 405 dollars for one year . How many dollars was invested at 7 % ? How much was invested at 6 % ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/1090",
+      "problem": "The sum of two numbers is 48 . The difference between three times the smaller number and the larger number is 16 . Find the smaller number and the larger number .",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/1099",
+      "problem": "There are 850 douglas fir and ponderosa pine trees in a section of the forest bought by Sawz logging company . The company paid an average of 300 dollars for each douglas fir and 250 dollars for each ponderosa pine . if the company paid 217,500 dollars for the trees , how many firs and pines did they buy ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/1102",
+      "problem": "Three times a number minus a second number is 20 . The sum of the two numbers is 48 . Find the two numbers .",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/1106",
+      "problem": "Adult tickets for a play cost 11 dollars and the child tickets cost 10 dollars . If there were 23 people at a performance and the theater collected 246 dollars from tickets sales , how many children attended the play ? How many adults attended the play ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/1140",
+      "problem": "Tickets for a ballet performance cost 14 dollars for adults and 12 dollars for students . If total receipts from the sale of 605 tickets were 8,390.00 dollars , how many adult tickets were sold ? How many student tickets were sold ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/1191",
+      "problem": "One number is 3 less than twice another . If their sum is 39 , find the numbers .",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/1219",
+      "problem": "Suzy has a piggy bank consisting of nickels and dimes . If there are 30 coins worth 1.90 dollars , how many nickels and dimes are in the bank ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/1220",
+      "problem": "Didi invested a total of 12,000 dollars in two accounts paying 7.5 % and 6 % simple interest . If her total return at the end of the first year was 840 dollars , how much did she invest in each account ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/1292",
+      "problem": "3 footballs and 1 soccer ball cost 155 dollars . 2 footballs and 3 soccer balls cost 220 dollars . Determine the cost of 1 football and the cost of one soccer ball , in dollars .",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/1294",
+      "problem": "Steve purchased tickets to a circus for 7 adults and 2 children . The total cost was 172 dollars . The cost of a child 's ticket was 4 dollars less than the cost of an adult 's ticket . Find the price of an adult 's ticket and a child 's ticket .",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/1301",
+      "problem": "The admission fee at a small fair is 1.50 dollars for children and 4.00 dollars for adults . On a certain day , 2200 people enter the fair and 5050 dollars is collected . How many children and adults attended ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/1309",
+      "problem": "Trinidad has 2.35 dollars in nickels and dimes . If she has 33 coins in all , how many nickels does she have ? How many dimes does she have ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/1315",
+      "problem": "The sum of 2 numbers is 27 . 0.5 of the first number plus 0.3333333 of the second number is 11 . Find the smaller and the larger number .",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/1332",
+      "problem": "A new parking lot has spaces for 450 cars . The ratio of spaces for full sized cars to compact cars is 11 to 4 . How many spaces are for full-sized cars ? How many spaces are for compact cars ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/1371",
+      "problem": "The sum of two numbers is 32 and the difference is 14 . Find the two numbers .",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/1375",
+      "problem": "A washer-dryer combination costs 1,200 dollars . If the washer costs 220 dollars more than the dryer , what does the washer cost ? How much does the dryer cost ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/1379",
+      "problem": "Stan invested 17,000 dollars , part at 18 % and part at 4 % . If the total interest at the end of the year is 1,380 dollars , how much did he invest at 18 % ? How much at 4 % ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/1404",
+      "problem": "A department store held a sale to sell all of the 214 winter jackets that remained after the season ended . Until noon , each jacket in the store was priced at 31.95 dollars . At noon , the price of the jackets was further reduced to 18.95 dollars . After the last jacket was sold , the total receipts for the clearance sale were 5108.30 dollars . How many jackets were sold before noon and how many jackets were sold after noon ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/1490",
+      "problem": "El Segundo High School put on their annual musical . The students sold 650 tickets for a value of 4375 dollars . If orchestra seats cost 7.50 dollars and balcony seats cost 3.50 dollars , how many orchestra seats were sold , and how many balcony seats were sold ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/1564",
+      "problem": "The sum of two numbers is 40 , one number is 8 more than the other . Find the numbers .",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/1637",
+      "problem": "Tickets cost 4 dollars for students , and 6 dollars for general admission . You sell 525 tickets and collect 2876 dollars . How many student tickets did you sell , and how many general admission tickets did you sell ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/1658",
+      "problem": "A motorist drove 2 hours at one speed and then for 3 hours at another speed . He covered a distance of 252 kilometers . If he had travelled 4 hours at the first speed and 1 hour at the second speed , he would have covered 244 kilometers . Find two speeds ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/1669",
+      "problem": "A 40 % sugar solution is added to an 85 % sugar solution to create 1800 milliliters of a 60 % solution . How many milliliters of the 40 % solution should be used ? How many millileters of the 85 % solution ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/1675",
+      "problem": "Arianne is mixing a solution for Chemistry class . She has a 25 % copper solution and a 50 % copper solution . How many milliliters of the 25 % solution and 50 % solution should she mix to make 1000 milliliters of a 45 % solution ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/1695",
+      "problem": "You are selling tickets for a high school play . Student tickets cost 4 dollars and general admission tickets cost 6 dollars . You sell 525 tickets and collect 2876 dollars . How many student tickets and general admission tickets did you sell ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/1707",
+      "problem": "Find the two numbers whose sum is 45 and such that one is 4 times as large as the other .",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/1739",
+      "problem": "Jane has a dress shop . She has space for 200 dresses . She sells only red and blue dresses . After reading several fashion magazines she decides to stock her shelves with 34 more blue dresses than red dresses . How many blue dresses and red dresses should she stock ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/1848",
+      "problem": "A bricklayer and an electrician together spend 90 hours working on a new house . If the bricklayer earns 12 dollars per hour , the electrician earns 16 dollars an hour , and the owner pays them a total of 1350 dollars for their work , how many hours does the bricklayer work ? How many hours does the electrician work ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/1889",
+      "problem": "24 is divided into two parts such that 7 times the first part added to 5 times the second part makes 146 . Find each part .",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/1937",
+      "problem": "The sum of two numbers is 73 . The second is 7 more than 5 times the first . What is the first number and what is the second one ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/1939",
+      "problem": "A customer walks into an electronics store and buys 5 MP3 players and 8 sets of headphones , paying 840 dollars . A 2nd customer buys 3 MP3 players and 4 sets of headphones , and pays 480 dollars . How much does an MP3 player cost ? How much does a set of headphones cost ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/1962",
+      "problem": "Hockey teams receive 2 points for a win and 1 point for a tie . The wild cats once won a championship with 60 points . They won 9 more games than they tied . How many wins and how many ties did the Wildcats have ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/1975",
+      "problem": "Tickets to a movie were sold at 4.00 dollars per adult and 2.50 dollars per student . If 240 tickets were sold for a total of 765.00 dollars , how many student tickets were sold ? How many adult tickets were sold ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/1997",
+      "problem": "If 4 apples and 2 oranges equals 1 dollars and 2 apples and 3 orange equals 0.70 dollars , how much does each apple and each orange cost ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/2004",
+      "problem": "The Drama Club sold 1,500 tickets for the end-of-year-performance . Admission prices were 12 dollars for adults and 6 dollars for students . The total amount collected at the box office was 16,200 dollars . How many students attended the play ? How many adult attended the play ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/2010",
+      "problem": "At its Grand Opening , the Guthrie Market distributed two different types of souvenirs . One type cost 20 cents each , and the other type cost 25 cents each . One thousand souvenirs were distributed in all . If the cost of these souvenirs was 220 dollars . How many of 20 cents and 25 cents souveniers were distributed ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/2023",
+      "problem": "3 Pairs of jeans and 6 shirts costs 104.25 dollars . The cost of 4 jeans and 5 shirts is 112.15 dollars . Find the cost of each pair of jeans and each shirt .",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/2040",
+      "problem": "In a family there are two cars . In a given week , the first car gets an average of 25 miles per gallon , and the second car gets 40 miles per gallon . The two cars combined drives a total of 1825 miles in that one week , for a total gas consumption of 55 gallons . How many gallons were consumed by the 25 mile per gallon car and how many gallons were consumed by the 40 mile per gallon car that week ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/2074",
+      "problem": "Find two numbers whose sum is 147 and one is 4 greather than 0.375 of the other .",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/2075",
+      "problem": "The sum of 2 numbers is 10 . 3 times one of them is more than 4 times the second by 2 . Find the smaller number . Find the larger number .",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/2095",
+      "problem": "Amber has 30 coins in nickels and dimes . In all she has 2.10 dollars . How many nickels and dimes does she have ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/2100",
+      "problem": "An embossing shop etches metal with acid solutions . The owner is discussing a certain job with the job supervisor , and they decide to use 30 ounces of a 40 % solution . Upon checking the acid solution supplies , the supervisor has found some 25 % acid solution and some 50 % acid solution , but there is no 40 % acid solution . The owner explains to the supervisor how the two existing solutions can be mixed to obtain a 40 % acid solution . How much of each solution is needed ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/2102",
+      "problem": "A total of 10,000 dollars was invested in two bond mutual funds , a junk bond fund and a government bond fund . The junk fund is risky and yields 11 % interest . The safer government bond fund yields only 5 % . The year 's total income from the two investments was 740 dollars . How much was invested in each fund ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/2142",
+      "problem": "On a canoe trip , Rita paddled upstream at an average speed of 2 miles per hour relative to the riverbank . On the return trip downstream , her average speed was 3 miles per hour . Find Rita 's paddling speed in still water and the speed of the river 's current .",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/2172",
+      "problem": "Jerome bought 12 CDs . Some cost 7.50 ea . and the rest cost 6.50 each . How many CDs were bought at each price if he spent 82 dollars ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/2184",
+      "problem": "One canned juice drink is 30 % orange juice ; another is 5 % orange juice . How many liters of each should be mixed together in order to get 25 liters that is 10 % orange juice ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/2189",
+      "problem": "Snookers Lumber can convert logs into either lumber or plywood . In a given day , the mill turns out three times as many units of plywood as lumber . It makes a profit of 30 dollars on a unit of lumber and 50 dollars on a unit of plywood . Snookers lumber must produce and sell ___ units of lumber and ___ units of plywood to make a profit of 18360 dollars ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/2196",
+      "problem": "A freight train and an express train leave towns 390 kilometers apart , traveling toward one another . The freight train travels 30 kilometers per hour slower than the express train . They pass one another 3 hours later . How fast is the freight train , in miles per hour ? How fast is the express train ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/2199",
+      "problem": "An investor will invest a total of 15000 dollars in 2 accounts , one paying 4 % annual simple interest and the other 3 % . If he wants to earn 550 dollars annual interest , how much should he invest at 4 % ? How much at 3 % ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/2205",
+      "problem": "The Coffee Counter charges 9.00 dollars per pound for Kenyan French Roast coffee and 8.00 dollars per pound for Sumatran coffee . How many pounds of Kenyan French Roast and Sumatran should be used to make a 20-pound blend that sells for 8.40 dollars per pound ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/2211",
+      "problem": "Kerry asked a bank teller to cash a 390 dollars check using 20-dollar bills and 50-dollar bills . If the teller gave her a total of 15 bills , how many 20-dollar bills did she get ? How many 50-dollar bills ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/2222",
+      "problem": "Dave and Sandy fly from Philly to Chicago , it takes 2 hours to go West and 1.5 hours to fly East . The trip is 780 miles one way . If the wind speed is the same on each trip , find the speed of the wind and find the speed of the plane in the still air , in miles per hour .",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/2239",
+      "problem": "A high school sold gift wrap . The gift wrap in solid colors sold for 4.00 dollars per roll and the print gift wrap sold for 6.00 dollars per roll . The total number of rolls sold was 480 rolls , and the total amount of money collected was 2,340.00 dollars . How many solid rolls were sold ? How many print rolls were sold ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/2244",
+      "problem": "Tickets for adults are 5.50 dollars and tickets for children are 3.50 dollars . How many adult tickets and children 's tickets were purchased if 21 tickets were bought for 83.50 dollars ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/2291",
+      "problem": "To make 10 kilograms of aluminum alloy with 60 % aluminum , a scientist wants to use 2 metals with 45 % and 70 % aluminum content respectively . How many kilograms of 45 % aluminum and how many kilograms of 70 % aluminum should she mix ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/2354",
+      "problem": "Two rainstorms occurred in one week in a certain area . In the first storm 30 milliliters of rain fell per hour , and in the second storm 15 milliliters of rain fell per hour . Rain fell that week for a total of 45 hours , for a total rainfall of 975 milliliters . How many hours was the first storm and the second storm .",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/2359",
+      "problem": "In a family there are two cars . The sum of the average miles per gallon obtained by the two cars in a particular week is 75 miles per gallon . The first car has consumed 25 gallons during that week , and the second has consumed 35 gallons , for a total of 2275 miles driven by the two cars combined . What was the average gas mileage obtained by the first car that week ? What was the average gas mileage obtained by the second car that week ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/2370",
+      "problem": "Find two numbers whose sum is 55 and whose difference is 15 .",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/2371",
+      "problem": "Find 2 numbers whose sum is 64 and whose difference is 4 . What is the smaller number ? What is the larger number ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/2400",
+      "problem": "There are 2 numbers whose sum is 65 , such that one is 4 times as large as the other . What is the smaller number ? What is the larger number ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/2455",
+      "problem": "The sum of 2 numbers is 43 . Twice the larger number exceeds 3 times the smaller number by 16 . Find the number .",
+      "reason": "Unspecified member of a two-number pair: no unique requested single target."
+    },
+    {
+      "id": "alg514/2481",
+      "problem": "One integer is twice another , and their sum is 96 . Find the smaller and larger integer .",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/2488",
+      "problem": "The difference between two numbers is 3 . Their sum is 13 . Find the numbers . What is the larger number ? What is the smaller number ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/2493",
+      "problem": "The Johnson Farm has 500 acres of land allotted for cultivating corn and wheat . The cost of cultivating corn and wheat is 42 dollars for corn and 30 dollars for wheat . Mr.Johnson has 18,600 dollars available for cultivating these crops . If he used all the land and entire budget , how many acres of corn and how many acres of wheat should he plant ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/2517",
+      "problem": "Colored copies cost 10 cents per copy and white copies cost 5 cents per copy . Sandy made 400 copies , some of which were colored and the rest white . Her total bill was 22.50 dollars . How many colored copies and white copies did she make ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/2518",
+      "problem": "4 pencils and 5 pens cost a total of 2.00 dollars . 3 pencils and 4 pens cost 1.58 dollars . Find the cost of a pencil and a pen in dollars .",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/2529",
+      "problem": "The attendance at a school concert was 578 people . Admission cost 2.00 dollars for adults and 1.50 dollars for children . The receipts were 985.00 dollars . How many adults and how many children attended the concert ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/2555",
+      "problem": "The US Senate had a total of 99 Democrats and Republicans . There were 11 more Republicans than Democrats . How many Democrats and Republicans were there in the Senate ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/2559",
+      "problem": "The total number of Democrats and Republicans in the House of Representatives was 434 . There were 30 more Republicans then Democrats . How many Democrats and Republicans were there in the Senate ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/2562",
+      "problem": "A chemist has one solution that is 15 % acid and a second that is 25 % acid . How many liters of each should be mixed together to get 100 liters that is 18 % acid ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/2567",
+      "problem": "Donna invested her 33,000 dollars bonus and received a total of 970 dollars in interest after one year . If part of the money returned 4 % and the remainder 2.25 % then how much did she invest at each rate ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/2575",
+      "problem": "A store is selling compact discs for 10.50 dollars and 8.50 dollars . You buy 10 discs and spend a total of 93 dollars . How many compact discs did you buy that cost 10.50 dollars ? How many did you buy that cost 8.50 dollars ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/2584",
+      "problem": "A person wishes to invest 2,400.00 dollars , part at 9 % and part at 6 % . If the total interest desired at the end of the year is 189.00 dollars , how much should be invested at each rate ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/2596",
+      "problem": "David bought 3 hamburgers and 2 servings of french fries at Diane 's Drive Up for 6.25 dollars . If a serving of fries costs 0.25 cents more then a hamburger , what is the cost of a hamburger and what is the cost of a serving of french fries ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/2598",
+      "problem": "A writing workshop enrolls novelists and poets in a ratio of 5 to 3 . There are 24 people at the workshop . How many novelists are there ? How many poets are there ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/2649",
+      "problem": "Apples cost 0.60 dollars per pound and grapes cost 1.00 dollars per pound . Jenny bought 12 pounds of fruit and paid 10.00 dollars . How many pounds of apples did she buy ? How many pounds of grapes ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/2658",
+      "problem": "2 teachers are going to a conference for a few days . Mrs. Jerrerson plans on spending 502 dollars on 14 meals and 4 nights in a hotel . Mrs. Lloyd plans on spending 370 dollars on 10 meals and 3 nights in a hotel . How much are they planning on spending per meal and per night for a hotel ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/2670",
+      "problem": "In a family there are 2 cars . The sum of the average miles per gallon obtained by the two cars in a particular week is 45 . The first car has consumed 40 gallons during that week , and the second car has consumed 20 gallons , for a total of 1400 miles driven by the two cars combined . What was the average gas mileage obtained by each of the 2 cars that week ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/2677",
+      "problem": "1 . Find the 2 numbers whose sum is 108 and whose difference is 24 .",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/2681",
+      "problem": "A special tea blend is made from two varieties of herbal tea , one that costs 4.00 dollars per kilogram and another that costs 2.00 dollars per kilogram . How many kilograms of each type are needed to make 20 kilograms of a blend worth 2.50 dollars per kilogram ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/2708",
+      "problem": "The cost of 12 gallons of regular gasoline and 18 gallons of premium gasoline is 44.46 dollars . Premium costs 0.22 dollars more per gallon than regular . What is the cost per gallon of each type of gasoline ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/2722",
+      "problem": "A jazz concert brought in 191,000 dollars with the sale of 7400 tickets . If tickets were sold for 20 dollars and 30 dollars each , how many 20-dollar tickets were sold ? How many 30-dollar tickets ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/2737",
+      "problem": "A farmhouse has 15 animals . Some are goats and some are ducks . Altogether there are 48 legs . How many of each animal are there ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/2756",
+      "problem": "The St. Mark 's Community Barbecue served 250 dinners . A child 's plate cost 3.50 dollars and an adult 's plate cost 7.00 dollars . A total of 1347.50 dollars was collected . How many child 's plates were served ? How many adult 's plates were served ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/2824",
+      "problem": "Hockey teams receive 2 points when they win and 1 point when they tie . 1 season , a team won a championship with 60 points . They won 12 games more than they tied . How many wins and ties did the team have ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/2892",
+      "problem": "A catering company is setting up tables for a big event that will host 764 people . When they set up the tables they need 2 forks for each child and 5 forks for each adult . If the company ordered a total of 2992 forks , how many adults and how many children will be attending the event ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/2922",
+      "problem": "Peter sold pumpkins from his farm . He sold jumbo pumpkins for 9.00 dollars each , and he sold regular pumpkins for 4.00 dollars each . Peter sold 80 pumpkins and collected 395.00 dollars . How many jumbo pumpkins and regular pumpkins did he sell ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/2925",
+      "problem": "Riza was 25 when her first son was born . Today the sum of their ages is 105 . How old is Riza and her son now ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/2934",
+      "problem": "Max bought 16 pounds of nuts at a party . The total cost was 72 dollars . The peanuts cost 3 dollars per pound and the almounds cost 5 dollars per pound . How many pounds of peanuts did max buy ? How many pounds of almounds did Max buy ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/2939",
+      "problem": "Harold had a summer lemonade stand where he sold small cups of lemonade for 1.25 dollars and large cups for 2.50 dollars . If Harold sold a total of 155 cups of lemonade and collected a total of 265 dollars , how many small cups and large cups did he sell ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/2940",
+      "problem": "Ilida went to Minewaska Sate Park one day this summer . All of the people at the park were either hiking or bike riding . There were 178 more hikers than bike riders . If there were a total of 676 people at the park , how many were hiking ? How many were riding their bikes ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/2941",
+      "problem": "Eldora and Finn went to an office supply store together . Eldora bought 15 boxes of paper clips and 7 packages of index cards for a total cost of 55.40 dollars . Finn bought 12 boxes of paper clips and 10 packages of index cards for a total cost of 61.70 dollars . Find the cost of one box of paper clips and the cost of one package of index cards .",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/2944",
+      "problem": "The owner of the Most Amazing Circus was counting the money from one day 's ticket sales . He knew that a total of 522 tickets were sold . Adult tickets cost 15 dollars each and children 's tickets cost 8 dollars each . If the total receipts for the day were 5086.00 dollars , how many adult tickets were sold ? How many children 's tickets ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/2952",
+      "problem": "A cashier has a total of 126 bills , made up of 5-dollar bills and 10-dollar bills . The total value of the money is 840 dollars . How many 5-dollar bills does he have ? How many 10-dollar bills ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/2963",
+      "problem": "Marc sold 563 tickets for the school play . Student tickets cost 4 dollars and adult tickets cost 6 dollars . Marc 's sales totaled 2840 dollars . How many adult tickets and student tickets did Marc sell ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/3009",
+      "problem": "One number is 3 more than twice a second number . Their sum is 27 . Find the smaller number . Find the larger number .",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/3036",
+      "problem": "A movie theater charges 7.50 dollars for adults and 4.50 dollars for children . The receipts for a showing of a movie were 540 dollars . If 80 tickets were sold , find how many adult tickets were sold . Find how many child tickets were sold .",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/3054",
+      "problem": "Advance tickets to a show cost 20 , and same-day tickets cost 30 . The total number of tickets sold was 60 for total receipts of 1,600 . How many advance tickets were sold ? How many same-day tickets were sold ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/3125",
+      "problem": "The sum of 2 numbers is 64 and their difference is 18 . What is the first number ? What is the second number ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/3151",
+      "problem": "An airplane has a total of 387 seats . The number of coach class seats is 2 more than 4 times the number of first-class seats . How many first class and coach class seats are there on the plane ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/3159",
+      "problem": "Maria added a white vinegar solution of acetic acid in water . There are 2 strengths of white vinegar , a 5 % solution and a 10 % solution . How many milliliters of the 5 % solution and the 10 % solution must she mix to make 50 milliliters of a 9 % vinegar solution ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/3215",
+      "problem": "The sum of 2 numbers is 70 . The second is 10 more than 3 times the first . Find the smaller number . Find the larger number .",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/3219",
+      "problem": "The world 's oldest bride was 19 yr older than her groom . Together , their ages totaled 185 years . How old was the bride ? How old was the groom ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/3245",
+      "problem": "Class A and class B donated their class fund totaling 127 dollars to an orphanage . If the amount donated by class A is 7 dollars short of 0.6667 of the amount donated by class B. How much did Class A Donate ? How much to class B donate ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/3246",
+      "problem": "Red cards are worth 3 credits , while blue cards are worth 5 credits . You need any combination of 20 cards to play a game . With 84 credits to buy cards , how many blue cards will you have when you play ? how many red cards will you have when you play ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/3289",
+      "problem": "The sum of two numbers is 104 . The larger number is 1 less than twice the smaller number . Find the numbers .",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/3311",
+      "problem": "A piggy bank has 50 coins . The coins are either nickels or dimes . The bank has 4.55 dollars in total . How many coins are nickels ? How many are dimes ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/3379",
+      "problem": "You buy 25 boxes of candy and spend 28.00 dollars . A box of peppermint cost 1.00 dollars a box and candy canes cost 1.30 dollars a box . How many boxes of peppermint did you buy ? How many boxes of candy canes ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/3393",
+      "problem": "A farmer grows only sunflowers and flax on his 240 acre farm . This year he wants to plant 80 more acres of sunflowers than flax . How many acres of sunflowers does the farmer need to plant ? How many acres of flax ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/3394",
+      "problem": "The sum of 2 numbers is 50 . The first number is 43 less than twice the second number . Find the smaller number . Find the larger number .",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/3499",
+      "problem": "You have 30 total items that consist of hats and boots . The total cost is 190.00 dollars . Boots cost 9.00 dollars and hats cost 5.00 dollars . How many boots are there ? How many hats ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/3560",
+      "problem": "The sum of 2 numbers is 84 . One number is 3 times the other . Find the smaller number . Find the larger number .",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/3585",
+      "problem": "Pat invested a total of 3,000 dollars . Part of the money yields 10 percent interest per year and the rest yields 8 percent interest per year . If the total yearly interest from this investment is 256 dollars , how much did Pat invest at 10 percent and how much at 8 percent ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/3595",
+      "problem": "2 cars start at the same place and time , and travel in opposite directions . One car is traveling 15 kilometers per hour faster than the other . After 5 hours , the 2 cars are 275 km apart . Find the speed of each car .",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/3600",
+      "problem": "Tickets for a concert were priced at 7 dollars for students and 10 dollars for non-students . There were 2000 tickets sold for a total of 17,339 dollars . How many student tickets were sold ? How many non-student tickets ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/3623",
+      "problem": "For Monday morning 's staff meeting , Jim bought 2 bags of bagels and 3 packages of cream cheese and paid 12.00 dollars . For Friday 's meeting , he bought 4 bags of bagels and 2 packages of cream cheese and paid 14.00 dollars . How much does a bag of bagels and a package of cream cheese cost , in dollars ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/3627",
+      "problem": "586 people attend a banquet at Disney . Residents paid 12.95 dollars and non-residents paid 17.95 dollars . If Disney made 9423.70 dollars from ticket sales for the event , how many residents and non-residents attended ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/3631",
+      "problem": "The Rocket Coaster has 15 cars , some that hold 4 people and some that hold 6 people . There is room for 72 people altogether . How many 4 passenger cars are there ? How many 6 passenger cars are there ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/3633",
+      "problem": "A truck and trailer together weigh 7,000 pounds . The trailer weighs 200 pounds less than 0.5 as much as the truck . Find the truck 's weight . Find the trailer 's weight .",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/3648",
+      "problem": "Find two numbers whose sum is 14 if one number is 3 times as large as the other number .",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/3670",
+      "problem": "3 times a number is added to 5 times a number to get 54 . The second number is 2 less than the first . What is the smaller number ? What is the larger number ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/3673",
+      "problem": "A plumber contractor decides to field-test two new pumps . One is rated at 180 gallons per hour and the other at 250 gallons per hour . Over a period of 6 hours , she pumps a total of 1325 gallons . How many hours were used by the 180 gallons per hour pump ? How many hours were used by the 250 gallons per hour pump ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/3681",
+      "problem": "The sum of two numbers is 52 , and their difference is 6 . What are the numbers ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/3682",
+      "problem": "A cosmetologist has a bottle of 7 % hydrogen peroxide solution and a bottle of 4 % hydrogen peroxide solution . The cosmetologist needs 300 milliliters of a 5 % hydrogen peroxide solution . Find how many milliliters of each solution the cosmetologist needs to mix together .",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/3683",
+      "problem": "In a basketball game , Will scored 26 points , consisting only of 3-point shots and 2-point shots . He made a total of 11 shots . How many 3-point shots did he make ? How many 2-point shots did he make ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/3769",
+      "problem": "Paul has 30 postcards . He has 4 times as many large postcards as small postcards . How many small postcards does he have ? How many large postcards ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/3772",
+      "problem": "There are 24 kids in Mrs Jones ' class . There are twice as many girls as boys . How many boys and girls are there ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/3790",
+      "problem": "Separate 66 into 2 parts so that 0.40 of one part exceeds 0.625 of the other part by 10 . What is the smaller part ? What is the larger part ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/3839",
+      "problem": "Tickets for a show cost 6.00 dollars for adults and 4.50 dollars for children . 400 tickets were sold for a total of 2100 dollars . How many adult tickets and how many childrens tickets were sold ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/3852",
+      "problem": "At a movie theater , tickets cost 9.50 dollars for adults and 6.50 dollars for children . A group of 7 moviegoers pays a total of 54.50 dollars . How many adults and children were in the group ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/3869",
+      "problem": "You sell tickets for admission to your school play and collect a total of 104 dollars . Admission prices are 6 dollars for adults and 4 dollars for children . You sold 21 tickets . How many adult tickets did you sell ? How many children 's tickets did you sell ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/4035",
+      "problem": "You had 6,800.00 dollars to spend and purchased 250 sets of dishes . If you spent everything , how many 20.00 dollars sets did you purchase ? How many 45.00 dollars sets did you purchase ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/4209",
+      "problem": "254 people go to a zoo . Tickets are 28 dollars for adults and 12 dollars for kids . Total sales are 3,864 dollars . How many adults went to zoo ? How many kids ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/4231",
+      "problem": "A discount store sold plastic cups for 3.25 dollars each and ceramic cups for 4.50 dollars each . If 500 cups were sold for a total of 2090 dollars , how many plastic cups and ceramic cups were sold ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/4585",
+      "problem": "Post card stamps are 0.20 dollars each . Letter stamps cost 0.33 dollars each . If you have 50 stamps worth 12.60 dollars , how many post card stamps do you have ? How many letter stamps ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/4649",
+      "problem": "The Red Rose Theatre sells tickets for 4.50 dollars and 6.00 dollars . A total of 380 tickets were sold for their last performance of `` Mickey the Mouse '' . If the sales for the performance totaled 1972.50 dollars , how many tickets were sold for 6.00 dollars ? How many tickets were sold for 4.50 dollars ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/4651",
+      "problem": "The admission fee at an amusement park is 1.5 dollars for children and 4 dollars for adults . On a certain day 315 people entered the park , and the admission fees collected 810 dollars . How many children and adults were admitted ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/4679",
+      "problem": "A theater sold 900 tickets to a play . Floor seats cost 12 dollars each and balcony seats 10 dollars each . Total receipts were 9,780 dollars . How many floor seats were sold ? How many balcony seats were sold ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/5007",
+      "problem": "The sum of 2 integers is 30 . 2 times the larger integer is 10 less than 5 times the smaller integer . Find the smaller number and larger number .",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/5014",
+      "problem": "The Lakers scored a total of 80 points in a basketball game against the Bulls . The Lakers made a total of 37 baskets , consisting of 2 point baskets and 3 point baskets . How many 2 point baskets did the Lakers make ? How many 3 point baskets did the Lakers make ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/5017",
+      "problem": "Stefans school is selling tickets to a choral performance . On the first day of ticket sales the school sold 4 senior citizen tickets and 3 student tickets for 79 dollars . The school took 246 dollars on the second day by selling 12 senior citizen tickets and 10 student tickets . Find the price of a senior citizen ticket and the price of a student ticket .",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/5054",
+      "problem": "A swim team has 5 times as many girls as boys . There are a total of 96 people on the swim team . How many girls and boys are their on the team ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/5068",
+      "problem": "A chemist has two solutions . One has 40 % the other 25 % concentrate . How many liters of each solution must be mixed to obtain 129 liters of 34 % solution ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/5089",
+      "problem": "A farmer had some chickens and some cows . She counted 40 heads and 126 legs . How many chickens and how many cows did she have ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/5102",
+      "problem": "The number of grocery items on two grocery lists differs by 7 . The total number of items is 33 . How many items are on each list ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/5117",
+      "problem": "Your family goes to a restaurant for dinner . There are 6 people in your family . Some order the chicken dinner for 14.80 dollars and some order the steak dinner for 17.00 dollars . If the total bill was 91.00 dollars , how many people ordered the steak dinner . How many people ordered the chicked dinner ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/5121",
+      "problem": "A baseball team has home games on Wednesday and Saturday . The two games together earn 5,182.50 dollars for the team . Wednesdays game generates 142.50 dollars less than Saturdays game . How much money was taken in at Wednesday 's game ? How much money was taken in at Saturday 's game ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/5133",
+      "problem": "The difference between two numbers is 6 . If you double both numbers , the sum is 36 . Find the two numbers .",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/5163",
+      "problem": "To buy both a new car and a new house , Tina sought two loans totaling 318,338 dollars . The simple interest rate on the first loan was 2.4 % , while the simple interest rate on the second loan was 4.7 % . At the end of the first year , Tina paid a combined interest payment of 14,761.81 dollars . What were the amounts of the two loans ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/5171",
+      "problem": "A 200 seat theater charges 3.00 dollars for adults and 1.50 dollars for children . If all seats were filled and the total ticket income was 510 dollars how many adults and children were in the audience ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/5174",
+      "problem": "Two mechanics worked on a car . The first mechanic charged 45 dollars per hour , and the second mechanic charged 85 dollars per hour . The mechanics worked for a combined total of 20 hours , and together they charged a total of 1100 dollars . How long did the first mechanic and second mechanic work ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/5197",
+      "problem": "A self-employed contractor nearing retirement made two investments totaling 15,000 dollars . In one year , these investments yielded 1023 dollars in simple interest . Part of the money was invested at 6 % and the rest at 7.5 % . How much was invested at each rate ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/5249",
+      "problem": "Joey makes 100 pounds of a coffee mix . Columbian coffee selling for 8.75 dollars per pound is mixed with Brazilian coffee selling for 3.75 dollars per pound . The final mix sells for 6.35 dollars per pound . How much of each type of coffee is used in the mix ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/5261",
+      "problem": "One solution contains 50 % alcohol and another solution contains 80 % alcohol . How many liters of 50 % alcohol and 80 % alcohol should be mixed to produce 10.5 liters of a 70 % alcohol solution ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/5281",
+      "problem": "There are 11 animals in a barnyard . Some are chickens and some are cows . There are 38 legs in all . How many chickens and cows are in the barnyard ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/5307",
+      "problem": "6 ducks and 5 pigs cost 213 dollars , while 2 ducks and 9 pigs cost 269 dollars . Find the cost of a duck and a pig .",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/5367",
+      "problem": "Each unit of grain A contains 2 grams of fat and 80 calories , and unit B has 3 grams of fat and 60 calories . If the final product is to provide 18 grams of fat and 480 calories , how much of grain A and how much of grain B should be used .",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/5454",
+      "problem": "Kay spends 250 minutes per week exercising . Her ratio of time spent on aerobics to time spent on weight training is 3 to 2 . How many minutes per week does she spend on aerobics ? How many minutes per week does she spend on weight training ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/5456",
+      "problem": "A merchant wants to combine peanuts selling 2.40 dollars per pound and cashews selling for 6.00 dollars per pound to form 60 pounds which will sell at 3.00 dollars per pound . What amount of peanuts and what amount of cashews must be used ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/5480",
+      "problem": "An art dealer sold 16 etchings for 630 dollars . He sold some of them at 35 dollars each and the rest at 45 dollars each . How many etchings did he sell at 35 dollars ? How many etchings did he sell at 45 dollars ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/5484",
+      "problem": "7 audio cassettes and 3 video cassettes cost rs 1110 , while 5 audio cassettes and 4 video cassettes cost rs 1350 . Find the cost of an audio cassette and a video cassette .",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/5503",
+      "problem": "Best Rentals charges a daily fee plus a mileage fee for renting its cars . Barney was charged 69 dollars for 3 days and 300 miles , while Mary was charged 123 dollars for 5 days and 600 miles . Find the daily fee and find the mileage charge ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/5514",
+      "problem": "For the first performance of a play in a community theater , 50 reserved-seat tickets and 80 general-admission tickets were sold . The total receipts were 980 dollars . For the second performance , 60 reserved-seat tickets and 90 general-admission tickets were sold . The total receipts were 1140 dollars . Find the price of a reserved-set ticket , in dollars . Find the price of a general-admission ticket .",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/5533",
+      "problem": "How many liters of 5 % saline solution and 25 % saline solution must be mixed together to get 10 liters of 18 % saline solution ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/5538",
+      "problem": "An airplane begins a flight with a total of 36.0 gallons of fuel stored in two separate wing tanks . During the flight , 25.0 % of the fuel in one tank is used , and in the other tank , 37.5 % of the fuel is used . If the total fuel used is 11.2 gallons , what are the amounts x and y stored in each tank .",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/5580",
+      "problem": "Mary can purchase roses and daisies from a flower shop . She can buy four roses and five daisies for 7.90 dollars or two roses and six daisies for 5.70 dollars . What is the individual cost for each rose and daisy ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/5581",
+      "problem": "Soybean meal is 16 % protein and cornmeal is 8 % . How many pounds of each should be mixed together in order to get a 320 pound mixture that is 15 % protein ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/5626",
+      "problem": "Cole 's student loans totaled 31,000 dollars . One of his loans was at 2.8 % simple interest and the other at 4.5 % . After one year , Cole owed 1024.40 dollars in interest . What was the amount of each loan ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/5629",
+      "problem": "Two cyclists start at the same point and travel in opposite directions . One cyclist travels 8 kilometers per hour faster than the other . If the two cyclists are 270 kilometers apart after 5 hours what is the rate of each cyclist ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/5632",
+      "problem": "During 2005 major league baseball season , the Chicago White Sox played 162 games . They won 36 more than they lost . How many games did they win , and how many did they lose ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/5652",
+      "problem": "You and a friend go to a Mexican restaurant . You order 2 tacos and 3 enchiladas , and your friend orders 3 tacos and 5 enchiladas . Your bill is 7.80 dollars plus tax , and your friend 's bill is 12.70 dollars plus tax . How much , in dollars , does each taco cost ? How much does each enchilada cost ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/5653",
+      "problem": "2 investments are made totaling 8800 dollars . For a certain year , these investments yield 1326 dollars in simple interest . Part of the 8800 dollars is invested at 16 % and part at 14 % . Find the amount invested at 16 % and 14 % .",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/5669",
+      "problem": "The sum of the numbers of boys and girls in a class is 36 . If twice the number of girls exceeds the number of boys by 12 , find the number of girls in the class . Find the number of boys .",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/5701",
+      "problem": "The sum of 2 numbers is 70 . The larger number is 2 more than 3 times the smaller number . Find the smaller number . Find the larger number .",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/5702",
+      "problem": "Lisa invested 8000 dollars , part at 4 % and the rest at 5 % per year . How much did she invest at 4 % and 5 % if her total return per year on the investments was 380 dollars ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/5710",
+      "problem": "A candy store wishes to mix 2 types of candy to get 5 pounds of 2 dollars per pound candy . If candy A costs 3.20 dollars per pound and candy B costs 1.70 dollars per pound , how many pounds of candy A and candy B should be mixed ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/5711",
+      "problem": "A student inherited 5000 dollars . She invested part of it at 10 % and the rest at 8 % . If her total interest amounted to 460 dollars , how much did she invest at 10 % ? At 8 % ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/5717",
+      "problem": "Soybean meal is 16 % protein ; cornmeal is 8 % protein . How many pounds of each should be mixed together in order to get a 320-pound mixture that is 13 % protein ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/5752",
+      "problem": "A local bus tour sold 65 tickets . Senior citizen tickets cost 10 dollars and regular tickets cost 15 dollars . The total sales were 855 dollars . How many senior citizen tickets were sold ? How many regular tickets were sold ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/5767",
+      "problem": "A farmer has cows and chickens . He only sees 50 legs and 18 heads . How many are cows and how many are chickens ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/5769",
+      "problem": "There are 13 animals in a barn . Some are chickens and some are pigs . There are 40 legs in the barn . How many are pigs are there and how many chicken are there ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/5783",
+      "problem": "The sum of 2 numbers is 15 . 3 times one of the numbers is 11 less than 5 times the other . What is the smaller number ? What is the larger number ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/5829",
+      "problem": "Rowan can row 26 kilometers downstream in 2 hours . Returning upstream it takes 4 hours to complete the trip . Find his rate in still water in kilometers per hour and the rate of the current .",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/5841",
+      "problem": "Phyllis invested 39000 dollars , a portion earning a simple interest rate of 4 % per year and the rest earning a rate of 6 % per year . After 1 year the total interest earned on these investments was 1980 dollars . How many dollars did she invest at 4 % ? At 6 % ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/5843",
+      "problem": "Wal-Mart sells thermometers for 2 dollars , and hot-water bottles for 6 dollars . Total sales for these 2 items during the month of January was 1,200 dollars . There were 7 times as many thermometers as hot-water bottles sold . How many thermometers were sold ? How many hot-water bottles ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/5844",
+      "problem": "Honda day shift produced 4 times as much as second shift . The total production for the month was 5,500 cars . How many did the day shift produce ? How many did the second shift produce ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/5872",
+      "problem": "At a hotel one night , 260 rooms were booked . Some were single rooms and some were double rooms . The single rooms cost 35 dollars each and the double rooms cost 60 dollars . The hotel made 14000 dollars that night . How many single rooms and double rooms were booked ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/5874",
+      "problem": "Colombian coffee beans cost 5.50 dollars per pound , while Peruvian coffee beans cost 4.25 dollars per pound . We want to mix the beans together so as to produce a 40-pound bag , costing 4.60 dollars per pound . How many pounds of Columbian beans and how many pounds of Peruvian beans should be used ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/5878",
+      "problem": "An employment agency specializing in temporary construction help pays heavy equipment operators 140 dollars per day and general laborers 90 dollars per day . If 35 people were hired and the payroll was 3950 dollars , how many heavy equipment operators were employed ? How many laborers were employed ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/5939",
+      "problem": "Together , Jane and Jill have 32 dolls . Jill has 6 more dolls than Jane does . How many dolls does Jane have ? How many does Jill have ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/5981",
+      "problem": "1 blend of coffee sells for 9.00 dollars per pound and another blend sells for 8.00 dollars per pound . You want to make a 20 pound blend that sells for 8.40 dollars per pound . How many pounds of the 8 dollars per pound coffee do you need ? How many pounds of the 9 dollars per pound coffee do you need ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/6008",
+      "problem": "1 out of 2 numbers is thrice the other . If their sum is 124 , find the numbers .",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/6014",
+      "problem": "Find two numbers whose sum is 106 and whose difference is 64 .",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/6075",
+      "problem": "Old McDonald has 15 goats and chickens on his farm . The animals combined have a total of 34 legs . Assuming there are no physical defects , how many goats are on the farm ? How many chickens are on the farm ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/6087",
+      "problem": "A group of students went hiking in a wildlife sanctuary . During the hike a total of 180 ticks and mosquitoes were slapped . Ticks have 8 legs and mosquitoes have 6 legs . If these pests has a total of 1240 legs , how many mosquitoes and how many ticks were slapped during the hike ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/6095",
+      "problem": "Soybean meal is 18 % protein , cornmeal is 9 % protein . How many pounds of each Soybean meal and how many pounds of cornmeal should be mixed together in order to get 360-pound mixture that is 17 % protein ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/6096",
+      "problem": "A vendor sold 200 tickets for an upcoming rock concert . Floor seats were 36 dollars and stadium seats were 28 dollars . The vendor sold 6080 dollars in tickets . How many 36-dollar tickets did the vendor sell ? How many 28-dollar tickets did the vendor sell ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/6102",
+      "problem": "E-Chem Testing has a solution that is 80 % base and another that is 30 % base . A technician needs 150 liters of a solution that is 62 % base . The 150 liters will be prepared by mixing the two solutions on hand . How much of the 80 % base and the 30 % base should be used ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/6118",
+      "problem": "With a tail wind , a jet flew 2000 miles in 4 hours . The jet 's return trip against the same wind required 5 hours . Find the jet 's speed and the wind speed .",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/6139",
+      "problem": "Two numbers are in the ratio 8 to 3 . If the sum of numbers is 143 , find the numbers .",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/6151",
+      "problem": "A concert sells out a 20,000 seat arena . Main seat tickets cost 55 dollars , and back seat tickets for 45 dollars . The concert made 955,000 dollars . How many main seat tickets and back seat tickets were sold ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/6158",
+      "problem": "To make a weak solution of 24 liters of 4 % acid , a lab technician will use some premixed solutions : one is 2 % acid and the other is 5 % acid . How many liters of each , respectively , should he use to obtain the desired solution ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/6168",
+      "problem": "2 automobiles start out from two points 600 kilometers apart and travel toward each other.The automobile from the east travels at 10 kilometers faster than the automobile from the west . If they meet after 5 hours , what is the average speed of each automobile ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/6170",
+      "problem": "A chemist has two acid solutions . One solution is 20 % pure acid and the other is 60 % pure acid . How much of 20 % pure acid and 60 % pure acid is needed to produce 80 square-centimeters of a solution that is 45 % pure acid ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/6176",
+      "problem": "A dealer has some hard candy worth 2 dollars a pound and some worth 3 dollars a pound . He wishes to make a mixture of 80 pounds that he can sell for 2.20 dollars per pound . How many pounds of each kind should he use ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/6196",
+      "problem": "Mario has 5000 pence to invest and decides to invest part of it at 4 % and the rest of it at 6.5 % . If the total interest for the year is 245 pence , how much does Mario has to invest at 4 % rate and how much does she has to invest at 6.5 % rate ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/6208",
+      "problem": "The carpenter saws a board that is 22 feet long into two pieces . One piece is to be 1 foot longer than twice the length of the shorter piece . Find the Length of each piece .",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/6212",
+      "problem": "In 1 week , a music store sold 7 violins for a total of 1600 dollars . 2 different types were sold . One cost 200 dollars and the other cost 300 dollars . How many 200-dollar violins were sold ? How many 300-dollar violins were sold ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/6226",
+      "problem": "Joe sold 30 peaches from his tree for a total of 7.50 dollars . He sold the small ones for 20 cents each and the large ones for 35 cents each . How many small ones did he sell ? How many large ones did he sell ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/6227",
+      "problem": "At Al 's Rent-a-Center , it costs 30 dollars more per month to rent a leather couch than it does to rent a microfiber couch . Pauline rented a leather couch for 8 months and then exchanged it for a microfiber couch , which she rented for 12 months . She paid a total of 1620 dollars to rent these couches . Solve this system of equations to find the monthly rental charge for the leather couch , in dollars . Find the monthly rental charge for the microfiber couch .",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/6238",
+      "problem": "A chemist needs to make 30 ounces of a 25 % alcohol solution by mixing together a 15 % alcohol solution with a 40 % alcohol solution . How many ounces of the 15 % solution should he use ? How many ounces of the 40 % solution ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/6239",
+      "problem": "2 high speed trains are 380 miles apart and traveling toward each other . They meet in 4 hours . If one train is 15 miles per hour faster than the other , find the speed of the slower train in miles per hour . Find the speed of the faster train .",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/6241",
+      "problem": "There are 21 animals total , all sheep and chickens . If there are 56 legs total , how many of the 21 animals are sheep ? How many are chickens ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/6254",
+      "problem": "Mrs.Martin bought 3 cups of coffee and 2 bagels and spent 12.75 dollars . Mr.Martin bought 2 cups of coffee and 5 bagels and spent 14.00 dollars . Find the cost of one cup of coffee and the cost of one bagel .",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/6290",
+      "problem": "1 number is 9 less than twice another , and their sum is 42 . Find the two numbers .",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/6300",
+      "problem": "An athlete can burn 10 calories per minute while running and 4 calories per minute while walking . If the athlete burns 450 calories in 60 minutes , how many minutes are spent running ? How many minutes are spent walking ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/6322",
+      "problem": "There are 22 chickens and cows on a farm . Together they have 60 legs . How many chickens are there ? How many cows ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/6323",
+      "problem": "There were 610 people at a play . The admission price was 2 dollars for adults and 1 dollars for children . The admission receipts were 960 dollars . How many adults and children attended ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/6327",
+      "problem": "The ratio of boys to girls is 9 to 4 . You know there are 91 total students . How many of them are boys ? How many are girls ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/6334",
+      "problem": "The Lakers scored 43 points on a combination of 20 two point baskets and three point baskets . How many shots of two point baskets and how many shots of three point baskets were made ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/6351",
+      "problem": "Your science test is worth 100 points and contains 38 questions . There are two-point and five-point questions on the test . How many two-point questions and five-point questions are on the test ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/6355",
+      "problem": "The difference between two numbers is 9 . Find the numbers , if their sum is 46 .",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/6369",
+      "problem": "X pounds of candy valued at 3.50 dollars per pound is mixed with Y pounds of candy valued at 4.30 dollars per pound to produce 10 pounds of a mixture selling for 4 dollars per pound . Find X and Y , the number of pounds of each type .",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/6370",
+      "problem": "A total of 10,000 dollars is invested in 2 funds paying 5 % and 7 % annual interest . The combined annual interest is 630 dollars . How much of the 10,000 dollars is invested at 5 % ? How much at 7 % ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/6373",
+      "problem": "You are running a concession stand . You are selling hot dogs and soda . Each hot dog costs 1.50 dollars and each soda costs 0.50 dollars . You made a total of 78.50 dollars . You sold a total of 87 hot dogs and sodas combined . You must report the number of hot dogs and sodas sold . How many hot dogs and sodas were sold ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/6375",
+      "problem": "A bricklayer lays an average of 150 bricks per hour . During a job , he is called away and replaced by a less experienced man , who averages 120 bricks per hour . The two men laid 930 bricks in 7 hours . How long did each work ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/6376",
+      "problem": "The larger of two numbers is 23 less than twice the smaller . The sum of the two numbers is 70 . Find the two numbers .",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/6383",
+      "problem": "a grocer wants to mix nuts which sell for rs 4 per kilo with nuts which sell for rs 7 per kilo in order to make a mixture which could sell for rs 5 per kilo . How many kilos of each should he mix to get a mixture of 42 kilos ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/6448",
+      "problem": "For a special event at the TCR spring fest , the cost of 3 adult tickets and 4 student tickets was 84 dollars and the cost of 4 adult tickets and 2 student tickets was 62 dollars . Find the admission price for an adult ticket and for a student ticket at the spring fest , in dollars .",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/6452",
+      "problem": "Terry did all 25 problems on his test and got an 85 . Scores are computed by giving 4 points for each right answer and subtracting one point for each wrong answer . How many problems did terry get right and wrong ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/6459",
+      "problem": "A chemist is mixing a solution that is 32 % sodium and another solution that is 12 % sodium . How many liters of 32 % and 12 % solution should the chemist use to produce 50 liters of the solution that is 20 % sodium ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/6505",
+      "problem": "A 69 inch board is cut into 2 pieces . One piece is 2 times the length of the other . What is the length of the shorter piece , in inches ? What is the length of the longer piece ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/6521",
+      "problem": "Find the amount of 6 percent acid solution and the amount of a 14 percent acid solution that Pat should combine to prepare 50 cubic-centimeters of 12 percent solution .",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/6525",
+      "problem": "One unit of whole wheat flour has 13.6 grams of protein and 2.5 grams of fat . One unit of whole milk has 3.4 grams of protein and 3.7 grams of fat . To the nearest tenth , find the number of units of whole wheat flour and whole milk that must be mixed to make dough that has 75 grams of protein and 15 grams of fat .",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/6546",
+      "problem": "A petroleum company has two different sources of crude oil . The first source provides crude oil that is 25 % hydrocarbons and the second one provides crude oil that is 75 % hydrocarbons . In order to obtain 50 gallons of crude oil that is 55 % hydrocarbons , how many gallons of crude oil must be used from each of the two sources ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/6600",
+      "problem": "An employment agency specializing in temporary help pays heavy operators 129 dollars per day and general laborers 82 dollars per day . If 31 people were hired and the payroll was 3952 dollars , how many heavy operators were employed ? How many laborers ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/6666",
+      "problem": "Two times the first number is one more than the second number . If their sum is -64 , what are the two numbers ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/6672",
+      "problem": "A peach and a apple cost 70 cents . The peach is more expensive than the apple by 60 cents . What is the cost a peach , in cents ? What is the cost of an apple , in cents ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/6688",
+      "problem": "2 snails are 264 centimeters apart . They craw toward each other at rates that differ by 6 centimeters per minute . After 22 minutes they meet . How fast is each snail crawling ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/6690",
+      "problem": "Tickets to the school 's dinner theatre cost 6 dollars for children and 9 dollars for adults . 225 tickets were sold for a total of 1875 dollars . How many children attended ? How many adults attended ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/6765",
+      "problem": "2 similar tables and 6 similar chairs cost 6600 dollars . If the table cost 500 dollars more than a chair , what is the cost , in dollars , of the table ? What is the cost of the chair ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/6803",
+      "problem": "The greater of two numbers is 8 times the lesser and their sum is 180 . Find the numbers .",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/6826",
+      "problem": "Maggie has a job working in an office for 10 dollars an hour and another job driving a tractor for 12 dollars an hour . One week she works in the office twice as long as she drives the tractor . Her total income for that week is 416 dollars . How many hours did she spend at the office ? How many hours driving the tractor ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/6831",
+      "problem": "Flying with the wind , a bird was able to make 150 kilometers per hour . If the wind was 0.5 times as strong and the bird flies against it , it could make only 30 kilometers per hour . Find the velocity of the wind in kilometers per hour . Find the velocity of the bird .",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/6853",
+      "problem": "A direct flight on delta air lines from Atlanta to Paris is 4000 miles and takes approximately 8 hours going East and 10 hours going West . Although the plane averages the same airspeed , there is a headwind while traveling East , resulting in a different air speeds . What is the average air speed of the plane in miles per hour and the average wind speed ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/6862",
+      "problem": "A girl saves 1-dollar coins and 2-dollar coins . She takes it to a bank , she has 180 coins in total that equals 260 dollars . How many 1-dollar coins are there ? How many 2-dollar coins are there ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/6878",
+      "problem": "The sum of two numbers is 62 . The greater number exceeds twice the smaller number by 5 . What are the two numbers ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/6881",
+      "problem": "There are 3 more girls than boys in Tom 's class , and the sum of girls and boys is 41 . How many boys are in the class ? How many girls are in the class ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/6925",
+      "problem": "Admission tickets to a football game were 60 cents for adults and 25 cents for children . Receipts for the day showed that 280 persons attended and 140 dollars was collected . How many adults attended ? How many children attended ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/6933",
+      "problem": "There are 30 legs and 13 heads of goats and chicken , so how may goats and chicken are there ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/6945",
+      "problem": "1 number is 3 less than twice another number . The sum of the 2 numbers is 51 . What is the smaller number ? What is the larger number ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/6946",
+      "problem": "You are taking a test in which multiple choice questions are worth 9 points and essay questions are worth 12 points . You answer 16 questions correctly , and your score was 162 points . Find how many multiple choice questions you got right . How many essay questions did you get right ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/6949",
+      "problem": "A child has 17.55 dollars worth of nickels and dimes in her piggy bank . There are a total of 207 coins . How many nickels does she have ? How many dimes does she have ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/6950",
+      "problem": "Jerry Weller received 20,196 more votes than opponent John Pavich . If the total number of votes was 196,554 , find the number of votes for Jerry . Find the number of votes for John .",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/6957",
+      "problem": "A 177-inch pipe is cut into two pieces . One piece is two times the length of the other . Find the lengths of the two pieces .",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/6958",
+      "problem": "During a 4th of July weekend , 32 vehicles became trapped on the Sunshine Skyway Bridge while it was being repaved . A recent city ordinance decreed that only cars with 4 wheels and trucks with six wheels could be on the bridge at any given time . If there were 148 tires that needed to be replaced to due to damage , how many cars and trucks were involved in the incident ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/6999",
+      "problem": "An auditorium has 500 balcony seats and 1800 main-level seats . If tickets for balcony seats will cost 15 dollars less than tickets for main-level seats , what should the prices be for the main-level seats and prices for the balcony seats , so that the total revenue from a sellout performance will be 84,500 ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/7021",
+      "problem": "The difference between two numbers is 20 and their sum is 48 . Find the numbers .",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/7053",
+      "problem": "A woman has 450 dollars invested , part at 2 % and the remainder at 3 % simple interest . If the total annual income is 11 dollars , how much is invested at 2 % , in dollars ? How much is invested at 3 % ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/7056",
+      "problem": "Two planes start from Chicago at the same time and fly in opposite directions , one averaging a speed of 40 miles per hour greater than the other . If they are 2000 miles apart after 5 hours , find their average speeds .",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/7070",
+      "problem": "White vinegar is a solution of acetic acid in water . There are two strengths of white vinegar , a 5 % solution and a 10 % solution . How many milliliters of each solution must be mixed to make 50 milliliters of a 9 % vinegar solution ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/7086",
+      "problem": "Norman and Suzanne Scarpulla own 35 shares of Mcdonald 's stocks and 69 shares of the Ohio Art Company stock . On a particular day in 2011 , their stock portfolio consisting of these two stocks was worth 2,814 dollars . The Mcdonalds stock was 70 dollars more per share than the Ohio Art Company stock . What was the price of McDonalds stock on that day ? What was the cost of the Ohio Art Company stock on that day ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/7126",
+      "problem": "The sum of two numbers is 85 . The difference of twice of one of them and the other one is 5 . Find both numbers .",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/7134",
+      "problem": "They charged 7 dollars for adults and 5 dollars for children . 127 adults and children attended , and 839 dollars was made from ticket sales . How many children and adults went to the film premiere ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/7135",
+      "problem": "There are some 2-dollar coins and some 5-dollar coins . There are 40 coins , which give a total amount of 125 dollars . How many 2-dollar coins are there ? How many 5-dollar coins are there ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/7137",
+      "problem": "In 1 week , a music store sold 9 guitars for a total of of 3611 dollars . Electric guitars sold for 479 dollars each and acoustic guitars sold for 339 dollars each . How many electric guitars were sold ? How many acoustic guitars were sold ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/7143",
+      "problem": "Purses cost 7 dollars each . Scarves cost 8 dollars each . 17 combined items sold costing 130 dollars total . How many purses were sold ? How many scarves were sold ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/7248",
+      "problem": "River Joes 's Seafood Diner charges 6.00 dollars for a catfish dinner and 3.50 dollars for an order of popcorn shrimp . After filling 26 orders , River Joe had collected 133.50 dollars . How many orders of popcorn shrimp and catfish dinners did they sell ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/7363",
+      "problem": "Mrs. Naidu bought 155 dollars in groceries . She paid her bill with 5-dollar notes and 20-dollar notes using a total of 13 notes . How many 5-dollar notes were used ? How many 20-dollar notes were used ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/7364",
+      "problem": "Nine books are to be bought by a student . Some cost 6 dollars each and the remainder cost 6.50 dollars each . The total amount spent was 56 dollars . How many 6-dollar books were sold ? How many 6.50-dollar books were sold ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/7412",
+      "problem": "Admission to an amusement park is 8 dollars for adults and 5 dollars for children . If 201 dollars was paid for 33 tickets , how many adult tickets were purchased ? How many children 's tickets were purchased ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/7491",
+      "problem": "A movie theater charges 7 dollars for an adult and 4 dollars for a child 's ticket . One night , 900 tickets were sold for a total of 5,100 dollars . How many adult tickets were sold ? How many child 's tickets were sold ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/7536",
+      "problem": "Cashews sell for 5.00 dollars a pound and peanuts sell for 2.00 dollars a pound . How many pounds of peanuts and cashews would you use to make 25 pounds of a mixure that sells for 92 dollars ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/7606",
+      "problem": "The school is selling tickets to a performance . They have adult and child tickets . Each adult ticket is 5 dollars and each child ticket is 3 dollars . By the end of the week , there was 178 dollars in sales from 42 tickets sold . How many adult tickets were sold ? How many child tickets ?",
+      "reason": "Question requests two numerical quantities."
+    },
+    {
+      "id": "alg514/7938",
+      "problem": "On a certain hot summer 's day , 754 people used the public swimming pool . The daily prices are 1.50 dollars for children and 2.25 dollars for adults . The receipts for admission totaled 1422.00 dollars . How many children and adults swam at the public pool that day ?",
+      "reason": "Question requests two numerical quantities."
+    }
+  ]
+}

@@ -1,0 +1,635 @@
+{
+  "source": "results/alg514_degro_20b_20261003_133446.jsonl",
+  "n": 499,
+  "direct_incorrect": 13,
+  "z3_incorrect": 8,
+  "both_incorrect": 4,
+  "repair_count": 0,
+  "gold_regrading_performed": false,
+  "cases": [
+    {
+      "id": "alg514/20",
+      "problem": "A hotel purchased 38 bath towels and 61 washcloths for a total cost of 791.50 dollars . A second purchase of 54 bath towels and 50 washcloths , at the same prices , cost 923 dollars . Find the individual prices of the bath towels and washcloths .",
+      "category": "direct_math_error",
+      "assessment": "Hai lần mua khăn: hệ 38*t+61*w=791.5 và 54*t+50*w=923 cho t=12,w=5.5. Direct trả hai phân số không khớp; ModelSpec giữ đúng cả hai phương trình.",
+      "gold_equations": [
+        "(38.0*bath_towel)+(61.0*washcloth)=791.5",
+        "(54.0*bath_towel)+(50.0*washcloth)=923.0"
+      ],
+      "gold_solutions": [
+        12.0,
+        5.5
+      ],
+      "direct": {
+        "answers": [
+          "150391/12863",
+          "7707/1354"
+        ]
+      },
+      "direct_correct_recorded": false,
+      "modelspec": {
+        "status": "SUPPORTED",
+        "variables": {
+          "t": "Real",
+          "w": "Real"
+        },
+        "constraints": [
+          "38*t + 61*w == 791.5",
+          "54*t + 50*w == 923.0"
+        ],
+        "targets": [
+          "t",
+          "w"
+        ]
+      },
+      "z3_answers": [
+        "12",
+        "11/2"
+      ],
+      "z3_correct_recorded": true
+    },
+    {
+      "id": "alg514/760",
+      "problem": "Pencils cost 25 cents a piece . Pens cost 80 cents a piece . Susan spent 20 dollars for a total of 36 pens and pencils . How many pencils did she buy ?",
+      "category": "direct_math_error",
+      "assessment": "36 bút tổng giá 20 USD, bút chì 0.25 và bút mực 0.80: p+q=36,0.25*p+0.8*q=20 cho p=16. Direct trả 8.",
+      "gold_equations": [
+        "(25.0*.01*pencils)+(80.0*0.01*pens)=20.0",
+        "pencils+pens=36.0"
+      ],
+      "gold_solutions": [
+        16.0,
+        20.0
+      ],
+      "direct": {
+        "answers": [
+          "8"
+        ]
+      },
+      "direct_correct_recorded": false,
+      "modelspec": {
+        "status": "SUPPORTED",
+        "variables": {
+          "pencils": "Real",
+          "pens": "Real"
+        },
+        "constraints": [
+          "pencils+pens == 36",
+          "0.25*pencils + 0.8*pens == 20"
+        ],
+        "targets": [
+          "pencils"
+        ]
+      },
+      "z3_answers": [
+        "16"
+      ],
+      "z3_correct_recorded": true
+    },
+    {
+      "id": "alg514/1089",
+      "problem": "A bottle of wine with a cork cost 2.10 dollars . A bottle of wine without a cork costs 2.00 dollars more than the cork . What is the price of the cork ?",
+      "category": "spec_overabstention",
+      "assessment": "Giá rượu+nút=2.10, rượu=nút+2 nên nút=0.05. ModelSpec trả NOT_SUPPORTED quá mức; đây là hệ tuyến tính hỗ trợ được.",
+      "gold_equations": [
+        "wine+cork=2.1",
+        "wine=2.0+cork"
+      ],
+      "gold_solutions": [
+        0.05,
+        2.05
+      ],
+      "direct": {
+        "answers": [
+          "0.05"
+        ]
+      },
+      "direct_correct_recorded": true,
+      "modelspec": {
+        "status": "NOT_SUPPORTED",
+        "variables": {},
+        "constraints": [],
+        "targets": []
+      },
+      "z3_answers": [],
+      "z3_correct_recorded": false
+    },
+    {
+      "id": "alg514/1294",
+      "problem": "Steve purchased tickets to a circus for 7 adults and 2 children . The total cost was 172 dollars . The cost of a child 's ticket was 4 dollars less than the cost of an adult 's ticket . Find the price of an adult 's ticket and a child 's ticket .",
+      "category": "spec_translation_error",
+      "assessment": "Vé 7 người lớn và 2 trẻ em tổng 172 USD; vé trẻ em ít hơn 4 USD. ModelSpec bỏ hệ số 7 và 2, viết adult+child=172 thay 7*adult+2*child=172, trả 88,84 thay 20,16.",
+      "gold_equations": [
+        "(7.0*adult_ticket)+(2.0*child_ticket)=172.0",
+        "child_ticket=adult_ticket-4.0"
+      ],
+      "gold_solutions": [
+        20.0,
+        16.0
+      ],
+      "direct": {
+        "answers": [
+          "20",
+          "16"
+        ]
+      },
+      "direct_correct_recorded": true,
+      "modelspec": {
+        "status": "SUPPORTED",
+        "variables": {
+          "adult": "Real",
+          "child": "Real"
+        },
+        "constraints": [
+          "adult+child == 172",
+          "adult-child == 4"
+        ],
+        "targets": [
+          "adult",
+          "child"
+        ]
+      },
+      "z3_answers": [
+        "88",
+        "84"
+      ],
+      "z3_correct_recorded": false
+    },
+    {
+      "id": "alg514/1532",
+      "problem": "The product of 10 and a number is the same as 36 less twice that same number . Find the number .",
+      "category": "wording_interpretation",
+      "assessment": "Nguồn viết \"36 less twice that same number\", thiếu cách diễn đạt rõ \"less than\". Gold dùng 2*x-36; cả hai flow dùng 36-2*x. Cả hai lệch gold, nhưng cần xem lại cách diễn đạt nguồn trước khi kết luận lỗi ngữ nghĩa.",
+      "gold_equations": [
+        "10.0*number=(2.0*number)-36.0"
+      ],
+      "gold_solutions": [
+        -4.5
+      ],
+      "direct": {
+        "answers": [
+          "3"
+        ]
+      },
+      "direct_correct_recorded": false,
+      "modelspec": {
+        "status": "SUPPORTED",
+        "variables": {
+          "a": "Real"
+        },
+        "constraints": [
+          "10*a == 36 - 2*a"
+        ],
+        "targets": [
+          "a"
+        ]
+      },
+      "z3_answers": [
+        "3"
+      ],
+      "z3_correct_recorded": false
+    },
+    {
+      "id": "alg514/2196",
+      "problem": "A freight train and an express train leave towns 390 kilometers apart , traveling toward one another . The freight train travels 30 kilometers per hour slower than the express train . They pass one another 3 hours later . How fast is the freight train , in miles per hour ? How fast is the express train ?",
+      "category": "source_gold_units",
+      "assessment": "Dữ kiện km nhưng đề hỏi freight train theo miles/hour. Cả hai đổi thành 31.06855 mph và 49.70968 mph; gold vẫn 50,80 km/hour. Đơn vị target thứ hai không nêu rõ, nhưng ít nhất target thứ nhất của gold không khớp đơn vị được hỏi.",
+      "gold_equations": [
+        "(3.0*freight)+(3.0*express)=390.0",
+        "freight=express-30.0"
+      ],
+      "gold_solutions": [
+        50.0,
+        80.0
+      ],
+      "direct": {
+        "answers": [
+          "31.06855",
+          "49.70968"
+        ]
+      },
+      "direct_correct_recorded": false,
+      "modelspec": {
+        "status": "SUPPORTED",
+        "variables": {
+          "f": "Real",
+          "e": "Real"
+        },
+        "constraints": [
+          "f*3 + e*3 == 390",
+          "e == f + 30"
+        ],
+        "targets": [
+          "f*0.621371",
+          "e*0.621371"
+        ]
+      },
+      "z3_answers": [
+        "621371/20000",
+        "621371/12500"
+      ],
+      "z3_correct_recorded": false
+    },
+    {
+      "id": "alg514/2559",
+      "problem": "The total number of Democrats and Republicans in the House of Representatives was 434 . There were 30 more Republicans then Democrats . How many Democrats and Republicans were there in the Senate ?",
+      "category": "source_target_mismatch",
+      "assessment": "Dữ kiện House of Representatives nhưng câu hỏi Senate. Direct trả answers=[] và ModelSpec NOT_SUPPORTED: việc không suy ra Senate từ dữ kiện House là hợp lý. Gold giải House thành 202,232.",
+      "gold_equations": [
+        "democrats+republicans=434.0",
+        "democrats=republicans-30.0"
+      ],
+      "gold_solutions": [
+        202.0,
+        232.0
+      ],
+      "direct": {
+        "answers": []
+      },
+      "direct_correct_recorded": false,
+      "modelspec": {
+        "status": "NOT_SUPPORTED",
+        "variables": {},
+        "constraints": [],
+        "targets": []
+      },
+      "z3_answers": [],
+      "z3_correct_recorded": false
+    },
+    {
+      "id": "alg514/2849",
+      "problem": "It took me 6 minutes to walk 500 meters . How fast was I travelling ?",
+      "category": "unit_convention",
+      "assessment": "500 m trong 6 phút; đề không chỉ định đơn vị vận tốc. Direct 25/18 tương ứng m/s, ModelSpec 250/3 tương ứng m/min, cùng vận tốc vật lý. Output không ghi đơn vị nên evaluator chỉ khớp số với m/min.",
+      "gold_equations": [
+        "speed=500.0/6.0"
+      ],
+      "gold_solutions": [
+        83.33333333
+      ],
+      "direct": {
+        "answers": [
+          "25/18"
+        ]
+      },
+      "direct_correct_recorded": false,
+      "modelspec": {
+        "status": "SUPPORTED",
+        "variables": {
+          "speed": "Real",
+          "distance": "Real",
+          "time": "Real"
+        },
+        "constraints": [
+          "distance == 500",
+          "time == 6",
+          "speed == distance / time"
+        ],
+        "targets": [
+          "speed"
+        ]
+      },
+      "z3_answers": [
+        "250/3"
+      ],
+      "z3_correct_recorded": true
+    },
+    {
+      "id": "alg514/5131",
+      "problem": "You are traveling to your mothers house that is 234 miles away . If you are currently twice as far from your house as you are from your mothers house how far have you traveled ? Round to the nearest tenth mile .",
+      "category": "direct_math_error",
+      "assessment": "Đường tới nhà mẹ dài 234 miles, đã đi gấp đôi quãng còn lại: traveled+remaining=234,traveled=2*remaining cho traveled=156. Direct trả 468, vượt cả quãng đường.",
+      "gold_equations": [
+        "distance_traveled+distance_mothers=234.0",
+        "distance_traveled=2.0*distance_mothers"
+      ],
+      "gold_solutions": [
+        156.0,
+        78.0
+      ],
+      "direct": {
+        "answers": [
+          "468.0"
+        ]
+      },
+      "direct_correct_recorded": false,
+      "modelspec": {
+        "status": "SUPPORTED",
+        "variables": {
+          "a": "Real",
+          "b": "Real"
+        },
+        "constraints": [
+          "a + b == 234",
+          "a == 2 * b"
+        ],
+        "targets": [
+          "a"
+        ]
+      },
+      "z3_answers": [
+        "156"
+      ],
+      "z3_correct_recorded": true
+    },
+    {
+      "id": "alg514/5272",
+      "problem": "Find a number so that 10 less than 0.6667 the number is 0.25 the number .",
+      "category": "direct_math_error",
+      "assessment": "0.6667*n-10=0.25*n cho n=100000/4167 (~23.99808). Direct -37.3332 không thỏa phương trình.",
+      "gold_equations": [
+        "(0.6667*number)-10.0=0.25*number"
+      ],
+      "gold_solutions": [
+        23.998
+      ],
+      "direct": {
+        "answers": [
+          "-37.3332"
+        ]
+      },
+      "direct_correct_recorded": false,
+      "modelspec": {
+        "status": "SUPPORTED",
+        "variables": {
+          "n": "Real"
+        },
+        "constraints": [
+          "0.6667*n - 10 == 0.25*n"
+        ],
+        "targets": [
+          "n"
+        ]
+      },
+      "z3_answers": [
+        "100000/4167"
+      ],
+      "z3_correct_recorded": true
+    },
+    {
+      "id": "alg514/5652",
+      "problem": "You and a friend go to a Mexican restaurant . You order 2 tacos and 3 enchiladas , and your friend orders 3 tacos and 5 enchiladas . Your bill is 7.80 dollars plus tax , and your friend 's bill is 12.70 dollars plus tax . How much , in dollars , does each taco cost ? How much does each enchilada cost ?",
+      "category": "spec_overabstention",
+      "assessment": "Hai hóa đơn trước thuế: 2*t+3*e=7.8 và 3*t+5*e=12.7 cho taco=0.9,enchilada=2. ModelSpec NOT_SUPPORTED không cần thiết; plus tax không làm hai subtotal mất xác định.",
+      "gold_equations": [
+        "(2.0*tacos_cost)+(3.0*enhiladas_cost)=7.8",
+        "(3.0*tacos_cost)+(5.0*enhiladas_cost)=12.7"
+      ],
+      "gold_solutions": [
+        0.9,
+        2.0
+      ],
+      "direct": {
+        "answers": [
+          "0.90",
+          "2.00"
+        ]
+      },
+      "direct_correct_recorded": true,
+      "modelspec": {
+        "status": "NOT_SUPPORTED",
+        "variables": {},
+        "constraints": [],
+        "targets": []
+      },
+      "z3_answers": [],
+      "z3_correct_recorded": false
+    },
+    {
+      "id": "alg514/6004",
+      "problem": "A textbook costs a bookstore 44 dollars , and the store sells it for 55 dollars . Find the amount of profit based on the selling price .",
+      "category": "profit_interpretation",
+      "assessment": "Mua sách 44 USD, bán 55 USD. Gold hỏi/ghi số tiền lãi 11 USD; Direct 1/5=20% là profit margin trên giá bán. Cụm based on selling price có thể dẫn tới cách hiểu margin; output không ghi đơn vị/loại đại lượng.",
+      "gold_equations": [
+        "profit=55.0-44.0"
+      ],
+      "gold_solutions": [
+        11.0
+      ],
+      "direct": {
+        "answers": [
+          "1/5"
+        ]
+      },
+      "direct_correct_recorded": false,
+      "modelspec": {
+        "status": "SUPPORTED",
+        "variables": {
+          "profit": "Real",
+          "selling_price": "Real",
+          "cost": "Real"
+        },
+        "constraints": [
+          "cost == 44",
+          "selling_price == 55",
+          "profit == selling_price - cost"
+        ],
+        "targets": [
+          "profit"
+        ]
+      },
+      "z3_answers": [
+        "11"
+      ],
+      "z3_correct_recorded": true
+    },
+    {
+      "id": "alg514/6072",
+      "problem": "Suppose you invest 1,500 dollars in equipment to put pictures on T-shirts . You buy each T-shirt for 3 dollars . After you have placed the pictures on a shirt , you sell it for 20 dollars . How many T-shirts must you sell to break even ?",
+      "category": "discrete_count_vs_gold",
+      "assessment": "20*n=1500+3*n cho n=1500/17=88.23529 nếu dùng Real. Số áo rời rạc: không có số nguyên hòa vốn đúng bằng, và 89 là số áo tối thiểu không lỗ. Direct chọn 89, ModelSpec chọn nghiệm Real khớp gold nhưng trái hướng dẫn Int cho indivisible counts.",
+      "gold_equations": [
+        "1500.0+(3.0*shirts)=20.0*shirts"
+      ],
+      "gold_solutions": [
+        88.23529
+      ],
+      "direct": {
+        "answers": [
+          "89"
+        ]
+      },
+      "direct_correct_recorded": false,
+      "modelspec": {
+        "status": "SUPPORTED",
+        "variables": {
+          "n": "Real"
+        },
+        "constraints": [
+          "20*n == 1500 + 3*n"
+        ],
+        "targets": [
+          "n"
+        ]
+      },
+      "z3_answers": [
+        "1500/17"
+      ],
+      "z3_correct_recorded": true
+    },
+    {
+      "id": "alg514/6334",
+      "problem": "The Lakers scored 43 points on a combination of 20 two point baskets and three point baskets . How many shots of two point baskets and how many shots of three point baskets were made ?",
+      "category": "direct_math_error",
+      "assessment": "20 cú ném 2 hoặc 3 điểm, tổng 43: a+b=20,2*a+3*b=43 cho a=17,b=3. Direct 20,1 sai cả tổng số cú và tổng điểm.",
+      "gold_equations": [
+        "(2.0*two_point_baskets)+(3.0*three_point_baskets)=43.0",
+        "two_point_baskets+three_point_baskets=20.0"
+      ],
+      "gold_solutions": [
+        17.0,
+        3.0
+      ],
+      "direct": {
+        "answers": [
+          "20",
+          "1"
+        ]
+      },
+      "direct_correct_recorded": false,
+      "modelspec": {
+        "status": "SUPPORTED",
+        "variables": {
+          "a": "Real",
+          "b": "Real"
+        },
+        "constraints": [
+          "a+b == 20",
+          "2*a + 3*b == 43"
+        ],
+        "targets": [
+          "a",
+          "b"
+        ]
+      },
+      "z3_answers": [
+        "17",
+        "3"
+      ],
+      "z3_correct_recorded": true
+    },
+    {
+      "id": "alg514/6525",
+      "problem": "One unit of whole wheat flour has 13.6 grams of protein and 2.5 grams of fat . One unit of whole milk has 3.4 grams of protein and 3.7 grams of fat . To the nearest tenth , find the number of units of whole wheat flour and whole milk that must be mixed to make dough that has 75 grams of protein and 15 grams of fat .",
+      "category": "rounding_evaluator",
+      "assessment": "Đề yêu cầu làm tròn một chữ số thập phân. Direct 5.4,0.4 đáp ứng; gold giữ 5.4160688666,0.3945480631 nên evaluator từ chối. ModelSpec trả nghiệm chính xác, khớp gold nhưng chưa thực hiện bước làm tròn yêu cầu.",
+      "gold_equations": [
+        "(13.6*whole_wheat)+(3.4*whole_milk)=75.0",
+        "(2.5*whole_wheat)+(3.7*whole_milk)=15.0"
+      ],
+      "gold_solutions": [
+        5.416068866571019,
+        0.39454806312769
+      ],
+      "direct": {
+        "answers": [
+          "5.4",
+          "0.4"
+        ]
+      },
+      "direct_correct_recorded": false,
+      "modelspec": {
+        "status": "SUPPORTED",
+        "variables": {
+          "flour": "Real",
+          "milk": "Real"
+        },
+        "constraints": [
+          "13.6*flour + 3.4*milk == 75",
+          "2.5*flour + 3.7*milk == 15"
+        ],
+        "targets": [
+          "flour",
+          "milk"
+        ]
+      },
+      "z3_answers": [
+        "3775/697",
+        "275/697"
+      ],
+      "z3_correct_recorded": true
+    },
+    {
+      "id": "alg514/6831",
+      "problem": "Flying with the wind , a bird was able to make 150 kilometers per hour . If the wind was 0.5 times as strong and the bird flies against it , it could make only 30 kilometers per hour . Find the velocity of the wind in kilometers per hour . Find the velocity of the bird .",
+      "category": "both_translation_error",
+      "assessment": "Chim xuôi gió 150 km/h, ngược gió khi gió chỉ mạnh bằng một nửa thì 30 km/h. Đúng bird+wind=150,bird-0.5*wind=30 cho wind=80,bird=70. Cả hai trả 60,90 do bỏ 0.5.",
+      "gold_equations": [
+        "bird+wind=150.0",
+        "bird-(0.5*wind)=30.0"
+      ],
+      "gold_solutions": [
+        80.0,
+        70.0
+      ],
+      "direct": {
+        "answers": [
+          "60",
+          "90"
+        ]
+      },
+      "direct_correct_recorded": false,
+      "modelspec": {
+        "status": "SUPPORTED",
+        "variables": {
+          "bird": "Real",
+          "wind": "Real"
+        },
+        "constraints": [
+          "bird+wind==150",
+          "bird-wind==30"
+        ],
+        "targets": [
+          "wind",
+          "bird"
+        ]
+      },
+      "z3_answers": [
+        "60",
+        "90"
+      ],
+      "z3_correct_recorded": false
+    },
+    {
+      "id": "alg514/6853",
+      "problem": "A direct flight on delta air lines from Atlanta to Paris is 4000 miles and takes approximately 8 hours going East and 10 hours going West . Although the plane averages the same airspeed , there is a headwind while traveling East , resulting in a different air speeds . What is the average air speed of the plane in miles per hour and the average wind speed ?",
+      "category": "source_contradiction",
+      "assessment": "Bay East 4000 miles/8h=500mph và West 4000/10h=400mph, nhưng nguồn nói headwind khi đi East. ModelSpec dịch headwind cho air=450,wind=-50: độ lớn gió không thể âm. Gold và Direct dùng +50, ứng với gió thuận East. Cần sửa nguồn hoặc quy ước biến gió có dấu/độ lớn trước khi chấm ngữ nghĩa.",
+      "gold_equations": [
+        "(plane+wind)*8.0=4000.0",
+        "(plane-wind)*10.0=4000.0"
+      ],
+      "gold_solutions": [
+        450.0,
+        50.0
+      ],
+      "direct": {
+        "answers": [
+          "450",
+          "50"
+        ]
+      },
+      "direct_correct_recorded": true,
+      "modelspec": {
+        "status": "SUPPORTED",
+        "variables": {
+          "air": "Real",
+          "wind": "Real"
+        },
+        "constraints": [
+          "air - wind == 500",
+          "air + wind == 400"
+        ],
+        "targets": [
+          "air",
+          "wind"
+        ]
+      },
+      "z3_answers": [
+        "450",
+        "-50"
+      ],
+      "z3_correct_recorded": false
+    }
+  ]
+}

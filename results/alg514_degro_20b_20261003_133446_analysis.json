@@ -1,0 +1,474 @@
+{
+  "source": "results/alg514_degro_20b_20261003_133446.jsonl",
+  "n": 499,
+  "protocol_matches_current_code": true,
+  "offline_solver_rechecks": 499,
+  "flow": {
+    "repair_trigger": "AMBIGUOUS only",
+    "max_repair_attempts": 2,
+    "repair_acceptance": [
+      "exact source span exists",
+      "compiles",
+      "non-redundant",
+      "satisfiable",
+      "all targets determinate"
+    ],
+    "gold_sent_to_model": false
+  },
+  "metrics": {
+    "direct": {
+      "n": 499,
+      "correct": 486,
+      "accuracy": 97.39478957915831,
+      "statuses": {
+        "OK": 499
+      },
+      "old_run_correct_on_same_ids": 486
+    },
+    "modelspec_z3": {
+      "n": 499,
+      "correct": 491,
+      "accuracy": 98.39679358717434,
+      "statuses": {
+        "DETERMINATE": 496,
+        "NOT_SUPPORTED": 3
+      },
+      "old_run_correct_on_same_ids": 475
+    }
+  },
+  "repair_cases": 0,
+  "accepted_repairs": 0,
+  "correct_after_repair": 0,
+  "discordant_cases": [
+    {
+      "id": "alg514/1089",
+      "problem": "A bottle of wine with a cork cost 2.10 dollars . A bottle of wine without a cork costs 2.00 dollars more than the cork . What is the price of the cork ?",
+      "gold_equations": [
+        "wine+cork=2.1",
+        "wine=2.0+cork"
+      ],
+      "gold": [
+        0.05,
+        2.05
+      ],
+      "direct_answers": [
+        "0.05"
+      ],
+      "direct_correct": true,
+      "z3_answers": [],
+      "z3_correct": false,
+      "modelspec": {
+        "status": "NOT_SUPPORTED",
+        "variables": {},
+        "constraints": [],
+        "targets": []
+      }
+    },
+    {
+      "id": "alg514/1294",
+      "problem": "Steve purchased tickets to a circus for 7 adults and 2 children . The total cost was 172 dollars . The cost of a child 's ticket was 4 dollars less than the cost of an adult 's ticket . Find the price of an adult 's ticket and a child 's ticket .",
+      "gold_equations": [
+        "(7.0*adult_ticket)+(2.0*child_ticket)=172.0",
+        "child_ticket=adult_ticket-4.0"
+      ],
+      "gold": [
+        20.0,
+        16.0
+      ],
+      "direct_answers": [
+        "20",
+        "16"
+      ],
+      "direct_correct": true,
+      "z3_answers": [
+        "88",
+        "84"
+      ],
+      "z3_correct": false,
+      "modelspec": {
+        "status": "SUPPORTED",
+        "variables": {
+          "adult": "Real",
+          "child": "Real"
+        },
+        "constraints": [
+          "adult+child == 172",
+          "adult-child == 4"
+        ],
+        "targets": [
+          "adult",
+          "child"
+        ]
+      }
+    },
+    {
+      "id": "alg514/20",
+      "problem": "A hotel purchased 38 bath towels and 61 washcloths for a total cost of 791.50 dollars . A second purchase of 54 bath towels and 50 washcloths , at the same prices , cost 923 dollars . Find the individual prices of the bath towels and washcloths .",
+      "gold_equations": [
+        "(38.0*bath_towel)+(61.0*washcloth)=791.5",
+        "(54.0*bath_towel)+(50.0*washcloth)=923.0"
+      ],
+      "gold": [
+        12.0,
+        5.5
+      ],
+      "direct_answers": [
+        "150391/12863",
+        "7707/1354"
+      ],
+      "direct_correct": false,
+      "z3_answers": [
+        "12",
+        "11/2"
+      ],
+      "z3_correct": true,
+      "modelspec": {
+        "status": "SUPPORTED",
+        "variables": {
+          "t": "Real",
+          "w": "Real"
+        },
+        "constraints": [
+          "38*t + 61*w == 791.5",
+          "54*t + 50*w == 923.0"
+        ],
+        "targets": [
+          "t",
+          "w"
+        ]
+      }
+    },
+    {
+      "id": "alg514/2849",
+      "problem": "It took me 6 minutes to walk 500 meters . How fast was I travelling ?",
+      "gold_equations": [
+        "speed=500.0/6.0"
+      ],
+      "gold": [
+        83.33333333
+      ],
+      "direct_answers": [
+        "25/18"
+      ],
+      "direct_correct": false,
+      "z3_answers": [
+        "250/3"
+      ],
+      "z3_correct": true,
+      "modelspec": {
+        "status": "SUPPORTED",
+        "variables": {
+          "speed": "Real",
+          "distance": "Real",
+          "time": "Real"
+        },
+        "constraints": [
+          "distance == 500",
+          "time == 6",
+          "speed == distance / time"
+        ],
+        "targets": [
+          "speed"
+        ]
+      }
+    },
+    {
+      "id": "alg514/5131",
+      "problem": "You are traveling to your mothers house that is 234 miles away . If you are currently twice as far from your house as you are from your mothers house how far have you traveled ? Round to the nearest tenth mile .",
+      "gold_equations": [
+        "distance_traveled+distance_mothers=234.0",
+        "distance_traveled=2.0*distance_mothers"
+      ],
+      "gold": [
+        156.0,
+        78.0
+      ],
+      "direct_answers": [
+        "468.0"
+      ],
+      "direct_correct": false,
+      "z3_answers": [
+        "156"
+      ],
+      "z3_correct": true,
+      "modelspec": {
+        "status": "SUPPORTED",
+        "variables": {
+          "a": "Real",
+          "b": "Real"
+        },
+        "constraints": [
+          "a + b == 234",
+          "a == 2 * b"
+        ],
+        "targets": [
+          "a"
+        ]
+      }
+    },
+    {
+      "id": "alg514/5272",
+      "problem": "Find a number so that 10 less than 0.6667 the number is 0.25 the number .",
+      "gold_equations": [
+        "(0.6667*number)-10.0=0.25*number"
+      ],
+      "gold": [
+        23.998
+      ],
+      "direct_answers": [
+        "-37.3332"
+      ],
+      "direct_correct": false,
+      "z3_answers": [
+        "100000/4167"
+      ],
+      "z3_correct": true,
+      "modelspec": {
+        "status": "SUPPORTED",
+        "variables": {
+          "n": "Real"
+        },
+        "constraints": [
+          "0.6667*n - 10 == 0.25*n"
+        ],
+        "targets": [
+          "n"
+        ]
+      }
+    },
+    {
+      "id": "alg514/5652",
+      "problem": "You and a friend go to a Mexican restaurant . You order 2 tacos and 3 enchiladas , and your friend orders 3 tacos and 5 enchiladas . Your bill is 7.80 dollars plus tax , and your friend 's bill is 12.70 dollars plus tax . How much , in dollars , does each taco cost ? How much does each enchilada cost ?",
+      "gold_equations": [
+        "(2.0*tacos_cost)+(3.0*enhiladas_cost)=7.8",
+        "(3.0*tacos_cost)+(5.0*enhiladas_cost)=12.7"
+      ],
+      "gold": [
+        0.9,
+        2.0
+      ],
+      "direct_answers": [
+        "0.90",
+        "2.00"
+      ],
+      "direct_correct": true,
+      "z3_answers": [],
+      "z3_correct": false,
+      "modelspec": {
+        "status": "NOT_SUPPORTED",
+        "variables": {},
+        "constraints": [],
+        "targets": []
+      }
+    },
+    {
+      "id": "alg514/6004",
+      "problem": "A textbook costs a bookstore 44 dollars , and the store sells it for 55 dollars . Find the amount of profit based on the selling price .",
+      "gold_equations": [
+        "profit=55.0-44.0"
+      ],
+      "gold": [
+        11.0
+      ],
+      "direct_answers": [
+        "1/5"
+      ],
+      "direct_correct": false,
+      "z3_answers": [
+        "11"
+      ],
+      "z3_correct": true,
+      "modelspec": {
+        "status": "SUPPORTED",
+        "variables": {
+          "profit": "Real",
+          "selling_price": "Real",
+          "cost": "Real"
+        },
+        "constraints": [
+          "cost == 44",
+          "selling_price == 55",
+          "profit == selling_price - cost"
+        ],
+        "targets": [
+          "profit"
+        ]
+      }
+    },
+    {
+      "id": "alg514/6072",
+      "problem": "Suppose you invest 1,500 dollars in equipment to put pictures on T-shirts . You buy each T-shirt for 3 dollars . After you have placed the pictures on a shirt , you sell it for 20 dollars . How many T-shirts must you sell to break even ?",
+      "gold_equations": [
+        "1500.0+(3.0*shirts)=20.0*shirts"
+      ],
+      "gold": [
+        88.23529
+      ],
+      "direct_answers": [
+        "89"
+      ],
+      "direct_correct": false,
+      "z3_answers": [
+        "1500/17"
+      ],
+      "z3_correct": true,
+      "modelspec": {
+        "status": "SUPPORTED",
+        "variables": {
+          "n": "Real"
+        },
+        "constraints": [
+          "20*n == 1500 + 3*n"
+        ],
+        "targets": [
+          "n"
+        ]
+      }
+    },
+    {
+      "id": "alg514/6334",
+      "problem": "The Lakers scored 43 points on a combination of 20 two point baskets and three point baskets . How many shots of two point baskets and how many shots of three point baskets were made ?",
+      "gold_equations": [
+        "(2.0*two_point_baskets)+(3.0*three_point_baskets)=43.0",
+        "two_point_baskets+three_point_baskets=20.0"
+      ],
+      "gold": [
+        17.0,
+        3.0
+      ],
+      "direct_answers": [
+        "20",
+        "1"
+      ],
+      "direct_correct": false,
+      "z3_answers": [
+        "17",
+        "3"
+      ],
+      "z3_correct": true,
+      "modelspec": {
+        "status": "SUPPORTED",
+        "variables": {
+          "a": "Real",
+          "b": "Real"
+        },
+        "constraints": [
+          "a+b == 20",
+          "2*a + 3*b == 43"
+        ],
+        "targets": [
+          "a",
+          "b"
+        ]
+      }
+    },
+    {
+      "id": "alg514/6525",
+      "problem": "One unit of whole wheat flour has 13.6 grams of protein and 2.5 grams of fat . One unit of whole milk has 3.4 grams of protein and 3.7 grams of fat . To the nearest tenth , find the number of units of whole wheat flour and whole milk that must be mixed to make dough that has 75 grams of protein and 15 grams of fat .",
+      "gold_equations": [
+        "(13.6*whole_wheat)+(3.4*whole_milk)=75.0",
+        "(2.5*whole_wheat)+(3.7*whole_milk)=15.0"
+      ],
+      "gold": [
+        5.416068866571019,
+        0.39454806312769
+      ],
+      "direct_answers": [
+        "5.4",
+        "0.4"
+      ],
+      "direct_correct": false,
+      "z3_answers": [
+        "3775/697",
+        "275/697"
+      ],
+      "z3_correct": true,
+      "modelspec": {
+        "status": "SUPPORTED",
+        "variables": {
+          "flour": "Real",
+          "milk": "Real"
+        },
+        "constraints": [
+          "13.6*flour + 3.4*milk == 75",
+          "2.5*flour + 3.7*milk == 15"
+        ],
+        "targets": [
+          "flour",
+          "milk"
+        ]
+      }
+    },
+    {
+      "id": "alg514/6853",
+      "problem": "A direct flight on delta air lines from Atlanta to Paris is 4000 miles and takes approximately 8 hours going East and 10 hours going West . Although the plane averages the same airspeed , there is a headwind while traveling East , resulting in a different air speeds . What is the average air speed of the plane in miles per hour and the average wind speed ?",
+      "gold_equations": [
+        "(plane+wind)*8.0=4000.0",
+        "(plane-wind)*10.0=4000.0"
+      ],
+      "gold": [
+        450.0,
+        50.0
+      ],
+      "direct_answers": [
+        "450",
+        "50"
+      ],
+      "direct_correct": true,
+      "z3_answers": [
+        "450",
+        "-50"
+      ],
+      "z3_correct": false,
+      "modelspec": {
+        "status": "SUPPORTED",
+        "variables": {
+          "air": "Real",
+          "wind": "Real"
+        },
+        "constraints": [
+          "air - wind == 500",
+          "air + wind == 400"
+        ],
+        "targets": [
+          "air",
+          "wind"
+        ]
+      }
+    },
+    {
+      "id": "alg514/760",
+      "problem": "Pencils cost 25 cents a piece . Pens cost 80 cents a piece . Susan spent 20 dollars for a total of 36 pens and pencils . How many pencils did she buy ?",
+      "gold_equations": [
+        "(25.0*.01*pencils)+(80.0*0.01*pens)=20.0",
+        "pencils+pens=36.0"
+      ],
+      "gold": [
+        16.0,
+        20.0
+      ],
+      "direct_answers": [
+        "8"
+      ],
+      "direct_correct": false,
+      "z3_answers": [
+        "16"
+      ],
+      "z3_correct": true,
+      "modelspec": {
+        "status": "SUPPORTED",
+        "variables": {
+          "pencils": "Real",
+          "pens": "Real"
+        },
+        "constraints": [
+          "pencils+pens == 36",
+          "0.25*pencils + 0.8*pens == 20"
+        ],
+        "targets": [
+          "pencils"
+        ]
+      }
+    }
+  ]
+}
